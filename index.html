@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A1322">
-<meta name="description" content="مفكرة المهبط — سجل رحلات وخدمات المناولة الأرضية. يعمل دون اتصال.">
+<meta name="description" content="مفكرة المهبط — سجل رحلات وخدمات المناولة الأرضية بالتوقيت. يعمل دون اتصال.">
 <title>مفكرة المهبط · Ramp Notes</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icon-192.png">
@@ -18,18 +18,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg0:#060B16;--bg1:#0A1322;--surface:#0F1B30;--surface2:#15243C;--overlay:#1A2C49;
-  --line:#22344F;--line2:#31486B;--ink:#EAF2FF;--ink2:#9FB2CC;--ink3:#647A9C;
-  --amber:#FFB020;--amber2:#FF8A00;--sky:#3FB6FF;--mint:#2FD6A3;--red:#FF5470;
-  --violet:#A78BFA;--pink:#FF6FB5;--lime:#B8E34D;--cyan:#39D0D8;
-  --topH:64px;--tabH:66px;--safeB:env(safe-area-inset-bottom,0px);
+  --bg:#0A1120;--bg1:#0D1626;--surface:#101C31;--surface2:#16253E;--overlay:#1B2C49;
+  --line:#20304B;--line2:#2E4265;
+  --ink:#EAF2FF;--ink2:#A5B6CF;--ink3:#6B80A0;
+  --amber:#FFB020;--amber2:#F08C00;--sky:#3FB6FF;--mint:#2FD6A3;--red:#FF5470;
+  --wa:#25D366;--violet:#A78BFA;--pink:#FF6FB5;--lime:#B8E34D;--cyan:#39D0D8;
+  --topH:96px;--safeB:env(safe-area-inset-bottom,0px);
   color-scheme:dark;
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
 html{scroll-behavior:smooth}
 html.locked{overflow:hidden}
-body{font-family:"Cairo","Segoe UI",Tahoma,sans-serif;background:var(--bg0);color:var(--ink);min-height:100vh;min-height:100dvh;overflow-x:hidden;line-height:1.55}
+body{font-family:"Cairo","Segoe UI",Tahoma,sans-serif;background:var(--bg);background-image:radial-gradient(900px 420px at 80% -8%,rgba(30,64,120,.28),transparent 65%);background-attachment:fixed;color:var(--ink);min-height:100vh;line-height:1.55}
 ::selection{background:rgba(255,176,32,.35)}
 .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:.4px}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -40,336 +41,301 @@ input,textarea,select{font:inherit;color:var(--ink)}
 ::-webkit-scrollbar-thumb{background:var(--line2);border-radius:8px;border:2px solid var(--bg1)}
 ::-webkit-scrollbar-thumb:hover{background:var(--amber2)}
 *{scrollbar-width:thin;scrollbar-color:var(--line2) var(--bg1)}
-.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:radial-gradient(1200px 700px at 85% -10%,#10203A 0%,transparent 60%),radial-gradient(900px 600px at 0% 110%,#0D1B31 0%,transparent 55%),var(--bg0)}
-.bg i{position:absolute;border-radius:50%;filter:blur(90px);opacity:.17;animation:drift 26s ease-in-out infinite alternate}
-.bg .b1{width:420px;height:420px;background:var(--amber2);top:-140px;left:-120px}
-.bg .b2{width:380px;height:380px;background:#1E5FCC;bottom:-120px;right:-100px;animation-delay:-9s}
-.bg .b3{width:260px;height:260px;background:var(--violet);top:40%;right:20%;opacity:.1;animation-delay:-17s}
-@keyframes drift{to{transform:translate(60px,40px) scale(1.15)}}
-.bg::after{content:"";position:absolute;inset:0;opacity:.05;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
-.wrap{max-width:860px;margin:0 auto;padding:0 14px calc(var(--tabH) + var(--safeB) + 96px)}
-.topbar{position:sticky;top:0;z-index:60;background:rgba(10,19,34,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
-.topbar-in{max-width:860px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 14px 8px}
-.logo{display:flex;align-items:center;gap:10px;min-width:0}
-.logo svg{flex:none;filter:drop-shadow(0 0 12px rgba(255,176,32,.35))}
-.logo h1{font-size:17px;font-weight:900;line-height:1.2;white-space:nowrap}
-.logo small{display:block;font-size:9.5px;font-weight:700;color:var(--amber);letter-spacing:2.5px}
-.clock{margin-right:auto;text-align:left;line-height:1.25}
-.clock b{font-size:16px;font-weight:800;display:block}
-.clock span{font-size:10.5px;color:var(--amber);font-weight:700}
+.wrap{max-width:820px;margin:0 auto;padding:0 14px calc(40px + var(--safeB))}
+
+/* الهيدر */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(10,17,32,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:820px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 14px 6px}
+.logo{display:flex;align-items:center;gap:9px;min-width:0}
+.logo h1{font-size:16.5px;font-weight:900;line-height:1.2;white-space:nowrap}
+.logo small{display:block;font-size:9px;font-weight:800;color:var(--amber);letter-spacing:2.5px}
+.clock{margin-right:auto;text-align:left;line-height:1.2}
+.clock b{font-size:15px;font-weight:800;display:block}
+.clock span{font-size:10px;color:var(--amber);font-weight:700}
 .net{flex:none;font-size:9.5px;font-weight:800;padding:3px 8px;border-radius:99px;border:1px solid}
 .net.on{color:var(--mint);border-color:rgba(47,214,163,.4);background:rgba(47,214,163,.1)}
-.net.off{color:var(--red);border-color:rgba(255,84,112,.45);background:rgba(255,84,112,.12);animation:blink 1.6s infinite}
-@keyframes blink{50%{opacity:.55}}
-.ibtn{flex:none;width:38px;height:38px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);transition:.2s}
-.ibtn:hover{color:var(--amber);border-color:var(--line2);transform:translateY(-1px)}
-.lights{display:flex;gap:14px;justify-content:center;padding:0 0 6px}
-.lights i{width:4px;height:4px;border-radius:50%;background:var(--amber);opacity:.25;animation:chase 2.4s infinite;animation-delay:calc(var(--i)*.18s)}
-@keyframes chase{0%,100%{opacity:.2;box-shadow:none}12%{opacity:1;box-shadow:0 0 8px var(--amber)}}
-.tabs-desk{display:none;gap:6px;margin-right:14px}
-.tabs-desk button{padding:7px 16px;border-radius:99px;font-weight:800;font-size:13px;color:var(--ink2);border:1px solid transparent;transition:.2s}
-.tabs-desk button.on{color:var(--amber);background:rgba(255,176,32,.12);border-color:rgba(255,176,32,.4)}
-.updatebar{display:flex;align-items:center;gap:10px;margin:12px 0 0;padding:10px 14px;border-radius:14px;background:linear-gradient(90deg,var(--amber),var(--amber2));color:#221302;font-weight:800;font-size:13.5px;box-shadow:0 6px 24px rgba(255,138,0,.3);animation:pop .4s}
-.updatebar button{background:#221302;color:var(--amber);padding:6px 14px;border-radius:10px;font-weight:800;font-size:12.5px}
+.net.off{color:var(--red);border-color:rgba(255,84,112,.45);background:rgba(255,84,112,.12)}
+.ibtn{flex:none;width:36px;height:36px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);transition:.18s}
+.ibtn:hover{color:var(--amber);border-color:var(--line2)}
+.tabs{max-width:820px;margin:0 auto;display:flex;gap:6px;padding:4px 14px 10px}
+.tabs button{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:8px;border-radius:10px;font-weight:800;font-size:13.5px;color:var(--ink2);border:1px solid var(--line);background:var(--surface);transition:.18s}
+.tabs button.on{color:var(--amber);border-color:rgba(255,176,32,.5);background:rgba(255,176,32,.1)}
+.tabs .badge{font-size:10px;font-weight:900;background:var(--surface2);color:var(--ink3);border-radius:99px;padding:1px 8px}
+.tabs button.on .badge{background:rgba(255,176,32,.18);color:var(--amber)}
+.updatebar{display:flex;align-items:center;gap:10px;margin:12px 0 0;padding:9px 13px;border-radius:12px;background:linear-gradient(90deg,var(--amber),var(--amber2));color:#221302;font-weight:800;font-size:13px}
+.updatebar button{background:#221302;color:var(--amber);padding:5px 13px;border-radius:9px;font-weight:800;font-size:12px}
 .updatebar .x{background:transparent;color:#221302;padding:4px}
-.toolbar{position:sticky;top:var(--topH);z-index:50;background:rgba(6,11,22,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 0 10px;margin:0 -2px;border-bottom:1px solid var(--line)}
-.tb-row{display:flex;gap:8px;align-items:center}
-.search{flex:1;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:0 12px;transition:.2s}
-.search:focus-within{border-color:var(--amber);box-shadow:0 0 0 3px rgba(255,176,32,.15)}
+
+/* شريط الأدوات */
+.toolbar{position:sticky;top:var(--topH);z-index:50;background:rgba(10,17,32,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:12px 0 10px;border-bottom:1px solid var(--line)}
+.tb-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.search{flex:1;min-width:150px;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:0 11px}
+.search:focus-within{border-color:var(--amber)}
 .search svg{color:var(--ink3);flex:none}
-.search input{flex:1;background:none;border:0;padding:10px 0;font-size:14px;min-width:0}
+.search input{flex:1;background:none;border:0;padding:9px 0;font-size:13.5px;min-width:0}
 .search input::placeholder{color:var(--ink3)}
 .search input:focus{outline:none}
-.search .clr{color:var(--ink3);padding:4px;display:grid;place-items:center}
-.tb-btn{flex:none;display:flex;align-items:center;gap:6px;padding:9px 13px;border-radius:13px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);font-weight:800;font-size:12.5px;transition:.2s}
-.tb-btn.on{color:var(--amber);border-color:rgba(255,176,32,.5);background:rgba(255,176,32,.12)}
-.chips{display:flex;gap:7px;overflow-x:auto;padding:10px 2px 2px;scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex:none;display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);font-weight:800;font-size:12px;transition:.18s}
-.chip .cnt{font-size:10px;background:var(--surface2);border-radius:99px;padding:1px 7px;color:var(--ink3)}
-.chip.on{color:var(--cc,var(--amber));border-color:rgba(255,176,32,.5);background:rgba(255,176,32,.12);border-color:color-mix(in srgb,var(--cc,var(--amber)) 55%,transparent);background:color-mix(in srgb,var(--cc,var(--amber)) 14%,transparent)}
-.chip.on .cnt{background:rgba(255,176,32,.18);color:var(--cc,var(--amber));background:color-mix(in srgb,var(--cc,var(--amber)) 22%,transparent)}
-.chip.st-expected{--cc:var(--sky)}.chip.st-ground{--cc:var(--amber)}.chip.st-departed{--cc:var(--mint)}
-.chip.st-expected.on{border-color:rgba(63,182,255,.5);background:rgba(63,182,255,.12)}
-.chip.st-ground.on{border-color:rgba(255,176,32,.5);background:rgba(255,176,32,.12)}
-.chip.st-departed.on{border-color:rgba(47,214,163,.5);background:rgba(47,214,163,.12)}
-select.tb-btn{appearance:none;padding-left:26px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%239FB2CC' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 10px center}
-.dateline{display:flex;align-items:center;gap:8px;margin:14px 2px 10px;color:var(--ink2);font-size:12.5px;font-weight:800}
-.dateline::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line2),transparent)}
-.dateline .d{color:var(--amber)}
-.fcard{position:relative;background:linear-gradient(160deg,var(--surface),#0D1728);border:1px solid var(--line);border-right:3px solid var(--stc,var(--line2));border-radius:18px;padding:13px 14px 12px;margin-bottom:11px;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s;animation:rise .45s both;animation-delay:calc(var(--i,0)*.05s)}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}}
-.fcard:hover{border-color:var(--line2);border-right-color:var(--stc);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
-.fcard:active{transform:scale(.985)}
-.fcard.st-expected{--stc:var(--sky)}.fcard.st-ground{--stc:var(--amber)}.fcard.st-departed{--stc:var(--mint)}
-.fcard.pinned{border-color:rgba(255,176,32,.45);box-shadow:0 0 0 1px rgba(255,176,32,.15),0 8px 26px rgba(255,138,0,.08)}
-.fcard.sel{border-color:var(--amber);background:linear-gradient(160deg,#1B2440,#141D33)}
-.fc-top{display:flex;align-items:center;gap:9px}
-.codechip{font-size:11px;font-weight:800;color:var(--amber);border:1px solid rgba(255,176,32,.45);background:rgba(255,176,32,.1);padding:2px 8px;border-radius:8px}
-.fno{font-size:21px;font-weight:800;letter-spacing:1px}
-.fc-actions{margin-right:auto;display:flex;gap:6px}
-.pin,.del{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;border:1px solid var(--line);color:var(--ink3);background:rgba(255,255,255,.02);transition:.18s}
-.pin:hover{color:var(--amber);border-color:rgba(255,176,32,.5)}
-.pin.on{color:var(--amber);border-color:rgba(255,176,32,.55);background:rgba(255,176,32,.14)}
-.del:hover{color:var(--red);border-color:rgba(255,84,112,.5)}
-.del.arm{width:auto;padding:0 12px;gap:6px;display:flex;font-size:11.5px;font-weight:900;color:#fff;background:var(--red);border-color:var(--red);position:relative;overflow:hidden;animation:shake .3s}
-.del.arm::after{content:"";position:absolute;bottom:0;left:0;height:3px;background:rgba(255,255,255,.7);width:100%;transform-origin:left;animation:countdown 3.2s linear forwards}
-@keyframes countdown{to{transform:scaleX(0)}}
-@keyframes shake{25%{transform:translateX(3px)}75%{transform:translateX(-3px)}}
-.fc-meta{color:var(--ink2);font-size:12.5px;margin-top:3px;font-weight:600}
-.fc-meta .mono{color:var(--ink3);font-size:11.5px}
-.fc-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:9px}
-.dirb{font-size:12px;font-weight:800;color:var(--ink2)}
-.dirb b{color:var(--ink);font-size:15px;margin-right:4px}
-.stand{background:var(--amber);color:#171006;font-weight:800;font-size:12.5px;padding:2px 9px;border-radius:7px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.25);letter-spacing:1px}
-.stchip{font-size:10.5px;font-weight:900;padding:3px 10px;border-radius:99px;color:var(--stc);border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);border-color:color-mix(in srgb,var(--stc) 45%,transparent);background:color-mix(in srgb,var(--stc) 12%,transparent)}
-.datechip{font-size:10.5px;font-weight:800;color:var(--violet);border:1px solid rgba(167,139,250,.4);background:rgba(167,139,250,.1);padding:3px 9px;border-radius:99px}
-.noteico{font-size:12px;opacity:.8}
-.fc-prog{display:flex;align-items:center;gap:10px;margin-top:10px}
-.bar{flex:1;height:7px;border-radius:99px;background:var(--surface2);overflow:hidden}
-.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--amber2),var(--amber) 55%,var(--mint));transition:width .5s cubic-bezier(.3,.9,.3,1)}
-.fcard.complete .bar i{background:var(--mint);box-shadow:0 0 10px rgba(47,214,163,.5)}
-.fc-prog span{font-size:11px;font-weight:800;color:var(--ink3)}
-.fcard.complete .fc-prog span{color:var(--mint)}
-.selbox{position:absolute;top:12px;right:12px;width:24px;height:24px;border-radius:8px;border:2px solid var(--line2);display:grid;place-items:center;color:transparent;background:var(--bg1);transition:.15s}
-.fcard.sel .selbox{background:var(--amber);border-color:var(--amber);color:#171006}
-body.bulk .pin,body.bulk .del{display:none}
-body.bulk .fc-top{padding-right:32px}
-.empty{text-align:center;padding:44px 16px;animation:rise .5s both}
-.empty svg{margin-bottom:14px}
-.empty h3{font-size:18px;font-weight:900;margin-bottom:6px}
-.empty p{color:var(--ink2);font-size:13.5px;max-width:340px;margin:0 auto 18px}
-.empty .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.linkish{color:var(--ink3);font-size:12px;font-weight:700;text-decoration:underline;margin-top:14px;display:inline-block}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 20px;border-radius:13px;font-weight:900;font-size:14px;transition:.18s;border:1px solid transparent}
-.btn:active{transform:scale(.96)}
-.btn-p{background:linear-gradient(135deg,var(--amber),var(--amber2));color:#221302;box-shadow:0 6px 20px rgba(255,138,0,.3)}
-.btn-p:hover{box-shadow:0 8px 26px rgba(255,138,0,.45);transform:translateY(-1px)}
+.search .clr{color:var(--ink3);padding:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 15px;border-radius:11px;font-weight:800;font-size:13px;transition:.16s;border:1px solid transparent;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-p{background:linear-gradient(135deg,var(--amber),var(--amber2));color:#221302}
+.btn-p:hover{filter:brightness(1.08)}
 .btn-g{border-color:var(--line2);color:var(--ink2);background:var(--surface)}
-.btn-g:hover{color:var(--ink);border-color:var(--ink3)}
-.btn-d{background:rgba(255,84,112,.12);color:var(--red);border-color:rgba(255,84,112,.45)}
-.btn-d:hover{background:rgba(255,84,112,.2)}
+.btn-g:hover{color:var(--ink)}
+.btn-g.on{color:var(--amber);border-color:rgba(255,176,32,.5);background:rgba(255,176,32,.1)}
+.btn-wa{background:rgba(37,211,102,.12);color:var(--wa);border-color:rgba(37,211,102,.45)}
+.btn-wa:hover{background:rgba(37,211,102,.2)}
+.btn-d{background:rgba(255,84,112,.1);color:var(--red);border-color:rgba(255,84,112,.45)}
+.btn-d:hover{background:rgba(255,84,112,.18)}
 .btn-dsolid{background:var(--red);color:#fff}
 .btn-block{width:100%}
-.fab{position:fixed;bottom:calc(var(--tabH) + var(--safeB) + 16px);left:18px;z-index:55;display:flex;align-items:center;gap:8px;padding:14px 22px;border-radius:99px;font-weight:900;font-size:15px;background:linear-gradient(135deg,var(--amber),var(--amber2));color:#221302;box-shadow:0 10px 30px rgba(255,138,0,.4),0 0 0 1px rgba(255,255,255,.1) inset;transition:.2s;animation:pop .5s .2s both}
-.fab:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(255,138,0,.55)}
-.fab:active{transform:scale(.95)}
-@keyframes pop{from{opacity:0;transform:scale(.8)}}
-body.bulk .fab{display:none}
-.bulkbar{position:fixed;bottom:calc(var(--tabH) + var(--safeB) + 12px);left:14px;right:14px;z-index:56;max-width:832px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:16px;background:var(--overlay);border:1px solid var(--line2);box-shadow:0 14px 40px rgba(0,0,0,.5);animation:pop .3s}
-.bulkbar b{font-size:13.5px}
+.chips{display:flex;gap:6px;overflow-x:auto;padding:9px 2px 2px;scrollbar-width:none;align-items:center}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:99px;border:1px solid var(--line);background:var(--surface);color:var(--ink2);font-weight:800;font-size:11.5px;transition:.16s}
+.chip .cnt{font-size:9.5px;background:var(--surface2);border-radius:99px;padding:1px 7px;color:var(--ink3)}
+.chip.on{color:var(--cc,var(--amber));border-color:rgba(255,176,32,.5);background:rgba(255,176,32,.1);border-color:color-mix(in srgb,var(--cc,var(--amber)) 55%,transparent);background:color-mix(in srgb,var(--cc,var(--amber)) 13%,transparent)}
+.chip.on .cnt{color:var(--cc,var(--amber))}
+.chip.st-expected{--cc:var(--sky)}.chip.st-ground{--cc:var(--amber)}.chip.st-departed{--cc:var(--mint)}
+.chip.st-expected.on{border-color:rgba(63,182,255,.5);background:rgba(63,182,255,.1)}
+.chip.st-ground.on{border-color:rgba(255,176,32,.5);background:rgba(255,176,32,.1)}
+.chip.st-departed.on{border-color:rgba(47,214,163,.5);background:rgba(47,214,163,.1)}
+select.chip{appearance:none;padding-left:24px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23A5B6CF' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:left 9px center}
+.dateline{display:flex;align-items:center;gap:8px;margin:13px 2px 9px;color:var(--ink2);font-size:12px;font-weight:800}
+.dateline::after{content:"";flex:1;height:1px;background:var(--line)}
+.dateline .d{color:var(--amber)}
+
+/* صفوف الرحلات */
+.frow{position:relative;display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-right:3px solid var(--stc,var(--line2));border-radius:12px;padding:10px 12px;margin-bottom:8px;cursor:pointer;transition:border-color .16s,background .16s;animation:rise .35s both;animation-delay:calc(var(--i,0)*.04s)}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+.frow:hover{border-color:var(--line2);border-right-color:var(--stc);background:var(--surface2)}
+.frow.st-expected{--stc:var(--sky)}.frow.st-ground{--stc:var(--amber)}.frow.st-departed{--stc:var(--mint)}
+.frow.pinned{border-color:rgba(255,176,32,.4)}
+.frow.sel{border-color:var(--amber);background:rgba(255,176,32,.07)}
+.fmain{flex:1;min-width:0}
+.fline1{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.fno{font-size:16px;font-weight:800;letter-spacing:.5px}
+.fair{font-size:11.5px;color:var(--ink2);font-weight:700}
+.stchip{font-size:9.5px;font-weight:900;padding:2px 9px;border-radius:99px;color:var(--stc);border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);border-color:color-mix(in srgb,var(--stc) 45%,transparent);background:color-mix(in srgb,var(--stc) 12%,transparent)}
+.fline2{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:3px;font-size:11.5px;color:var(--ink2);font-weight:700}
+.fline2 .t{color:var(--ink);font-size:13px;font-weight:800}
+.stand{background:var(--amber);color:#171006;font-weight:800;font-size:11px;padding:1px 8px;border-radius:6px;letter-spacing:1px}
+.svc-cnt{font-size:10.5px;color:var(--ink3);font-weight:800}
+.svc-cnt.full{color:var(--mint)}
+.datechip{font-size:9.5px;font-weight:800;color:var(--violet);border:1px solid rgba(167,139,250,.4);background:rgba(167,139,250,.1);padding:1px 8px;border-radius:99px}
+.facts{display:flex;gap:5px;flex:none}
+.fact{width:32px;height:32px;display:grid;place-items:center;border-radius:9px;border:1px solid var(--line);color:var(--ink3);background:rgba(255,255,255,.02);transition:.15s}
+.fact.wa{color:var(--wa);border-color:rgba(37,211,102,.35)}
+.fact.wa:hover{background:rgba(37,211,102,.15)}
+.fact.pin:hover{color:var(--amber);border-color:rgba(255,176,32,.5)}
+.fact.pin.on{color:var(--amber);border-color:rgba(255,176,32,.5);background:rgba(255,176,32,.12)}
+.fact.del:hover{color:var(--red);border-color:rgba(255,84,112,.5)}
+.fact.del.arm{width:auto;padding:0 11px;font-size:11px;font-weight:900;color:#fff;background:var(--red);border-color:var(--red);position:relative;overflow:hidden}
+.fact.del.arm::after{content:"";position:absolute;bottom:0;left:0;height:3px;background:rgba(255,255,255,.7);width:100%;transform-origin:left;animation:countdown 3.2s linear forwards}
+@keyframes countdown{to{transform:scaleX(0)}}
+.selbox{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid var(--line2);display:grid;place-items:center;color:transparent;background:var(--bg1)}
+.frow.sel .selbox{background:var(--amber);border-color:var(--amber);color:#171006}
+body.bulk .fact{display:none}
+.bulkbar{position:fixed;bottom:calc(12px + var(--safeB));left:14px;right:14px;z-index:56;max-width:792px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:13px;background:var(--overlay);border:1px solid var(--line2);box-shadow:0 12px 36px rgba(0,0,0,.5)}
+.bulkbar b{font-size:13px}
 .bulkbar .sp{flex:1}
-.tabbar{position:fixed;bottom:0;left:0;right:0;z-index:58;background:rgba(10,19,34,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--line);padding-bottom:var(--safeB)}
-.tabbar-in{max-width:860px;margin:0 auto;display:flex;height:var(--tabH)}
-.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--ink3);font-size:11px;font-weight:800;position:relative;transition:.2s}
-.tab svg{transition:.2s}
-.tab.on{color:var(--amber)}
-.tab.on svg{filter:drop-shadow(0 0 8px rgba(255,176,32,.6));transform:translateY(-2px)}
-.tab.on::before{content:"";position:absolute;top:0;width:34px;height:3px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,var(--amber),var(--amber2));box-shadow:0 2px 10px var(--amber)}
-.tab .badge{position:absolute;top:8px;right:calc(50% - 26px);background:var(--surface2);color:var(--ink2);font-size:9px;font-weight:900;padding:1px 6px;border-radius:99px;border:1px solid var(--line2)}
-.tab.on .badge{background:rgba(255,176,32,.18);color:var(--amber);border-color:rgba(255,176,32,.4)}
+.empty{text-align:center;padding:40px 16px}
+.empty h3{font-size:17px;font-weight:900;margin:10px 0 6px}
+.empty p{color:var(--ink2);font-size:13px;max-width:320px;margin:0 auto 16px}
+.linkish{color:var(--ink3);font-size:11.5px;font-weight:700;text-decoration:underline;margin-top:12px;display:inline-block}
+
+/* الشيتات */
 .sheet{position:fixed;inset:0;z-index:80;visibility:hidden;pointer-events:none}
 .sheet.open{visibility:visible;pointer-events:auto}
-.scrim{position:absolute;inset:0;background:rgba(3,6,13,.72);backdrop-filter:blur(3px);opacity:0;transition:.3s}
+.scrim{position:absolute;inset:0;background:rgba(4,8,16,.72);opacity:0;transition:.28s}
 .sheet.open .scrim{opacity:1}
-.panel{position:absolute;bottom:0;left:0;right:0;max-height:92vh;max-height:92dvh;display:flex;flex-direction:column;background:linear-gradient(180deg,var(--overlay),var(--surface) 120px);border:1px solid var(--line2);border-bottom:0;border-radius:24px 24px 0 0;transform:translateY(102%);transition:transform .38s cubic-bezier(.32,.72,.24,1);box-shadow:0 -20px 60px rgba(0,0,0,.6)}
+.panel{position:absolute;bottom:0;left:0;right:0;max-height:92vh;max-height:92dvh;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line2);border-bottom:0;border-radius:16px 16px 0 0;transform:translateY(102%);transition:transform .34s cubic-bezier(.32,.72,.24,1);box-shadow:0 -16px 50px rgba(0,0,0,.55)}
 .sheet.open .panel{transform:translateY(0)}
-.grab{flex:none;width:44px;height:4px;border-radius:99px;background:var(--line2);margin:10px auto 0}
-.p-head{flex:none;display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--line)}
-.p-head h2{font-size:17px;font-weight:900;flex:1;min-width:0}
-.p-body{overflow-y:auto;padding:16px 18px calc(20px + var(--safeB));overscroll-behavior:contain}
-.p-close{width:34px;height:34px;display:grid;place-items:center;border-radius:11px;border:1px solid var(--line);color:var(--ink2)}
+.grab{flex:none;width:42px;height:4px;border-radius:99px;background:var(--line2);margin:9px auto 0}
+.p-head{flex:none;display:flex;align-items:center;gap:10px;padding:11px 16px;border-bottom:1px solid var(--line)}
+.p-head h2{font-size:16px;font-weight:900;flex:1;min-width:0}
+.p-body{overflow-y:auto;padding:14px 16px calc(18px + var(--safeB));overscroll-behavior:contain}
+.p-close{width:32px;height:32px;display:grid;place-items:center;border-radius:9px;border:1px solid var(--line);color:var(--ink2)}
 .p-close:hover{color:var(--red);border-color:rgba(255,84,112,.5)}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.field{display:flex;flex-direction:column;gap:5px}
-.field label{font-size:11.5px;font-weight:800;color:var(--ink2)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:11px;font-weight:800;color:var(--ink2)}
 .field label b{color:var(--amber)}
-.field input,.field textarea,.field select{background:var(--bg1);border:1px solid var(--line);border-radius:12px;padding:11px 13px;font-size:14.5px;transition:.2s;width:100%}
-.field input:focus,.field textarea:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(255,176,32,.15)}
-.field input.err{border-color:var(--red);animation:shake .3s}
-.seg{display:flex;background:var(--bg1);border:1px solid var(--line);border-radius:12px;padding:4px;gap:4px}
-.seg button{flex:1;padding:9px;border-radius:9px;font-weight:800;font-size:13px;color:var(--ink3);transition:.18s}
-.seg button.on{background:rgba(255,176,32,.16);color:var(--amber);box-shadow:inset 0 0 0 1px rgba(255,176,32,.45)}
-.autobox{grid-column:1/-1;background:rgba(255,176,32,.06);border:1px dashed rgba(255,176,32,.4);border-radius:14px;padding:12px 14px}
+.field input,.field textarea{background:var(--bg1);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:14px;width:100%}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--amber)}
+.field input.err{border-color:var(--red)}
+.seg{display:flex;background:var(--bg1);border:1px solid var(--line);border-radius:10px;padding:3px;gap:3px}
+.seg button{flex:1;padding:8px;border-radius:8px;font-weight:800;font-size:12.5px;color:var(--ink3)}
+.seg button.on{background:rgba(255,176,32,.15);color:var(--amber);box-shadow:inset 0 0 0 1px rgba(255,176,32,.45)}
+.autobox{grid-column:1/-1;background:rgba(255,176,32,.05);border:1px dashed rgba(255,176,32,.4);border-radius:12px;padding:11px 13px}
 .autobox .top{display:flex;align-items:center;gap:10px}
-.autobox .top b{flex:1;font-size:13px}
-.autobox .prev{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.autobox .none{color:var(--ink3);font-size:12px;margin-top:8px}
-.form-actions{display:flex;gap:10px;margin-top:18px}
+.autobox .top b{flex:1;font-size:12.5px}
+.autobox .prev{display:flex;flex-wrap:wrap;gap:6px;margin-top:9px}
+.autobox .none{color:var(--ink3);font-size:11.5px;margin-top:7px}
+.form-actions{display:flex;gap:9px;margin-top:16px}
 .form-actions .btn{flex:1}
-.sw{flex:none;width:46px;height:27px;border-radius:99px;background:var(--surface2);border:1px solid var(--line2);position:relative;transition:.22s}
-.sw::after{content:"";position:absolute;top:3px;right:3px;width:19px;height:19px;border-radius:50%;background:var(--ink3);transition:.22s cubic-bezier(.3,1.4,.5,1)}
+.sw{flex:none;width:44px;height:26px;border-radius:99px;background:var(--surface2);border:1px solid var(--line2);position:relative;transition:.2s}
+.sw::after{content:"";position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:var(--ink3);transition:.2s}
 .sw[aria-checked="true"]{background:linear-gradient(135deg,var(--amber),var(--amber2));border-color:var(--amber)}
-.sw[aria-checked="true"]::after{transform:translateX(-19px);background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.4)}
-.sw.sm{width:38px;height:22px}
-.sw.sm::after{width:14px;height:14px}
-.sw.sm[aria-checked="true"]::after{transform:translateX(-15px)}
-.svcchip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:800;padding:5px 11px;border-radius:99px;color:var(--sc,var(--amber));border:1px solid rgba(255,176,32,.4);background:rgba(255,176,32,.1);border-color:color-mix(in srgb,var(--sc,var(--amber)) 45%,transparent);background:color-mix(in srgb,var(--sc,var(--amber)) 12%,transparent)}
-button.svcchip{cursor:pointer;transition:.15s}
-button.svcchip:hover{transform:translateY(-1px);filter:brightness(1.2)}
+.sw[aria-checked="true"]::after{transform:translateX(-18px);background:#fff}
+.sw.sm{width:36px;height:21px}
+.sw.sm::after{width:13px;height:13px}
+.sw.sm[aria-checked="true"]::after{transform:translateX(-14px)}
+.svcchip{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:800;padding:4px 11px;border-radius:99px;color:var(--sc,var(--amber));border:1px solid rgba(255,176,32,.4);background:rgba(255,176,32,.08);border-color:color-mix(in srgb,var(--sc,var(--amber)) 45%,transparent);background:color-mix(in srgb,var(--sc,var(--amber)) 11%,transparent)}
+button.svcchip{cursor:pointer}
+button.svcchip:hover{filter:brightness(1.2)}
 .c-sky{--sc:var(--sky)}.c-mint{--sc:var(--mint)}.c-amber{--sc:var(--amber)}.c-red{--sc:var(--red)}
 .c-violet{--sc:var(--violet)}.c-pink{--sc:var(--pink)}.c-lime{--sc:var(--lime)}.c-cyan{--sc:var(--cyan)}
-.d-head{display:flex;align-items:center;gap:10px;padding:14px 18px 12px;border-bottom:1px solid var(--line);flex:none}
-.d-head .fno{font-size:24px}
-.stepper{display:flex;gap:5px;background:var(--bg1);border:1px solid var(--line);border-radius:13px;padding:4px;margin-bottom:16px}
-.stepper button{flex:1;padding:9px 4px;border-radius:10px;font-size:12px;font-weight:900;color:var(--ink3);transition:.18s}
-.stepper button.on.st-expected{background:rgba(63,182,255,.16);color:var(--sky);box-shadow:inset 0 0 0 1px rgba(63,182,255,.5)}
-.stepper button.on.st-ground{background:rgba(255,176,32,.16);color:var(--amber);box-shadow:inset 0 0 0 1px rgba(255,176,32,.5)}
-.stepper button.on.st-departed{background:rgba(47,214,163,.16);color:var(--mint);box-shadow:inset 0 0 0 1px rgba(47,214,163,.5)}
-.d-hero{display:flex;align-items:center;gap:16px;margin-bottom:16px}
-.ring{position:relative;flex:none;width:76px;height:76px}
-.ring svg{transform:rotate(-90deg)}
-.ring .pct{position:absolute;inset:0;display:grid;place-items:center;font-size:15px;font-weight:900}
-.ring.done .pct{color:var(--mint)}
-.ring.done{animation:pulse 1.2s ease-out}
-@keyframes pulse{0%{filter:drop-shadow(0 0 0 rgba(47,214,163,.7))}40%{filter:drop-shadow(0 0 16px rgba(47,214,163,.8))}100%{filter:none}}
-.infogrid{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:12.5px}
+
+/* التفاصيل */
+.stepper{display:flex;gap:4px;background:var(--bg1);border:1px solid var(--line);border-radius:11px;padding:3px;margin-bottom:14px}
+.stepper button{flex:1;padding:8px 4px;border-radius:8px;font-size:11.5px;font-weight:900;color:var(--ink3)}
+.stepper button.on.st-expected{background:rgba(63,182,255,.15);color:var(--sky);box-shadow:inset 0 0 0 1px rgba(63,182,255,.5)}
+.stepper button.on.st-ground{background:rgba(255,176,32,.15);color:var(--amber);box-shadow:inset 0 0 0 1px rgba(255,176,32,.5)}
+.stepper button.on.st-departed{background:rgba(47,214,163,.15);color:var(--mint);box-shadow:inset 0 0 0 1px rgba(47,214,163,.5)}
+.infogrid{display:grid;grid-template-columns:1fr 1fr;gap:5px 14px;font-size:12px;margin-bottom:6px}
 .infogrid div{display:flex;gap:6px;min-width:0}
 .infogrid dt{color:var(--ink3);font-weight:700;flex:none}
 .infogrid dd{font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sec-t{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:900;color:var(--ink2);margin:18px 0 10px}
+.sec-t{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:900;color:var(--ink2);margin:16px 0 9px}
 .sec-t::after{content:"";flex:1;height:1px;background:var(--line)}
-.sec-t .n{color:var(--amber);font-size:11.5px}
-.items{list-style:none;display:flex;flex-direction:column;gap:8px}
-.item{display:flex;align-items:center;gap:11px;background:var(--bg1);border:1px solid var(--line);border-radius:14px;padding:9px 11px;transition:.2s;animation:rise .3s both}
-.item.done{background:rgba(47,214,163,.07);border-color:rgba(47,214,163,.35)}
-.check{flex:none;width:38px;height:38px;border-radius:12px;border:2px solid var(--line2);display:grid;place-items:center;color:transparent;transition:.18s;background:var(--surface)}
+.sec-t .n{color:var(--amber);font-size:11px}
+.items{list-style:none;display:flex;flex-direction:column;gap:7px}
+.item{display:flex;align-items:flex-start;gap:9px;background:var(--bg1);border:1px solid var(--line);border-radius:11px;padding:8px 10px;transition:.18s}
+.item.done{background:rgba(47,214,163,.06);border-color:rgba(47,214,163,.35)}
+.check{flex:none;width:32px;height:32px;margin-top:2px;border-radius:9px;border:2px solid var(--line2);display:grid;place-items:center;color:transparent;background:var(--surface);transition:.15s}
 .check:hover{border-color:var(--mint)}
-.item.done .check{background:linear-gradient(135deg,var(--mint),#1FA97E);border-color:transparent;color:#04160F;animation:checkpop .35s cubic-bezier(.3,1.6,.5,1)}
-@keyframes checkpop{0%{transform:scale(.7)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
-.svc-ico{flex:none;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;font-size:18px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);background:color-mix(in srgb,var(--sc,var(--amber)) 15%,transparent);border-color:color-mix(in srgb,var(--sc,var(--amber)) 35%,transparent)}
+.item.done .check{background:var(--mint);border-color:transparent;color:#04160F;animation:ckpop .3s cubic-bezier(.3,1.6,.5,1)}
+@keyframes ckpop{0%{transform:scale(.7)}60%{transform:scale(1.12)}100%{transform:scale(1)}}
+.svc-ico{flex:none;width:30px;height:30px;margin-top:3px;border-radius:8px;display:grid;place-items:center;font-size:15px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.13)}
 .item .nm{flex:1;min-width:0}
-.item .nm b{display:block;font-size:13.5px;font-weight:800}
-.item .nm span{font-size:10.5px;color:var(--ink3);font-weight:700}
-.item.done .nm span{color:var(--mint)}
-.rm{flex:none;width:30px;height:30px;display:grid;place-items:center;border-radius:9px;color:var(--ink3);transition:.15s}
+.item .nm b{display:block;font-size:13px;font-weight:800}
+.svc-time{margin-top:4px;width:112px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:12.5px;font-family:ui-monospace,Menlo,Consolas,monospace}
+.svc-time:focus{outline:none;border-color:var(--amber)}
+.item.done .svc-time{border-color:rgba(47,214,163,.4);color:var(--mint)}
+.rm{flex:none;width:26px;height:26px;margin-top:4px;display:grid;place-items:center;border-radius:8px;color:var(--ink3)}
 .rm:hover{color:var(--red);background:rgba(255,84,112,.12)}
-.addzone{display:flex;flex-wrap:wrap;gap:7px}
-.customform{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
-.customform input[type=text]{flex:1;min-width:140px;background:var(--bg1);border:1px solid var(--line);border-radius:11px;padding:9px 12px;font-size:13px}
+.addzone{display:flex;flex-wrap:wrap;gap:6px}
+.customform{display:flex;align-items:center;gap:8px;margin-top:9px;flex-wrap:wrap}
+.customform input[type=text]{flex:1;min-width:130px;background:var(--bg1);border:1px solid var(--line);border-radius:9px;padding:8px 11px;font-size:12.5px}
 .customform input[type=text]:focus{outline:none;border-color:var(--amber)}
-.customform label{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:800;color:var(--ink2);cursor:pointer}
-.customform input[type=checkbox]{accent-color:var(--amber);width:15px;height:15px}
-.customform .btn{padding:8px 14px;font-size:12.5px}
+.customform label{display:flex;align-items:center;gap:5px;font-size:10.5px;font-weight:800;color:var(--ink2);cursor:pointer}
+.customform input[type=checkbox]{accent-color:var(--amber);width:14px;height:14px}
+.customform .btn{padding:7px 12px;font-size:12px}
 .notesbox{position:relative}
-.notesbox textarea{width:100%;min-height:88px;resize:vertical;background:var(--bg1);border:1px solid var(--line);border-radius:14px;padding:12px 14px;padding-left:52px;font-size:14px;line-height:1.7}
-.notesbox textarea:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(255,176,32,.13)}
-.mic{position:absolute;top:9px;left:9px;width:36px;height:36px;border-radius:11px;display:grid;place-items:center;border:1px solid var(--line2);color:var(--ink2);background:var(--surface);transition:.2s}
+.notesbox textarea{width:100%;min-height:80px;resize:vertical;background:var(--bg1);border:1px solid var(--line);border-radius:11px;padding:11px 12px;padding-left:50px;font-size:13.5px;line-height:1.7}
+.notesbox textarea:focus{outline:none;border-color:var(--amber)}
+.mic{position:absolute;top:8px;left:8px;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;border:1px solid var(--line2);color:var(--ink2);background:var(--surface)}
 .mic:hover:not(:disabled){color:var(--amber);border-color:rgba(255,176,32,.5)}
 .mic.rec{color:#fff;background:var(--red);border-color:var(--red);animation:recpulse 1.1s infinite}
 .mic:disabled{opacity:.35;cursor:not-allowed}
-@keyframes recpulse{50%{box-shadow:0 0 0 7px rgba(255,84,112,.2)}}
-.nsaved{font-size:10.5px;color:var(--mint);font-weight:800;opacity:0;transition:.3s;margin-top:4px;display:inline-block}
+@keyframes recpulse{50%{box-shadow:0 0 0 6px rgba(255,84,112,.2)}}
+.nsaved{font-size:10px;color:var(--mint);font-weight:800;opacity:0;transition:.3s}
 .nsaved.show{opacity:1}
-.interim{font-size:12px;color:var(--ink3);font-style:italic}
-.dangerzone{margin-top:22px;padding-top:16px;border-top:1px dashed rgba(255,84,112,.35)}
-.master{background:linear-gradient(140deg,rgba(255,176,32,.12),rgba(255,138,0,.04));border:1px solid rgba(255,176,32,.4);border-radius:18px;padding:16px;margin:16px 0 14px;animation:rise .4s both}
+.interim{font-size:11.5px;color:var(--ink3);font-style:italic}
+.d-actions{display:flex;gap:9px;margin-top:18px}
+.d-actions .btn{flex:1}
+.dangerzone{margin-top:14px;padding-top:12px;border-top:1px dashed rgba(255,84,112,.35)}
+
+/* المعتادة */
+.master{background:rgba(255,176,32,.06);border:1px solid rgba(255,176,32,.4);border-radius:13px;padding:13px 15px;margin:14px 0 12px}
 .master .top{display:flex;align-items:center;gap:12px}
-.master h3{font-size:15px;font-weight:900;flex:1}
-.master p{font-size:12px;color:var(--ink2);margin-top:6px}
+.master h3{font-size:14px;font-weight:900;flex:1}
+.master p{font-size:11.5px;color:var(--ink2);margin-top:5px}
 .master .cnt{color:var(--amber);font-weight:900}
-.srow{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:15px;padding:9px 10px;margin-bottom:8px;transition:border-color .2s,opacity .2s;animation:rise .4s both;animation-delay:calc(var(--i,0)*.04s)}
+.srow{display:flex;align-items:center;gap:9px;background:var(--surface);border:1px solid var(--line);border-radius:11px;padding:8px 10px;margin-bottom:7px;animation:rise .35s both;animation-delay:calc(var(--i,0)*.03s)}
 .srow:hover{border-color:var(--line2)}
-.srow .nm{flex:1;min-width:0;font-size:13.5px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srow .nm{flex:1;min-width:0;font-size:13px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .srow .auto-l{font-size:9px;font-weight:900;color:var(--ink3)}
-.drag-handle{flex:none;width:26px;height:36px;display:grid;place-items:center;color:var(--ink3);cursor:grab;touch-action:none;border-radius:8px}
+.drag-handle{flex:none;width:24px;height:34px;display:grid;place-items:center;color:var(--ink3);cursor:grab;touch-action:none;border-radius:7px}
 .drag-handle:hover{color:var(--amber);background:rgba(255,176,32,.08)}
-.drag-handle:active{cursor:grabbing}
 .srow.drag-src{opacity:.3;border-style:dashed;border-color:var(--amber)}
-.srow.ghost{position:fixed;z-index:200;pointer-events:none;margin:0;box-shadow:0 18px 50px rgba(0,0,0,.6),0 0 0 1px var(--amber);transform:scale(1.03) rotate(.4deg);background:var(--overlay);animation:none}
-.svc-tools{display:flex;gap:6px}
-.svc-tools .ibtn{width:32px;height:32px;border-radius:10px}
-.emojigrid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
-.emojigrid button{height:42px;font-size:19px;border-radius:10px;border:1px solid var(--line);background:var(--bg1);transition:.15s;display:grid;place-items:center}
-.emojigrid button:hover{border-color:var(--line2);transform:scale(1.08)}
-.emojigrid button.on{border-color:var(--amber);background:rgba(255,176,32,.15);box-shadow:0 0 0 2px rgba(255,176,32,.3)}
-.colorrow{display:flex;gap:9px;flex-wrap:wrap}
-.colorrow button{width:28px;height:28px;border-radius:50%;border:2px solid transparent;transition:.15s;background:var(--sc)}
-.colorrow button:hover{transform:scale(1.15)}
-.colorrow button.on{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.3);box-shadow:0 0 0 3px color-mix(in srgb,var(--sc) 50%,transparent)}
-.spreview{display:flex;align-items:center;gap:10px;background:var(--bg1);border:1px dashed var(--line2);border-radius:13px;padding:10px 13px}
-.set-sec{margin-bottom:20px}
-.set-sec h4{font-size:12px;font-weight:900;color:var(--ink3);letter-spacing:1px;margin-bottom:10px}
-.set-row{display:flex;align-items:center;gap:12px;background:var(--bg1);border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:8px}
+.srow.ghost{position:fixed;z-index:200;pointer-events:none;margin:0;box-shadow:0 14px 40px rgba(0,0,0,.6),0 0 0 1px var(--amber);background:var(--overlay);animation:none}
+.svc-tools{display:flex;gap:5px}
+.svc-tools .ibtn{width:30px;height:30px;border-radius:8px}
+.emojigrid{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}
+.emojigrid button{height:40px;font-size:18px;border-radius:9px;border:1px solid var(--line);background:var(--bg1);display:grid;place-items:center}
+.emojigrid button.on{border-color:var(--amber);background:rgba(255,176,32,.14)}
+.colorrow{display:flex;gap:8px;flex-wrap:wrap}
+.colorrow button{width:26px;height:26px;border-radius:50%;border:2px solid transparent;background:var(--sc)}
+.colorrow button.on{border-color:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.28)}
+.spreview{display:flex;align-items:center;gap:10px;background:var(--bg1);border:1px dashed var(--line2);border-radius:11px;padding:9px 12px}
+.set-sec{margin-bottom:18px}
+.set-sec h4{font-size:11.5px;font-weight:900;color:var(--ink3);letter-spacing:1px;margin-bottom:9px}
+.set-row{display:flex;align-items:center;gap:12px;background:var(--bg1);border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:7px}
 .set-row .tx{flex:1}
-.set-row .tx b{font-size:13.5px;display:block}
-.set-row .tx span{font-size:11.5px;color:var(--ink3)}
-.about{text-align:center;color:var(--ink3);font-size:11.5px;padding:8px 0 4px;line-height:1.9}
+.set-row .tx b{font-size:13px;display:block}
+.set-row .tx span{font-size:11px;color:var(--ink3)}
+.about{text-align:center;color:var(--ink3);font-size:11px;padding:6px 0 2px;line-height:1.9}
 .about b{color:var(--amber)}
-.toasts{position:fixed;bottom:calc(var(--tabH) + var(--safeB) + 84px);left:14px;right:14px;z-index:120;display:flex;justify-content:center;pointer-events:none}
-body.bulk .toasts{bottom:calc(var(--tabH) + var(--safeB) + 140px)}
-.toast{pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;gap:10px;max-width:480px;width:100%;background:var(--overlay);border:1px solid var(--line2);border-radius:15px;padding:12px 14px;font-size:13px;font-weight:800;box-shadow:0 16px 44px rgba(0,0,0,.55);animation:toastin .35s cubic-bezier(.3,1.3,.5,1)}
-@keyframes toastin{from{opacity:0;transform:translateY(16px) scale(.95)}}
-.toast.out{transition:.25s;opacity:0;transform:translateY(10px)}
+
+/* توست ومودال */
+.toasts{position:fixed;bottom:calc(18px + var(--safeB));left:14px;right:14px;z-index:120;display:flex;justify-content:center;pointer-events:none}
+body.bulk .toasts{bottom:calc(76px + var(--safeB))}
+.toast{pointer-events:auto;position:relative;overflow:hidden;display:flex;align-items:center;gap:10px;max-width:460px;width:100%;background:var(--overlay);border:1px solid var(--line2);border-radius:13px;padding:11px 13px;font-size:12.5px;font-weight:800;box-shadow:0 14px 40px rgba(0,0,0,.55);animation:tin .3s cubic-bezier(.3,1.3,.5,1)}
+@keyframes tin{from{opacity:0;transform:translateY(12px)}}
+.toast.out{transition:.22s;opacity:0;transform:translateY(8px)}
 .toast .msg{flex:1}
 .toast.t-success{border-color:rgba(47,214,163,.5)}.toast.t-success .msg{color:var(--mint)}
 .toast.t-danger{border-color:rgba(255,84,112,.5)}.toast.t-danger .msg{color:var(--red)}
 .toast.t-warn{border-color:rgba(255,176,32,.55)}.toast.t-warn .msg{color:var(--amber)}
-.toast .act{flex:none;background:rgba(255,176,32,.16);color:var(--amber);border:1px solid rgba(255,176,32,.5);padding:5px 14px;border-radius:10px;font-weight:900;font-size:12px}
+.toast .act{flex:none;background:rgba(255,176,32,.15);color:var(--amber);border:1px solid rgba(255,176,32,.5);padding:4px 13px;border-radius:9px;font-weight:900;font-size:11.5px}
 .toast .tx{flex:none;color:var(--ink3);padding:2px}
-.toast .tbar{position:absolute;bottom:0;left:0;height:3px;width:100%;background:linear-gradient(90deg,var(--amber),var(--amber2));transform-origin:left;animation:tbar linear forwards}
+.toast .tbar{position:absolute;bottom:0;left:0;height:3px;width:100%;background:var(--amber);transform-origin:left;animation:tbar linear forwards}
 @keyframes tbar{to{transform:scaleX(0)}}
 .modal{position:fixed;inset:0;z-index:130;display:grid;place-items:center;visibility:hidden;pointer-events:none}
 .modal.open{visibility:visible;pointer-events:auto}
-.modal .scrim{background:rgba(3,6,13,.8)}
+.modal .scrim{background:rgba(4,8,16,.8)}
 .modal.open .scrim{opacity:1}
-.m-panel{position:relative;width:min(400px,92vw);background:var(--overlay);border:1px solid var(--line2);border-radius:20px;padding:22px;text-align:center;transform:scale(.9);opacity:0;transition:.25s cubic-bezier(.3,1.3,.5,1);box-shadow:0 24px 70px rgba(0,0,0,.7)}
+.m-panel{position:relative;width:min(380px,92vw);background:var(--overlay);border:1px solid var(--line2);border-radius:16px;padding:20px;text-align:center;transform:scale(.92);opacity:0;transition:.22s}
 .modal.open .m-panel{transform:scale(1);opacity:1}
-.m-panel .ic{width:52px;height:52px;margin:0 auto 12px;border-radius:16px;display:grid;place-items:center;background:rgba(255,84,112,.14);color:var(--red);border:1px solid rgba(255,84,112,.4)}
-.m-panel h3{font-size:16.5px;font-weight:900;margin-bottom:6px}
-.m-panel p{font-size:13px;color:var(--ink2);margin-bottom:18px}
-.m-panel .row{display:flex;gap:10px}
+.m-panel .ic{width:48px;height:48px;margin:0 auto 10px;border-radius:14px;display:grid;place-items:center;background:rgba(255,84,112,.13);color:var(--red);border:1px solid rgba(255,84,112,.4)}
+.m-panel h3{font-size:15.5px;font-weight:900;margin-bottom:5px}
+.m-panel p{font-size:12.5px;color:var(--ink2);margin-bottom:16px}
+.m-panel .row{display:flex;gap:9px}
 .m-panel .row .btn{flex:1}
-.fatal{background:rgba(255,84,112,.08);border:1px solid rgba(255,84,112,.45);border-radius:16px;padding:18px;margin:16px 0;text-align:center}
-.fatal h3{color:var(--red);font-size:16px;margin-bottom:8px}
-.fatal p{color:var(--ink2);font-size:12.5px;margin-bottom:6px}
-.fatal code{display:block;direction:ltr;text-align:left;background:var(--bg1);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:11px;color:var(--amber);margin:10px 0;word-break:break-all}
-.fatal .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.fatal{background:rgba(255,84,112,.07);border:1px solid rgba(255,84,112,.45);border-radius:13px;padding:16px;margin:14px 0;text-align:center}
+.fatal h3{color:var(--red);font-size:15px;margin-bottom:7px}
+.fatal p{color:var(--ink2);font-size:12px;margin-bottom:5px}
+.fatal code{display:block;direction:ltr;text-align:left;background:var(--bg1);border:1px solid var(--line);border-radius:9px;padding:7px 9px;font-size:10.5px;color:var(--amber);margin:9px 0;word-break:break-all}
+.fatal .row{display:flex;gap:9px;justify-content:center;flex-wrap:wrap}
 @media (min-width:880px){
-  .tabbar{display:none}
-  .tabs-desk{display:flex}
-  .wrap{padding-bottom:120px}
-  .fab{bottom:28px;left:calc(50% - 430px + 20px)}
-  .toasts{bottom:30px}
-  body.bulk .toasts{bottom:96px}
-  .bulkbar{bottom:24px}
-  .panel{position:relative;bottom:auto;left:auto;right:auto;margin:auto;border-radius:22px;border-bottom:1px solid var(--line2);width:min(580px,94vw);max-height:86vh;max-height:86dvh;transform:translateY(26px) scale(.97);opacity:0;transition:.3s cubic-bezier(.3,1.2,.4,1)}
+  .panel{position:relative;bottom:auto;left:auto;right:auto;margin:auto;border-radius:16px;border-bottom:1px solid var(--line2);width:min(560px,94vw);max-height:86vh;max-height:86dvh;transform:translateY(20px) scale(.98);opacity:0;transition:.26s}
   .sheet.open .panel{transform:none;opacity:1}
   .sheet{display:grid;place-items:center;padding:20px}
   .grab{display:none}
 }
-@media (max-width:400px){
+@media (max-width:430px){
   .fgrid{grid-template-columns:1fr}
-  .clock b{font-size:14px}
-  .logo h1{font-size:15px}
+  .clock b{font-size:13px}
+  .logo h1{font-size:14.5px}
   .emojigrid{grid-template-columns:repeat(6,1fr)}
+  .fno{font-size:15px}
+  .btn{padding:8px 12px;font-size:12px}
 }
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
 </head>
 <body>
-<div class="bg" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
 
 <header class="topbar" id="topbar">
   <div class="topbar-in">
     <div class="logo">
-      <svg width="38" height="38" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#15243C"/><path d="M50 5 L55 21 V40 L93 63 V71 L55 58 V79 L65 87 V93 L50 88 L35 93 V87 L45 79 V58 L7 71 V63 L45 40 V21 Z" fill="#FFB020"/></svg>
-      <div><h1>مفكرة المهبط</h1><small>RAMP NOTES</small></div>
+      <svg width="34" height="34" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="24" fill="#16253E"/><path d="M50 5 L55 21 V40 L93 63 V71 L55 58 V79 L65 87 V93 L50 88 L35 93 V87 L45 79 V58 L7 71 V63 L45 40 V21 Z" fill="#FFB020"/></svg>
+      <div><h1>مفكرة المهبط</h1><small>RAMP NOTES 🎙</small></div>
     </div>
-    <nav class="tabs-desk" aria-label="التنقل">
-      <button type="button" data-action="tab" data-v="flights" class="on">✈ الرحلات</button>
-      <button type="button" data-action="tab" data-v="services">⭐ المعتادة</button>
-    </nav>
     <div class="clock"><b class="mono" id="clockLocal">--:--:--</b><span class="mono" id="clockUTC">--:--Z</span></div>
     <span class="net on" id="netChip">متصل</span>
     <button type="button" class="ibtn" data-action="open-settings" aria-label="الإعدادات" id="gearBtn"></button>
   </div>
-  <div class="lights" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i></div>
+  <div class="tabs" role="tablist">
+    <button type="button" class="on" data-action="tab" data-v="flights">✈ الرحلات <span class="badge" id="badgeFlights">0</span></button>
+    <button type="button" data-action="tab" data-v="services">⭐ المعتادة <span class="badge" id="badgeServices">0</span></button>
+  </div>
 </header>
 
 <div class="wrap">
   <div class="updatebar" id="updatebar" hidden>
-    <span style="flex:1">🔄 يتوفر تحديث جديد للتطبيق</span>
+    <span style="flex:1">🔄 يتوفر تحديث جديد</span>
     <button type="button" data-action="update-now">تحديث الآن</button>
     <button type="button" class="x" data-action="update-dismiss" aria-label="إغلاق">✕</button>
   </div>
@@ -382,8 +348,10 @@ body.bulk .toasts{bottom:calc(var(--tabH) + var(--safeB) + 140px)}
           <input id="searchInput" type="search" placeholder="بحث: رقم رحلة / تسجيل / موقف…" autocomplete="off" aria-label="بحث">
           <button type="button" class="clr" id="clearSearch" data-action="clear-search" hidden aria-label="مسح البحث">✕</button>
         </div>
-        <button type="button" class="tb-btn" id="selectModeBtn" data-action="select-mode">تحديد</button>
-        <button type="button" class="tb-btn" id="selectAllBtn" data-action="select-all" hidden>الكل</button>
+        <button type="button" class="btn btn-p" data-action="open-new" id="addBtn">＋ رحلة جديدة</button>
+        <button type="button" class="btn btn-wa" data-action="share-day" id="shareDayBtn" title="مشاركة تقرير اليوم على واتساب">📤 تقرير اليوم</button>
+        <button type="button" class="btn btn-g" id="selectModeBtn" data-action="select-mode">تحديد</button>
+        <button type="button" class="btn btn-g" id="selectAllBtn" data-action="select-all" hidden>الكل</button>
       </div>
       <div class="chips">
         <button type="button" class="chip on" data-action="chip" data-v="all">الكل <span class="cnt">0</span></button>
@@ -391,7 +359,7 @@ body.bulk .toasts{bottom:calc(var(--tabH) + var(--safeB) + 140px)}
         <button type="button" class="chip st-ground" data-action="chip" data-v="ground">على الأرض <span class="cnt">0</span></button>
         <button type="button" class="chip st-departed" data-action="chip" data-v="departed">غادرت <span class="cnt">0</span></button>
         <button type="button" class="chip" id="todayChip" data-action="today" style="--cc:var(--violet)">📅 اليوم فقط</button>
-        <select class="tb-btn" id="sortSelect" aria-label="ترتيب">
+        <select class="chip" id="sortSelect" aria-label="ترتيب">
           <option value="time">حسب الوقت</option>
           <option value="created">الأحدث إضافة</option>
           <option value="progress">الأقل اكتمالًا</option>
@@ -400,7 +368,6 @@ body.bulk .toasts{bottom:calc(var(--tabH) + var(--safeB) + 140px)}
     </div>
     <div class="dateline"><span class="d" id="dateChip"></span></div>
     <div id="flightList" role="list"></div>
-    <button type="button" class="fab" id="fab" data-action="open-new"><span id="fabIco"></span> رحلة جديدة</button>
     <div class="bulkbar" id="bulkbar" hidden>
       <b id="bulkCount">0 محدد</b><span class="sp"></span>
       <button type="button" class="btn btn-d" data-action="bulk-del" id="bulkDelBtn">حذف المحدد</button>
@@ -414,21 +381,14 @@ body.bulk .toasts{bottom:calc(var(--tabH) + var(--safeB) + 140px)}
         <h3>⚡ الإضافة التلقائية للرحلات الجديدة</h3>
         <button type="button" class="sw" id="masterSwitch" role="switch" aria-checked="true" data-action="master-auto" aria-label="الإضافة التلقائية"></button>
       </div>
-      <p>الخدمات المعلّمة بـ «تلقائي» تُضاف لوحدها لأي رحلة جديدة — <span class="cnt" id="autoCount">0 خدمات</span> ستُضاف حاليًا.</p>
+      <p>الخدمات المعلّمة «تلقائي» تُضاف لوحدها لأي رحلة جديدة — <span class="cnt" id="autoCount">0 خدمات</span> ستُضاف حاليًا.</p>
     </div>
-    <div class="dateline"><span class="d">كتالوج الخدمات</span><span style="font-size:11px;color:var(--ink3)">اسحب ⋮⋮ لإعادة الترتيب</span></div>
+    <div class="dateline"><span class="d">كتالوج الخدمات</span><span style="font-size:10.5px;color:var(--ink3)">اسحب ⋮⋮ للترتيب</span></div>
     <div id="svcList"></div>
-    <button type="button" class="btn btn-p btn-block" data-action="service-new" style="margin-top:12px">＋ خدمة جديدة</button>
-    <p style="font-size:11.5px;color:var(--ink3);margin-top:12px;text-align:center">حذف خدمة من هنا لا يمسّ الرحلات المسجّلة سابقًا.</p>
+    <button type="button" class="btn btn-p btn-block" data-action="service-new" style="margin-top:11px">＋ خدمة جديدة</button>
+    <p style="font-size:11px;color:var(--ink3);margin-top:10px;text-align:center">حذف خدمة من هنا لا يمسّ الرحلات المسجّلة سابقًا.</p>
   </section>
 </div>
-
-<nav class="tabbar" aria-label="التنقل">
-  <div class="tabbar-in">
-    <button type="button" class="tab on" data-action="tab" data-v="flights"><span class="ti"></span>الرحلات<span class="badge" id="badgeFlights">0</span></button>
-    <button type="button" class="tab" data-action="tab" data-v="services"><span class="ti"></span>المعتادة<span class="badge" id="badgeServices">0</span></button>
-  </div>
-</nav>
 
 <div class="sheet" id="sheet-flight" aria-hidden="true" role="dialog" aria-modal="true">
   <div class="scrim" data-action="close-sheet"></div>
@@ -475,11 +435,11 @@ body.bulk .toasts{bottom:calc(var(--tabH) + var(--safeB) + 140px)}
     <div class="p-head"><h2 id="sTitle">خدمة جديدة</h2><button type="button" class="p-close" data-action="close-sheet" aria-label="إغلاق">✕</button></div>
     <div class="p-body">
       <form id="serviceForm" novalidate>
-        <div class="field" style="margin-bottom:14px"><label>اسم الخدمة <b>*</b></label><input id="sName" placeholder="مثال: تزويد مياه" autocomplete="off" required></div>
-        <div class="field" style="margin-bottom:14px"><label>الأيقونة</label><div class="emojigrid" id="emojiGrid"></div></div>
-        <div class="field" style="margin-bottom:14px"><label>اللون</label><div class="colorrow" id="colorRow"></div></div>
+        <div class="field" style="margin-bottom:13px"><label>اسم الخدمة <b>*</b></label><input id="sName" placeholder="مثال: سلم ركاب" autocomplete="off" required></div>
+        <div class="field" style="margin-bottom:13px"><label>الأيقونة</label><div class="emojigrid" id="emojiGrid"></div></div>
+        <div class="field" style="margin-bottom:13px"><label>اللون</label><div class="colorrow" id="colorRow"></div></div>
         <div class="set-row"><div class="tx"><b>تُضاف تلقائيًا للرحلات الجديدة</b><span>مع تفعيل المفتاح الرئيسي في صفحة المعتادة</span></div><button type="button" class="sw" id="sAutoSwitch" role="switch" aria-checked="false" data-action="sauto" aria-label="تلقائي"></button></div>
-        <div class="spreview" style="margin-top:12px"><span style="font-size:11px;color:var(--ink3);font-weight:800">معاينة:</span><span id="sPreview"></span></div>
+        <div class="spreview" style="margin-top:11px"><span style="font-size:10.5px;color:var(--ink3);font-weight:800">معاينة:</span><span id="sPreview"></span></div>
         <div class="form-actions">
           <button type="submit" class="btn btn-p">حفظ الخدمة</button>
           <button type="button" class="btn btn-d" id="sDeleteBtn" data-action="service-del-inline" hidden>حذف</button>
@@ -497,7 +457,7 @@ body.bulk .toasts{bottom:calc(var(--tabH) + var(--safeB) + 140px)}
     <div class="p-head"><h2>الإعدادات والنسخ الاحتياطي</h2><button type="button" class="p-close" data-action="close-sheet" aria-label="إغلاق">✕</button></div>
     <div class="p-body">
       <div class="set-sec"><h4>النسخ الاحتياطي</h4>
-        <div class="set-row"><div class="tx"><b>تصدير نسخة احتياطية</b><span>ملف JSON بكل الرحلات والخدمات</span></div><button type="button" class="btn btn-g" data-action="export">تصدير ⬇</button></div>
+        <div class="set-row"><div class="tx"><b>تصدير نسخة احتياطية</b><span>ملف JSON بكل الرحلات والخدمات والأوقات</span></div><button type="button" class="btn btn-g" data-action="export">تصدير ⬇</button></div>
         <div class="set-row"><div class="tx"><b>استيراد نسخة</b><span>استرجاع بيانات من ملف محفوظ</span></div><button type="button" class="btn btn-g" data-action="import">استيراد ⬆</button></div>
       </div>
       <div class="set-sec"><h4>التطبيق</h4>
@@ -508,7 +468,7 @@ body.bulk .toasts{bottom:calc(var(--tabH) + var(--safeB) + 140px)}
       <div class="set-sec"><h4 style="color:var(--red)">منطقة الخطر</h4>
         <button type="button" class="btn btn-d btn-block" data-action="wipe">🗑 مسح كل البيانات</button>
       </div>
-      <div class="about"><b>مفكرة المهبط · Ramp Notes</b> — الإصدار 3.0.1<br>يعمل دون اتصال ✈ بياناتك محفوظة على جهازك فقط</div>
+      <div class="about"><b>مفكرة المهبط · Ramp Notes</b> — الإصدار 3.1.0<br>يعمل دون اتصال ✈ بياناتك محفوظة على جهازك فقط</div>
     </div>
   </div>
 </div>
@@ -530,7 +490,6 @@ body.bulk .toasts{bottom:calc(var(--tabH) + var(--safeB) + 140px)}
 
 <script>
 'use strict';
-/* ===== أدوات ===== */
 var $=function(s){return document.querySelector(s)};
 var $$=function(s){return Array.prototype.slice.call(document.querySelectorAll(s))};
 function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
@@ -551,22 +510,19 @@ var I={
   pin:function(s){return svg('<path d="M12 17v5M7 4h10l-1.5 6 2.5 4H6l2.5-4z"/>',s)},
   gear:function(s){return svg('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1z"/>',s)},
   mic:function(s){return svg('<rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4"/>',s)},
-  plus:function(s){return svg('<path d="M12 5v14M5 12h14"/>',s)},
   check:function(s){return svg('<path d="M20 6 9 17l-5-5"/>',s)},
   x:function(s){return svg('<path d="M18 6 6 18M6 6l12 12"/>',s)},
   search:function(s){return svg('<circle cx="11" cy="11" r="7"/><path d="m21 21-4-4"/>',s)},
   edit:function(s){return svg('<path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/>',s)},
   drag:function(s){return svg('<circle cx="9" cy="5" r="1.4"/><circle cx="15" cy="5" r="1.4"/><circle cx="9" cy="12" r="1.4"/><circle cx="15" cy="12" r="1.4"/><circle cx="9" cy="19" r="1.4"/><circle cx="15" cy="19" r="1.4"/>',s,true)},
   warn:function(s){return svg('<path d="M12 3 2 21h20zM12 10v5M12 18.5v.5"/>',s)},
-  planeS:function(s){return'<svg width="'+s+'" height="'+s+'" viewBox="0 0 100 100" fill="currentColor" aria-hidden="true"><path d="'+PLANE+'"/></svg>'},
-  list:function(s){return svg('<path d="M9 6h12M9 12h12M9 18h12"/><path d="m3.5 5.5 1 1 2-2M3.5 11.5l1 1 2-2M3.5 17.5l1 1 2-2"/>',s)}
+  wa:function(s){return'<svg width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>'}
 };
 var STATUS={expected:'متوقعة',ground:'على الأرض',departed:'غادرت'};
-var EMOJIS=['💧','🚽','🧹','🧳','⚡','❄️','⛽','🍱','🪜','♿','🛫','🧊','📦','🛠️','🔥','🚿','🧯','🛞','🚌','🎧','📋','🧰','☕','🧴'];
+var EMOJIS=['💧','🚽','🧹','🧳','⚡','❄️','⛽','🍱','🪜','♿','🛫','🧊','📦','🛠️','🔥','🚿','🧯','🛞','','🎧','','🧰','☕','🧴'];
 var COLORS=['amber','sky','mint','red','violet','pink','lime','cyan'];
 var LS='rampNotes.v3';
 
-/* ===== الحالة ===== */
 var state=null,migrated=false,tab='flights',searchQ='',bulkMode=false,selected=new Set(),detailId=null;
 var toastTimer=null,toastFn=null,confirmRes=null,openSheetEl=null,lastFocus=null;
 var armTimer=null,armedBtn=null,rec=null,drag=null,searchTimer=null,notesTimer=null;
@@ -580,27 +536,27 @@ function seedServices(){return[
   {name:'صرف دورات مياه',icon:'🚽',color:'cyan',auto:true},
   {name:'تنظيف الكبينة',icon:'🧹',color:'mint',auto:true},
   {name:'تفريغ العفش',icon:'🧳',color:'amber',auto:true},
+  {name:'سلم ركاب',icon:'🪜',color:'lime',auto:false},
   {name:'كهرباء أرضية GPU',icon:'⚡',color:'lime',auto:false},
   {name:'تكييف PCA',icon:'❄️',color:'sky',auto:false},
   {name:'تزويد وقود',icon:'⛽',color:'red',auto:false},
   {name:'وجبات كيترينج',icon:'🍱',color:'pink',auto:false},
-  {name:'سلم ركاب',icon:'🪜',color:'lime',auto:false},
   {name:'كراسي متحركة',icon:'♿',color:'violet',auto:false},
   {name:'دفع للخلف Pushback',icon:'🛫',color:'red',auto:false},
   {name:'تزويد ثلج',icon:'🧊',color:'cyan',auto:false}
 ].map(function(s){return Object.assign({id:uid()},s)})}
-function itemOf(s,done,at){return{id:uid(),sid:s.id,name:s.name,icon:s.icon,color:s.color,done:!!done,doneAt:at||null}}
+function itemOf(s,done,time){return{id:uid(),sid:s.id,name:s.name,icon:s.icon,color:s.color,done:!!done,time:time||''}}
 function seed(){
   var sv=seedServices(),t=todayStr(),y=dstr(new Date(Date.now()-864e5));
   function S(n){return sv.find(function(x){return x.name.indexOf(n)===0})}
   var f1={id:uid(),no:'MS732',airline:'مصر للطيران',acType:'A320neo',reg:'SU-GFQ',stand:'A4',dir:'arr',date:t,time:'14:25',status:'ground',pinned:true,createdAt:Date.now()-36e5,notes:'الطاقم طلب مياه إضافية قبل المغادرة.',
-    items:[itemOf(S('تزويد مياه'),true,'14:41'),itemOf(S('صرف'),true,'14:47'),itemOf(S('تنظيف')),itemOf(S('تفريغ'),true,'14:38'),itemOf(S('كهرباء'))]};
+    items:[itemOf(S('تزويد مياه'),true,'14:41'),itemOf(S('صرف'),true,'14:47'),itemOf(S('تنظيف')),itemOf(S('تفريغ'),true,'14:38'),itemOf(S('سلم'),true,'14:32'),itemOf(S('كهرباء'),true,'14:35')]};
   var f2={id:uid(),no:'SM123',airline:'إير كايرو',acType:'B737-800',reg:'SU-GDZ',stand:'B2',dir:'dep',date:t,time:'16:40',status:'expected',pinned:false,createdAt:Date.now()-27e5,notes:'',
-    items:sv.filter(function(s){return s.auto}).map(function(s){return itemOf(s)}).concat([itemOf(S('تزويد وقود'))])};
+    items:sv.filter(function(s){return s.auto}).map(function(s){return itemOf(s)}).concat([itemOf(S('تزويد وقود')),itemOf(S('سلم'))])};
   var f3={id:uid(),no:'NP111',airline:'النيل إير',acType:'A320',reg:'SU-BQA',stand:'C1',dir:'arr',date:t,time:'18:05',status:'expected',pinned:false,createdAt:Date.now()-18e5,notes:'',
     items:sv.filter(function(s){return s.auto}).map(function(s){return itemOf(s)})};
   var f4={id:uid(),no:'MS985',airline:'مصر للطيران',acType:'B777-300ER',reg:'SU-GDN',stand:'D2',dir:'dep',date:y,time:'21:30',status:'departed',pinned:false,createdAt:Date.now()-9e7,notes:'رحلة مزدحمة — عُفّش 212 شنطة.',
-    items:[itemOf(S('تزويد مياه'),true,'20:05'),itemOf(S('صرف'),true,'20:12'),itemOf(S('تنظيف'),true,'20:30'),itemOf(S('وجبات'),true,'20:44'),itemOf(S('دفع'),true,'21:28')]};
+    items:[itemOf(S('تزويد مياه'),true,'20:05'),itemOf(S('صرف'),true,'20:12'),itemOf(S('تنظيف'),true,'20:30'),itemOf(S('وجبات'),true,'20:44'),itemOf(S('سلم'),true,'20:58'),itemOf(S('دفع'),true,'21:28')]};
   return{services:sv,flights:[f1,f2,f3,f4],settings:defaults()};
 }
 function normalize(d){
@@ -610,7 +566,7 @@ function normalize(d){
     id:f.id||uid(),no:String(f.no||f.flightNo||f.number||'—').toUpperCase(),airline:f.airline||'',acType:f.acType||f.type||'',reg:f.reg||'',stand:f.stand||'',
     dir:f.dir==='dep'?'dep':'arr',date:/^\d{4}-\d{2}-\d{2}$/.test(f.date||'')?f.date:todayStr(),time:/^\d{2}:\d{2}$/.test(f.time||'')?f.time:'12:00',
     status:STATUS[f.status]?f.status:'expected',pinned:!!f.pinned,createdAt:f.createdAt||Date.now(),notes:String(f.notes||''),
-    items:(Array.isArray(f.items)?f.items:[]).map(function(i){return{id:i.id||uid(),sid:i.sid||null,name:String(i.name||'خدمة'),icon:i.icon||'🛠️',color:COLORS.indexOf(i.color)>-1?i.color:'amber',done:!!i.done,doneAt:i.doneAt||null}})
+    items:(Array.isArray(f.items)?f.items:[]).map(function(i){return{id:i.id||uid(),sid:i.sid||null,name:String(i.name||'خدمة'),icon:i.icon||'🛠️',color:COLORS.indexOf(i.color)>-1?i.color:'amber',done:!!i.done,time:i.time||i.doneAt||''}})
   }});
   return st;
 }
@@ -640,7 +596,6 @@ function findF(id){return state.flights.find(function(f){return f.id===id})}
 function findS(id){return state.services.find(function(s){return s.id===id})}
 function vib(ms){if(state&&state.settings.haptics&&navigator.vibrate){try{navigator.vibrate(ms)}catch(e){}}}
 
-/* ===== توست / تأكيد ===== */
 function toast(msg,type,opts){
   type=type||'info';opts=opts||{};
   var box=$('#toasts');clearTimeout(toastTimer);toastFn=opts.onAction||null;
@@ -648,20 +603,24 @@ function toast(msg,type,opts){
   box.innerHTML='<div class="toast t-'+type+'"><span class="msg">'+esc(msg)+'</span>'+(opts.actionLabel?'<button type="button" class="act" data-action="toast-act">'+esc(opts.actionLabel)+'</button>':'')+'<button type="button" class="tx" data-action="toast-close" aria-label="إغلاق">✕</button><i class="tbar" style="animation-duration:'+dur+'ms"></i></div>';
   toastTimer=setTimeout(hideToast,dur);
 }
-function hideToast(){var t=$('#toasts .toast');if(!t)return;t.classList.add('out');setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},260);clearTimeout(toastTimer);toastFn=null}
+function hideToast(){var t=$('#toasts .toast');if(!t)return;t.classList.add('out');setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t)},240);clearTimeout(toastTimer);toastFn=null}
 function undoToast(msg,restore){toast(msg,'warn',{actionLabel:'تراجع',dur:6000,onAction:function(){restore();save();renderAll();toast('تم الاسترجاع ✓','success')}})}
 function askConfirm(title,msg,ok){
   return new Promise(function(res){confirmRes=res;$('#mTitle').textContent=title;$('#mMsg').textContent=msg;$('#mOk').textContent=ok||'تأكيد الحذف';$('#modal').classList.add('open');setTimeout(function(){$('#mOk').focus()},80)});
 }
 function resolveConfirm(v){$('#modal').classList.remove('open');if(confirmRes){confirmRes(v);confirmRes=null}}
+function copyText(txt){
+  if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(txt).then(function(){return true},function(){return legacyCopy(txt)})}
+  return Promise.resolve(legacyCopy(txt));
+}
+function legacyCopy(txt){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();var ok=false;try{ok=document.execCommand('copy')}catch(e){}ta.parentNode.removeChild(ta);return ok}
 
-/* ===== الشيتات ===== */
 function openSheet(id,focusSel){
   flushNotes();closeSheet(true);
   openSheetEl=document.getElementById(id);lastFocus=document.activeElement;
   openSheetEl.classList.add('open');openSheetEl.setAttribute('aria-hidden','false');
   document.documentElement.classList.add('locked');
-  if(focusSel)setTimeout(function(){var f=openSheetEl&&openSheetEl.querySelector(focusSel);if(f)f.focus({preventScroll:true})},380);
+  if(focusSel)setTimeout(function(){var f=openSheetEl&&openSheetEl.querySelector(focusSel);if(f)f.focus({preventScroll:true})},360);
 }
 function closeSheet(silent){
   stopRec();flushNotes();
@@ -672,8 +631,7 @@ function closeSheet(silent){
 }
 function flushNotes(){var ta=$('#detailNotes');if(ta){var f=findF(ta.dataset.fid);if(f&&f.notes!==ta.value){f.notes=ta.value;save()}}}
 
-/* ===== حذف الرحلات ===== */
-function disarm(){clearTimeout(armTimer);if(armedBtn){armedBtn.classList.remove('arm');armedBtn.innerHTML=I.trash(17);armedBtn=null}}
+function disarm(){clearTimeout(armTimer);if(armedBtn){armedBtn.classList.remove('arm');armedBtn.innerHTML=I.trash(16);armedBtn=null}}
 function doDeleteFlights(ids){
   flushNotes();disarm();
   var snap=[];ids.forEach(function(id){var idx=state.flights.findIndex(function(f){return f.id===id});if(idx>-1)snap.push({f:state.flights[idx],idx:idx})});
@@ -687,7 +645,53 @@ function doDeleteFlights(ids){
   undoToast(snap.length>1?'حُذفت '+snap.length+' رحلات':'حُذفت الرحلة '+snap[0].f.no,function(){snap.forEach(function(o){state.flights.splice(Math.min(o.idx,state.flights.length),0,o.f)})});
 }
 
-/* ===== عرض الرحلات ===== */
+/* ===== واتساب ===== */
+function flightReport(f){
+  var L=[];
+  L.push('✈ *مفكرة المهبط — Ramp Notes*');
+  L.push('━━━━━━━━━━━━━━');
+  L.push((f.dir==='arr'?'🛬':'🛫')+' *'+f.no+'*'+(f.airline?' — '+f.airline:''));
+  if(f.acType||f.reg)L.push('🛩 '+[f.acType,f.reg].filter(Boolean).join(' | '));
+  L.push('📍 الموقف: '+(f.stand||'—')+'   ⏰ '+f.time);
+  L.push('📅 '+dateLabel(f.date)+' ('+f.date+')');
+  L.push('الحالة: '+STATUS[f.status]);
+  L.push('──────────────');
+  if(f.items.length){
+    f.items.forEach(function(it){L.push((it.done?'✅':'⬜')+' '+it.name+(it.time?' — '+it.time:''))});
+  }else L.push('لا خدمات مسجّلة');
+  if(f.notes&&f.notes.trim()){L.push('──────────────');L.push('📝 '+f.notes.trim())}
+  L.push('━━━━━━━━━━━━━━');
+  return L.join('\n');
+}
+function dayReport(){
+  var list=state.flights.filter(function(f){return f.date===todayStr()}).sort(function(a,b){return(a.time).localeCompare(b.time)});
+  if(!list.length)return null;
+  var L=[];
+  L.push('📋 *تقرير اليوم — مفكرة المهبط*');
+  L.push('📅 '+dateLabel(todayStr())+' ('+todayStr()+')');
+  L.push('━━━━━━━━━━━━━━');
+  list.forEach(function(f){
+    var done=f.items.filter(function(i){return i.done}).length;
+    L.push('');
+    L.push((f.dir==='arr'?'🛬':'🛫')+' *'+f.no+'* — '+STATUS[f.status]+' — موقف '+(f.stand||'—')+' — '+f.time);
+    f.items.forEach(function(it){L.push('   '+(it.done?'✅':'⬜')+' '+it.name+(it.time?' — '+it.time:''))});
+    L.push('   الخدمات: '+done+'/'+f.items.length);
+    if(f.notes&&f.notes.trim())L.push('   📝 '+f.notes.trim());
+  });
+  L.push('');
+  L.push('━━━━━━━━━━━━━━');
+  L.push('إجمالي الرحلات: '+list.length);
+  return L.join('\n');
+}
+function shareWhatsApp(txt){
+  var url='https://wa.me/?text='+encodeURIComponent(txt);
+  var w=null;try{w=window.open(url,'_blank','noopener')}catch(e){}
+  if(!w){
+    copyText(txt).then(function(ok){toast(ok?'اتفتحش واتساب — النص اتنسخ، الصقه في المحادثة ✓':'انسخ النص يدويًا من التفاصيل','warn',{dur:5000})});
+  }else toast('فتحت واتساب بالمشاركة ✓','success',{dur:2500});
+}
+
+/* ===== العرض ===== */
 function pct(f){return f.items.length?f.items.filter(function(i){return i.done}).length/f.items.length:0}
 function scopeFlights(){return state.settings.todayOnly?state.flights.filter(function(f){return f.date===todayStr()}):state.flights.slice()}
 function visibleFlights(){
@@ -704,22 +708,22 @@ function visibleFlights(){
   });
   return list;
 }
-function flightCard(f,i){
-  var done=f.items.filter(function(x){return x.done}).length,total=f.items.length,p=Math.round(pct(f)*100);
-  var code=(f.no.match(/^[A-Z]+/)||['✈'])[0];
-  var complete=total>0&&done===total;
-  return'<article class="fcard st-'+f.status+(f.pinned?' pinned':'')+(complete?' complete':'')+(selected.has(f.id)?' sel':'')+'" role="listitem" tabindex="0" data-action="'+(bulkMode?'sel':'open-flight')+'" data-id="'+f.id+'" style="--i:'+Math.min(i,12)+'" aria-label="الرحلة '+esc(f.no)+'">'
-  +(bulkMode?'<span class="selbox">'+I.check(14)+'</span>':'')
-  +'<div class="fc-top"><span class="codechip mono">'+esc(code)+'</span><h3 class="fno mono">'+esc(f.no)+'</h3>'
-  +'<span class="fc-actions"><button type="button" class="pin'+(f.pinned?' on':'')+'" data-action="pin" data-id="'+f.id+'" aria-label="تثبيت">'+I.pin(16)+'</button>'
-  +'<button type="button" class="del" data-action="del-flight" data-id="'+f.id+'" aria-label="حذف الرحلة '+esc(f.no)+'">'+I.trash(17)+'</button></span></div>'
-  +'<div class="fc-meta">'+esc(f.airline||'—')+(f.acType?' · '+esc(f.acType):'')+(f.reg?' · <span class="mono">'+esc(f.reg)+'</span>':'')+'</div>'
-  +'<div class="fc-row"><span class="dirb">'+(f.dir==='arr'?'🛬 وصول':'🛫 مغادرة')+'<b class="mono">'+esc(f.time)+'</b></span>'
-  +(f.stand?'<span class="stand mono">'+esc(f.stand)+'</span>':'')
-  +'<span class="stchip">'+STATUS[f.status]+'</span>'
+function flightRow(f,i){
+  var done=f.items.filter(function(x){return x.done}).length,total=f.items.length,full=total>0&&done===total;
+  return'<div class="frow st-'+f.status+(f.pinned?' pinned':'')+(selected.has(f.id)?' sel':'')+'" role="listitem" tabindex="0" data-action="'+(bulkMode?'sel':'open-flight')+'" data-id="'+f.id+'" style="--i:'+Math.min(i,12)+'" aria-label="الرحلة '+esc(f.no)+'">'
+  +(bulkMode?'<span class="selbox">'+I.check(13)+'</span>':'')
+  +'<div class="fmain"><div class="fline1"><span class="fno mono">'+esc(f.no)+'</span><span class="fair">'+esc(f.airline||'')+'</span><span class="stchip">'+STATUS[f.status]+'</span>'
   +(!state.settings.todayOnly?'<span class="datechip">'+esc(dateLabel(f.date))+'</span>':'')
-  +(f.notes&&f.notes.trim()?'<span class="noteico" title="توجد ملاحظات">📝</span>':'')+'</div>'
-  +'<div class="fc-prog"><div class="bar"><i style="width:'+p+'%"></i></div><span class="mono">'+(complete?'✓ ':'')+done+'/'+total+'</span></div></article>';
+  +(f.notes&&f.notes.trim()?'<span title="ملاحظات" style="font-size:11px">📝</span>':'')+'</div>'
+  +'<div class="fline2"><span>'+(f.dir==='arr'?'🛬':'🛫')+'</span><span class="t mono">'+esc(f.time)+'</span>'
+  +(f.stand?'<span class="stand mono">'+esc(f.stand)+'</span>':'')
+  +(f.reg?'<span class="mono">'+esc(f.reg)+'</span>':'')
+  +'<span class="svc-cnt'+(full?' full':'')+'">'+(full?'✓ ':'')+done+'/'+total+' خدمة</span></div></div>'
+  +'<div class="facts">'
+  +'<button type="button" class="fact wa" data-action="share-flight" data-id="'+f.id+'" aria-label="مشاركة '+esc(f.no)+' على واتساب" title="شير واتساب">'+I.wa(16)+'</button>'
+  +'<button type="button" class="fact pin'+(f.pinned?' on':'')+'" data-action="pin" data-id="'+f.id+'" aria-label="تثبيت" title="تثبيت">'+I.pin(15)+'</button>'
+  +'<button type="button" class="fact del" data-action="del-flight" data-id="'+f.id+'" aria-label="حذف الرحلة '+esc(f.no)+'" title="حذف">'+I.trash(16)+'</button>'
+  +'</div></div>';
 }
 function renderFlights(){
   var scope=scopeFlights(),counts={all:scope.length,expected:0,ground:0,departed:0};
@@ -730,17 +734,17 @@ function renderFlights(){
   $('#clearSearch').hidden=!searchQ;
   var list=visibleFlights(),box=$('#flightList');
   if(!state.flights.length){
-    box.innerHTML='<div class="empty"><svg width="150" height="150" viewBox="0 0 150 150"><circle cx="75" cy="75" r="34" fill="none" stroke="#22344F" stroke-dasharray="4 6"/><circle cx="75" cy="75" r="54" fill="none" stroke="#1A2A44" stroke-dasharray="3 8"/><circle cx="75" cy="75" r="70" fill="none" stroke="#14213A" stroke-dasharray="2 9"/><g transform="translate(45 42) scale(.6)" fill="#FFB020"><path d="'+PLANE+'"/></g></svg><h3>لا رحلات بعد</h3><p>أضف أول رحلة، والخدمات المعتادة هتتضاف لها تلقائيًا ✨</p><div class="row"><button type="button" class="btn btn-p" data-action="open-new">＋ رحلة جديدة</button></div><button type="button" class="linkish" data-action="seed-demo">أو جرّب ببيانات تجريبية</button></div>';
+    box.innerHTML='<div class="empty"><svg width="110" height="110" viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="none" stroke="#20304B" stroke-dasharray="4 6"/><g fill="#FFB020" opacity=".9"><path d="'+PLANE+'"/></g></svg><h3>لا رحلات بعد</h3><p>أضف أول رحلة، والخدمات المعتادة هتتضاف لها تلقائيًا.</p><button type="button" class="btn btn-p" data-action="open-new">＋ رحلة جديدة</button><br><button type="button" class="linkish" data-action="seed-demo">أو جرّب ببيانات تجريبية</button></div>';
   }else if(!list.length){
-    box.innerHTML='<div class="empty"><h3>لا نتائج مطابقة</h3><p>جرّب تعديل البحث أو الفلاتر.</p><div class="row"><button type="button" class="btn btn-g" data-action="clear-filters">مسح الفلاتر</button></div></div>';
+    box.innerHTML='<div class="empty"><h3>لا نتائج مطابقة</h3><p>جرّب تعديل البحث أو الفلاتر.</p><button type="button" class="btn btn-g" data-action="clear-filters">مسح الفلاتر</button></div>';
   }else if(state.settings.todayOnly){
-    box.innerHTML=list.map(flightCard).join('');
+    box.innerHTML=list.map(flightRow).join('');
   }else{
     var groups=new Map();
     list.forEach(function(f){if(!groups.has(f.date))groups.set(f.date,[]);groups.get(f.date).push(f)});
     var dates=Array.from(groups.keys()).sort(function(a,b){return b.localeCompare(a)});
     var i=0;
-    box.innerHTML=dates.map(function(d){return'<div class="dateline"><span class="d">'+esc(dateLabel(d))+'</span><span style="font-size:10.5px;color:var(--ink3)" class="mono">'+d+'</span></div>'+groups.get(d).map(function(f){return flightCard(f,i++)}).join('')}).join('');
+    box.innerHTML=dates.map(function(d){return'<div class="dateline"><span class="d">'+esc(dateLabel(d))+'</span><span class="mono" style="font-size:10px;color:var(--ink3)">'+d+'</span></div>'+groups.get(d).map(function(f){return flightRow(f,i++)}).join('')}).join('');
   }
   $('#badgeFlights').textContent=counts.all;
   document.body.classList.toggle('bulk',bulkMode);
@@ -754,33 +758,30 @@ function renderFlights(){
   $('#bulkDelBtn').disabled=!selected.size;
   $('#bulkDelBtn').style.opacity=selected.size?1:.45;
 }
-
-/* ===== التفاصيل ===== */
 function openDetail(id){detailId=id;renderDetail();openSheet('sheet-detail')}
 function renderDetail(){
   stopRec();flushNotes();
   var f=findF(detailId);if(!f){closeSheet(true);detailId=null;return}
-  var done=f.items.filter(function(i){return i.done}).length,total=f.items.length,p=pct(f),C=188.5,complete=total>0&&done===total;
+  var done=f.items.filter(function(i){return i.done}).length,total=f.items.length;
   var missing=state.services.filter(function(s){return!f.items.some(function(i){return i.sid===s.id})});
   var missingAuto=state.services.filter(function(s){return s.auto&&!f.items.some(function(i){return i.sid===s.id})});
   var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
-  var h='<div class="grab"></div><div class="d-head"><span class="codechip mono">'+esc((f.no.match(/^[A-Z]+/)||['✈'])[0])+'</span><h2 class="fno mono" style="flex:1">'+esc(f.no)+'</h2><button type="button" class="ibtn" data-action="edit-flight" data-id="'+f.id+'" aria-label="تعديل">'+I.edit(16)+'</button><button type="button" class="p-close" data-action="close-sheet" aria-label="إغلاق">✕</button></div><div class="p-body">'
+  var h='<div class="grab"></div><div class="p-head"><h2 class="mono" style="font-size:19px">'+esc(f.no)+'</h2><span class="stchip" style="--stc:var(--'+(f.status==='expected'?'sky':f.status==='ground'?'amber':'mint')+')">'+STATUS[f.status]+'</span><button type="button" class="ibtn" data-action="edit-flight" data-id="'+f.id+'" aria-label="تعديل">'+I.edit(15)+'</button><button type="button" class="p-close" data-action="close-sheet" aria-label="إغلاق">✕</button></div><div class="p-body">'
   +'<div class="stepper" role="group" aria-label="حالة الرحلة">'+Object.keys(STATUS).map(function(k){return'<button type="button" class="st-'+k+(f.status===k?' on':'')+'" data-action="status" data-id="'+f.id+'" data-v="'+k+'">'+STATUS[k]+'</button>'}).join('')+'</div>'
-  +'<div class="d-hero"><div class="ring'+(complete?' done':'')+'"><svg width="76" height="76" viewBox="0 0 76 76"><defs><linearGradient id="pg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFB020"/><stop offset="1" stop-color="#2FD6A3"/></linearGradient></defs><circle cx="38" cy="38" r="30" fill="none" stroke="#15243C" stroke-width="8"/><circle cx="38" cy="38" r="30" fill="none" stroke="url(#pg)" stroke-width="8" stroke-linecap="round" stroke-dasharray="'+C+'" stroke-dashoffset="'+(C*(1-p))+'" style="transition:stroke-dashoffset .6s cubic-bezier(.3,.9,.3,1)"/></svg><span class="pct mono">'+Math.round(p*100)+'%</span></div>'
-  +'<dl class="infogrid"><div><dt>الشركة</dt><dd>'+esc(f.airline||'—')+'</dd></div><div><dt>النوع</dt><dd>'+esc(f.acType||'—')+'</dd></div><div><dt>التسجيل</dt><dd class="mono">'+esc(f.reg||'—')+'</dd></div><div><dt>الموقف</dt><dd>'+(f.stand?'<span class="stand mono">'+esc(f.stand)+'</span>':'—')+'</dd></div><div><dt>'+(f.dir==='arr'?'🛬 وصول':'🛫 مغادرة')+'</dt><dd class="mono">'+esc(f.time)+'</dd></div><div><dt>التاريخ</dt><dd>'+esc(dateLabel(f.date))+'</dd></div></dl></div>'
-  +'<div class="sec-t">الخدمات <span class="n mono">'+done+'/'+total+'</span></div><ul class="items">'
-  +(f.items.map(function(it,ix){return'<li class="item'+(it.done?' done':'')+'" style="--i:'+ix+'"><button type="button" class="check" data-action="toggle-item" data-id="'+f.id+'" data-iid="'+it.id+'" aria-pressed="'+it.done+'" aria-label="'+(it.done?'إلغاء إتمام':'إتمام')+' '+esc(it.name)+'">'+I.check(19)+'</button><span class="svc-ico c-'+it.color+'">'+it.icon+'</span><span class="nm"><b>'+esc(it.name)+'</b><span class="mono">'+(it.done?'تم '+esc(it.doneAt||''):'بانتظار التنفيذ')+'</span></span><button type="button" class="rm" data-action="rm-item" data-id="'+f.id+'" data-iid="'+it.id+'" aria-label="حذف '+esc(it.name)+' من الرحلة">'+I.x(15)+'</button></li>'}).join('')||'<li style="color:var(--ink3);font-size:13px;padding:8px">لا خدمات — أضف من الأسفل 👇</li>')
+  +'<dl class="infogrid"><div><dt>الشركة</dt><dd>'+esc(f.airline||'—')+'</dd></div><div><dt>النوع</dt><dd>'+esc(f.acType||'—')+'</dd></div><div><dt>التسجيل</dt><dd class="mono">'+esc(f.reg||'—')+'</dd></div><div><dt>الموقف</dt><dd>'+(f.stand?'<span class="stand mono">'+esc(f.stand)+'</span>':'—')+'</dd></div><div><dt>'+(f.dir==='arr'?'🛬 وصول':'🛫 مغادرة')+'</dt><dd class="mono">'+esc(f.time)+'</dd></div><div><dt>التاريخ</dt><dd>'+esc(dateLabel(f.date))+'</dd></div></dl>'
+  +'<div class="sec-t">الخدمات والتوقيت <span class="n mono">'+done+'/'+total+'</span></div><ul class="items">'
+  +(f.items.map(function(it){return'<li class="item'+(it.done?' done':'')+'"><button type="button" class="check" data-action="toggle-item" data-id="'+f.id+'" data-iid="'+it.id+'" aria-pressed="'+it.done+'" aria-label="'+(it.done?'إلغاء إتمام':'إتمام')+' '+esc(it.name)+'">'+I.check(16)+'</button><span class="svc-ico">'+it.icon+'</span><span class="nm"><b>'+esc(it.name)+'</b><input type="time" class="svc-time" data-id="'+f.id+'" data-iid="'+it.id+'" value="'+esc(it.time)+'" aria-label="وقت '+esc(it.name)+'"></span><button type="button" class="rm" data-action="rm-item" data-id="'+f.id+'" data-iid="'+it.id+'" aria-label="حذف '+esc(it.name)+'">'+I.x(14)+'</button></li>'}).join('')||'<li style="color:var(--ink3);font-size:12.5px;padding:6px">لا خدمات — أضف من الأسفل 👇</li>')
   +'</ul><div class="sec-t">إضافة خدمات</div><div class="addzone">'
   +(missingAuto.length?'<button type="button" class="svcchip c-amber" data-action="add-auto" data-id="'+f.id+'">⚡ المعتادة ('+missingAuto.length+')</button>':'')
   +missing.map(function(s){return'<button type="button" class="svcchip c-'+s.color+'" data-action="add-item" data-id="'+f.id+'" data-sid="'+s.id+'">'+s.icon+' '+esc(s.name)+'</button>'}).join('')
-  +(!missing.length&&!missingAuto.length?'<span style="color:var(--ink3);font-size:12px">كل خدمات الكتالوج مضافة ✓</span>':'')
+  +(!missing.length&&!missingAuto.length?'<span style="color:var(--ink3);font-size:11.5px">كل خدمات الكتالوج مضافة ✓</span>':'')
   +'</div><form class="customform" id="customForm" data-fid="'+f.id+'"><input type="text" id="customName" placeholder="✏️ خدمة مخصصة لهذه الرحلة…" autocomplete="off"><label><input type="checkbox" id="customSave"> للمعتادة أيضًا</label><button type="submit" class="btn btn-g">＋ إضافة</button></form>'
-  +'<div class="sec-t">الملاحظات 🎙</div><div class="notesbox"><textarea id="detailNotes" data-fid="'+f.id+'" placeholder="اكتب أو أملِ ملاحظاتك…">'+esc(f.notes)+'</textarea><button type="button" class="mic" id="micBtn" data-action="mic" '+(SR?'':'disabled title="الإملاء الصوتي غير مدعوم في هذا المتصفح"')+' aria-label="إملاء صوتي">'+I.mic(17)+'</button></div><span class="interim" id="interim"></span> <span class="nsaved" id="noteSaved">حُفظت ✓</span>'
-  +'<div class="dangerzone"><button type="button" class="btn btn-d btn-block" data-action="del-flight-full" data-id="'+f.id+'">'+I.trash(16)+' حذف الرحلة نهائيًا</button></div></div>';
+  +'<div class="sec-t">الملاحظات 🎙</div><div class="notesbox"><textarea id="detailNotes" data-fid="'+f.id+'" placeholder="اكتب أو أملِ ملاحظاتك…">'+esc(f.notes)+'</textarea><button type="button" class="mic" id="micBtn" data-action="mic" '+(SR?'':'disabled title="الإملاء الصوتي غير مدعوم في هذا المتصفح"')+' aria-label="إملاء صوتي">'+I.mic(16)+'</button></div><span class="interim" id="interim"></span> <span class="nsaved" id="noteSaved">حُفظت ✓</span>'
+  +'<div class="d-actions"><button type="button" class="btn btn-wa btn-block" data-action="share-flight" data-id="'+f.id+'">'+I.wa(16)+' مشاركة الرحلة على واتساب</button></div>'
+  +'<div class="dangerzone"><button type="button" class="btn btn-d btn-block" data-action="del-flight-full" data-id="'+f.id+'">'+I.trash(15)+' حذف الرحلة نهائيًا</button></div></div>';
   $('#detailPanel').innerHTML=h;
 }
 
-/* ===== الصوت ===== */
 function stopRec(){if(rec){try{rec.stop()}catch(e){}rec=null;var b=$('#micBtn');if(b)b.classList.remove('rec')}}
 function toggleMic(){
   var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -800,13 +801,12 @@ function toggleMic(){
   try{rec.start()}catch(e){rec=null}
 }
 
-/* ===== المعتادة ===== */
 function renderServices(){
   var autos=state.services.filter(function(s){return s.auto}).length;
   $('#masterSwitch').setAttribute('aria-checked',state.settings.autoAdd);
   $('#autoCount').textContent=autos+' '+(autos===1?'خدمة':'خدمات');
   $('#badgeServices').textContent=autos;
-  $('#svcList').innerHTML=state.services.map(function(s,i){return'<div class="srow" data-id="'+s.id+'" style="--i:'+Math.min(i,12)+'"><span class="drag-handle" tabindex="0" role="button" aria-label="اسحب لإعادة ترتيب '+esc(s.name)+'">'+I.drag(17)+'</span><span class="svc-ico c-'+s.color+'">'+s.icon+'</span><span class="nm">'+esc(s.name)+'</span><span class="auto-l">تلقائي</span><button type="button" class="sw sm" role="switch" aria-checked="'+s.auto+'" data-action="svc-auto" data-id="'+s.id+'" aria-label="إضافة '+esc(s.name)+' تلقائيًا"></button><span class="svc-tools"><button type="button" class="ibtn" data-action="service-edit" data-id="'+s.id+'" aria-label="تعديل">'+I.edit(14)+'</button><button type="button" class="ibtn" data-action="service-del" data-id="'+s.id+'" aria-label="حذف" style="color:var(--red)">'+I.trash(15)+'</button></span></div>'}).join('')||'<div class="empty"><h3>الكتالوج فارغ</h3><p>أضف خدماتك المعتادة لتُضاف تلقائيًا لكل رحلة جديدة.</p></div>';
+  $('#svcList').innerHTML=state.services.map(function(s,i){return'<div class="srow" data-id="'+s.id+'" style="--i:'+Math.min(i,12)+'"><span class="drag-handle" tabindex="0" role="button" aria-label="اسحب لإعادة ترتيب '+esc(s.name)+'">'+I.drag(16)+'</span><span class="svc-ico">'+s.icon+'</span><span class="nm">'+esc(s.name)+'</span><span class="auto-l">تلقائي</span><button type="button" class="sw sm" role="switch" aria-checked="'+s.auto+'" data-action="svc-auto" data-id="'+s.id+'" aria-label="إضافة '+esc(s.name)+' تلقائيًا"></button><span class="svc-tools"><button type="button" class="ibtn" data-action="service-edit" data-id="'+s.id+'" aria-label="تعديل">'+I.edit(13)+'</button><button type="button" class="ibtn" data-action="service-del" data-id="'+s.id+'" aria-label="حذف" style="color:var(--red)">'+I.trash(14)+'</button></span></div>'}).join('')||'<div class="empty"><h3>الكتالوج فارغ</h3><p>أضف خدماتك المعتادة لتُضاف تلقائيًا لكل رحلة جديدة.</p></div>';
 }
 function deleteService(id){
   var idx=state.services.findIndex(function(s){return s.id===id});if(idx<0)return;
@@ -825,8 +825,6 @@ function endDrag(commit){
   }
   renderServices();
 }
-
-/* ===== النماذج ===== */
 function setSwitch(el,on){el.setAttribute('aria-checked',!!on)}
 function renderFAuto(){
   setSwitch($('#fAutoSwitch'),fDraft.auto);
@@ -847,7 +845,7 @@ function openFlightForm(f,returnTo){
   openSheet('sheet-flight',f?null:'#fNo');
 }
 function renderEmojiColor(){
-  $('#emojiGrid').innerHTML=EMOJIS.map(function(e){return'<button type="button" data-action="pick-emoji" data-v="'+e+'" class="'+(sDraft.icon===e?'on':'')+'" aria-label="'+e+'">'+e+'</button>'}).join('');
+  $('#emojiGrid').innerHTML=EMOJIS.filter(Boolean).map(function(e){return'<button type="button" data-action="pick-emoji" data-v="'+e+'" class="'+(sDraft.icon===e?'on':'')+'" aria-label="'+e+'">'+e+'</button>'}).join('');
   $('#colorRow').innerHTML=COLORS.map(function(c){return'<button type="button" class="c-'+c+(sDraft.color===c?' on':'')+'" data-action="pick-color" data-v="'+c+'" aria-label="لون '+c+'"></button>'}).join('');
   renderSPreview();
 }
@@ -866,25 +864,21 @@ function renderAll(){renderFlights();renderServices();if(openSheetEl&&openSheetE
 function setTab(v){
   tab=v;disarm();if(bulkMode)exitBulk();
   $('#page-flights').hidden=v!=='flights';$('#page-services').hidden=v!=='services';
-  $$('.tab').forEach(function(b){b.classList.toggle('on',b.dataset.v===v)});
-  $$('.tabs-desk button').forEach(function(b){b.classList.toggle('on',b.dataset.v===v)});
+  $$('.tabs button').forEach(function(b){b.classList.toggle('on',b.dataset.v===v)});
   window.scrollTo({top:0,behavior:'smooth'});
 }
 function exitBulk(){bulkMode=false;selected.clear();renderFlights()}
 
-/* ===== الأحداث ===== */
 function bindEvents(){
   document.addEventListener('click',function(e){
     var t=e.target.closest?e.target.closest('[data-action]'):null;if(!t)return;
-    var a=t.dataset.action,id=t.dataset.id,v=t.dataset.v;
-    handleClick(a,id,v,t);
+    handleClick(t.dataset.action,t.dataset.id,t.dataset.v,t);
   });
   document.addEventListener('submit',function(e){
     e.preventDefault();
-    var form=e.target;
-    if(form.id==='flightForm')submitFlight();
-    else if(form.id==='serviceForm')submitService();
-    else if(form.id==='customForm')submitCustom(form);
+    if(e.target.id==='flightForm')submitFlight();
+    else if(e.target.id==='serviceForm')submitService();
+    else if(e.target.id==='customForm')submitCustom(e.target);
   });
   document.addEventListener('input',function(e){
     var id=e.target.id;
@@ -900,6 +894,11 @@ function bindEvents(){
   document.addEventListener('change',function(e){
     if(e.target.id==='sortSelect'){state.settings.sort=e.target.value;save();renderFlights()}
     else if(e.target.id==='importFile')importFile(e.target);
+    else if(e.target.classList&&e.target.classList.contains('svc-time')){
+      var f=findF(e.target.dataset.id);if(!f)return;
+      var it=f.items.find(function(x){return x.id===e.target.dataset.iid});if(!it)return;
+      it.time=e.target.value||'';save();vib(5);
+    }
   });
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){
@@ -917,11 +916,11 @@ function bindEvents(){
       else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
       return;
     }
-    var card=e.target.closest?e.target.closest('.fcard'):null;
-    if(card&&e.target===card&&(e.key==='Enter'||e.key===' ')){
+    var row=e.target.closest?e.target.closest('.frow'):null;
+    if(row&&e.target===row&&(e.key==='Enter'||e.key===' ')){
       e.preventDefault();
-      if(bulkMode){if(selected.has(card.dataset.id))selected.delete(card.dataset.id);else selected.add(card.dataset.id);renderFlights()}
-      else openDetail(card.dataset.id);
+      if(bulkMode){if(selected.has(row.dataset.id))selected.delete(row.dataset.id);else selected.add(row.dataset.id);renderFlights()}
+      else openDetail(row.dataset.id);
       return;
     }
     var h=e.target.closest?e.target.closest('.drag-handle'):null;
@@ -969,11 +968,13 @@ function handleClick(a,id,v,t){
     case'open-new':openFlightForm(null);break;
     case'open-flight':openDetail(id);break;
     case'edit-flight':{var f=findF(id);if(f)openFlightForm(f,true);break}
+    case'share-flight':{var fs=findF(id);if(fs){flushNotes();shareWhatsApp(flightReport(fs))}break}
+    case'share-day':{flushNotes();var rep=dayReport();if(rep)shareWhatsApp(rep);else toast('لا رحلات اليوم للمشاركة','info');break}
     case'del-flight':
       if(t.classList.contains('arm'))doDeleteFlights([id]);
       else{disarm();t.classList.add('arm');t.innerHTML='تأكيد؟';armedBtn=t;vib(10);armTimer=setTimeout(disarm,3200)}
       break;
-    case'del-flight-full':{var f2=findF(id);if(f2)askConfirm('حذف الرحلة '+f2.no+'؟','ستُحذف الرحلة وكل خدماتها المسجّلة. يمكنك التراجع خلال ثوانٍ.').then(function(ok){if(ok)doDeleteFlights([id])});break}
+    case'del-flight-full':{var f2=findF(id);if(f2)askConfirm('حذف الرحلة '+f2.no+'؟','ستُحذف الرحلة وكل خدماتها وأوقاتها. يمكنك التراجع خلال ثوانٍ.').then(function(ok){if(ok)doDeleteFlights([id])});break}
     case'pin':{var f3=findF(id);if(f3){f3.pinned=!f3.pinned;save();renderFlights();vib(8)}break}
     case'select-mode':if(bulkMode)exitBulk();else{bulkMode=true;renderFlights()}break;
     case'select-all':{var list=visibleFlights();var all=list.length&&list.every(function(f){return selected.has(f.id)});list.forEach(function(f){if(all)selected.delete(f.id);else selected.add(f.id)});renderFlights();break}
@@ -991,7 +992,9 @@ function handleClick(a,id,v,t){
     case'toggle-item':{
       var f5=findF(id);if(!f5)break;var it=f5.items.find(function(x){return x.id===t.dataset.iid});if(!it)break;
       var wasAll=f5.items.length&&f5.items.every(function(x){return x.done});
-      it.done=!it.done;it.doneAt=it.done?nowHM():null;save();vib(it.done?14:6);
+      it.done=!it.done;
+      if(it.done&&!it.time)it.time=nowHM();
+      save();vib(it.done?14:6);
       renderDetail();renderFlights();
       if(!wasAll&&f5.items.length&&f5.items.every(function(x){return x.done}))toast('اكتملت خدمات '+f5.no+' ✨','success');
       break}
@@ -1030,7 +1033,7 @@ function handleClick(a,id,v,t){
     case'import':$('#importFile').click();break;
     case'install':if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(function(r){toast(r.outcome==='accepted'?'تم التثبيت ✓':'تم الإلغاء','info');deferredPrompt=null;$('#installRow').hidden=true})}break;
     case'hap':state.settings.haptics=!state.settings.haptics;setSwitch($('#hapSwitch'),state.settings.haptics);save();vib(20);break;
-    case'wipe':askConfirm('مسح كل البيانات؟','سيتم حذف كل الرحلات والخدمات من هذا الجهاز.','مسح الكل').then(function(ok){
+    case'wipe':askConfirm('مسح كل البيانات؟','سيتم حذف كل الرحلات والخدمات والأوقات من هذا الجهاز.','مسح الكل').then(function(ok){
       if(!ok)return;
       var snap=JSON.stringify(state);
       state={services:[],flights:[],settings:Object.assign(defaults(),{haptics:state.settings.haptics})};
@@ -1080,7 +1083,7 @@ function submitCustom(form){
   var name=inp.value.trim();if(!name){inp.focus();return}
   var sid=null;
   if($('#customSave').checked){var s={id:uid(),name:name,icon:'🛠️',color:'amber',auto:false};state.services.push(s);sid=s.id}
-  f.items.push({id:uid(),sid:sid,name:name,icon:'🛠️',color:'amber',done:false,doneAt:null});
+  f.items.push({id:uid(),sid:sid,name:name,icon:'🛠️',color:'amber',done:false,time:''});
   save();renderDetail();renderFlights();renderServices();vib(8);
   toast('أُضيفت «'+name+'»'+(sid?' وللمعتادة أيضًا ✓':''),'success');
 }
@@ -1097,8 +1100,6 @@ function importFile(input){
   };
   rd.readAsText(file);
 }
-
-/* ===== الساعة والشبكة وPWA ===== */
 function tick(){
   var d=new Date();
   $('#clockLocal').textContent=pad(d.getHours())+':'+pad(d.getMinutes())+':'+pad(d.getSeconds());
@@ -1132,16 +1133,12 @@ function setTopH(){var tb=$('#topbar');if(tb)document.documentElement.style.setP
 function fatal(err){
   try{console.error(err)}catch(e){}
   var box=$('#flightList');if(!box)return;
-  box.innerHTML='<div class="fatal"><h3>⚠ حصلت مشكلة في التشغيل</h3><p>التطبيق اشتغل لكن جزء منه اتعطّل. جرّب إعادة التحميل، ولو استمرت المشكلة امسح الكاش.</p><code>'+esc(err&&err.message?err.message:String(err))+'</code><div class="row"><button type="button" class="btn btn-p" data-action="fatal-reload">إعادة التحميل</button><button type="button" class="btn btn-g" data-action="fatal-reset">مسح الكاش وإعادة التحميل</button></div></div>';
+  box.innerHTML='<div class="fatal"><h3>⚠ حصلت مشكلة في التشغيل</h3><p>جرّب إعادة التحميل، ولو استمرت المشكلة امسح الكاش.</p><code>'+esc(err&&err.message?err.message:String(err))+'</code><div class="row"><button type="button" class="btn btn-p" data-action="fatal-reload">إعادة التحميل</button><button type="button" class="btn btn-g" data-action="fatal-reset">مسح الكاش وإعادة التحميل</button></div></div>';
 }
-
-/* ===== الإقلاع ===== */
 function boot(){
-  $('#gearBtn').innerHTML=I.gear(18);
-  $('#searchIco').innerHTML=I.search(16);
-  $('#fabIco').innerHTML=I.plus(18);
-  $('#mIco').innerHTML=I.warn(24);
-  var tis=$$('.tab .ti');if(tis[0])tis[0].innerHTML=I.planeS(22);if(tis[1])tis[1].innerHTML=I.list(22);
+  $('#gearBtn').innerHTML=I.gear(17);
+  $('#searchIco').innerHTML=I.search(15);
+  $('#mIco').innerHTML=I.warn(22);
   load();
   renderAll();
   updateDateChip();tick();setInterval(tick,1000);
