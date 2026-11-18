@@ -82,7 +82,7 @@ button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 .sv.run{background:var(--runbg);border-color:var(--run)}
 .sv.wn{background:var(--wnbg);border-color:var(--wn)}
 .svh{display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem}
-.svh .ic{font-size:1.5rem}.svh b{flex:1;font-size:1.1rem}
+.svh .ic{font-size:1.5rem}.svh b{flex:1;font-size:1.1rem;min-width:0}
 .qs{display:flex;align-items:center;gap:.25rem;direction:ltr}
 .qs button{min-height:2.6rem;min-width:2.6rem;padding:0;font-size:1.3rem}
 .qs b{min-width:1.8rem;text-align:center;font-size:1.15rem;flex:none}
@@ -134,7 +134,7 @@ body.vm main{padding-bottom:2.5rem}
 .dch{display:inline-block;border:2px solid var(--b);border-radius:8px;padding:0 .4rem;color:var(--t);font-weight:900}
 .dch.x{background:var(--runbg);border-color:var(--run)}
 .fc{scroll-margin-top:4.8rem}
-/* ===== إضافات 2.2: حذف من الخارج + إدارة الخدمات ===== */
+/* ===== 2.2: حذف من الخارج + إدارة الخدمات ===== */
 .fhr{display:flex;align-items:flex-start;gap:.5rem}
 .fhx{flex:1;min-width:0}
 .fdel{flex:0 0 2.9rem;min-width:2.9rem;min-height:2.9rem;padding:0;font-size:1.25rem;border-radius:12px}
@@ -144,6 +144,52 @@ body.vm main{padding-bottom:2.5rem}
 .mrow b{flex:1;min-width:0;font-size:1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mrow button{flex:0 0 auto;min-height:2.5rem;padding:.2rem .65rem;font-size:.9rem}
 .mtag{font-size:.72rem;font-weight:800;color:var(--m);border:1px solid var(--b);border-radius:8px;padding:0 .35rem;flex:0 0 auto}
+/* ===== 2.3: تحسينات الوردية ===== */
+.tb{display:flex;gap:.45rem;margin:.5rem 0;align-items:stretch}
+.tb input{flex:1;min-width:0}
+.tb .sq{flex:0 0 3rem;min-width:3rem}
+input[type=search]::-webkit-search-cancel-button{display:none}
+.sel{min-height:3rem;padding:.4rem .6rem;border:2px solid var(--b);border-radius:12px;background:var(--c);color:var(--t);font-weight:800}
+.sel.sm{min-height:2.7rem;padding:.2rem .6rem;font-size:.9rem;border-radius:999px;width:auto;flex:0 0 auto}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(86px,1fr));gap:.4rem;margin:.55rem 0}
+.st{border:2px solid var(--b);border-radius:12px;padding:.3rem .35rem;text-align:center;background:var(--c)}
+.st b{display:block;font-size:1.1rem;font-weight:900;line-height:1.25;font-variant-numeric:tabular-nums}
+.st small{font-size:.68rem;color:var(--m);font-weight:800}
+.st.d b{color:var(--ok)}.st.r b{color:var(--run)}.st.w b{color:var(--wn)}
+.qn{font-size:.8rem;color:var(--m);font-weight:800;margin:.3rem .2rem 0}
+.tlw{border:2px solid var(--b);border-radius:14px;padding:.5rem;margin:.6rem 0;background:var(--c)}
+.tlh{display:flex;justify-content:space-between;gap:.5rem;font-size:.75rem;font-weight:800;color:var(--m);margin-bottom:.35rem}
+.tlr{display:flex;align-items:center;gap:.4rem;margin:.22rem 0}
+.tli{flex:0 0 1.5rem;font-size:1rem;text-align:center;line-height:1}
+.tlt{position:relative;flex:1;min-width:0;height:1.4rem;background:var(--bg);border:1px solid var(--b);border-radius:8px;overflow:hidden}
+.tlb{position:absolute;top:0;bottom:0;min-height:0;border:0;border-radius:7px;padding:0 .2rem;min-width:7px;background:var(--ok);color:var(--okt);font-size:.66rem;font-weight:900;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap}
+.tlb:active{transform:none;filter:brightness(1.25)}
+.tlb.run{background:var(--run);color:var(--runt)}
+.tlb.wn{background:var(--wn);color:var(--wnt)}
+.tln{position:absolute;top:0;bottom:0;width:2px;background:var(--p);opacity:.9}
+.tld{flex:0 0 3.1rem;font-size:.72rem;font-weight:800;color:var(--m);text-align:center;font-variant-numeric:tabular-nums}
+.tgt{flex:0 0 auto;font-size:.7rem;font-weight:800;color:var(--m);border:1px solid var(--b);border-radius:8px;padding:0 .35rem}
+.live.over{color:var(--wn)}
+.tgin{width:4.6rem;min-height:2.5rem;flex:0 0 auto;padding:.2rem .3rem;font-size:.95rem}
+.selbox{flex:0 0 2.3rem;min-width:2.3rem;min-height:2.3rem;padding:0;border-radius:8px;font-size:1.05rem;display:grid;place-items:center}
+.fc.sel{border-color:var(--p)}
+.fc.sel .selbox{background:var(--p);color:var(--pt);border-color:var(--p)}
+.bkb{position:fixed;inset-inline:.8rem;bottom:calc(4.7rem + env(safe-area-inset-bottom));max-width:700px;margin:0 auto;z-index:45;background:var(--c);border:2px solid var(--p);border-radius:14px;padding:.5rem;display:flex;gap:.4rem;align-items:center;box-shadow:0 -4px 16px #0004}
+.bkb b{flex:1;font-size:.88rem;text-align:center}
+.bkb button{flex:0 0 auto;min-height:2.6rem;padding:.2rem .55rem;font-size:.82rem}
+body.bk #mic{display:none}
+body.bk .fdel{display:none}
+body.bk #toast{bottom:calc(10.6rem + env(safe-area-inset-bottom))}
+body.bk main{padding-bottom:4.5rem}
+.grip{flex:0 0 1.5rem;font-size:.95rem;color:var(--m);cursor:grab;touch-action:none;text-align:center;line-height:1;user-select:none}
+.grip:active{cursor:grabbing}
+.sv.dragsrc{opacity:.35;border-style:dashed}
+.sv.ghost{position:fixed;z-index:80;margin:0;pointer-events:none;box-shadow:0 10px 30px #0007}
+.qkr{display:flex;flex-wrap:wrap;gap:.4rem}
+.bkbar{display:flex;gap:.5rem;align-items:center;border:2px solid var(--run);background:var(--runbg);border-radius:14px;padding:.5rem .6rem;margin:.5rem 0}
+.bkbar span{flex:1;font-size:.83rem;font-weight:800}
+.bkbar button{flex:0 0 auto;min-height:2.6rem;font-size:.82rem;padding:.2rem .6rem}
+@media(max-width:400px){.tld{flex:0 0 2.7rem;font-size:.68rem}.st b{font-size:1rem}}
 </style>
 </head>
 <body>
@@ -174,6 +220,8 @@ const SV=[
 {k:"cat",a:"تموين",e:"Catering",i:"🍽️"},{k:"asu",a:"ASU",e:"ASU",i:"💨"},{k:"oth",a:"أخرى",e:"Other",i:"➕"}];
 const WR=["late","noeq","nocrew","part","notreq"];
 const ICONS=["🛠️","🧰","🚿","🧊","⛽","🍱","♿","🪜","🧳","⚡","❄️","💧","🧹","🚌","🚜","📦","👷","🛑","🦺","📡","💨","🍽️","🚐","➕"];
+const IMPK=[["search","imp_search"],["views","imp_views"],["stats","imp_stats"],["tl","imp_tl"],["tgt","imp_tgt"],["rep","imp_rep"],["cf","imp_cf"],["bulk","imp_bulk"],["bk","imp_bk"],["qk","imp_qk"],["dg","imp_dg"]];
+const IMPOBJ=()=>{const o={};IMPK.forEach(([k])=>o[k]=1);return o};
 const T={
 ar:{title:"مفكرة المهبط",nav1:"الرحلات",nav2:"المعتادة",nav3:"الإعدادات",todayN:"{n} رحلة اليوم",
 routineHint:"اضغط رحلة معتادة لإضافتها",noRoutine:"لا توجد رحلات معتادة — أضفها من تبويب «المعتادة»",newFlight:"رحلة جديدة",
@@ -194,12 +242,22 @@ d_n:"{n} يوم",forever:"دائماً",s_data:"البيانات والنسخ ا
 impData:"استيراد ملف",shareR:"مشاركة الرحلات المعتادة مع الزملاء",imported:"تم الاستيراد: {a} رحلة، {b} معتادة",badFile:"ملف غير صالح",
 s_install:"تثبيت التطبيق",installBtn:"تثبيت على الشاشة الرئيسية",installHint:"من قائمة Chrome (⋮) اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",
 storeNote:"البيانات محفوظة على هذا الجهاز فقط — خذ نسخة احتياطية من وقت لآخر. الرحلات غير المنقولة لا تُحذف تلقائياً أبداً.",
-saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 2.2 — مع الأوامر الصوتية",exported:"تم التصدير ✔",
+saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 2.3 — تحسينات الوردية",exported:"تم التصدير ✔",
 s_voice:"الأوامر الصوتية",today:"اليوم",tomorrow:"بكرة",yesterday:"أمس",wdate:"تاريخ الرحلات الجديدة",backToday:"رجوع لليوم",vWhich:"أنهي خدمة؟ قول اسمها",vlang:"لغة التعرف على الصوت",vl_auto:"زي لغة التطبيق",vkeep:"استمرار الاستماع بعد كل أمر",on:"شغّال",off:"مقفول",
 defSvc:"الخدمات الافتراضية",autoAdd:"الإضافة التلقائية",defHint:"الخدمات المختارة هنا تُضاف لوحدها لأي رحلة جديدة — وكمان مع رحلات «المعتادة» (من غير تكرار).",
 newSvc:"خدمة جديدة",svcIcon:"الأيقونة",manageSvc:"إدارة الخدمات",hide:"إخفاء",show:"إظهار",builtin:"أساسية",custom:"مضافة",
 svcAdded:"تمت إضافة الخدمة ✔",svcExists:"الخدمة موجودة بالفعل",needName:"اكتب اسم الخدمة",svcHidden:"تم الإخفاء من القوائم",svcShown:"تم الإظهار",svcDeleted:"تم حذف الخدمة",
-noSvc:"مفيش خدمات ظاهرة — أضف أو أظهر من «إدارة الخدمات»",manHint:"«إخفاء» يشيل الخدمة من القوائم بس، وميمسّش الرحلات المسجّلة. حذف خدمة مضافة يحوّلها لـ«أخرى» في الرحلات القديمة.",
+noSvc:"مفيش خدمات ظاهرة — أضف أو أظهر من «إدارة الخدمات»",manHint:"«إخفاء» يشيل الخدمة من القوائم بس، وميمسّش الرحلات المسجّلة. حذف خدمة مضافة يحوّلها لـ«أخرى» في الرحلات القديمة. «الهدف» بالدقايق يخلي المؤقت ينبّهك لو الخدمة طولت.",
+searchPh:"بحث: رقم رحلة / تسجيل / موقف / ملاحظة…",sortLab:"الترتيب",sort_time:"بالوقت",sort_new:"الأحدث إضافة",sort_svc:"الأكثر خدمات",sort_issue:"الأكثر تقصيراً",
+vShift:"وردية النهاردة",vIss:"فيها تقصير",vRun:"شغّالة دلوقتي",noRes:"مفيش نتائج مطابقة",resN:"{n} رحلة ظاهرة",
+stN:"رحلات اليوم",stD:"خدمات منجزة",stR:"شغّالة الآن",stW:"تقصير",stA:"متوسط الأرض",
+tlTitle:"الخط الزمني للخدمات",tgt:"الهدف",tgtLab:"الهدف (د)",over:"تجاوز",quick:"إضافة سريعة",dragA:"اسحب لترتيب الخدمة",
+bulk:"تحديد",selN:"{n} محدد",allVis:"الكل",moveSel:"✓ نقل",delSel:"🗑 حذف",movedN:"تم نقل {n} رحلة",deletedN:"تم حذف {n} رحلة",
+repBtn:"تقرير الوردية",shiftRep:"تقرير وردية",repFlights:"رحلات",repSvc:"خدمات",repIss:"تقصير",repAvg:"متوسط الأرض",
+cf:"تعارض موقف",cfWith:"موقف مشترك في نفس الوقت مع: {n}",
+bkNever:"لسه معملتش نسخة احتياطية — بياناتك على الجهاز بس.",bkOld:"آخر نسخة احتياطية من {n} يوم.",bkToday:"آخر نسخة احتياطية النهارده ✔",bkBtn:"💾 نسخة دلوقتي",bkLab:"آخر نسخة احتياطية",
+impTitle:"✨ تحسينات 2.3",impHint:"كل تحسين له مفتاح مستقل — اقفل أي حاجة مش عايزها وهيرجع الشكل زي 2.2 بالظبط.",impOn:"تشغيل الكل",impOff:"إيقاف الكل",
+imp_search:"البحث والترتيب",imp_views:"عروض سريعة",imp_stats:"إحصائيات اليوم",imp_tl:"الخط الزمني",imp_tgt:"هدف وقت الخدمة",imp_rep:"تقرير الوردية",imp_cf:"تنبيه تعارض الموقف",imp_bulk:"تحديد متعدد",imp_bk:"تذكير النسخة الاحتياطية",imp_qk:"إضافة سريعة",imp_dg:"سحب لترتيب الخدمات",
 vhelp:"أمثلة الأوامر",vnote:"بيشتغل على Chrome أندرويد ومحتاج إنترنت. الصوت بيتبعت لخدمة Google للتعرف عليه. للمصري اختار «العربية».",
 vListen:"اتكلم دلوقتي…",vNo:"مافهمتش",vNoSup:"المتصفح ده مش بيدعم الأوامر الصوتية (استخدم Chrome)",vDenied:"اسمح للمتصفح باستخدام المايك",
 vNet:"التعرف على الصوت محتاج إنترنت",vNoSpeech:"ماسمعتش حاجة",vNoMic:"المايك مش شغال",vLangErr:"اللغة دي مش مدعومة على جهازك",
@@ -224,12 +282,22 @@ d_n:"{n} days",forever:"Forever",s_data:"Data & backup",expJson:"Backup (JSON)",
 impData:"Import file",shareR:"Share routine flights with coworkers",imported:"Imported: {a} flights, {b} routine",badFile:"Invalid file",
 s_install:"Install app",installBtn:"Install to home screen",installHint:"From the Chrome menu (⋮) choose “Install app” or “Add to Home screen”.",
 storeNote:"Data is stored on this device only — back it up now and then. Flights not yet transferred are never deleted automatically.",
-saveFail:"Could not save — storage is full or disabled",ver:"Version 2.2 — with voice commands",exported:"Exported ✔",
+saveFail:"Could not save — storage is full or disabled",ver:"Version 2.3 — shift improvements",exported:"Exported ✔",
 s_voice:"Voice commands",today:"Today",tomorrow:"Tomorrow",yesterday:"Yesterday",wdate:"Date for new flights",backToday:"Back to today",vWhich:"Which service? Say its name",vlang:"Speech recognition language",vl_auto:"Same as app language",vkeep:"Keep listening after each command",on:"On",off:"Off",
 defSvc:"Default services",autoAdd:"Auto-add",defHint:"Services picked here are added automatically to every new flight — and together with routine flights (no duplicates).",
 newSvc:"New service",svcIcon:"Icon",manageSvc:"Manage services",hide:"Hide",show:"Show",builtin:"Built-in",custom:"Custom",
 svcAdded:"Service added ✔",svcExists:"Service already exists",needName:"Enter the service name",svcHidden:"Hidden from lists",svcShown:"Shown again",svcDeleted:"Service deleted",
-noSvc:"No visible services — add or unhide in “Manage services”",manHint:"“Hide” removes a service from the lists only; recorded flights stay untouched. Deleting a custom service turns it into “Other” in old flights.",
+noSvc:"No visible services — add or unhide in “Manage services”",manHint:"“Hide” removes a service from the lists only; recorded flights stay untouched. Deleting a custom service turns it into “Other” in old flights. “Target” in minutes makes the live timer warn you when a service runs long.",
+searchPh:"Search: flight no. / reg. / stand / note…",sortLab:"Sort",sort_time:"By time",sort_new:"Newest added",sort_svc:"Most services",sort_issue:"Most issues",
+vShift:"Today’s shift",vIss:"With issues",vRun:"Running now",noRes:"No matching results",resN:"{n} flights shown",
+stN:"Flights today",stD:"Services done",stR:"Running now",stW:"Issues",stA:"Avg ground",
+tlTitle:"Services timeline",tgt:"Target",tgtLab:"Target (min)",over:"Over",quick:"Quick add",dragA:"Drag to reorder service",
+bulk:"Select",selN:"{n} selected",allVis:"All",moveSel:"✓ Transfer",delSel:"🗑 Delete",movedN:"Transferred {n} flights",deletedN:"Deleted {n} flights",
+repBtn:"Shift report",shiftRep:"Shift report",repFlights:"Flights",repSvc:"Services",repIss:"Issues",repAvg:"Avg ground",
+cf:"Stand conflict",cfWith:"Same stand at overlapping time with: {n}",
+bkNever:"No backup yet — your data lives on this device only.",bkOld:"Last backup {n} days ago.",bkToday:"Last backup today ✔",bkBtn:"💾 Back up now",bkLab:"Last backup",
+impTitle:"✨ 2.3 improvements",impHint:"Each improvement has its own switch — turn off anything you don’t want and it looks exactly like 2.2.",impOn:"Enable all",impOff:"Disable all",
+imp_search:"Search & sort",imp_views:"Quick views",imp_stats:"Today stats",imp_tl:"Timeline",imp_tgt:"Service target time",imp_rep:"Shift report",imp_cf:"Stand conflict alert",imp_bulk:"Bulk selection",imp_bk:"Backup reminder",imp_qk:"Quick add",imp_dg:"Drag to reorder services",
 vhelp:"Command examples",vnote:"Works in Chrome on Android and needs internet. Audio is sent to Google for recognition. Egyptian Arabic: pick “العربية”.",
 vListen:"Speak now…",vNo:"Didn't understand",vNoSup:"This browser doesn't support voice commands (use Chrome)",vDenied:"Allow the browser to use the microphone",
 vNet:"Speech recognition needs internet",vNoSpeech:"Didn't hear anything",vNoMic:"Microphone not working",vLangErr:"This language isn't supported on your device",
@@ -240,6 +308,8 @@ vex:[["Start stairs","Starts the stairs timer"],["Stairs done","Ends the stairs 
 const KEY="rn",FS=[.9,1,1.15,1.3,1.5],LS={al:"d_al",rg:"d_rg",ac:"d_ac",sp:"d_sp"};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/'/g,"&#39;");
+const nq=s=>String(s||"").toLowerCase().replace(/[أإآٱ]/g,"ا").replace(/ة/g,"ه").replace(/ى/g,"ي").replace(/[\s\-_.]/g,"");
+const hm=m=>{m=((Math.floor(m)%1440)+1440)%1440;return String(Math.floor(m/60)).padStart(2,"0")+":"+String(m%60).padStart(2,"0")};
 const tm=v=>{let d=String(v||"").replace(/\D/g,"");if(d.length==3)d="0"+d;if(d.length!=4||+d.slice(0,2)>23||+d.slice(2)>59)return"";return d.slice(0,2)+":"+d.slice(2)};
 function load(){
  let d;try{d=JSON.parse(localStorage.getItem(KEY))}catch(e){}
@@ -248,8 +318,11 @@ function load(){
  d.h=Object.assign({al:{},rg:{},ac:{},sp:{}},d.h);d.rm=d.rm||{};
  d.cs=Array.isArray(d.cs)?d.cs.filter(x=>x&&x.k&&x.a).map(x=>({k:String(x.k),a:String(x.a),e:String(x.e||x.a),i:x.i||"🛠️",cu:1})):[];
  d.hid=d.hid&&typeof d.hid==="object"?d.hid:{};
- d.set=Object.assign({lang:"ar",theme:"auto",fs:1,keep:14,vl:"auto",vk:0,wd:null,ds:[],da:1},d.set);
+ d.tg=d.tg&&typeof d.tg==="object"?d.tg:{};
+ d.set=Object.assign({lang:"ar",theme:"auto",fs:1,keep:14,vl:"auto",vk:0,wd:null,ds:[],da:1,sort:"time",lb:0},d.set);
  d.set.ds=Array.isArray(d.set.ds)?d.set.ds:[];d.set.da=d.set.da?1:0;
+ d.set.imp=Object.assign(IMPOBJ(),d.set.imp||{});
+ if(!["time","new","svc","issue"].includes(d.set.sort))d.set.sort="time";
  if(d.set.wd&&!(d.set.wd>=dd(1)))d.set.wd=null;
  d.fl.forEach(normF);d.sc.forEach(c=>{c.t=tm(c.t);c.sv=c.sv||[]});
  return d}
@@ -270,11 +343,12 @@ const dshort=s=>{const d=pd(s);if(!d)return s||"";try{return d.toLocaleDateStrin
 const drel=s=>{const t0=dd(0);return s===t0?t("today"):s===addD(t0,1)?t("tomorrow"):s===addD(t0,-1)?t("yesterday"):""};
 const wdate=()=>D.set.wd||dd(0);
 let D=load(),TAB=1,FLT="open",UNDO=null,LASTU=null,LASTF=null,TT,SHEET_FID=null,DEF=null,selS=new Set(),eid=null,CS_ICON="🛠️";
+let Q="",QT=null,VW="",BULK=false,SEL=new Set(),CF=new Map(),DRG=null;
 const L=()=>D.set.lang==="en"?"en":"ar";
 const t=(k,v)=>{let s=T[L()][k]??T.ar[k]??k;if(v)for(const x in v)s=s.replace("{"+x+"}",v[x]);return s};
 const nmOf=x=>L()==="en"?x.e:x.a;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){toast(t("saveFail"))}};
-function undoer(){const snap=JSON.stringify(D);return()=>{const cur=D.set,o=JSON.parse(snap);o.set=Object.assign({},cur,{ds:o.set.ds,da:o.set.da});D=o;buildVMap();save();R1();hdr();if(TAB===2)RS()}}
+function undoer(){const snap=JSON.stringify(D);return()=>{const cur=D.set,o=JSON.parse(snap);o.set=Object.assign({},cur,{ds:o.set.ds,da:o.set.da,imp:o.set.imp,sort:o.set.sort});D=o;buildVMap();save();R1();hdr();if(TAB===2)RS()}}
 
 /* ============ Time helpers ============ */
 const nw=()=>{const d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
@@ -297,7 +371,73 @@ const svOf=s=>allCat().find(x=>x.k===s.k)||{a:s.k,e:s.k,i:"•"};
 const sname=s=>s.k==="oth"?(s.nm||t("other")):nmOf(svOf(s));
 const sst=s=>s.t?"done":s.f?"run":s.dn?"dnx":"idle";
 const cnt=f=>f.s.filter(s=>s.t||s.dn).length+"/"+f.s.length;
+const tgOf=k=>{const v=+D.tg[k];return v>0?Math.min(240,Math.round(v)):0};
 function wtxt(s){const r=(s.wr||[]).map(k=>t("wr_"+k));if(s.nt)r.push(s.nt);return r.join("، ")||t("issue")}
+
+/* ============ 2.3: stats / conflicts / timeline / report ============ */
+function stats(ds){
+ const fs=D.fl.filter(f=>f.d===ds);let tot=0,dn=0,run=0,iss=0,sum=0,n=0;
+ fs.forEach(f=>{tot+=f.s.length;f.s.forEach(s=>{if(s.t||s.dn)dn++;if(sst(s)==="run")run++;if(s.w)iss++});
+  const d=dur(f.ta,f.td);if(d!=null){sum+=d;n++}});
+ return{n:fs.length,tot,dn,run,iss,avg:n?Math.round(sum/n):null}}
+function stUpd(){
+ if(!D.set.imp.stats)return;const s=stats(dd(0));
+ const set=(id,v)=>{const el=$(id);if(el)el.textContent=v};
+ set("stN",s.n);set("stD",s.dn+"/"+s.tot);set("stR",s.run);set("stW",s.iss);set("stA",s.avg!=null?fmtMin(s.avg):"—")}
+function statsHtml(){
+ const s=stats(dd(0));
+ return `<div class="stats"><div class="st"><b id="stN">${s.n}</b><small>${t("stN")}</small></div>
+<div class="st d"><b id="stD">${s.dn}/${s.tot}</b><small>${t("stD")}</small></div>
+<div class="st r"><b id="stR">${s.run}</b><small>${t("stR")}</small></div>
+<div class="st w"><b id="stW">${s.iss}</b><small>${t("stW")}</small></div>
+<div class="st"><b id="stA">${s.avg!=null?esc(fmtMin(s.avg)):"—"}</b><small>${t("stA")}</small></div></div>`}
+function cfSet(){
+ const out=new Map();if(!D.set.imp.cf)return out;
+ const by={};D.fl.filter(f=>!f.ok&&String(f.sp||"").trim()).forEach(f=>{const k=f.d+"|"+f.sp.trim().toUpperCase();(by[k]=by[k]||[]).push(f)});
+ const win=f=>{const a=mins(f.ta);if(a!=null){let b=mins(f.td);if(b==null)b=nowM();if(b<a)b+=1440;return[a,b]}
+  const s=mins(f.st);return s==null?null:[s-30,s+45]};
+ const add=(id,nm)=>{const a=out.get(id)||[];if(!a.includes(nm))a.push(nm);out.set(id,a)};
+ for(const k in by){const a=by[k];if(a.length<2)continue;
+  for(let i=0;i<a.length;i++)for(let j=i+1;j<a.length;j++){
+   const w1=win(a[i]),w2=win(a[j]);if(!w1||!w2)continue;
+   if(w1[0]<w2[1]&&w2[0]<w1[1]){add(a[i].id,a[j].n||t("flight"));add(a[j].id,a[i].n||t("flight"))}}}
+ return out}
+function tlData(f){
+ let lo=null,hi=null;const items=[];
+ const ta=mins(f.ta),td=mins(f.td);
+ if(ta!=null){lo=ta;hi=ta}
+ f.s.forEach((s,i)=>{const a=mins(s.f);if(a==null)return;const b0=mins(s.t);let b=b0!=null?b0:nowM();if(b<a)b+=1440;
+  items.push({i,a,b,run:b0==null,s});lo=lo==null?a:Math.min(lo,a);hi=hi==null?b:Math.max(hi,b)});
+ if(td!=null){let e=td;if(lo!=null&&e<lo)e+=1440;lo=lo==null?e:Math.min(lo,e);hi=hi==null?e:Math.max(hi,e)}
+ if(lo==null||hi==null||hi<=lo||!items.length)return null;
+ let n=nowM();if(n<lo)n+=1440;
+ return{lo,hi,items,now:(n>=lo&&n<=hi)?n:null}}
+function tlHtml(f){
+ const d=tlData(f);if(!d)return "";const span=d.hi-d.lo;
+ const rows=d.items.map(it=>{
+  const l=Math.max(0,Math.min(100,(it.a-d.lo)/span*100)),w=Math.max(1.5,Math.min(100-l,(it.b-it.a)/span*100));
+  const cls=it.s.w?"wn":it.run?"run":"";
+  return `<div class="tlr"><span class="tli">${svOf(it.s).i}</span><div class="tlt"><button class="tlb ${cls}" data-b="tls" data-i="${it.i}" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%" title="${esc(sname(it.s))}" aria-label="${esc(sname(it.s))}">${w>17?esc(fmtMin(it.b-it.a)):""}</button>${d.now!=null?`<i class="tln" style="left:${((d.now-d.lo)/span*100).toFixed(2)}%"></i>`:""}</div><span class="tld" dir="ltr">${hm(it.a)}</span></div>`}).join("");
+ return `<div class="tlw"><div class="tlh"><span>${t("tlTitle")}</span><span dir="ltr">${hm(d.lo)} → ${hm(d.hi)}</span></div>${rows}</div>`}
+function qkHtml(f){
+ if(!D.set.imp.qk)return "";
+ const c={};D.fl.forEach(x=>x.s.forEach(s=>{if(s.k!=="oth")c[s.k]=(c[s.k]||0)+1}));
+ const have=new Set(f.s.map(s=>s.k));
+ const top=Object.keys(c).filter(k=>!have.has(k)&&!D.hid[k]&&svOf({k}).k!=="oth").sort((a,b)=>c[b]-c[a]).slice(0,5);
+ if(!top.length)return "";
+ return `<div class="lbl">${t("quick")}</div><div class="qkr">${top.map(k=>{const x=svOf({k});return `<button class="o chip" data-b="qadd" data-k="${k}">${x.i} ${esc(nmOf(x))}</button>`}).join("")}</div>`}
+function dayReport(ds){
+ const fs=D.fl.filter(f=>f.d===ds).sort((a,b)=>(a.st||"99:99").localeCompare(b.st||"99:99")||a.id-b.id);
+ if(!fs.length)return null;const s=stats(ds);
+ const head=`📋 ${t("shiftRep")} — ${dlab(ds)}\n✈ ${t("repFlights")}: ${s.n} | ✅ ${t("repSvc")}: ${s.dn}/${s.tot} | ⚠ ${t("repIss")}: ${s.iss}`+(s.avg!=null?` | ⏱ ${t("repAvg")}: ${fmtMin(s.avg)}`:"");
+ return head+"\n━━━━━━━━━━━━\n\n"+fs.map(summary).join("\n\n")}
+function bkHtml(){
+ if(!D.set.imp.bk||!D.fl.length)return "";
+ const lb=+D.set.lb||0;
+ if(!lb)return `<div class="bkbar"><span>💾 ${t("bkNever")}</span><button data-b="expJ">${t("bkBtn")}</button></div>`;
+ const n=Math.floor((Date.now()-lb)/864e5);
+ return n<7?"":`<div class="bkbar"><span>💾 ${t("bkOld",{n})}</span><button data-b="expJ">${t("bkBtn")}</button></div>`}
+function bkLine(){const lb=+D.set.lb||0;if(!lb)return t("bkNever");const n=Math.floor((Date.now()-lb)/864e5);return n<=0?t("bkToday"):t("bkOld",{n})}
 
 /* ============ Rendering: flights ============ */
 const fld=(lab,inner,c="")=>`<div class="fld ${c}"><label>${lab}</label>${inner}</div>`;
@@ -306,57 +446,95 @@ const chipsRow=(f,k)=>{const a=tp(k).slice(0,6);return a.length?`<div class="chi
 function ccls(f){return(f.ok?"mv ":"")+(f.s.length&&f.s.every(s=>s.t||s.dn)?"ad ":"")+(f.s.some(s=>sst(s)==="run")?"rn ":"")+(f.s.some(s=>s.w)||f.nt?"hw":"")}
 function fhIn(f){
  const tot=f.s.length,dn=f.s.filter(s=>s.t||s.dn).length,run=f.s.some(s=>sst(s)==="run"),wn=f.s.some(s=>s.w)||f.nt;
- return `<div class="fhr"><div class="fhx"><div class="l1"><span class="fn">${esc(f.n)||t("flight")}</span><span class="m">${esc(f.al)}</span><span class="m">${esc(f.ac)}</span><span class="m">${esc(f.rg)}</span>${f.ok?`<span class="tag">✓</span>`:""}${wn?`<span class="tag w">⚠</span>`:""}</div>
+ const cf=CF.get(f.id);
+ return `<div class="fhr">${BULK?`<button class="o selbox" data-b="o" aria-label="${esc(t("bulk"))}">${SEL.has(f.id)?"✓":""}</button>`:""}<div class="fhx"><div class="l1"><span class="fn">${esc(f.n)||t("flight")}</span><span class="m">${esc(f.al)}</span><span class="m">${esc(f.ac)}</span><span class="m">${esc(f.rg)}</span>${f.ok?`<span class="tag">✓</span>`:""}${wn?`<span class="tag w">⚠</span>`:""}${cf?`<span class="tag w" title="${esc(t("cfWith",{n:cf.join("، ")}))}">⚠ ${t("cf")}</span>`:""}</div>
 <div class="l2"><span><span class="dch ${f.d===dd(0)?"":"x"}">${esc(dshort(f.d))}</span>${f.st?" · "+esc(f.st):""}${f.sp?" · "+t("stand").split(" ")[0]+" "+esc(f.sp):""}</span>${tot?`<span class="pr ${run?"r":""}">${dn}/${tot}</span>`:""}</div>${tot?`<div class="pb"><i style="width:${Math.round(dn/tot*100)}%"></i></div>`:""}</div><button class="o dng fdel" data-b="del" title="${esc(t("del"))}" aria-label="${esc(t("del"))}">🗑</button></div>`}
 function row(s,i){
  const st=sst(s),cls=(st==="done"||st==="dnx"?"done":st==="run"?"run":"")+(s.w?" wn":"");
  const tin=(a,lab,v)=>`<div class="tcol"><span class="lbl">${lab}</span><input type="time" data-a="${a}" value="${esc(v)}"></div>`;
+ const tg=tgOf(s.k),el=st==="run"?elapsed(s.f):null,over=!!(tg&&el!=null&&el>tg);
  let main;
  if(st==="idle")main=`<button class="big go" data-b="nf">▶ ${t("start")}</button>`;
- else if(st==="run")main=`<div class="tl">${tin("f",t("from"),s.f)}<div class="live" data-run data-f="${esc(s.f)}">${fmtMin(elapsed(s.f))}</div></div><button class="big stop" data-b="nt">■ ${t("end")}</button>`;
+ else if(st==="run")main=`<div class="tl">${tin("f",t("from"),s.f)}<div class="live${over?" over":""}" data-run data-f="${esc(s.f)}" data-tg="${tg}">${esc(fmtMin(el))}${over?" ⚠":""}</div></div><button class="big stop" data-b="nt">■ ${t("end")}</button>`;
  else if(st==="done")main=`<div class="tl">${tin("f",t("from"),s.f)}${tin("t",t("to"),s.t)}<div class="dur">${fmtMin(dur(s.f,s.t))}</div></div>`;
  else main=`<div class="okb">✔ ${t("doneNoTime")}</div><button class="o wide" data-b="nf" style="margin-top:0">▶ ${t("start")}</button>`;
  const wb=s.w?`<div class="wb"><div class="chips">${WR.map(k=>`<button class="o chip ${(s.wr||[]).includes(k)?"onw":""}" data-b="wrk" data-k="${k}">${t("wr_"+k)}</button>`).join("")}</div><input data-a="nt" value="${esc(s.nt)}" placeholder="${esc(t("notePh"))}"></div>`:"";
- return `<div class="sv ${cls}" data-i="${i}"><div class="svh"><span class="ic">${svOf(s).i}</span><b>${esc(sname(s))}</b><div class="qs"><button class="o" data-b="qm">−</button><b>${esc(s.q||1)}</b><button class="o" data-b="qp">+</button></div></div>${main}
+ const grip=D.set.imp.dg?`<span class="grip" data-grip tabindex="0" role="button" aria-label="${esc(t("dragA"))}">⋮⋮</span>`:"";
+ const tgb=D.set.imp.tgt&&tg?`<span class="tgt">🎯 ${tg}${t("min")}</span>`:"";
+ return `<div class="sv ${cls}" data-i="${i}"><div class="svh">${grip}<span class="ic">${svOf(s).i}</span><b>${esc(sname(s))}</b>${tgb}<div class="qs"><button class="o" data-b="qm">−</button><b>${esc(s.q||1)}</b><button class="o" data-b="qp">+</button></div></div>${main}
 <div class="acts">${!(s.f||s.t)?`<button class="o ${s.dn?"on":""}" data-b="dn">✓<small>${t("noTime")}</small></button>`:""}<button class="o ${s.w?"onw":""}" data-b="w">⚠<small>${t("issue")}</small></button>${s.f||s.t?`<button class="o" data-b="rs">↺</button>`:""}<button class="o dng" data-b="x">✕</button></div>${wb}</div>`}
 function body(f){
  const tile=(k,lab)=>`<div class="tile"><div class="lbl">${lab}</div>${f[k]?`<div class="tr"><input type="time" data-a="${k}" value="${esc(f[k])}"><button class="o sq" data-b="clr" data-k="${k}">✕</button></div>`:`<button class="big go" data-b="now" data-k="${k}">⏱ ${t("now")}</button>`}</div>`;
  const det=`<div class="g mt">${fld(t("flightNo"),inp("n",f.n))}${fld(t("sched"),inp("st",f.st,{type:"time"}))}${fld(t("airline"),inp("al",f.al,{ac:1})+chipsRow(f,"al"),"full")}${fld(t("type"),inp("ac",f.ac,{ac:1})+chipsRow(f,"ac"),"full")}${fld(t("reg"),inp("rg",f.rg,{cap:1,ac:1}))}${fld(t("stand"),inp("sp",f.sp,{ac:1})+chipsRow(f,"sp"),"full")}</div>`;
  return `<div class="bd">${dbarF(f)}<div class="row tiles">${tile("ta",t("chOn"))}${tile("td",t("chOff"))}</div>
-<div class="sec"><span>${t("services")}</span><span>${cnt(f)}</span></div>${f.s.map(row).join("")}
-<button class="big add o" data-b="add">＋ ${t("addService")}</button>
+<div class="sec"><span>${t("services")}</span><span>${cnt(f)}</span></div>${D.set.imp.tl?tlHtml(f):""}${f.s.map(row).join("")}
+${qkHtml(f)}<button class="big add o" data-b="add">＋ ${t("addService")}</button>
 <div class="g mt">${fld(t("paxA"),inp("pa",f.pa,{type:"number",m:"numeric"}))}${fld(t("paxD"),inp("pd",f.pd,{type:"number",m:"numeric"}))}</div>
 <textarea data-a="nt" rows="2" placeholder="${esc(t("genNote"))}">${esc(f.nt)}</textarea>
 <button class="o wide" data-b="dt">${f.dt?"▲":"▼"} ${t("details")}</button>${f.dt?det:""}
 <div class="row mt"><button data-b="sh">📤 ${t("share")}</button><button class="o" data-b="cp">📋 ${t("copy")}</button></div>
 <button class="wide ${f.ok?"o":""}" data-b="ok">${f.ok?"↩ "+t("unmove"):"✓ "+t("moved")}</button>
 <button class="o wide dng" data-b="del">🗑 ${t("del")}</button></div>`}
-const card=f=>`<article class="fc ${ccls(f)}" data-fid="${f.id}"><div class="fh" data-b="o">${fhIn(f)}</div>${f.o?body(f):""}</article>`;
-function rc(f){const el=document.querySelector(`[data-fid="${f.id}"]`);if(el)el.outerHTML=card(f);dlists();hdr()}
+const card=f=>`<article class="fc ${ccls(f)}${SEL.has(f.id)?" sel":""}" data-fid="${f.id}"><div class="fh" data-b="o">${fhIn(f)}</div>${f.o&&!BULK?body(f):""}</article>`;
+function rc(f){CF=cfSet();const el=document.querySelector(`[data-fid="${f.id}"]`);if(el)el.outerHTML=card(f);dlists();hdr();stUpd()}
 function upCard(c,f,r){
  if(r){const i=+r.dataset.i;r.outerHTML=row(f.s[i],i)}
- const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f);
- const sp=c.querySelector(".sec span:last-child");if(sp)sp.textContent=cnt(f)}
+ const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)+(SEL.has(f.id)?" sel":"");
+ const sp=c.querySelector(".sec span:last-child");if(sp)sp.textContent=cnt(f);stUpd()}
 const dbarF=f=>`<div class="dbar${f.d===dd(0)?"":" x"}"><button class="o sq" data-b="dm" aria-label="-1">◀</button><div class="dtx"><b>${esc(dlab(f.d))}</b><small>${esc(drel(f.d)||t("date"))}</small><input type="date" data-a="d" value="${esc(f.d)}"></div><button class="o sq" data-b="dp" aria-label="+1">▶</button></div>`;
 const wdBar=()=>{const w=wdate(),x=w!==dd(0);return `<div class="lbl">${t("wdate")}</div><div class="dbar${x?" x":""}"><button class="o sq" data-b="wdm" aria-label="-1">◀</button><div class="dtx"><b>${esc(dlab(w))}</b><small>${esc(drel(w)||"")}</small><input type="date" data-b="wdin" value="${esc(w)}"></div><button class="o sq" data-b="wdp" aria-label="+1">▶</button></div>${x?`<button class="o wide" data-b="wdt">↺ ${t("backToday")}</button>`:""}`};
 const focusCard=id=>{const el=document.querySelector(`[data-fid="${id}"]`);if(el)el.scrollIntoView({block:"start"})};
 function setWd(v){v=/^\d{4}-\d\d-\d\d$/.test(v||"")?v:dd(0);D.set.wd=v===dd(0)?null:v;save();R1()}
+function matchQ(f){
+ if(!Q)return true;
+ const hay=[f.n,f.al,f.ac,f.rg,f.sp,f.nt,f.d].concat(f.s.map(s=>sname(s)+" "+(s.nm||"")+" "+(s.nt||""))).join(" ");
+ return nq(hay).indexOf(nq(Q))>=0}
+function matchV(f){
+ if(VW==="shift")return f.d===dd(0);
+ if(VW==="w")return f.s.some(s=>s.w)||!!f.nt;
+ if(VW==="run")return f.s.some(s=>sst(s)==="run");
+ return true}
+function visList(){return D.fl.filter(f=>FLT==="all"||(FLT==="open"?!f.ok:f.ok)).filter(matchQ).filter(matchV)}
+function sortFs(a){
+ const s=D.set.sort,byT=(x,y)=>(x.st||"99:99").localeCompare(y.st||"99:99")||x.id-y.id;
+ if(s==="new")return a.sort((x,y)=>y.id-x.id);
+ if(s==="svc")return a.sort((x,y)=>y.s.length-x.s.length||byT(x,y));
+ if(s==="issue")return a.sort((x,y)=>y.s.filter(z=>z.w).length-x.s.filter(z=>z.w).length||byT(x,y));
+ return a.sort(byT)}
 function listHtml(){
- const a=D.fl.filter(f=>FLT==="all"||(FLT==="open"?!f.ok:f.ok));
- if(!a.length)return `<p class="empty">${t("noFlights")}</p>`;
+ const a=visList();
+ if(!a.length)return `<p class="empty">${Q||VW?t("noRes"):t("noFlights")}</p>`;
  const T0=dd(0),rk=d=>d===T0?0:d>T0?1:2;
  const ds=[...new Set(a.map(f=>f.d))].sort((x,y)=>rk(x)-rk(y)||(rk(x)===2?(x<y?1:-1):(x<y?-1:1)));
  return ds.map(d=>{
-  const fs=a.filter(f=>f.d===d).sort((x,y)=>(x.st||"99:99").localeCompare(y.st||"99:99")||x.id-y.id);
+  const fs=sortFs(a.filter(f=>f.d===d));
   return `<div class="dh ${d===T0?"td":""}"><b>${esc(dlab(d))}</b><span>${esc(drel(d))}${drel(d)?" · ":""}${fs.length}</span></div>`+fs.map(card).join("")}).join("")}
+function renderList(){const el=$("fl");if(el)el.innerHTML=listHtml();qUpd()}
+function qUpd(){
+ const c=$("qclr");if(c)c.hidden=!Q;
+ const n=$("qn");if(n){const v=visList().length;n.textContent=Q||VW?t("resN",{n:v}):"";n.hidden=!(Q||VW)}}
+function bkbHtml(){
+ if(!BULK)return "";
+ return `<div class="bkb"><b id="bkn">${t("selN",{n:SEL.size})}</b><button class="o" data-b="ball">${t("allVis")}</button><button data-b="bmove" id="bmv">${t("moveSel")}</button><button class="o dng" data-b="bdel" id="bdl">${t("delSel")}</button><button class="o" data-b="bsel">✕</button></div>`}
+function bkUpd(){const n=$("bkn");if(n)n.textContent=t("selN",{n:SEL.size});const a=$("bmv"),b=$("bdl");if(a)a.disabled=!SEL.size;if(b)b.disabled=!SEL.size}
 function R1(){
- const op=D.fl.filter(f=>!f.ok).length,mv=D.fl.length-op;
+ CF=cfSet();
+ const op=D.fl.filter(f=>!f.ok).length,mv=D.fl.length-op,im=D.set.imp;
  const rch=D.sc.slice().sort((a,b)=>(a.t||"").localeCompare(b.t||"")).map(c=>`<button class="o rc" data-b="addr" data-id="${c.id}"><b>${esc(c.n)}</b><small>${esc(c.t)} ${esc(c.al)}</small></button>`).join("")||`<span class="m">${t("noRoutine")}</span>`;
- $("p1").innerHTML=`${wdBar()}<div class="lbl">${t("routineHint")}</div><div class="chips">${rch}</div>
+ const search=im.search?`<div class="tb"><input id="q" type="search" value="${esc(Q)}" placeholder="${esc(t("searchPh"))}" autocomplete="off" aria-label="${esc(t("searchPh"))}"><button class="o sq" id="qclr" data-b="qclr" ${Q?"":"hidden"} aria-label="✕">✕</button></div>`:"";
+ const sorts=im.search?`<select class="sel sm" id="sort" data-b="sort" aria-label="${esc(t("sortLab"))}">${["time","new","svc","issue"].map(k=>`<option value="${k}"${D.set.sort===k?" selected":""}>${t("sort_"+k)}</option>`).join("")}</select>`:"";
+ const bulkB=im.bulk?`<button class="o chip ${BULK?"on":""}" data-b="bsel">☑ ${t("bulk")}</button>`:"";
+ const views=im.views?`<div class="chips" style="margin-top:.45rem">${[["shift","vShift"],["w","vIss"],["run","vRun"]].map(([k,l])=>`<button class="o chip ${VW===k?"on":""}" data-b="view" data-k="${k}">${t(l)}</button>`).join("")}</div>`:"";
+ const tools=(sorts||bulkB)?`<div class="chips">${sorts}${bulkB}</div>`:"";
+ $("p1").innerHTML=`${wdBar()}${bkHtml()}<div class="lbl">${t("routineHint")}</div><div class="chips">${rch}</div>
 <button class="big nw" data-b="newf">＋ ${t("newFlight")}</button>
+${search}${tools}${views}${im.stats?statsHtml():""}
 <div class="seg">${[["open",op],["moved",mv],["all",D.fl.length]].map(([k,n])=>`<button class="o ${FLT===k?"on":""}" data-b="flt" data-k="${k}">${t("f_"+k)} (${n})</button>`).join("")}</div>
-<div id="fl">${listHtml()}</div>${mv?`<button class="o wide" data-b="clrm">🧹 ${t("clearMoved")}</button>`:""}`;
- dlists()}
+<div class="qn" id="qn" hidden></div><div id="fl">${listHtml()}</div>
+${im.rep?`<div class="row mt"><button data-b="rep">📤 ${t("repBtn")}<small>${esc(dshort(wdate()))}</small></button><button class="o" data-b="repc">📋 ${t("copy")}</button></div>`:""}
+${mv?`<button class="o wide" data-b="clrm">🧹 ${t("clearMoved")}</button>`:""}${bkbHtml()}`;
+ document.body.classList.toggle("bk",BULK&&im.bulk);
+ dlists();qUpd();bkUpd();stUpd()}
 function addF(c){
  D.fl.forEach(f=>f.o=0);
  let id=Date.now();while(D.fl.some(x=>x.id===id))id++;
@@ -401,18 +579,21 @@ function csSheet(){
  setTimeout(()=>{const el=$("csn");if(el)el.focus()},50)}
 function manSheet(){
  const rows=allCat().filter(x=>x.k!=="oth").map(x=>{const off=!!D.hid[x.k];
-  return `<div class="mrow${off?" off":""}"><span class="ic">${x.i}</span><b>${esc(nmOf(x))}</b><span class="mtag">${x.cu?t("custom"):t("builtin")}</span><button class="o" data-b="hidSv" data-k="${x.k}">${off?t("show"):t("hide")}</button>${x.cu?`<button class="o dng" data-b="delCs" data-k="${x.k}">🗑</button>`:""}</div>`}).join("");
+  return `<div class="mrow${off?" off":""}"><span class="ic">${x.i}</span><b>${esc(nmOf(x))}</b><span class="mtag">${x.cu?t("custom"):t("builtin")}</span>${D.set.imp.tgt?`<input class="tgin" type="number" min="0" max="240" inputmode="numeric" data-tg="${x.k}" value="${tgOf(x.k)||""}" placeholder="${esc(t("tgtLab"))}" aria-label="${esc(t("tgtLab"))} ${esc(nmOf(x))}">`:""}<button class="o" data-b="hidSv" data-k="${x.k}">${off?t("show"):t("hide")}</button>${x.cu?`<button class="o dng" data-b="delCs" data-k="${x.k}">🗑</button>`:""}</div>`}).join("");
  sheet(`<h3>⚙ ${t("manageSvc")}</h3>${rows}<button class="o wide" data-b="addCs">＋ ${t("newSvc")}</button><p class="hint">${t("manHint")}</p><button class="wide mt" data-b="closeSheet">${t("ok")}</button>`)}
 
 /* ============ Rendering: settings ============ */
 function R3(){
  const seg=(act,cur,items)=>`<div class="seg">${items.map(([v,l])=>`<button class="o ${String(cur)===String(v)?"on":""}" data-b="${act}" data-v="${v}">${l}</button>`).join("")}</div>`;
- $("p3").innerHTML=`<div class="card"><h3>🌐 ${t("s_lang")}</h3>${seg("slang",L(),[["ar","العربية"],["en","English"]])}</div>
+ $("p3").innerHTML=`<div class="card"><h3>${t("impTitle")}</h3><div class="chips">${IMPK.map(([k,l])=>`<button class="o chip ${D.set.imp[k]?"on":""}" data-b="imp" data-k="${k}">${D.set.imp[k]?"✓ ":""}${t(l)}</button>`).join("")}</div>
+<div class="row mt"><button class="o" data-b="impAll" data-v="1">${t("impOn")}</button><button class="o" data-b="impAll" data-v="0">${t("impOff")}</button></div><p class="hint">${t("impHint")}</p></div>
+<div class="card"><h3>🌐 ${t("s_lang")}</h3>${seg("slang",L(),[["ar","العربية"],["en","English"]])}</div>
 <div class="card"><h3>🎨 ${t("s_theme")}</h3>${seg("sth",D.set.theme,[["auto",t("th_auto")],["day",t("th_day")],["night",t("th_night")]])}
 <div class="lbl mt">${t("s_fs")}</div><div class="row"><button class="o" data-b="fsm">A−</button><button class="o" data-b="fsp">A+</button></div></div>
 <div class="card"><h3>🗂 ${t("s_keep")}</h3>${seg("skeep",D.set.keep,[[3,t("d_n",{n:3})],[7,t("d_n",{n:7})],[14,t("d_n",{n:14})],[30,t("d_n",{n:30})],[0,t("forever")]])}</div>
 <div class="card"><h3>💾 ${t("s_data")}</h3><div class="row"><button data-b="expJ">⬇ ${t("expJson")}</button><button data-b="expC">📊 ${t("expCsv")}</button></div>
-<button class="o wide" data-b="impB">⬆ ${t("impData")}</button><button class="o wide" data-b="shR">👥 ${t("shareR")}</button><p class="hint">${t("storeNote")}</p></div>
+<button class="o wide" data-b="impB">⬆ ${t("impData")}</button><button class="o wide" data-b="shR">👥 ${t("shareR")}</button>
+<p class="hint"><b>${t("bkLab")}:</b> ${esc(bkLine())}</p><p class="hint">${t("storeNote")}</p></div>
 <div class="card"><h3>🎙 ${t("s_voice")}</h3>${SRC?`<div class="lbl">${t("vlang")}</div>${seg("svl",D.set.vl,[["auto",t("vl_auto")],["ar-EG","العربية"],["en-US","English"]])}
 <div class="lbl">${t("vkeep")}</div>${seg("svk",D.set.vk?1:0,[[0,t("off")],[1,t("on")]])}<button class="o wide" data-b="vhelp">❔ ${t("vhelp")}</button><p class="hint">${t("vnote")}</p>`:`<p class="hint" style="margin:0">${t("vNoSup")}</p>`}</div>
 <div class="card"><h3>📲 ${t("s_install")}</h3>${DEF?`<button class="big" data-b="inst">${t("installBtn")}</button>`:`<p class="hint" style="margin:0">${t("installHint")}</p>`}</div>
@@ -449,15 +630,16 @@ function summary(f){
  if(f.nt)a.push(t("sNote")+": "+f.nt);return a.join("\n")}
 function csv(){
  const cell=x=>{x=String(x??"");if(/^[=+\-@]/.test(x))x="'"+x;return`"${x.replace(/"/g,'""')}"`};
- const rows=[["Date","Flight","Airline","Type","Reg","Stand","Sched","Chocks on","Chocks off","Pax arr","Pax dep","Service","Qty","Start","End","Minutes","Done no time","Issue","Issue note","Flight notes","Transferred"]];
+ const rows=[["Date","Flight","Airline","Type","Reg","Stand","Sched","Chocks on","Chocks off","Pax arr","Pax dep","Service","Qty","Start","End","Minutes","Target min","Over target","Done no time","Issue","Issue note","Flight notes","Transferred"]];
  D.fl.slice().sort((a,b)=>a.id-b.id).forEach(f=>{
   const base=[f.d,f.n,f.al,f.ac,f.rg,f.sp,f.st,f.ta,f.td,f.pa,f.pd];
-  if(!f.s.length)rows.push([...base,"","","","","","","","","",f.nt,f.ok?1:0]);
-  f.s.forEach(s=>rows.push([...base,sname(s),s.q||1,s.f,s.t,dur(s.f,s.t)??"",s.dn?1:0,s.w?1:0,s.w?wtxt(s):"",f.nt,f.ok?1:0]))});
+  if(!f.s.length)rows.push([...base,"","","","","","","","","","",f.nt,f.ok?1:0]);
+  f.s.forEach(s=>{const d=dur(s.f,s.t),tg=tgOf(s.k);rows.push([...base,sname(s),s.q||1,s.f,s.t,d??"",tg||"",tg&&d!=null&&d>tg?d-tg:"",s.dn?1:0,s.w?1:0,s.w?wtxt(s):"",f.nt,f.ok?1:0])})});
  return"\ufeff"+rows.map(r=>r.map(cell).join(",")).join("\r\n")}
 function mergeData(o){
  let a=0,b=0;if(!o||typeof o!=="object")throw 0;
  if(Array.isArray(o.cs))o.cs.forEach(x=>{if(x&&x.k&&x.a&&!allCat().some(y=>y.k===x.k||y.a===x.a))D.cs.push({k:String(x.k),a:String(x.a),e:String(x.e||x.a),i:x.i||"🛠️",cu:1})});
+ if(o.tg&&typeof o.tg==="object")for(const k in o.tg){const v=+o.tg[k];if(v>0&&!D.tg[k])D.tg[k]=Math.min(240,Math.round(v))}
  if(Array.isArray(o.fl))o.fl.forEach(f=>{if(f&&f.id&&!D.fl.some(x=>x.id==f.id)){D.fl.push(normF(f));a++}});
  if(Array.isArray(o.sc))o.sc.forEach(c=>{if(c&&c.n&&!D.sc.some(x=>x.id==c.id||(x.n==c.n&&x.t==tm(c.t)&&x.al==c.al))){c.t=tm(c.t);c.sv=c.sv||[];D.sc.push(c);b++}});
  if(o.h)for(const k of["al","rg","ac","sp"])for(const v in(o.h[k]||{}))D.h[k][v]=Math.max(D.h[k][v]||0,+o.h[k][v]||1);
@@ -465,6 +647,11 @@ function mergeData(o){
  if(!a&&!b&&!Array.isArray(o.fl)&&!Array.isArray(o.sc))throw 0;
  buildVMap();save();R1();dlists();if(TAB===2)RS();return{a,b}}
 function purge(){const k=+D.set.keep;if(k>0){const lim=dd(k);D.fl=D.fl.filter(f=>!(f.ok&&f.d<lim))}save()}
+function backup(kind){
+ D.set.lb=Date.now();save();
+ if(kind==="csv")fileDl(`ramp-notes-${dd(0)}.csv`,csv(),"text/csv;charset=utf-8");
+ else fileDl(`ramp-notes-${dd(0)}.json`,JSON.stringify({app:"ramp-notes",v:2,fl:D.fl,sc:D.sc,h:D.h,rm:D.rm,cs:D.cs,hid:D.hid,tg:D.tg,ds:D.set.ds,da:D.set.da}),"application/json");
+ if(TAB===3)R3();else R1()}
 
 /* ============ Actions ============ */
 const G={
@@ -484,6 +671,25 @@ const G={
  undo(){if(UNDO){const u=UNDO;if(LASTU===u)LASTU=null;u()}$("toast").hidden=true;UNDO=null},
  wdm(){setWd(addD(wdate(),-1))},wdp(){setWd(addD(wdate(),1))},wdt(){setWd(dd(0))},
  closeSheet,
+ qclr(){Q="";const el=$("q");if(el)el.value="";renderList();if(el)el.focus()},
+ view(b){const k=b.dataset.k;VW=VW===k?"":k;
+  if(VW==="shift"){FLT="open";D.set.sort="time";D.set.wd=null}
+  if(VW==="w"){FLT="all";D.set.sort="issue"}
+  if(VW==="run"){FLT="open";D.set.sort="time"}
+  save();R1()},
+ rep(){const r=dayReport(wdate());if(!r){toast(t("noFlights"));return}share(r)},
+ repc(){const r=dayReport(wdate());if(!r){toast(t("noFlights"));return}copy(r)},
+ bsel(){BULK=!BULK;SEL.clear();R1()},
+ ball(){const a=visList();const all=a.length&&a.every(f=>SEL.has(f.id));a.forEach(f=>all?SEL.delete(f.id):SEL.add(f.id));
+  a.forEach(f=>{const el=document.querySelector(`[data-fid="${f.id}"]`);if(el){el.classList.toggle("sel",SEL.has(f.id));const bx=el.querySelector(".selbox");if(bx)bx.textContent=SEL.has(f.id)?"✓":""}});bkUpd()},
+ bmove(){if(!SEL.size)return;const u=undoer();let n=0;D.fl.forEach(f=>{if(SEL.has(f.id)&&!f.ok){f.ok=1;n++}});SEL.clear();BULK=false;save();R1();hdr();toast(t("movedN",{n}),u)},
+ bdel(){if(!SEL.size)return;const u=undoer();const n=SEL.size;D.fl=D.fl.filter(f=>!SEL.has(f.id));SEL.clear();BULK=false;save();R1();hdr();toast(t("deletedN",{n}),u)},
+ imp(b){const k=b.dataset.k;D.set.imp[k]=D.set.imp[k]?0:1;
+  if(k==="search"&&!D.set.imp.search)Q="";
+  if(k==="views"&&!D.set.imp.views)VW="";
+  if(k==="bulk"&&!D.set.imp.bulk){BULK=false;SEL.clear()}
+  save();R3();R1()},
+ impAll(b){const v=+b.dataset.v;IMPK.forEach(([k])=>D.set.imp[k]=v);if(!v){Q="";VW="";BULK=false;SEL.clear()}save();R3();R1()},
  daSet(b){D.set.da=+b.dataset.v;save();RS()},
  tgds(b){const k=b.dataset.k,i=D.set.ds.indexOf(k);i<0?D.set.ds.push(k):D.set.ds.splice(i,1);save();RS()},
  addCs(){csSheet()},
@@ -495,14 +701,14 @@ const G={
   let k="c"+Date.now().toString(36);while(allCat().some(x=>x.k===k))k+="x";
   D.cs.push({k,a:n,e:n,i:CS_ICON,cu:1});buildVMap();save();RS();R1();closeSheet();toast(t("svcAdded"))},
  manCs(){manSheet()},
- hidSv(b){const k=b.dataset.k;D.hid[k]?delete D.hid[k]:D.hid[k]=1;save();RS();manSheet();toast(D.hid[k]?t("svcHidden"):t("svcShown"))},
+ hidSv(b){const k=b.dataset.k;D.hid[k]?delete D.hid[k]:D.hid[k]=1;save();RS();R1();manSheet();toast(D.hid[k]?t("svcHidden"):t("svcShown"))},
  delCs(b){
   const k=b.dataset.k,x=D.cs.find(y=>y.k===k);if(!x)return;
   const u=undoer();
   D.fl.forEach(f=>f.s.forEach(s=>{if(s.k===k){s.k="oth";s.nm=x.a}}));
   D.sc.forEach(c=>{c.sv=(c.sv||[]).filter(y=>y!==k)});
   D.set.ds=D.set.ds.filter(y=>y!==k);
-  D.cs=D.cs.filter(y=>y.k!==k);delete D.hid[k];
+  D.cs=D.cs.filter(y=>y.k!==k);delete D.hid[k];delete D.tg[k];
   buildVMap();save();RS();R1();manSheet();toast(t("svcDeleted"),u)},
  pickSv(b){
   const f=D.fl.find(x=>x.id==SHEET_FID);if(!f)return closeSheet();
@@ -514,11 +720,11 @@ const G={
  editR(b){const c=D.sc.find(x=>x.id==b.dataset.id);if(!c)return;eid=c.id;$("sn").value=c.n;$("sa").value=c.al;$("sc").value=c.ac;$("sr").value=c.rg;$("sk").value=c.sp||"";$("st").value=c.t||"";selS=new Set(c.sv);RS();scrollTo(0,0)},
  delR(b){const u=undoer();D.sc=D.sc.filter(x=>x.id!=b.dataset.id);save();RS();R1();toast(t("delR"),u)},
  delH(b){unl(b.dataset.k,b.dataset.v);delete D.h[b.dataset.k][b.dataset.v];save();RS();dlists()},
- expJ(){fileDl(`ramp-notes-${dd(0)}.json`,JSON.stringify({app:"ramp-notes",v:2,fl:D.fl,sc:D.sc,h:D.h,rm:D.rm,cs:D.cs,hid:D.hid,ds:D.set.ds,da:D.set.da}),"application/json")},
- expC(){fileDl(`ramp-notes-${dd(0)}.csv`,csv(),"text/csv;charset=utf-8")},
+ expJ(){backup("json")},
+ expC(){backup("csv")},
  impB(){$("imp").click()},
  async shR(){
-  const txt=JSON.stringify({app:"ramp-notes",v:2,sc:D.sc,h:D.h,cs:D.cs});
+  const txt=JSON.stringify({app:"ramp-notes",v:2,sc:D.sc,h:D.h,cs:D.cs,tg:D.tg});
   try{const file=new File([txt],"ramp-routine.json",{type:"text/plain"});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:t("title")});return}}catch(e){if(e&&e.name==="AbortError")return}
   fileDl("ramp-routine.json",txt,"application/json")},
  async inst(){if(!DEF)return;DEF.prompt();try{await DEF.userChoice}catch(e){}DEF=null;R3()}
@@ -532,7 +738,9 @@ document.addEventListener("click",e=>{
  const r=b.closest("[data-i]"),s=r&&f.s[+r.dataset.i];
  const up=()=>{save();upCard(c,f,r)};
  switch(a){
-  case"o":f.o=f.o?0:1;rc(f);return;
+  case"o":
+   if(BULK){SEL.has(f.id)?SEL.delete(f.id):SEL.add(f.id);c.classList.toggle("sel",SEL.has(f.id));const bx=c.querySelector(".selbox");if(bx)bx.textContent=SEL.has(f.id)?"✓":"";bkUpd();return}
+   f.o=f.o?0:1;rc(f);return;
   case"dm":case"dp":f.d=addD(f.d,a==="dp"?1:-1);save();R1();hdr();focusCard(f.id);return;
   case"nf":s.f=nw();up();return;
   case"nt":s.t=nw();up();return;
@@ -543,6 +751,8 @@ document.addEventListener("click",e=>{
   case"qm":case"qp":{const q=Math.min(99,Math.max(1,(parseInt(s.q)||1)+(a==="qp"?1:-1)));s.q=String(q);up();return}
   case"x":{const u=undoer();f.s.splice(+r.dataset.i,1);save();rc(f);toast(t("removed"),u);return}
   case"add":openAdd(f.id);return;
+  case"qadd":{const k=b.dataset.k;if(!k||k==="oth")return;f.s.push({k,q:"1",f:"",t:"",w:0,wr:[],nt:""});save();rc(f);buzz(1);return}
+  case"tls":{const i=r?+r.dataset.i:-1;const el=c.querySelector(`.sv[data-i="${i}"]`);if(el)el.scrollIntoView({block:"center",behavior:"smooth"});return}
   case"now":f[b.dataset.k]=nw();save();rc(f);return;
   case"clr":f[b.dataset.k]="";save();rc(f);return;
   case"dt":f.dt=f.dt?0:1;save();rc(f);return;
@@ -552,13 +762,19 @@ document.addEventListener("click",e=>{
   case"ok":{const u=undoer();f.ok=f.ok?0:1;save();if(FLT==="all")rc(f);else{R1()}hdr();toast(f.ok?t("movedT"):t("unmove"),u);return}
   case"del":{const u=undoer();D.fl=D.fl.filter(x=>x!==f);save();R1();hdr();toast(t("deleted"),u);return}
  }});
+document.addEventListener("input",e=>{
+ if(e.target.id==="q"){const v=e.target.value;clearTimeout(QT);QT=setTimeout(()=>{Q=v;renderList()},130)}});
 document.addEventListener("change",e=>{
  const el=e.target;
  if(el.dataset.b==="wdin"){setWd(el.value);return}
+ if(el.dataset.b==="sort"){D.set.sort=el.value;save();renderList();return}
+ if(el.dataset.tg){const k=el.dataset.tg,v=parseInt(el.value,10);
+  if(v>0)D.tg[k]=Math.min(240,v);else delete D.tg[k];
+  el.value=tgOf(k)||"";save();R1();return}
  if(el.id==="imp"){const file=el.files[0];el.value="";if(!file)return;file.text().then(x=>{try{const r=mergeData(JSON.parse(x));toast(t("imported",r))}catch(err){toast(t("badFile"))}});return}
  const a=el.dataset.a,c=el.closest("[data-fid]");if(!a||!c)return;
  const f=D.fl.find(x=>x.id==c.dataset.fid);if(!f)return;
- LASTF=f.id;
+ LASTF=f.id;CF=cfSet();
  const r=el.closest("[data-i]"),o=r?f.s[+r.dataset.i]:f;let v=el.value;
  if(el.type==="number"){v=v===""?"":String(Math.max(0,parseInt(v,10)||0));el.value=v}
  if(!r){
@@ -571,11 +787,55 @@ document.addEventListener("change",e=>{
   if(a==="rg"&&D.rm[v])["al","ac"].forEach((k,i)=>{if(!f[k]&&D.rm[v][i]){f[k]=D.rm[v][i];const x=c.querySelector(`[data-a="${k}"]`);if(x)x.value=f[k];lrn(k,f[k])}});
   if(f.rg)D.rm[f.rg]=[f.al,f.ac]}
  save();if(!r)dlists();
- if(r&&el.type==="time")upCard(c,f,r);else{const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)}});
+ if(r&&el.type==="time")upCard(c,f,r);else{const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)+(SEL.has(f.id)?" sel":"");stUpd()}});
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"&&BULK){BULK=false;SEL.clear();R1();return}
+ const g=e.target.closest&&e.target.closest("[data-grip]");
+ if(g&&(e.key==="ArrowUp"||e.key==="ArrowDown")){
+  e.preventDefault();
+  const art=g.closest("[data-fid]"),rw=g.closest(".sv");if(!art||!rw)return;
+  const f=D.fl.find(x=>x.id==art.dataset.fid);if(!f)return;
+  const i=+rw.dataset.i,j=i+(e.key==="ArrowUp"?-1:1);
+  if(j<0||j>=f.s.length)return;
+  const tmp=f.s[i];f.s[i]=f.s[j];f.s[j]=tmp;save();rc(f);
+  const ng=document.querySelector(`[data-fid="${f.id}"] .sv[data-i="${j}"] [data-grip]`);if(ng)ng.focus()}});
+/* ---- drag to reorder services ---- */
+document.addEventListener("pointerdown",e=>{
+ if(!D.set.imp.dg||DRG)return;
+ const g=e.target.closest&&e.target.closest("[data-grip]");if(!g)return;
+ const art=g.closest("[data-fid]"),rw=g.closest(".sv");if(!art||!rw)return;
+ const f=D.fl.find(x=>x.id==art.dataset.fid);if(!f)return;
+ if(e.pointerType==="mouse"&&e.button!==0)return;
+ e.preventDefault();try{g.setPointerCapture(e.pointerId)}catch(_){}
+ const r=rw.getBoundingClientRect(),gh=rw.cloneNode(true);
+ gh.classList.add("ghost");gh.style.width=r.width+"px";gh.style.left=r.left+"px";gh.style.top=r.top+"px";
+ document.body.appendChild(gh);rw.classList.add("dragsrc");
+ DRG={f,rw,gh,off:e.clientY-r.top};buzz(1)},{passive:false});
+document.addEventListener("pointermove",e=>{
+ if(!DRG)return;e.preventDefault();
+ DRG.gh.style.top=(e.clientY-DRG.off)+"px";
+ const par=DRG.rw.parentNode,sibs=[].slice.call(par.children).filter(x=>x.classList.contains("sv")&&!x.classList.contains("dragsrc"));
+ let before=null;for(const s of sibs){const r=s.getBoundingClientRect();if(e.clientY<r.top+r.height/2){before=s;break}}
+ if(before)par.insertBefore(DRG.rw,before);
+ else if(sibs.length){const last=sibs[sibs.length-1];par.insertBefore(DRG.rw,last.nextSibling)}},{passive:false});
+function endDrag(){
+ if(!DRG)return;
+ const f=DRG.f,rw=DRG.rw,gh=DRG.gh;DRG=null;
+ if(gh.parentNode)gh.parentNode.removeChild(gh);
+ rw.classList.remove("dragsrc");
+ const par=rw.parentNode,order=[].slice.call(par.children).filter(x=>x.classList.contains("sv")).map(x=>+x.dataset.i);
+ if(order.length===f.s.length){const ns=order.map(i=>f.s[i]).filter(Boolean);if(ns.length===f.s.length)f.s=ns}
+ save();rc(f)}
+document.addEventListener("pointerup",endDrag);
+document.addEventListener("pointercancel",endDrag);
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();DEF=e;if(TAB===3)R3()});
 addEventListener("appinstalled",()=>{DEF=null;if(TAB===3)R3()});
 /* live timers */
-function tick(){document.querySelectorAll("[data-run]").forEach(el=>{el.textContent=fmtMin(elapsed(el.dataset.f))});hdr()}
+function tick(){
+ document.querySelectorAll("[data-run]").forEach(el=>{
+  const e=elapsed(el.dataset.f),tg=+el.dataset.tg||0,over=!!(tg&&e!=null&&e>tg);
+  el.textContent=(fmtMin(e)||"")+(over?" ⚠":"");el.classList.toggle("over",over)});
+ stUpd();hdr()}
 setInterval(tick,15000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 
 /* ============ Voice commands ============ */
