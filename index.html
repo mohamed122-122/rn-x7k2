@@ -42,7 +42,6 @@ button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 .mt{margin-top:.7rem}
 .lbl{font-size:.85rem;color:var(--m);font-weight:800;margin:.35rem 0 .25rem}
 .m{color:var(--m)}
-/* header / nav */
 #hd{position:sticky;top:0;z-index:20;background:var(--hd);color:var(--hdt);padding:.5rem .8rem;padding-top:calc(.5rem + env(safe-area-inset-top));display:flex;align-items:center;gap:.5rem}
 .ht{flex:1;min-width:0}.ht b{font-size:1.2rem;display:block}.ht small{font-size:.8rem;opacity:.9;font-weight:700}
 .hb{min-height:2.8rem;min-width:2.8rem;padding:0 .5rem;background:transparent;color:var(--hdt);border:2px solid var(--hdt);font-size:1.1rem}
@@ -50,7 +49,6 @@ button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 #nv button{border:0;border-radius:0;background:transparent;color:var(--t);min-height:4.2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;font-size:.95rem;border-top:5px solid transparent;margin-top:-3px}
 #nv button span{font-size:1.5rem;line-height:1}
 #nv button.on{color:var(--p);border-top-color:var(--p)}
-/* flights */
 .chips{display:flex;flex-wrap:wrap;gap:.45rem}
 .chip{min-height:2.7rem;padding:.3rem .85rem;border-radius:999px}
 .rc{min-height:3.2rem;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;padding:.3rem .9rem}
@@ -97,12 +95,10 @@ button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 .fld label{display:block;font-size:.85rem;font-weight:800;color:var(--m);margin:0 0 .2rem}
 .qk{margin-top:.4rem}
 .add{margin-top:.6rem}
-/* cards / settings */
 .card{background:var(--c);border:2px solid var(--b);border-radius:16px;padding:.9rem;margin:.7rem 0}
 .card h3{margin:0 0 .6rem;font-size:1.1rem}
 .ri .m{margin:.25rem 0 .5rem;font-size:.9rem}
 .hint{color:var(--m);font-size:.9rem;font-weight:600;margin:.5rem 0 0}
-/* toast + sheet */
 #toast{position:fixed;inset-inline:.8rem;bottom:calc(5.8rem + env(safe-area-inset-bottom));max-width:700px;margin:0 auto;z-index:50;background:var(--hd);color:var(--hdt);border:2px solid var(--p);border-radius:14px;padding:.6rem .9rem;display:flex;align-items:center;gap:.8rem;font-weight:800}
 #toast span{flex:1}#toast button{min-height:2.6rem;color:var(--hdt);border-color:var(--hdt)}
 #ov{position:fixed;inset:0;background:#000a;z-index:60;display:flex;align-items:flex-end;justify-content:center}
@@ -111,7 +107,6 @@ button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 .sg{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
 .sb{min-height:3.8rem;display:flex;gap:.5rem;align-items:center;justify-content:flex-start;font-size:1.05rem;text-align:start}
 .sb span{font-size:1.5rem}
-/* voice */
 #mic{position:fixed;inset-inline-end:1rem;bottom:calc(5.9rem + env(safe-area-inset-bottom));width:4.6rem;height:4.6rem;min-height:0;border-radius:50%;font-size:2rem;padding:0;z-index:40;box-shadow:0 4px 16px #0008;border:3px solid var(--c);display:flex;align-items:center;justify-content:center}
 #mic.lis{background:var(--wn);border-color:var(--wn);color:var(--wnt);animation:pl 1s infinite}
 @keyframes pl{50%{box-shadow:0 0 0 16px #ff4d4d55}}
@@ -119,7 +114,6 @@ body.vm #toast{bottom:calc(11.2rem + env(safe-area-inset-bottom))}
 body.vm main{padding-bottom:2.5rem}
 #toast span{white-space:pre-line}
 .ex{margin:0;padding:0;list-style:none}.ex li{padding:.5rem 0;border-bottom:1px dashed var(--b)}.ex b{display:block;font-size:1.05rem}.ex small{color:var(--m);font-weight:700}
-/* dates */
 .dbar{display:flex;gap:.45rem;align-items:stretch;direction:ltr;margin:.25rem 0}
 .bd>.dbar{margin-top:.7rem}
 .dbar .sq{min-height:3.4rem;flex:0 0 3.4rem;font-size:1.2rem}
@@ -134,7 +128,6 @@ body.vm main{padding-bottom:2.5rem}
 .dch{display:inline-block;border:2px solid var(--b);border-radius:8px;padding:0 .4rem;color:var(--t);font-weight:900}
 .dch.x{background:var(--runbg);border-color:var(--run)}
 .fc{scroll-margin-top:4.8rem}
-/* ===== 2.2: حذف من الخارج + إدارة الخدمات ===== */
 .fhr{display:flex;align-items:flex-start;gap:.5rem}
 .fhx{flex:1;min-width:0}
 .fdel{flex:0 0 2.9rem;min-width:2.9rem;min-height:2.9rem;padding:0;font-size:1.25rem;border-radius:12px}
@@ -144,7 +137,6 @@ body.vm main{padding-bottom:2.5rem}
 .mrow b{flex:1;min-width:0;font-size:1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .mrow button{flex:0 0 auto;min-height:2.5rem;padding:.2rem .65rem;font-size:.9rem}
 .mtag{font-size:.72rem;font-weight:800;color:var(--m);border:1px solid var(--b);border-radius:8px;padding:0 .35rem;flex:0 0 auto}
-/* ===== 2.3: تحسينات الوردية ===== */
 .tb{display:flex;gap:.45rem;margin:.5rem 0;align-items:stretch}
 .tb input{flex:1;min-width:0}
 .tb .sq{flex:0 0 3rem;min-width:3rem}
@@ -170,6 +162,7 @@ input[type=search]::-webkit-search-cancel-button{display:none}
 .tld{flex:0 0 3.1rem;font-size:.72rem;font-weight:800;color:var(--m);text-align:center;font-variant-numeric:tabular-nums}
 .tgt{flex:0 0 auto;font-size:.7rem;font-weight:800;color:var(--m);border:1px solid var(--b);border-radius:8px;padding:0 .35rem}
 .live.over{color:var(--wn)}
+.dur.over{color:var(--wn)}
 .tgin{width:4.6rem;min-height:2.5rem;flex:0 0 auto;padding:.2rem .3rem;font-size:.95rem}
 .selbox{flex:0 0 2.3rem;min-width:2.3rem;min-height:2.3rem;padding:0;border-radius:8px;font-size:1.05rem;display:grid;place-items:center}
 .fc.sel{border-color:var(--p)}
@@ -189,6 +182,10 @@ body.bk main{padding-bottom:4.5rem}
 .bkbar{display:flex;gap:.5rem;align-items:center;border:2px solid var(--run);background:var(--runbg);border-radius:14px;padding:.5rem .6rem;margin:.5rem 0}
 .bkbar span{flex:1;font-size:.83rem;font-weight:800}
 .bkbar button{flex:0 0 auto;min-height:2.6rem;font-size:.82rem;padding:.2rem .6rem}
+.hrbar{border:2px solid var(--wn);background:var(--wnbg);border-radius:14px;padding:.5rem .6rem;margin:.5rem 0}
+.hrbar .hrt{font-size:.85rem;font-weight:900;color:var(--wn);margin-bottom:.35rem}
+.hrbar button{width:100%;min-height:2.6rem;margin:.2rem 0;padding:.25rem .55rem;font-size:.83rem;text-align:start;background:transparent;color:var(--t);border-color:var(--wn)}
+.hrbar .more{font-size:.75rem;font-weight:800;color:var(--m);text-align:center;margin-top:.2rem}
 @media(max-width:400px){.tld{flex:0 0 2.7rem;font-size:.68rem}.st b{font-size:1rem}}
 </style>
 </head>
@@ -207,7 +204,6 @@ body.bk main{padding-bottom:4.5rem}
 <input type="file" id="imp" hidden accept=".json,.txt,application/json,text/plain">
 <script>
 "use strict";
-/* ============ Data: services + translations ============ */
 const SV=[
 {k:"chk",a:"Chocks",e:"Chocks",i:"🛑"},{k:"mar",a:"Marshalling",e:"Marshalling",i:"🦺"},
 {k:"wat",a:"مياه",e:"Water",i:"💧"},{k:"toi",a:"تواليت",e:"Lavatory",i:"🚽"},
@@ -220,8 +216,9 @@ const SV=[
 {k:"cat",a:"تموين",e:"Catering",i:"🍽️"},{k:"asu",a:"ASU",e:"ASU",i:"💨"},{k:"oth",a:"أخرى",e:"Other",i:"➕"}];
 const WR=["late","noeq","nocrew","part","notreq"];
 const ICONS=["🛠️","🧰","🚿","🧊","⛽","🍱","♿","🪜","🧳","⚡","❄️","💧","🧹","🚌","🚜","📦","👷","🛑","🦺","📡","💨","🍽️","🚐","➕"];
-const IMPK=[["search","imp_search"],["views","imp_views"],["stats","imp_stats"],["tl","imp_tl"],["tgt","imp_tgt"],["rep","imp_rep"],["cf","imp_cf"],["bulk","imp_bulk"],["bk","imp_bk"],["qk","imp_qk"],["dg","imp_dg"]];
+const IMPK=[["search","imp_search"],["views","imp_views"],["stats","imp_stats"],["tl","imp_tl"],["tgt","imp_tgt"],["hour","imp_hour"],["rep","imp_rep"],["cf","imp_cf"],["bulk","imp_bulk"],["bk","imp_bk"],["qk","imp_qk"],["dg","imp_dg"]];
 const IMPOBJ=()=>{const o={};IMPK.forEach(([k])=>o[k]=1);return o};
+const HOUR=60,ALERTED=new Set();
 const T={
 ar:{title:"مفكرة المهبط",nav1:"الرحلات",nav2:"المعتادة",nav3:"الإعدادات",todayN:"{n} رحلة اليوم",
 routineHint:"اضغط رحلة معتادة لإضافتها",noRoutine:"لا توجد رحلات معتادة — أضفها من تبويب «المعتادة»",newFlight:"رحلة جديدة",
@@ -242,8 +239,8 @@ d_n:"{n} يوم",forever:"دائماً",s_data:"البيانات والنسخ ا
 impData:"استيراد ملف",shareR:"مشاركة الرحلات المعتادة مع الزملاء",imported:"تم الاستيراد: {a} رحلة، {b} معتادة",badFile:"ملف غير صالح",
 s_install:"تثبيت التطبيق",installBtn:"تثبيت على الشاشة الرئيسية",installHint:"من قائمة Chrome (⋮) اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",
 storeNote:"البيانات محفوظة على هذا الجهاز فقط — خذ نسخة احتياطية من وقت لآخر. الرحلات غير المنقولة لا تُحذف تلقائياً أبداً.",
-saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 2.3 — تحسينات الوردية",exported:"تم التصدير ✔",
-s_voice:"الأوامر الصوتية",today:"اليوم",tomorrow:"بكرة",yesterday:"أمس",wdate:"تاريخ الرحلات الجديدة",backToday:"رجوع لليوم",vWhich:"أنهي خدمة؟ قول اسمها",vlang:"لغة التعرف على الصوت",vl_auto:"زي لغة التطبيق",vkeep:"استمرار الاستماع بعد كل أمر",on:"شغّال",off:"مقفول",
+saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 2.4 — صوت عربي أقوى وتنبيه الساعة",exported:"تم التصدير ✔",
+s_voice:"الأوامر الصوتية",today:"اليوم",tomorrow:"بكرة",yesterday:"أمس",wdate:"تاريخ الرحلات الجديدة",backToday:"رجوع لليوم",vWhich:"أنهي خدمة؟ قول اسمها",vlang:"لغة التعرف على الصوت",vl_auto:"زي لغة التطبيق",vl_eg:"مصري (ar-EG)",vl_ar:"عربي عام (ar)",vkeep:"استمرار الاستماع بعد كل أمر",on:"شغّال",off:"مقفول",
 defSvc:"الخدمات الافتراضية",autoAdd:"الإضافة التلقائية",defHint:"الخدمات المختارة هنا تُضاف لوحدها لأي رحلة جديدة — وكمان مع رحلات «المعتادة» (من غير تكرار).",
 newSvc:"خدمة جديدة",svcIcon:"الأيقونة",manageSvc:"إدارة الخدمات",hide:"إخفاء",show:"إظهار",builtin:"أساسية",custom:"مضافة",
 svcAdded:"تمت إضافة الخدمة ✔",svcExists:"الخدمة موجودة بالفعل",needName:"اكتب اسم الخدمة",svcHidden:"تم الإخفاء من القوائم",svcShown:"تم الإظهار",svcDeleted:"تم حذف الخدمة",
@@ -256,13 +253,14 @@ bulk:"تحديد",selN:"{n} محدد",allVis:"الكل",moveSel:"✓ نقل",del
 repBtn:"تقرير الوردية",shiftRep:"تقرير وردية",repFlights:"رحلات",repSvc:"خدمات",repIss:"تقصير",repAvg:"متوسط الأرض",
 cf:"تعارض موقف",cfWith:"موقف مشترك في نفس الوقت مع: {n}",
 bkNever:"لسه معملتش نسخة احتياطية — بياناتك على الجهاز بس.",bkOld:"آخر نسخة احتياطية من {n} يوم.",bkToday:"آخر نسخة احتياطية النهارده ✔",bkBtn:"💾 نسخة دلوقتي",bkLab:"آخر نسخة احتياطية",
-impTitle:"✨ تحسينات 2.3",impHint:"كل تحسين له مفتاح مستقل — اقفل أي حاجة مش عايزها وهيرجع الشكل زي 2.2 بالظبط.",impOn:"تشغيل الكل",impOff:"إيقاف الكل",
+hourT:"خدمات عدّت ساعة",hourMore:"و {n} كمان",hourToast:"عدّت ساعة",imp_hour:"تنبيه الساعة",
+impTitle:"✨ تحسينات 2.4",impHint:"كل تحسين له مفتاح مستقل — اقفل أي حاجة مش عايزها وهيرجع الشكل زي 2.2 بالظبط.",impOn:"تشغيل الكل",impOff:"إيقاف الكل",
 imp_search:"البحث والترتيب",imp_views:"عروض سريعة",imp_stats:"إحصائيات اليوم",imp_tl:"الخط الزمني",imp_tgt:"هدف وقت الخدمة",imp_rep:"تقرير الوردية",imp_cf:"تنبيه تعارض الموقف",imp_bulk:"تحديد متعدد",imp_bk:"تذكير النسخة الاحتياطية",imp_qk:"إضافة سريعة",imp_dg:"سحب لترتيب الخدمات",
-vhelp:"أمثلة الأوامر",vnote:"بيشتغل على Chrome أندرويد ومحتاج إنترنت. الصوت بيتبعت لخدمة Google للتعرف عليه. للمصري اختار «العربية».",
+vhelp:"أمثلة الأوامر",vnote:"بيشتغل على Chrome أندرويد ومحتاج إنترنت. الصوت بيتبعت لخدمة Google للتعرف عليه. لو العربي مش شغال جرّب «عربي عام (ar)» من الإعدادات.",
 vListen:"اتكلم دلوقتي…",vNo:"مافهمتش",vNoSup:"المتصفح ده مش بيدعم الأوامر الصوتية (استخدم Chrome)",vDenied:"اسمح للمتصفح باستخدام المايك",
 vNet:"التعرف على الصوت محتاج إنترنت",vNoSpeech:"ماسمعتش حاجة",vNoMic:"المايك مش شغال",vLangErr:"اللغة دي مش مدعومة على جهازك",
 vNoFlight:"مفيش رحلة مفتوحة — قول «رحلة جديدة» أو اختار رحلة",vUndone:"تم التراجع",vNothing:"مفيش حاجة أتراجع عنها",vAlready:"تمت قبل كده",vNone:"مش موجودة",vTry:"جرب مثلاً",
-vex:[["ابدأ السلم","يبدأ وقت السلم"],["خلص السلم","يقفل وقت السلم"],["السلم","اسم الخدمة لوحده: بداية أو نهاية"],["ضيف حافلتين","يضيف خدمة بالعدد"],["شوكس اون / شوكس اوف","وقت الوصول / السفر"],["ركاب وصول 150","عدد الركاب (وصول أو سفر)"],["تقصير الجرار تأخير","تقصير في خدمة مع السبب"],["موقف 12","رقم الموقف"],["ملاحظة …","كل الكلام بعدها يتسجل ملاحظة"],["رحلة 777","فتح الرحلة (أو إضافتها)"],["رحلة جديدة","رحلة فاضية"],["تم النقل","تعليم الرحلة كمنقولة"],["تراجع","إلغاء آخر أمر"]]},
+vex:[["ابدأ السلم","يبدأ وقت السلم"],["شغل السلم","نفس الأمر باللهجة المصرية"],["خلص السلم","يقفل وقت السلم"],["السلم","اسم الخدمة لوحده: بداية أو نهاية"],["ضيف حافلتين","يضيف خدمة بالعدد"],["شوكس اون / شوكس اوف","وقت الوصول / السفر"],["ركاب وصول 150","عدد الركاب (وصول أو سفر)"],["تقصير الجرار تأخير","تقصير في خدمة مع السبب"],["موقف 12","رقم الموقف"],["ملاحظة …","كل الكلام بعدها يتسجل ملاحظة"],["سجل ملاحظة …","نفس الأمر بصيغة تانية"],["رحلة 777","فتح الرحلة (أو إضافتها)"],["رحلة جديدة","رحلة فاضية"],["تم النقل","تعليم الرحلة كمنقولة"],["تراجع","إلغاء آخر أمر"]]},
 en:{title:"Ramp Notes",nav1:"Flights",nav2:"Routine",nav3:"Settings",todayN:"{n} today",
 routineHint:"Tap a routine flight to add it",noRoutine:"No routine flights — add them in the Routine tab",newFlight:"New flight",
 f_open:"Open",f_moved:"Transferred",f_all:"All",noFlights:"No flights here",clearMoved:"Clear transferred",clearedN:"Removed {n} flights",
@@ -282,8 +280,8 @@ d_n:"{n} days",forever:"Forever",s_data:"Data & backup",expJson:"Backup (JSON)",
 impData:"Import file",shareR:"Share routine flights with coworkers",imported:"Imported: {a} flights, {b} routine",badFile:"Invalid file",
 s_install:"Install app",installBtn:"Install to home screen",installHint:"From the Chrome menu (⋮) choose “Install app” or “Add to Home screen”.",
 storeNote:"Data is stored on this device only — back it up now and then. Flights not yet transferred are never deleted automatically.",
-saveFail:"Could not save — storage is full or disabled",ver:"Version 2.3 — shift improvements",exported:"Exported ✔",
-s_voice:"Voice commands",today:"Today",tomorrow:"Tomorrow",yesterday:"Yesterday",wdate:"Date for new flights",backToday:"Back to today",vWhich:"Which service? Say its name",vlang:"Speech recognition language",vl_auto:"Same as app language",vkeep:"Keep listening after each command",on:"On",off:"Off",
+saveFail:"Could not save — storage is full or disabled",ver:"Version 2.4 — stronger Arabic voice + hour alert",exported:"Exported ✔",
+s_voice:"Voice commands",today:"Today",tomorrow:"Tomorrow",yesterday:"Yesterday",wdate:"Date for new flights",backToday:"Back to today",vWhich:"Which service? Say its name",vlang:"Speech recognition language",vl_auto:"Same as app language",vl_eg:"Egyptian (ar-EG)",vl_ar:"Generic Arabic (ar)",vkeep:"Keep listening after each command",on:"On",off:"Off",
 defSvc:"Default services",autoAdd:"Auto-add",defHint:"Services picked here are added automatically to every new flight — and together with routine flights (no duplicates).",
 newSvc:"New service",svcIcon:"Icon",manageSvc:"Manage services",hide:"Hide",show:"Show",builtin:"Built-in",custom:"Custom",
 svcAdded:"Service added ✔",svcExists:"Service already exists",needName:"Enter the service name",svcHidden:"Hidden from lists",svcShown:"Shown again",svcDeleted:"Service deleted",
@@ -296,15 +294,15 @@ bulk:"Select",selN:"{n} selected",allVis:"All",moveSel:"✓ Transfer",delSel:"�
 repBtn:"Shift report",shiftRep:"Shift report",repFlights:"Flights",repSvc:"Services",repIss:"Issues",repAvg:"Avg ground",
 cf:"Stand conflict",cfWith:"Same stand at overlapping time with: {n}",
 bkNever:"No backup yet — your data lives on this device only.",bkOld:"Last backup {n} days ago.",bkToday:"Last backup today ✔",bkBtn:"💾 Back up now",bkLab:"Last backup",
-impTitle:"✨ 2.3 improvements",impHint:"Each improvement has its own switch — turn off anything you don’t want and it looks exactly like 2.2.",impOn:"Enable all",impOff:"Disable all",
+hourT:"services over an hour",hourMore:"and {n} more",hourToast:"over an hour",imp_hour:"Hour alert",
+impTitle:"✨ 2.4 improvements",impHint:"Each improvement has its own switch — turn off anything you don’t want and it looks exactly like 2.2.",impOn:"Enable all",impOff:"Disable all",
 imp_search:"Search & sort",imp_views:"Quick views",imp_stats:"Today stats",imp_tl:"Timeline",imp_tgt:"Service target time",imp_rep:"Shift report",imp_cf:"Stand conflict alert",imp_bulk:"Bulk selection",imp_bk:"Backup reminder",imp_qk:"Quick add",imp_dg:"Drag to reorder services",
-vhelp:"Command examples",vnote:"Works in Chrome on Android and needs internet. Audio is sent to Google for recognition. Egyptian Arabic: pick “العربية”.",
+vhelp:"Command examples",vnote:"Works in Chrome on Android and needs internet. Audio is sent to Google for recognition. If Arabic fails, try “Generic Arabic (ar)” in Settings.",
 vListen:"Speak now…",vNo:"Didn't understand",vNoSup:"This browser doesn't support voice commands (use Chrome)",vDenied:"Allow the browser to use the microphone",
 vNet:"Speech recognition needs internet",vNoSpeech:"Didn't hear anything",vNoMic:"Microphone not working",vLangErr:"This language isn't supported on your device",
 vNoFlight:"No open flight — say “new flight” or pick one",vUndone:"Undone",vNothing:"Nothing to undo",vAlready:"already done",vNone:"not found",vTry:"Try for example",
 vex:[["Start stairs","Starts the stairs timer"],["Stairs done","Ends the stairs timer"],["Stairs","Service name alone: start or end"],["Add 2 buses","Adds a service with quantity"],["Chocks on / Chocks off","Arrival / departure time"],["Pax arrival 150","Passenger count (arrival or departure)"],["Issue tractor late","Issue on a service with reason"],["Stand 12","Stand number"],["Note …","Everything after it becomes a note"],["Flight 777","Open (or add) the flight"],["New flight","Blank flight"],["Transferred","Mark flight as transferred"],["Undo","Undo the last command"]]}};
 
-/* ============ State ============ */
 const KEY="rn",FS=[.9,1,1.15,1.3,1.5],LS={al:"d_al",rg:"d_rg",ac:"d_ac",sp:"d_sp"};
 const $=id=>document.getElementById(id);
 const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/'/g,"&#39;");
@@ -333,7 +331,6 @@ function normF(f){
  f.s.forEach(s=>{s.f=tm(s.f);s.t=tm(s.t);s.q=s.q||"1";s.wr=s.wr||[];s.nt=s.nt||""});
  f.o=f.o?1:0;f.ok=f.ok?1:0;f.dt=f.dt?1:0;f.id=f.id||Date.now();return f}
 const dd=n=>{const d=new Date(Date.now()-n*864e5);return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
-/* ---- dates ---- */
 const pd=s=>{const m=/^(\d{4})-(\d\d)-(\d\d)$/.exec(s||"");return m?new Date(+m[1],+m[2]-1,+m[3]):null};
 const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
 const addD=(s,n)=>{const d=pd(s)||pd(dd(0));d.setDate(d.getDate()+n);return iso(d)};
@@ -350,7 +347,6 @@ const nmOf=x=>L()==="en"?x.e:x.a;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){toast(t("saveFail"))}};
 function undoer(){const snap=JSON.stringify(D);return()=>{const cur=D.set,o=JSON.parse(snap);o.set=Object.assign({},cur,{ds:o.set.ds,da:o.set.da,imp:o.set.imp,sort:o.set.sort});D=o;buildVMap();save();R1();hdr();if(TAB===2)RS()}}
 
-/* ============ Time helpers ============ */
 const nw=()=>{const d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
 const mins=h=>{const m=/^(\d\d):(\d\d)$/.exec(h||"");return m?+m[1]*60+ +m[2]:null};
 const nowM=()=>{const d=new Date();return d.getHours()*60+d.getMinutes()};
@@ -358,13 +354,11 @@ const dur=(a,b)=>{a=mins(tm(a));b=mins(tm(b));if(a==null||b==null)return null;le
 const elapsed=f=>{const a=mins(tm(f));if(a==null)return null;let d=nowM()-a;if(d<0)d+=1440;return d};
 const fmtMin=m=>m==null?"":m<60?`${m} ${t("min")}`:`${Math.floor(m/60)}${t("h")} ${m%60}${t("min")}`;
 
-/* ============ Suggestions memory ============ */
 const lrn=(k,v)=>{v=String(v||"").trim();if(v)D.h[k][v]=(D.h[k][v]||0)+1};
 const unl=(k,v)=>{if(v&&D.h[k][v]&&--D.h[k][v]<=0)delete D.h[k][v]};
 const tp=k=>Object.entries(D.h[k]||{}).sort((a,b)=>b[1]-a[1]).slice(0,40);
 function dlists(){for(const k in LS)$(LS[k]).innerHTML=tp(k).map(([v])=>`<option value="${esc(v)}">`).join("")}
 
-/* ============ Service helpers ============ */
 const allCat=()=>SV.concat(D.cs);
 const cat=()=>allCat().filter(x=>x.k!=="oth"&&!D.hid[x.k]);
 const svOf=s=>allCat().find(x=>x.k===s.k)||{a:s.k,e:s.k,i:"•"};
@@ -374,7 +368,6 @@ const cnt=f=>f.s.filter(s=>s.t||s.dn).length+"/"+f.s.length;
 const tgOf=k=>{const v=+D.tg[k];return v>0?Math.min(240,Math.round(v)):0};
 function wtxt(s){const r=(s.wr||[]).map(k=>t("wr_"+k));if(s.nt)r.push(s.nt);return r.join("، ")||t("issue")}
 
-/* ============ 2.3: stats / conflicts / timeline / report ============ */
 function stats(ds){
  const fs=D.fl.filter(f=>f.d===ds);let tot=0,dn=0,run=0,iss=0,sum=0,n=0;
  fs.forEach(f=>{tot+=f.s.length;f.s.forEach(s=>{if(s.t||s.dn)dn++;if(sst(s)==="run")run++;if(s.w)iss++});
@@ -438,8 +431,31 @@ function bkHtml(){
  const n=Math.floor((Date.now()-lb)/864e5);
  return n<7?"":`<div class="bkbar"><span>💾 ${t("bkOld",{n})}</span><button data-b="expJ">${t("bkBtn")}</button></div>`}
 function bkLine(){const lb=+D.set.lb||0;if(!lb)return t("bkNever");const n=Math.floor((Date.now()-lb)/864e5);return n<=0?t("bkToday"):t("bkOld",{n})}
+function hourItems(){
+ if(!D.set.imp.hour)return [];
+ const out=[];
+ D.fl.forEach(f=>f.s.forEach((s,i)=>{
+  if(!s.f)return;
+  const d=s.t?dur(s.f,s.t):elapsed(s.f);
+  if(d!=null&&d>HOUR)out.push({f,i,s,d,run:!s.t});
+ }));
+ return out.sort((a,b)=>b.d-a.d)}
+function hrHtml(){
+ const a=hourItems();if(!a.length)return "";
+ const top=a.slice(0,3).map(x=>`<button data-b="hour" data-fid="${x.f.id}" data-i="${x.i}">⏰ ${esc(x.f.n||t("flight"))} · ${esc(sname(x.s))} · ${esc(fmtMin(x.d))}${x.run?" ▶":""}</button>`).join("");
+ return `<div class="hrt">⏰ ${t("hourT")} (${a.length})</div>${top}${a.length>3?`<div class="more">${t("hourMore",{n:a.length-3})}</div>`:""}`}
+function hrUpd(){const el=$("hrbar");if(el)el.innerHTML=hrHtml()}
+function checkHour(){
+ if(!D.set.imp.hour)return;
+ const news=[];
+ D.fl.forEach(f=>f.s.forEach((s,i)=>{
+  if(s.t)return;
+  const e=elapsed(s.f);
+  if(e!=null&&e>HOUR){const k=f.id+":"+i+":"+s.f;if(!ALERTED.has(k)){ALERTED.add(k);news.push({f,s,e})}}
+ }));
+ if(news.length){buzz(0);
+  toast(news.length===1?`⏰ ${news[0].f.n||t("flight")} · ${sname(news[0].s)} ${t("hourToast")} (${fmtMin(news[0].e)})`:`⏰ ${news.length} ${t("hourT")}`,null,false,6500)}}
 
-/* ============ Rendering: flights ============ */
 const fld=(lab,inner,c="")=>`<div class="fld ${c}"><label>${lab}</label>${inner}</div>`;
 const inp=(a,v,o={})=>`<input data-a="${a}" value="${esc(v)}"${o.type?` type="${o.type}"`:""}${LS[a]?` list="${LS[a]}"`:""}${o.m?` inputmode="${o.m}"`:""}${o.cap?` autocapitalize="characters"`:""}${o.ac?` autocomplete="off"`:""}>`;
 const chipsRow=(f,k)=>{const a=tp(k).slice(0,6);return a.length?`<div class="chips qk">${a.map(([v])=>`<button class="o chip ${f[k]===v?"on":""}" data-b="pick" data-k="${k}" data-v="${esc(v)}">${esc(v)}</button>`).join("")}</div>`:""};
@@ -452,11 +468,14 @@ function fhIn(f){
 function row(s,i){
  const st=sst(s),cls=(st==="done"||st==="dnx"?"done":st==="run"?"run":"")+(s.w?" wn":"");
  const tin=(a,lab,v)=>`<div class="tcol"><span class="lbl">${lab}</span><input type="time" data-a="${a}" value="${esc(v)}"></div>`;
- const tg=tgOf(s.k),el=st==="run"?elapsed(s.f):null,over=!!(tg&&el!=null&&el>tg);
+ const tg=tgOf(s.k),el=st==="run"?elapsed(s.f):null;
+ const hourOver=D.set.imp.hour&&el!=null&&el>HOUR;
+ const over=(tg&&el!=null&&el>tg)||hourOver;
  let main;
  if(st==="idle")main=`<button class="big go" data-b="nf">▶ ${t("start")}</button>`;
  else if(st==="run")main=`<div class="tl">${tin("f",t("from"),s.f)}<div class="live${over?" over":""}" data-run data-f="${esc(s.f)}" data-tg="${tg}">${esc(fmtMin(el))}${over?" ⚠":""}</div></div><button class="big stop" data-b="nt">■ ${t("end")}</button>`;
- else if(st==="done")main=`<div class="tl">${tin("f",t("from"),s.f)}${tin("t",t("to"),s.t)}<div class="dur">${fmtMin(dur(s.f,s.t))}</div></div>`;
+ else if(st==="done"){const d=dur(s.f,s.t),ho=D.set.imp.hour&&d!=null&&d>HOUR;
+  main=`<div class="tl">${tin("f",t("from"),s.f)}${tin("t",t("to"),s.t)}<div class="dur${ho?" over":""}">${esc(fmtMin(d))}${ho?" ⚠":""}</div></div>`}
  else main=`<div class="okb">✔ ${t("doneNoTime")}</div><button class="o wide" data-b="nf" style="margin-top:0">▶ ${t("start")}</button>`;
  const wb=s.w?`<div class="wb"><div class="chips">${WR.map(k=>`<button class="o chip ${(s.wr||[]).includes(k)?"onw":""}" data-b="wrk" data-k="${k}">${t("wr_"+k)}</button>`).join("")}</div><input data-a="nt" value="${esc(s.nt)}" placeholder="${esc(t("notePh"))}"></div>`:"";
  const grip=D.set.imp.dg?`<span class="grip" data-grip tabindex="0" role="button" aria-label="${esc(t("dragA"))}">⋮⋮</span>`:"";
@@ -476,11 +495,11 @@ ${qkHtml(f)}<button class="big add o" data-b="add">＋ ${t("addService")}</butto
 <button class="wide ${f.ok?"o":""}" data-b="ok">${f.ok?"↩ "+t("unmove"):"✓ "+t("moved")}</button>
 <button class="o wide dng" data-b="del">🗑 ${t("del")}</button></div>`}
 const card=f=>`<article class="fc ${ccls(f)}${SEL.has(f.id)?" sel":""}" data-fid="${f.id}"><div class="fh" data-b="o">${fhIn(f)}</div>${f.o&&!BULK?body(f):""}</article>`;
-function rc(f){CF=cfSet();const el=document.querySelector(`[data-fid="${f.id}"]`);if(el)el.outerHTML=card(f);dlists();hdr();stUpd()}
+function rc(f){CF=cfSet();const el=document.querySelector(`[data-fid="${f.id}"]`);if(el)el.outerHTML=card(f);dlists();hdr();stUpd();hrUpd()}
 function upCard(c,f,r){
  if(r){const i=+r.dataset.i;r.outerHTML=row(f.s[i],i)}
  const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)+(SEL.has(f.id)?" sel":"");
- const sp=c.querySelector(".sec span:last-child");if(sp)sp.textContent=cnt(f);stUpd()}
+ const sp=c.querySelector(".sec span:last-child");if(sp)sp.textContent=cnt(f);stUpd();hrUpd()}
 const dbarF=f=>`<div class="dbar${f.d===dd(0)?"":" x"}"><button class="o sq" data-b="dm" aria-label="-1">◀</button><div class="dtx"><b>${esc(dlab(f.d))}</b><small>${esc(drel(f.d)||t("date"))}</small><input type="date" data-a="d" value="${esc(f.d)}"></div><button class="o sq" data-b="dp" aria-label="+1">▶</button></div>`;
 const wdBar=()=>{const w=wdate(),x=w!==dd(0);return `<div class="lbl">${t("wdate")}</div><div class="dbar${x?" x":""}"><button class="o sq" data-b="wdm" aria-label="-1">◀</button><div class="dtx"><b>${esc(dlab(w))}</b><small>${esc(drel(w)||"")}</small><input type="date" data-b="wdin" value="${esc(w)}"></div><button class="o sq" data-b="wdp" aria-label="+1">▶</button></div>${x?`<button class="o wide" data-b="wdt">↺ ${t("backToday")}</button>`:""}`};
 const focusCard=id=>{const el=document.querySelector(`[data-fid="${id}"]`);if(el)el.scrollIntoView({block:"start"})};
@@ -526,7 +545,7 @@ function R1(){
  const bulkB=im.bulk?`<button class="o chip ${BULK?"on":""}" data-b="bsel">☑ ${t("bulk")}</button>`:"";
  const views=im.views?`<div class="chips" style="margin-top:.45rem">${[["shift","vShift"],["w","vIss"],["run","vRun"]].map(([k,l])=>`<button class="o chip ${VW===k?"on":""}" data-b="view" data-k="${k}">${t(l)}</button>`).join("")}</div>`:"";
  const tools=(sorts||bulkB)?`<div class="chips">${sorts}${bulkB}</div>`:"";
- $("p1").innerHTML=`${wdBar()}${bkHtml()}<div class="lbl">${t("routineHint")}</div><div class="chips">${rch}</div>
+ $("p1").innerHTML=`${wdBar()}${bkHtml()}${im.hour?`<div class="hrbar" id="hrbar">${hrHtml()}</div>`:""}<div class="lbl">${t("routineHint")}</div><div class="chips">${rch}</div>
 <button class="big nw" data-b="newf">＋ ${t("newFlight")}</button>
 ${search}${tools}${views}${im.stats?statsHtml():""}
 <div class="seg">${[["open",op],["moved",mv],["all",D.fl.length]].map(([k,n])=>`<button class="o ${FLT===k?"on":""}" data-b="flt" data-k="${k}">${t("f_"+k)} (${n})</button>`).join("")}</div>
@@ -543,7 +562,6 @@ function addF(c){
  if(D.set.da){const have=new Set(f.s.map(s=>s.k)),ok=new Set(cat().map(x=>x.k));(D.set.ds||[]).forEach(k=>{if(!have.has(k)&&ok.has(k)){f.s.push({k,q:"1",f:"",t:"",w:0,wr:[],nt:""});have.add(k)}})}
  D.fl.unshift(f);LASTF=f.id;FLT="open";save();R1();hdr();focusCard(f.id)}
 
-/* ============ Rendering: routine tab ============ */
 function buildP2(){
  $("p2").innerHTML=`<div class="card"><h3>⚡ ${t("defSvc")} <span class="m" id="dsN"></span></h3>
 <div class="lbl">${t("autoAdd")}</div><div class="seg" id="daSeg"></div>
@@ -570,7 +588,6 @@ function saveS(){
  ["al","ac","rg","sp"].forEach(k=>lrn(k,c[k]));
  const i=D.sc.findIndex(x=>x.id==c.id);i>=0?D.sc[i]=c:D.sc.push(c);
  save();resetS();R1();dlists();toast(t("savedR"))}
-/* ---- service catalog management ---- */
 function csSheet(){
  CS_ICON="🛠️";
  sheet(`<h3>＋ ${t("newSvc")}</h3><div class="fld"><label>${t("svcName")}</label><input id="csn" autocomplete="off"></div>
@@ -582,7 +599,6 @@ function manSheet(){
   return `<div class="mrow${off?" off":""}"><span class="ic">${x.i}</span><b>${esc(nmOf(x))}</b><span class="mtag">${x.cu?t("custom"):t("builtin")}</span>${D.set.imp.tgt?`<input class="tgin" type="number" min="0" max="240" inputmode="numeric" data-tg="${x.k}" value="${tgOf(x.k)||""}" placeholder="${esc(t("tgtLab"))}" aria-label="${esc(t("tgtLab"))} ${esc(nmOf(x))}">`:""}<button class="o" data-b="hidSv" data-k="${x.k}">${off?t("show"):t("hide")}</button>${x.cu?`<button class="o dng" data-b="delCs" data-k="${x.k}">🗑</button>`:""}</div>`}).join("");
  sheet(`<h3>⚙ ${t("manageSvc")}</h3>${rows}<button class="o wide" data-b="addCs">＋ ${t("newSvc")}</button><p class="hint">${t("manHint")}</p><button class="wide mt" data-b="closeSheet">${t("ok")}</button>`)}
 
-/* ============ Rendering: settings ============ */
 function R3(){
  const seg=(act,cur,items)=>`<div class="seg">${items.map(([v,l])=>`<button class="o ${String(cur)===String(v)?"on":""}" data-b="${act}" data-v="${v}">${l}</button>`).join("")}</div>`;
  $("p3").innerHTML=`<div class="card"><h3>${t("impTitle")}</h3><div class="chips">${IMPK.map(([k,l])=>`<button class="o chip ${D.set.imp[k]?"on":""}" data-b="imp" data-k="${k}">${D.set.imp[k]?"✓ ":""}${t(l)}</button>`).join("")}</div>
@@ -594,12 +610,11 @@ function R3(){
 <div class="card"><h3>💾 ${t("s_data")}</h3><div class="row"><button data-b="expJ">⬇ ${t("expJson")}</button><button data-b="expC">📊 ${t("expCsv")}</button></div>
 <button class="o wide" data-b="impB">⬆ ${t("impData")}</button><button class="o wide" data-b="shR">👥 ${t("shareR")}</button>
 <p class="hint"><b>${t("bkLab")}:</b> ${esc(bkLine())}</p><p class="hint">${t("storeNote")}</p></div>
-<div class="card"><h3>🎙 ${t("s_voice")}</h3>${SRC?`<div class="lbl">${t("vlang")}</div>${seg("svl",D.set.vl,[["auto",t("vl_auto")],["ar-EG","العربية"],["en-US","English"]])}
+<div class="card"><h3>🎙 ${t("s_voice")}</h3>${SRC?`<div class="lbl">${t("vlang")}</div>${seg("svl",D.set.vl,[["auto",t("vl_auto")],["ar-EG",t("vl_eg")],["ar",t("vl_ar")],["en-US","English"]])}
 <div class="lbl">${t("vkeep")}</div>${seg("svk",D.set.vk?1:0,[[0,t("off")],[1,t("on")]])}<button class="o wide" data-b="vhelp">❔ ${t("vhelp")}</button><p class="hint">${t("vnote")}</p>`:`<p class="hint" style="margin:0">${t("vNoSup")}</p>`}</div>
 <div class="card"><h3>📲 ${t("s_install")}</h3>${DEF?`<button class="big" data-b="inst">${t("installBtn")}</button>`:`<p class="hint" style="margin:0">${t("installHint")}</p>`}</div>
 <p class="hint" style="text-align:center">${t("ver")}</p>`}
 
-/* ============ Shell, theme, language ============ */
 const THI={auto:"🌓",day:"☀️",night:"🌙"};
 function shell(){
  $("hd").innerHTML=`<div class="ht"><b>📝 ${t("title")}</b><small id="dt"></small></div><button class="hb" data-b="lang" aria-label="Language">${L()==="ar"?"EN":"ع"}</button><button class="hb" data-b="theme" aria-label="Theme">${THI[D.set.theme]||"🌓"}</button>`;
@@ -614,7 +629,6 @@ function applyTheme(){
 mq.addEventListener&&mq.addEventListener("change",()=>{if(D.set.theme==="auto")applyTheme()});
 function setLang(l){D.set.lang=l;save();document.documentElement.lang=l;document.documentElement.dir=l==="ar"?"rtl":"ltr";document.title=l==="ar"?"مفكرة المهبط":"Ramp Notes";shell();buildP2();RS();R1();if(TAB===3)R3()}
 
-/* ============ Toast, sheet, files ============ */
 function toast(msg,undo,sticky,ms){const el=$("toast");el.innerHTML=`<span>${esc(msg)}</span>${undo?`<button class="o" data-b="undo">${t("undo")}</button>`:""}`;el.hidden=false;el.dataset.l=sticky?"1":"0";clearTimeout(TT);UNDO=undo||null;if(undo)LASTU=undo;if(!sticky)TT=setTimeout(()=>{el.hidden=true;UNDO=null},ms||(undo?7000:2200))}
 function sheet(h){$("sh").innerHTML=h;$("ov").hidden=false}
 function closeSheet(){$("ov").hidden=true;$("sh").innerHTML=""}
@@ -653,7 +667,6 @@ function backup(kind){
  else fileDl(`ramp-notes-${dd(0)}.json`,JSON.stringify({app:"ramp-notes",v:2,fl:D.fl,sc:D.sc,h:D.h,rm:D.rm,cs:D.cs,hid:D.hid,tg:D.tg,ds:D.set.ds,da:D.set.da}),"application/json");
  if(TAB===3)R3();else R1()}
 
-/* ============ Actions ============ */
 const G={
  mic(){micToggle()},vhelp(){sheet(`<h3>🎙 ${t("vhelp")}</h3><ul class="ex">${T[L()].vex.map(x=>`<li><b>«${esc(x[0])}»</b><small>${esc(x[1])}</small></li>`).join("")}</ul><button class="o wide" data-b="closeSheet">${t("ok")}</button>`)},
  svl(b){D.set.vl=b.dataset.v;save();R3()},svk(b){D.set.vk=+b.dataset.v;save();R3()},
@@ -684,6 +697,10 @@ const G={
   a.forEach(f=>{const el=document.querySelector(`[data-fid="${f.id}"]`);if(el){el.classList.toggle("sel",SEL.has(f.id));const bx=el.querySelector(".selbox");if(bx)bx.textContent=SEL.has(f.id)?"✓":""}});bkUpd()},
  bmove(){if(!SEL.size)return;const u=undoer();let n=0;D.fl.forEach(f=>{if(SEL.has(f.id)&&!f.ok){f.ok=1;n++}});SEL.clear();BULK=false;save();R1();hdr();toast(t("movedN",{n}),u)},
  bdel(){if(!SEL.size)return;const u=undoer();const n=SEL.size;D.fl=D.fl.filter(f=>!SEL.has(f.id));SEL.clear();BULK=false;save();R1();hdr();toast(t("deletedN",{n}),u)},
+ hour(b){const f=D.fl.find(x=>x.id==b.dataset.fid);if(!f)return;const i=+b.dataset.i;
+  D.fl.forEach(x=>x.o=0);f.o=1;LASTF=f.id;FLT="all";save();R1();hdr();
+  const el=document.querySelector(`[data-fid="${f.id}"] .sv[data-i="${i}"]`);
+  if(el)el.scrollIntoView({block:"center",behavior:"smooth"});else focusCard(f.id)},
  imp(b){const k=b.dataset.k;D.set.imp[k]=D.set.imp[k]?0:1;
   if(k==="search"&&!D.set.imp.search)Q="";
   if(k==="views"&&!D.set.imp.views)VW="";
@@ -743,7 +760,9 @@ document.addEventListener("click",e=>{
    f.o=f.o?0:1;rc(f);return;
   case"dm":case"dp":f.d=addD(f.d,a==="dp"?1:-1);save();R1();hdr();focusCard(f.id);return;
   case"nf":s.f=nw();up();return;
-  case"nt":s.t=nw();up();return;
+  case"nt":s.t=nw();up();
+   if(D.set.imp.hour){const d=dur(s.f,s.t);if(d!=null&&d>HOUR){buzz(0);toast(`⏰ ${f.n||t("flight")} · ${sname(s)} ${t("hourToast")} (${fmtMin(d)})`,null,false,6500)}}
+   return;
   case"dn":s.dn=s.dn?0:1;up();return;
   case"w":s.w=s.w?0:1;up();return;
   case"wrk":{const k=b.dataset.k;s.wr=s.wr||[];const i=s.wr.indexOf(k);i<0?s.wr.push(k):s.wr.splice(i,1);up();return}
@@ -787,7 +806,7 @@ document.addEventListener("change",e=>{
   if(a==="rg"&&D.rm[v])["al","ac"].forEach((k,i)=>{if(!f[k]&&D.rm[v][i]){f[k]=D.rm[v][i];const x=c.querySelector(`[data-a="${k}"]`);if(x)x.value=f[k];lrn(k,f[k])}});
   if(f.rg)D.rm[f.rg]=[f.al,f.ac]}
  save();if(!r)dlists();
- if(r&&el.type==="time")upCard(c,f,r);else{const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)+(SEL.has(f.id)?" sel":"");stUpd()}});
+ if(r&&el.type==="time")upCard(c,f,r);else{const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)+(SEL.has(f.id)?" sel":"");stUpd();hrUpd()}});
 document.addEventListener("keydown",e=>{
  if(e.key==="Escape"&&BULK){BULK=false;SEL.clear();R1();return}
  const g=e.target.closest&&e.target.closest("[data-grip]");
@@ -799,7 +818,6 @@ document.addEventListener("keydown",e=>{
   if(j<0||j>=f.s.length)return;
   const tmp=f.s[i];f.s[i]=f.s[j];f.s[j]=tmp;save();rc(f);
   const ng=document.querySelector(`[data-fid="${f.id}"] .sv[data-i="${j}"] [data-grip]`);if(ng)ng.focus()}});
-/* ---- drag to reorder services ---- */
 document.addEventListener("pointerdown",e=>{
  if(!D.set.imp.dg||DRG)return;
  const g=e.target.closest&&e.target.closest("[data-grip]");if(!g)return;
@@ -830,15 +848,14 @@ document.addEventListener("pointerup",endDrag);
 document.addEventListener("pointercancel",endDrag);
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();DEF=e;if(TAB===3)R3()});
 addEventListener("appinstalled",()=>{DEF=null;if(TAB===3)R3()});
-/* live timers */
 function tick(){
  document.querySelectorAll("[data-run]").forEach(el=>{
-  const e=elapsed(el.dataset.f),tg=+el.dataset.tg||0,over=!!(tg&&e!=null&&e>tg);
+  const e=elapsed(el.dataset.f),tg=+el.dataset.tg||0;
+  const over=(tg&&e!=null&&e>tg)||(D.set.imp.hour&&e!=null&&e>HOUR);
   el.textContent=(fmtMin(e)||"")+(over?" ⚠":"");el.classList.toggle("over",over)});
- stUpd();hdr()}
+ stUpd();hdr();hrUpd();checkHour()}
 setInterval(tick,15000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 
-/* ============ Voice commands ============ */
 const SRC=window.SpeechRecognition||window.webkitSpeechRecognition||null;
 const rx=s=>s.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
 const AD="٠١٢٣٤٥٦٧٨٩",PD="۰۱۲۳۴۵۶۷۸۹";
@@ -850,7 +867,7 @@ const VA={
  wat:["مياه","ميه","مايه","ماء","water"],
  toi:["تواليت","توالت","حمام","مرحاض","lavatory","toilet","lav"],
  cab:["نظافة الكابينة","نظافة","تنظيف","كابينة","cabin cleaning","cabin","cleaning"],
- stp:["سلم ركاب","سلم","سلالم","stairs","stair","passenger stairs","airstairs","steps"],
+ stp:["سلم ركاب","سلم","سلالم","سلمه","ستيبس","stairs","stair","passenger stairs","airstairs","steps"],
  trc:["جرار","تراكتور","tractor","tug","tow"],
  cart:["عربة عفش","عربية عفش","عربية","عربة","عربات","carts","cart","dolly","trolley","baggage cart"],
  belt:["سير عفش","سير","بلت","belt loader","belt","conveyor"],
@@ -882,8 +899,8 @@ const VR={late:["تأخير","متأخر","متأخرة","تأخر","تأخرت"
 const VRL=[];for(const k in VR)VR[k].forEach(a=>VRL.push([vnorm(a),k]));VRL.sort((a,b)=>b[0].length-a[0].length);
 function takeReasons(n){const rs=[];for(const[a,k]of VRL){const re=new RegExp("(^| )"+rx(a)+"(?= |$)","g"),n2=n.replace(re," ");if(n2!==n){if(!rs.includes(k))rs.push(k);n=n2}}return[n.replace(/\s+/g," ").trim(),rs]}
 const wre=l=>new RegExp("(^| )("+l.map(a=>rx(vnorm(a))).join("|")+")(?= |$)");
-const W_START=wre(["ابدأ","بدأ","بدأت","بدأنا","بداية","بدء","ابدء","start","started","begin","began","starting"]);
-const W_END=wre(["خلص","خلصت","خلصنا","انهي","انتهى","انتهت","انتهينا","انهاء","نهاية","وقف","اقفل","قفل","تم","تمت","end","finish","finished","done","stop","stopped","complete","completed"]);
+const W_START=wre(["ابدأ","بدأ","بدأت","بدأنا","بداية","بدء","ابدء","ابدا","ابدو","شغل","شغّل","قوم","بلش","افتح","تشغيل","بدايه","start","started","begin","began","starting"]);
+const W_END=wre(["خلص","خلصت","خلصنا","انهي","انتهى","انتهت","انتهينا","انهاء","نهاية","وقف","اقفل","قفل","اغلق","اغلاق","سكر","سكّر","تم","تمت","end","finish","finished","done","stop","stopped","complete","completed"]);
 const NW=new Map(Object.entries({"واحد":1,"واحده":1,one:1,"اتنين":2,"اثنين":2,"اثنان":2,two:2,"تلاته":3,"ثلاثه":3,"تلات":3,three:3,"اربعه":4,"اربع":4,four:4,"خمسه":5,"خمس":5,five:5,"سته":6,"ست":6,six:6,"سبعه":7,"سبع":7,seven:7,"تمانيه":8,"ثمانيه":8,"ثماني":8,eight:8,"تسعه":9,"تسع":9,nine:9,"عشره":10,"عشر":10,ten:10,"صفر":0,zero:0}));
 function numIn(n){const m=/\d+/.exec(n);if(m)return+m[0];for(const w of n.split(" "))if(NW.has(w))return NW.get(w);return null}
 function takeTime(n){const m=/(^| )(?:ساعه|at)\s+(\d{1,2})(?:#(\d{2})|\s(\d{2}))?(?= |$)/.exec(n);if(!m)return[n,null];const h=+m[2],mi=+(m[3]||m[4]||0);if(h>23||mi>59)return[n,null];return[(n.slice(0,m.index)+" "+n.slice(m.index+m[0].length)).replace(/\s+/g," ").trim(),String(h).padStart(2,"0")+":"+String(mi).padStart(2,"0")]}
@@ -893,7 +910,13 @@ function parseCmd(raw){
  if(/^(تراجع|ارجع|الغي|الغاء|اتراجع|undo|revert|cancel)( |$)/.test(n))return{t:"undo"};
  if(/(^| )(رحله (جديده|فاضيه|فارغه)|new flight|blank flight)( |$)/.test(n))return{t:"newf"};
  if(/(^| )(تم نقل|نقلت|منقوله|منقول|transferred|mark transferred|marked as transferred)( |$)/.test(n))return{t:"moved"};
- if(m=/^(?:ملاحظ[هة]|ملحوظ[هة]|ملاحظات|notes?)\s+(.+)$/i.exec(rc))return{t:"note",txt:m[1].replace(/(\d)#(\d)/g,"$1:$2")};
+ const rw=rc.split(/\s+/).filter(Boolean),nw=n.split(/\s+/).filter(Boolean);
+ let ni=-1;for(let i=0;i<nw.length&&i<4;i++){if(/^(ملاحظ[هت]|ملحوظ[هت]|ملاحظات|نوت|notes?)$/.test(nw[i])){ni=i;break}}
+ if(ni>=0){
+  const pre=nw.slice(0,ni).join(" ");
+  const okPre=ni===0||ni<=1||/^(?:يا |يعني |طب |طيب |بس |و )?(?:سجل|اكتب|ضيف|زود|حط|حطلي|سجلي|اكتبي|قول|قوللي)?$/.test(pre);
+  if(okPre){const txt=rw.slice(ni+1).join(" ").replace(/(\d)#(\d)/g,"$1:$2").trim();if(txt)return{t:"note",txt}}
+ }
  if(m=/^(?:افتح |ضيف |اضف |زود |open |add |select |goto |go to )?(?:رحله|flight)\s+(.+)$/.exec(n)){const q=m[1],digits=(q.match(/\d+/g)||[]).join(""),letters=(q.match(/[a-z]+/g)||[]).join("");if(digits||letters)return{t:"flight",digits,letters}}
  [n,tv]=takeTime(n);
  if(m=/^(?:موقف|stand|ستاند|استاند)\s+(.+)$/.exec(n)){let v;if(/\d/.test(m[1]))v=m[1].replace(/\s+/g,"").toUpperCase();else{const x=numIn(m[1]);v=x!=null?String(x):m[1].replace(/\s+/g,"").toUpperCase()}v=v.slice(0,8);if(v)return{t:"stand",v}}
@@ -965,26 +988,30 @@ function runCmd(p,heard){
 function onSpeech(alts){
  for(const a of alts){const p=parseCmd(a);if(p){runCmd(p,a);return}}
  buzz(0);toast(`🎙 «${alts[0]||""}»\n${t("vNo")} — ${t("vTry")}: «${T[L()].vex[0][0]}»`,null,false,4500)}
-let REC=null,LIS=false,WANT=false,FATAL=false;
+let REC=null,LIS=false,WANT=false,FATAL=false,LT=[];
 const micLang=()=>D.set.vl==="auto"?(L()==="ar"?"ar-EG":"en-US"):D.set.vl;
 function micUi(){const m=$("mic");if(!m)return;const on=!!SRC&&TAB===1;m.hidden=!on;document.body.classList.toggle("vm",on);m.classList.toggle("lis",LIS);m.textContent=LIS?"⏹":"🎙";m.setAttribute("aria-label",t("s_voice"))}
-function micToggle(){if(!SRC){toast(t("vNoSup"),null,false,3500);return}if(WANT||LIS){micStop();return}FATAL=false;WANT=true;micStart(false)}
+function micToggle(){if(!SRC){toast(t("vNoSup"),null,false,3500);return}if(WANT||LIS){micStop();return}FATAL=false;LT=[];WANT=true;micStart(false)}
 function micStop(){WANT=false;try{REC&&REC.abort&&REC.abort()}catch(e){}LIS=false;micUi();const el=$("toast");if(el.dataset.l==="1")el.hidden=true}
-function micStart(again){
+function micStart(again,langOv){
  let r;try{r=new SRC()}catch(e){WANT=false;toast(t("vNoSup"));return}
- REC=r;r.lang=micLang();r.interimResults=true;r.continuous=false;r.maxAlternatives=3;
+ const lang=langOv||micLang();
+ REC=r;r.lang=lang;r.interimResults=true;r.continuous=false;r.maxAlternatives=5;
  r.onstart=()=>{LIS=true;micUi();if(!again)toast("🎙 "+t("vListen"),null,true)};
  r.onresult=e=>{let interim="";for(let i=e.resultIndex;i<e.results.length;i++){const res=e.results[i];if(res.isFinal){const alts=[];for(let j=0;j<res.length;j++)alts.push(res[j].transcript);onSpeech(alts)}else interim+=res[0].transcript}if(interim)toast("🎙 "+interim,null,true)};
  r.onerror=e=>{const c=e&&e.error;if(c==="aborted")return;
   if(c==="not-allowed"||c==="service-not-allowed"){FATAL=true;toast(t("vDenied"),null,false,4000)}
   else if(c==="network"){FATAL=true;toast(t("vNet"),null,false,4000)}
   else if(c==="audio-capture"){FATAL=true;toast(t("vNoMic"),null,false,4000)}
-  else if(c==="language-not-supported"){FATAL=true;toast(t("vLangErr"),null,false,4000)}
+  else if(c==="language-not-supported"){
+   if(!LT.includes(lang))LT.push(lang);
+   const fb=["ar","ar-EG","ar-SA"].find(x=>!LT.includes(x)&&x!==lang);
+   if(fb){toast("🎙 "+t("vLangErr")+" — بجرب "+fb,null,false,2500);setTimeout(()=>{if(WANT&&!LIS)micStart(true,fb)},300);return}
+   FATAL=true;toast(t("vLangErr"),null,false,4000)}
   else if(c==="no-speech")toast(t("vNoSpeech"),null,false,2000)};
  r.onend=()=>{LIS=false;if(WANT&&D.set.vk&&!FATAL){setTimeout(()=>{if(WANT&&!LIS)micStart(true)},300)}else{WANT=false;const el=$("toast");if(el.dataset.l==="1")el.hidden=true}micUi()};
  try{r.start()}catch(e){WANT=false;micUi()}}
 
-/* ============ Init ============ */
 purge();applyTheme();
 document.documentElement.lang=L();document.documentElement.dir=L()==="ar"?"rtl":"ltr";document.title=L()==="ar"?"مفكرة المهبط":"Ramp Notes";
 D.sc.concat(D.fl).forEach(c=>["al","ac","rg","sp"].forEach(k=>{if(c[k]&&!D.h[k][c[k]])lrn(k,c[k])}));
