@@ -1,0 +1,44 @@
+مفكرة المهبط · Ramp Notes
+==========================
+
+حقوق النشر © 2026 Mohamed Sayed. جميع الحقوق محفوظة.
+Copyright © 2026 Mohamed Sayed. All rights reserved.
+
+【 عربي 】
+
+هذا البرنامج مملوك حصريًا لـ Mohamed Sayed، وهو مقدّم بترخيص شخصي محدود وغير حصري وغير قابل للتحويل،
+للمستخدمين المصرّح لهم_by name فقط، عبر كود تفعيل صادر من المالك ومربوط بجهاز المستخدم.
+
+يُمنع منعًا باتًا، دون إذن كتابي مسبق من المالك:
+  1. إعادة توزيع البرنامج أو أي جزء منه، أو رفعه على أي موقع أو مستودع أو متجر تطبيقات.
+  2. إرسال نسخة البرنامج أو كود التفعيل إلى أي شخص آخر غير المصرّح له.
+  3. تعديل البرنامج أو الهندسة العكسية له أو إزالة إشعارات حقوق النشر أو طبقة الترخيص.
+  4. نشر البرنامج أو جزء منه منسوبًا إلى غير المؤلف الأصلي، أو الاشتقاق منه لعمل يُنسب لغير المالك.
+  5. الاستخدام التجاري أو إعادة البيع أو التأجير أو منح تراخيص من الباطن.
+
+البرنامج يُقدَّم "كما هو" دون أي ضمان صريح أو ضمني، ولا يتحمّل المالك أي مسؤولية عن أي أضرار
+ناتجة عن استخدامه. البيانات مُخزّنة محليًا على جهاز المستخدم، ومسؤولية النسخ الاحتياطي تقع على المستخدم.
+
+أي انتهاك لهذه الشروط يُنهي الترخيص فورًا ويحق للمالك اتخاذ الإجراءات القانونية اللازمة.
+
+─────────────────────────────
+
+【 English 】
+
+This software is the exclusive property of Mohamed Sayed. It is provided under a limited, personal,
+non-exclusive, non-transferable license to named authorized users only, via an owner-issued
+activation code bound to the user's device.
+
+Without prior written permission from the owner, you may NOT:
+  1. Redistribute the software or any part of it, or publish it on any site, repository, or app store.
+  2. Share the software or your activation code with anyone other than the authorized user.
+  3. Modify, reverse-engineer, or remove copyright notices or the licensing layer.
+  4. Publish the software or any portion of it attributed to anyone other than the original author,
+     or create derivative works attributed to anyone other than the owner.
+  5. Use it commercially, resell, rent, or sublicense it.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. THE OWNER SHALL NOT BE LIABLE
+FOR ANY DAMAGES ARISING FROM ITS USE. Data is stored locally on the user's device; backups are
+the user's responsibility.
+
+Any violation immediately terminates the license and entitles the owner to pursue legal remedies.
