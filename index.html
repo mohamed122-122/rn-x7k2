@@ -55,6 +55,8 @@ button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 #nv button{border:0;border-radius:0;background:transparent;color:var(--t);min-height:4.2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;font-size:.82rem;border-top:5px solid transparent;margin-top:-3px;padding:.2rem .1rem}
 #nv button span{font-size:1.35rem;line-height:1}
 #nv button.on{color:var(--p);border-top-color:var(--p)}
+#sig{max-width:720px;margin:.6rem auto 0;padding:.6rem .8rem;text-align:center;font-size:.74rem;font-weight:700;color:var(--m);line-height:1.9;border-top:2px dashed var(--b2)}
+#sig b{color:var(--t)}
 .chips{display:flex;flex-wrap:wrap;gap:.45rem}
 .chip{min-height:2.7rem;padding:.3rem .85rem;border-radius:999px}
 .rc{min-height:3.2rem;border-radius:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;padding:.3rem .9rem}
@@ -207,6 +209,11 @@ body.bk main{padding-bottom:4.5rem}
 .drop b{display:block;margin:.25rem 0 .1rem;font-size:.93rem}
 .drop small{color:var(--m);font-size:.76rem;font-weight:700}
 .drop .fn{margin-top:.3rem;font-size:.78rem;font-weight:900;color:var(--ok);word-break:break-all}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:var(--c2)}
+::-webkit-scrollbar-thumb{background:var(--b);border-radius:8px;border:2px solid var(--c2)}
+::-webkit-scrollbar-thumb:hover{background:var(--p)}
+*{scrollbar-width:thin;scrollbar-color:var(--b) var(--c2)}
 @media(max-width:400px){.tld{flex:0 0 2.6rem;font-size:.66rem}.st b{font-size:1rem}.ht b{font-size:1rem}#nv button{font-size:.75rem}.fn{font-size:1.25rem}}
 </style>
 </head>
@@ -218,6 +225,7 @@ body.bk main{padding-bottom:4.5rem}
 <section id="p3" hidden></section>
 <section id="p4" hidden></section>
 </main>
+<div id="sig"></div>
 <nav id="nv"></nav>
 <div id="toast" hidden></div>
 <div id="ov" hidden><div id="sh"></div></div>
@@ -225,8 +233,99 @@ body.bk main{padding-bottom:4.5rem}
 <input type="file" id="imp" hidden accept=".json,.txt,application/json,text/plain">
 <input type="file" id="keyFile" hidden accept=".json,application/json">
 <input type="file" id="licFile" hidden accept=".json,application/json">
+
+<script type="text/plain" id="guardTpl">
+(function(){
+"use strict";
+var OWNER=__OWNER__,PUBKEY="__PUBKEY__",REVOKED=__REVOKED__,APPURL=__APPURL__;
+var LSK="rn.license.v1",enc=new TextEncoder(),dec=new TextDecoder();
+var subtle=(window.crypto&&crypto.subtle)?crypto.subtle:null;
+function unb64u(s){s=String(s).replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";var r=atob(s),a=new Uint8Array(r.length);for(var i=0;i<r.length;i++)a[i]=r.charCodeAt(i);return a}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}
+function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+function fpArr(){var tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}
+ return [String(navigator.platform||""),String(screen.width)+"x"+String(screen.height)+"x"+String(screen.colorDepth||0),tz,String(navigator.language||""),String(navigator.hardwareConcurrency||0),String(navigator.maxTouchPoints||0)]}
+function fpDiff(a,b){if(!Array.isArray(a)||!Array.isArray(b))return 9;var n=0;for(var i=0;i<Math.max(a.length,b.length);i++)if(a[i]!==b[i])n++;return n}
+function store(o){try{localStorage.setItem(LSK,JSON.stringify(o))}catch(e){}}
+function readLic(){try{return JSON.parse(localStorage.getItem(LSK))}catch(e){return null}}
+function theme(){var t="day";try{var d=JSON.parse(localStorage.getItem("rn")||"{}");var s=(d.set&&d.set.theme)||"auto";t=s==="auto"?(matchMedia("(prefers-color-scheme: dark)").matches?"night":"day"):s}catch(e){}return t}
+var host=null,cloak=null;
+function injectCloak(){cloak=document.createElement("style");cloak.textContent="body>*:not(#rnGuard){visibility:hidden!important}html,body{overflow:hidden!important}";document.head.appendChild(cloak)}
+function release(){if(cloak&&cloak.parentNode)cloak.parentNode.removeChild(cloak);cloak=null;if(host&&host.parentNode)host.parentNode.removeChild(host);host=null;document.documentElement.style.overflow="";document.body.style.overflow="";try{window.dispatchEvent(new Event("rn:licensed"))}catch(e){}}
+function css(){var n=theme()==="night";
+ return "#rnGuard{position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:1rem;overflow:auto;font-family:'Noto Sans Arabic','Segoe UI',Tahoma,system-ui,sans-serif;font-weight:600;line-height:1.55;background:"+(n?"#05070a":"#e9ecf1")+";color:"+(n?"#f5f7fa":"#000")+"}"+
+ "#rnGuard *{box-sizing:border-box}"+
+ "#rnGuard .bx{width:100%;max-width:460px;background:"+(n?"#10151c":"#fff")+";border:2px solid "+(n?"#46556c":"#1e293b")+";border-radius:18px;padding:1.3rem;box-shadow:0 18px 50px #0007}"+
+ "#rnGuard .lg{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}"+
+ "#rnGuard .lg .ic{width:44px;height:44px;flex:none;border-radius:13px;display:grid;place-items:center;font-size:1.5rem;background:"+(n?"#161d26":"#f4f6f9")+";border:2px solid "+(n?"#46556c":"#1e293b")+"}"+
+ "#rnGuard .lg b{font-size:1.15rem;display:block}"+
+ "#rnGuard .lg small{font-size:.72rem;font-weight:800;letter-spacing:1.5px;color:"+(n?"#ffb21f":"#0b3bd6")+"}"+
+ "#rnGuard h2{margin:.2rem 0 .4rem;font-size:1.25rem}"+
+ "#rnGuard p{margin:0 0 .8rem;font-size:.88rem;color:"+(n?"#b6c1d1":"#2b3646")+"}"+
+ "#rnGuard label{display:block;font-size:.8rem;font-weight:800;color:"+(n?"#b6c1d1":"#2b3646")+";margin-bottom:.3rem}"+
+ "#rnGuard textarea{width:100%;min-height:5.5rem;padding:.6rem;border:2px solid "+(n?"#46556c":"#1e293b")+";border-radius:11px;background:"+(n?"#05070a":"#f4f6f9")+";color:inherit;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.72rem;direction:ltr;text-align:left;resize:vertical;line-height:1.5}"+
+ "#rnGuard button{width:100%;min-height:3.1rem;margin-top:.7rem;border:2px solid "+(n?"#ffb21f":"#0b3bd6")+";background:"+(n?"#ffb21f":"#0b3bd6")+";color:"+(n?"#1a1100":"#fff")+";border-radius:12px;font:inherit;font-weight:900;font-size:1rem;cursor:pointer}"+
+ "#rnGuard button.o{background:transparent;color:inherit;border-color:"+(n?"#46556c":"#1e293b")+";font-size:.88rem;min-height:2.6rem}"+
+ "#rnGuard .msg{border-radius:11px;padding:.6rem .75rem;font-size:.85rem;font-weight:800;margin:.7rem 0;border:2px solid}"+
+ "#rnGuard .msg.e{border-color:"+(n?"#ff8f9a":"#b3001b")+";background:"+(n?"#3d0c14":"#ffdadd")+";color:"+(n?"#ff8f9a":"#b3001b")+"}"+
+ "#rnGuard .msg.w{border-color:"+(n?"#ffc857":"#8a4b00")+";background:"+(n?"#3a2a04":"#ffe8a3")+";color:"+(n?"#ffc857":"#8a4b00")+"}"+
+ "#rnGuard .who{display:flex;align-items:center;gap:.5rem;background:"+(n?"#0b2a17":"#d2f4da")+";border:2px solid "+(n?"#5ce58a":"#0a6b25")+";border-radius:11px;padding:.55rem .7rem;margin-bottom:.7rem;font-size:.88rem;font-weight:800}"+
+ "#rnGuard .ft{margin-top:1rem;padding-top:.8rem;border-top:2px dashed "+(n?"#2c3949":"#c3ccd8")+";font-size:.72rem;font-weight:700;color:"+(n?"#b6c1d1":"#2b3646")+";text-align:center;line-height:1.8}"+
+ "#rnGuard .ft b{color:"+(n?"#ffb21f":"#0b3bd6")+"}"}
+function paint(inner){
+ if(!host){var st=document.createElement("style");st.id="rnGuardCss";st.textContent=css();document.head.appendChild(st);
+  host=document.createElement("div");host.id="rnGuard";document.body.appendChild(host)}
+ else{var s=document.getElementById("rnGuardCss");if(s)s.textContent=css()}
+ host.innerHTML='<div class="bx"><div class="lg"><div class="ic">🛡</div><div><b>مفكرة المهبط</b><small>RAMP NOTES · LICENSED</small></div></div>'+inner+
+  '<div class="ft">© '+esc(OWNER)+' — جميع الحقوق محفوظة<br>نسخة مصرّح بها للاستخدام الشخصي فقط · <b>إعادة التوزيع أو النسب ممنوعة</b></div></div>'}
+function ask(reason,keep){
+ var msg=reason?'<div class="msg '+reason.k+'">'+esc(reason.m)+'</div>':"";
+ paint('<h2>تفعيل النسخة</h2><p>البرنامج ده مصرّح به لمستخدمين محدّدين. الصق كود التفعيل اللي وصلك من المالك — هيتربط بالجهاز ده تلقائيًا.</p>'+msg+
+  '<label>كود التفعيل</label><textarea id="rnCode" placeholder="RN1.…" spellcheck="false">'+esc(keep||"")+'</textarea>'+
+  '<button id="rnGo">🔓 تفعيل</button><button class="o" id="rnHelp">مش عارف الكود؟</button>');
+ var ta=document.getElementById("rnCode"),btn=document.getElementById("rnGo");
+ btn.onclick=function(){btn.disabled=true;btn.textContent="جارٍ التحقق…";activate(ta.value.trim(),function(err){btn.disabled=false;btn.textContent="🔓 تفعيل";if(err)ask({k:"e",m:err},ta.value.trim())})};
+ document.getElementById("rnHelp").onclick=function(){
+  paint('<h2>إزاي تجيب الكود؟</h2><p>كود التفعيل بيصدره مالك البرنامج لكل مستخدم باسمه. اطلبه منه وابعتله اسمك، وهو هيبعتلك رابط تفعيل على واتساب تدوس عليه وخلاص.</p><div class="msg w">الكود مربوط بجهاز واحد. لو غيّرت الموبايل، اطلب تفعيل تاني.</div><button class="o" id="rnBack">← رجوع</button>');
+  document.getElementById("rnBack").onclick=function(){ask(null,ta.value)}};
+ setTimeout(function(){try{ta.focus()}catch(e){}},60)}
+function verify(code){
+ if(!subtle)return Promise.reject("المتصفح ده مش بيدعم التحقق المشفّر.");
+ var p=String(code||"").trim().split(".");
+ if(p.length!==3||p[0]!=="RN1")return Promise.reject("صيغة الكود مش صحيحة.");
+ var d;try{d=JSON.parse(dec.decode(unb64u(p[1])))}catch(e){return Promise.reject("الكود تالف أو ناقص.")}
+ if(!d||!d.i||!d.n||!d.e)return Promise.reject("بيانات الترخيص ناقصة.");
+ return subtle.importKey("spki",unb64u(PUBKEY),{name:"ECDSA",namedCurve:"P-256"},false,["verify"])
+  .then(function(k){return subtle.verify({name:"ECDSA",hash:"SHA-256"},k,unb64u(p[2]),enc.encode(p[1]))})
+  .then(function(ok){if(!ok)throw "الكود ده مش صادر من مالك البرنامج.";
+   if(REVOKED.indexOf(d.i)>=0)throw "الترخيص ده اتبطل من المالك.";
+   if(String(d.e)<today())throw "انتهت صلاحية الترخيص بتاريخ "+d.e+".";
+   return d})
+  .catch(function(e){throw (typeof e==="string")?e:"تعذّر التحقق من الكود."})}
+function activate(code,cb){
+ verify(code).then(function(d){
+  store({code:code,id:d.i,name:d.n,exp:d.e,fp:fpArr(),at:Date.now()});
+  paint('<div class="who">✓ اتفعّل باسم: '+esc(d.n)+'</div><h2>أهلًا بيك 👋</h2><p>الترخيص صالح لحد <b>'+esc(d.e)+'</b> ومربوط بالجهاز ده.</p>');
+  setTimeout(release,900);cb(null)}).catch(function(e){cb(e)})}
+function boot(){
+ if(!PUBKEY){release();return}
+ injectCloak();
+ var fromHash="";try{var m=/[#&]lic=([^&]+)/.exec(location.hash||"");if(m)fromHash=decodeURIComponent(m[1])}catch(e){}
+ if(fromHash){try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}
+  paint('<h2>جارٍ التفعيل…</h2><p>لحظة واحدة.</p>');
+  activate(fromHash,function(err){if(err)ask({k:"e",m:err},fromHash)});return}
+ var s=readLic();
+ if(!s||!s.code){ask(null);return}
+ if(fpDiff(s.fp,fpArr())>=2){paint('<h2>جهاز مختلف</h2><p>الترخيص مربوط بجهاز تاني. لو ده جهازك الجديد دوس تفعيل.</p>');
+  activate(s.code,function(err){if(err)ask({k:"w",m:"الجهاز اتغيّر — "+err},s.code)});return}
+ verify(s.code).then(function(d){s.name=d.n;s.exp=d.e;store(s);release()}).catch(function(err){ask({k:"e",m:err},s.code)})}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);else boot();
+})();
+</script>
+
 <script>
 "use strict";
+window.__rnNative=1;
 const SV=[
 {k:"chk",a:"Chocks",e:"Chocks",i:"🛑"},{k:"mar",a:"Marshalling",e:"Marshalling",i:"🦺"},
 {k:"wat",a:"مياه",e:"Water",i:"💧"},{k:"toi",a:"تواليت",e:"Lavatory",i:"🚽"},
@@ -241,7 +340,7 @@ const WR=["late","noeq","nocrew","part","notreq"];
 const ICONS=["🛠️","🧰","🚿","🧊","⛽","🍱","♿","🪜","🧳","⚡","❄️","💧","🧹","🚌","🚜","📦","👷","🛑","🦺","📡","💨","🍽️","🚐","➕"];
 const IMPK=[["search","imp_search"],["views","imp_views"],["stats","imp_stats"],["tl","imp_tl"],["tgt","imp_tgt"],["hour","imp_hour"],["rep","imp_rep"],["cf","imp_cf"],["bulk","imp_bulk"],["bk","imp_bk"],["qk","imp_qk"],["dg","imp_dg"]];
 const IMPOBJ=()=>{const o={};IMPK.forEach(([k])=>o[k]=1);return o};
-const HOUR=60,ALERTED=new Set();
+const HOUR=60,ALERTED=new Set(),DEF_OWNER="Mohamed Sayed";
 const T={
 ar:{title:"مفكرة المهبط",nav1:"الرحلات",nav2:"المعتادة",nav3:"الإعدادات",nav4:"التراخيص",todayN:"{n} رحلة اليوم",
 routineHint:"اضغط رحلة معتادة لإضافتها",noRoutine:"لا توجد رحلات معتادة — أضفها من تبويب «المعتادة»",newFlight:"رحلة جديدة",
@@ -253,7 +352,7 @@ doneNoTime:"تمت بدون وقت",noTime:"بدون وقت",issue:"تقصير",
 wr_late:"تأخير",wr_noeq:"المعدة غير متاحة",wr_nocrew:"نقص عمالة",wr_part:"تمت جزئياً",wr_notreq:"لم تُطلب",
 notePh:"ملاحظة (اختياري)",genNote:"ملاحظات عامة / تقصير",details:"بيانات الرحلة",share:"مشاركة",copy:"نسخ",copied:"تم النسخ ✔",
 moved:"تم النقل لأمر الشغل",unmove:"إلغاء النقل",movedT:"اتعلّمت كمنقولة",del:"حذف الرحلة",deleted:"تم حذف الرحلة",removed:"تم حذف الخدمة",undo:"تراجع",
-fold:"طيّ الرحلة",unfold:"فتح الرحلة",foldNow:"▲ قفل الرحلة وطيّها",folded:"الرحلة اتلمّت ✓",allDone:"كل الخدمات خلصت",
+fold:"طيّ / فتح الرحلة",foldNow:"▲ قفل الرحلة وطيّها",folded:"الرحلة اتلمّت ✓",keepOpen:"فيها خدمة عدّت ساعة — سيبناها مفتوحة",
 sArr:"وصول",sDep:"سفر",sPax:"ركاب",sNote:"ملاحظة",unk:"؟",
 addR:"إضافة رحلة معتادة",editR:"تعديل رحلة معتادة",usualServices:"الخدمات المعتادة (تُضاف تلقائياً)",save:"حفظ",new:"جديد",edit:"تعديل",
 needNo:"اكتب رقم الرحلة",savedR:"تم الحفظ ✔",delR:"تم حذف الرحلة المعتادة",routineList:"الرحلات المعتادة",
@@ -263,7 +362,7 @@ d_n:"{n} يوم",forever:"دائماً",s_data:"البيانات والنسخ ا
 impData:"استيراد ملف",shareR:"مشاركة الرحلات المعتادة مع الزملاء",imported:"تم الاستيراد: {a} رحلة، {b} معتادة",badFile:"ملف غير صالح",
 s_install:"تثبيت التطبيق",installBtn:"تثبيت على الشاشة الرئيسية",installHint:"من قائمة Chrome (⋮) اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",
 storeNote:"البيانات محفوظة على هذا الجهاز فقط — خذ نسخة احتياطية من وقت لآخر. الرحلات غير المنقولة لا تُحذف تلقائياً أبداً.",
-saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 3.0 — تراخيص من الموبايل",exported:"تم التصدير ✔",
+saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 3.1 — حقوق + تراخيص من الموبايل",exported:"تم التصدير ✔",
 s_voice:"الأوامر الصوتية",today:"اليوم",tomorrow:"بكرة",yesterday:"أمس",wdate:"تاريخ الرحلات الجديدة",backToday:"رجوع لليوم",vWhich:"أنهي خدمة؟ قول اسمها",vlang:"لغة التعرف على الصوت",vl_auto:"زي لغة التطبيق",vl_eg:"مصري (ar-EG)",vl_ar:"عربي عام (ar)",vkeep:"استمرار الاستماع بعد كل أمر",on:"شغّال",off:"مقفول",
 defSvc:"الخدمات الافتراضية",autoAdd:"الإضافة التلقائية",defHint:"الخدمات المختارة هنا تُضاف لوحدها لأي رحلة جديدة — وكمان مع رحلات «المعتادة» (من غير تكرار).",
 newSvc:"خدمة جديدة",svcIcon:"الأيقونة",manageSvc:"إدارة الخدمات",hide:"إخفاء",show:"إظهار",builtin:"أساسية",custom:"مضافة",
@@ -277,10 +376,11 @@ bulk:"تحديد",selN:"{n} محدد",allVis:"الكل",moveSel:"✓ نقل",del
 repBtn:"تقرير الوردية",shiftRep:"تقرير وردية",repFlights:"رحلات",repSvc:"خدمات",repIss:"تقصير",repAvg:"متوسط الأرض",
 cf:"تعارض موقف",cfWith:"موقف مشترك في نفس الوقت مع: {n}",
 bkNever:"لسه معملتش نسخة احتياطية — بياناتك على الجهاز بس.",bkOld:"آخر نسخة احتياطية من {n} يوم.",bkToday:"آخر نسخة احتياطية النهارده ✔",bkBtn:"💾 نسخة دلوقتي",bkLab:"آخر نسخة احتياطية",
-hourT:"خدمات عدّت ساعة",hourMore:"و {n} كمان",hourToast:"عدّت ساعة",imp_hour:"تنبيه الساعة",af:"طيّ تلقائي عند اكتمال الخدمات",imp_af:"طيّ الرحلات تلقائياً",
+hourT:"خدمات عدّت ساعة",hourMore:"و {n} كمان",hourToast:"عدّت ساعة",imp_hour:"تنبيه الساعة",af:"طيّ تلقائي عند اكتمال الخدمات",afHint:"الرحلة اللي فيها خدمة عدّت ساعة مش هتتلم تلقائيًا أبدًا — هتفضل مفتوحة عشان تشوف التنبيه.",
 impTitle:"✨ التحسينات",impHint:"كل تحسين له مفتاح مستقل — اقفل أي حاجة مش عايزها.",impOn:"تشغيل الكل",impOff:"إيقاف الكل",
 imp_search:"البحث والترتيب",imp_views:"عروض سريعة",imp_stats:"إحصائيات اليوم",imp_tl:"الخط الزمني",imp_tgt:"هدف وقت الخدمة",imp_rep:"تقرير الوردية",imp_cf:"تنبيه تعارض الموقف",imp_bulk:"تحديد متعدد",imp_bk:"تذكير النسخة الاحتياطية",imp_qk:"إضافة سريعة",imp_dg:"سحب لترتيب الخدمات",
-licT:"تراخيص الزملاء",licSub:"أصدر كود تفعيل لأي زميل من الموبايل مباشرة، وابعتهوله واتساب. الكود بيتربط بأول جهاز يفعّله.",
+rights:"جميع الحقوق محفوظة",licensedTo:"مرخّص لـ",validUntil:"صالح حتى",ownerT:"© حقوق الملكية",ownerLab:"اسم المالك",ownerHint:"الاسم ده بيظهر تحت في التطبيق، وفي كل تقرير واتساب وملف CSV أو JSON بيطلع منه.",ownerSaved:"تم حفظ اسم المالك ✓",
+licT:"تراخيص الزملاء",licSub:"أصدر كود تفعيل لأي زميل من الموبايل مباشرة وابعتهوله واتساب. الكود بيتربط بأول جهاز يفعّله.",
 licLock:"لوحة التراخيص مقفولة",licLockSub:"استورد ملف المفاتيح المشفّر مرة واحدة على الموبايل ده، وبعدها تفتح بكلمة السر بس.",
 pickKey:"اختار ملف المفاتيح",pickKeySub:"الملف اللي اسمه ramp-owner-backup-….json",keyPass:"كلمة سر الملف",unlock:"🔓 افتح اللوحة",
 keyLoaded:"✓ الملف اتحمّل",keyOk:"✓ اللوحة مفتوحة",keyBad:"كلمة السر غلط أو الملف تالف",keyNoFile:"اختار الملف الأول",
@@ -289,18 +389,18 @@ issName:"اسم الزميل",issDays:"مدة الصلاحية",issNote:"ملا�
 d30:"30 يوم",d90:"90 يوم",d180:"180 يوم",d365:"سنة",d3650:"10 سنين",
 licList:"التراخيص الصادرة",noLic:"لسه مفيش تراخيص — أصدر أول واحد من فوق.",
 waSend:"📤 واتساب",cpLink:"🔗 الرابط",cpCode:"📋 الكود",renew:"↻ تجديد",revoke:"⛔ إبطال",unrevoke:"✓ إعادة تفعيل",delLic:"🗑",
-revoked:"الترخيص اتّبطل — حدّث ملف الحماية",unrevoked:"رجع يتفعّل — حدّث ملف الحماية",renewed:"تم التجديد ✓ ابعت الرابط الجديد",licDeleted:"اتمسح الترخيص",
-daysLeft:"{n} يوم",expired:"منتهي",revokedP:"مُبطل",active:"ساري",
-guardT:"تحديث الحماية على GitHub",guardSub:"بعد ما تبطل أو تجدّد ترخيص، نزّل index.html محدّث وارفعه مكان القديم عشان الإبطال يسري فعلًا.",
-guardBtn:"⬇ نزّل index.html محدّث",guardOk:"تم التنزيل ✓ ارفعه على GitHub مكان القديم",guardFail:"تعذّر قراءة الملف المنشور",
+revoked:"اتّبطل — نزّل النسخة المحدّثة وارفعها",unrevoked:"رجع يتفعّل — نزّل النسخة المحدّثة وارفعها",renewed:"تم التجديد ✓ ابعت الرابط الجديد",licDeleted:"اتمسح الترخيص",
+daysLeft:"{n} يوم",expired:"منتهي",revokedP:"مُبطل",active:"ساري",licCount:"عدد التراخيص",
+protT:"🛡 قفل النسخة وحمايتها",protNow:"النسخة دي مفتوحة — أي حد يفتح الرابط يستخدمها من غير كود.",protLocked:"النسخة دي مقفولة بكود تفعيل ✓",
+protHint:"دوس الزرار → هينزل index.html فيه اسمك وقفل التفعيل ومفتاحك → ارفعه على GitHub مكان القديم. بعدها محدش يفتح التطبيق غير بكود منك.",
+protBtn:"⬇ نزّل index.html محمي",protOk:"اتنزّل ✓ ارفعه على GitHub مكان index.html القديم",protFail:"تعذّر قراءة الملف المنشور",
 expLic:"⬇ تصدير التراخيص",impLic:"⬆ استيراد تراخيص",licImported:"تم استيراد {n} ترخيص",
-ownerLab:"المالك",keyFp:"بصمة المفتاح",licCount:"عدد التراخيص",
 waMsg:"أهلًا {name} 👋\n\nده رابط تفعيل نسختك من *مفكرة المهبط · Ramp Notes*:\n\n{link}\n\nافتحه من الموبايل وهي يتفعّل لوحده على جهازك.\nالصلاحية لحد: {exp}\n\n⚠ النسخة مصرّح بها ليك انت شخصيًا ومربوطة بجهازك — متبعتهاش لحد تاني.\n© {owner}",
-vhelp:"أمثلة الأوامر",vnote:"بيشتغل على Chrome أندرويد ومحتاج إنترنت. لو العربي مش شغال جرّب «عربي عام (ar)».",
+vhelp:"أمثلة الأوامر",vnote:"بيشتغل على Chrome أندرويد ومحتاج إنترنت. لو العربي مش شغال جرّب «عربي عام (ar)». أي خدمة بتضيفها بالصوت بتاخد وقت البداية فورًا.",
 vListen:"اتكلم دلوقتي…",vNo:"مافهمتش",vNoSup:"المتصفح ده مش بيدعم الأوامر الصوتية (استخدم Chrome)",vDenied:"اسمح للمتصفح باستخدام المايك",
 vNet:"التعرف على الصوت محتاج إنترنت",vNoSpeech:"ماسمعتش حاجة",vNoMic:"المايك مش شغال",vLangErr:"اللغة دي مش مدعومة على جهازك",
 vNoFlight:"مفيش رحلة مفتوحة — قول «رحلة جديدة» أو اختار رحلة",vUndone:"تم التراجع",vNothing:"مفيش حاجة أتراجع عنها",vAlready:"تمت قبل كده",vNone:"مش موجودة",vTry:"جرب مثلاً",
-vex:[["ابدأ السلم","يبدأ وقت السلم"],["شغل السلم","نفس الأمر بالمصري"],["خلص السلم","يقفل وقت السلم"],["السلم","اسم الخدمة لوحده: بداية أو نهاية"],["ضيف حافلتين","يضيف خدمة بالعدد"],["شوكس اون / شوكس اوف","وقت الوصول / السفر"],["ركاب وصول 150","عدد الركاب"],["تقصير الجرار تأخير","تقصير مع السبب"],["موقف 12","رقم الموقف"],["ملاحظة …","كل الكلام بعدها ملاحظة"],["سجل ملاحظة …","نفس الأمر بصيغة تانية"],["رحلة 777","فتح الرحلة أو إضافتها"],["رحلة جديدة","رحلة فاضية"],["تم النقل","تعليم كمنقولة"],["تراجع","إلغاء آخر أمر"]]},
+vex:[["ابدأ السلم","يبدأ وقت السلم فورًا"],["ضيف سلم","يضيف السلم ويبدأ وقته فورًا"],["شغل السلم","نفس الأمر بالمصري"],["خلص السلم","يقفل وقت السلم"],["السلم","اسم الخدمة لوحده: بداية أو نهاية"],["ضيف حافلتين","يضيف حافلتين بوقت بداية"],["شوكس اون / شوكس اوف","وقت الوصول / السفر"],["ركاب وصول 150","عدد الركاب"],["تقصير الجرار تأخير","تقصير مع السبب"],["موقف 12","رقم الموقف"],["ملاحظة …","كل الكلام بعدها ملاحظة"],["سجل ملاحظة …","نفس الأمر بصيغة تانية"],["رحلة 777","فتح الرحلة أو إضافتها"],["رحلة جديدة","رحلة فاضية"],["تم النقل","تعليم كمنقولة"],["تراجع","إلغاء آخر أمر"]]},
 en:{title:"Ramp Notes",nav1:"Flights",nav2:"Routine",nav3:"Settings",nav4:"Licenses",todayN:"{n} today",
 routineHint:"Tap a routine flight to add it",noRoutine:"No routine flights — add them in the Routine tab",newFlight:"New flight",
 f_open:"Open",f_moved:"Transferred",f_all:"All",noFlights:"No flights here",clearMoved:"Clear transferred",clearedN:"Removed {n} flights",
@@ -311,7 +411,7 @@ doneNoTime:"Done (no time)",noTime:"No time",issue:"Issue",other:"Other",svcName
 wr_late:"Late",wr_noeq:"Equipment unavailable",wr_nocrew:"Short of staff",wr_part:"Partial",wr_notreq:"Not requested",
 notePh:"Note (optional)",genNote:"General notes / issues",details:"Flight details",share:"Share",copy:"Copy",copied:"Copied ✔",
 moved:"Transferred to work order",unmove:"Undo transfer",movedT:"Marked as transferred",del:"Delete flight",deleted:"Flight deleted",removed:"Service removed",undo:"Undo",
-fold:"Collapse flight",unfold:"Expand flight",foldNow:"▲ Close & collapse",folded:"Flight collapsed ✓",allDone:"All services done",
+fold:"Collapse / expand",foldNow:"▲ Close & collapse",folded:"Flight collapsed ✓",keepOpen:"has a service over an hour — kept open",
 sArr:"Arr",sDep:"Dep",sPax:"Pax",sNote:"Note",unk:"?",
 addR:"Add routine flight",editR:"Edit routine flight",usualServices:"Usual services (added automatically)",save:"Save",new:"New",edit:"Edit",
 needNo:"Enter the flight number",savedR:"Saved ✔",delR:"Routine flight deleted",routineList:"Routine flights",
@@ -321,7 +421,7 @@ d_n:"{n} days",forever:"Forever",s_data:"Data & backup",expJson:"Backup (JSON)",
 impData:"Import file",shareR:"Share routine flights with coworkers",imported:"Imported: {a} flights, {b} routine",badFile:"Invalid file",
 s_install:"Install app",installBtn:"Install to home screen",installHint:"From the Chrome menu (⋮) choose “Install app” or “Add to Home screen”.",
 storeNote:"Data is stored on this device only — back it up now and then. Flights not yet transferred are never deleted automatically.",
-saveFail:"Could not save — storage is full or disabled",ver:"Version 3.0 — licenses from mobile",exported:"Exported ✔",
+saveFail:"Could not save — storage is full or disabled",ver:"Version 3.1 — ownership + mobile licensing",exported:"Exported ✔",
 s_voice:"Voice commands",today:"Today",tomorrow:"Tomorrow",yesterday:"Yesterday",wdate:"Date for new flights",backToday:"Back to today",vWhich:"Which service? Say its name",vlang:"Speech recognition language",vl_auto:"Same as app language",vl_eg:"Egyptian (ar-EG)",vl_ar:"Generic Arabic (ar)",vkeep:"Keep listening after each command",on:"On",off:"Off",
 defSvc:"Default services",autoAdd:"Auto-add",defHint:"Services picked here are added automatically to every new flight — and with routine flights (no duplicates).",
 newSvc:"New service",svcIcon:"Icon",manageSvc:"Manage services",hide:"Hide",show:"Show",builtin:"Built-in",custom:"Custom",
@@ -335,9 +435,10 @@ bulk:"Select",selN:"{n} selected",allVis:"All",moveSel:"✓ Transfer",delSel:"�
 repBtn:"Shift report",shiftRep:"Shift report",repFlights:"Flights",repSvc:"Services",repIss:"Issues",repAvg:"Avg ground",
 cf:"Stand conflict",cfWith:"Same stand at overlapping time with: {n}",
 bkNever:"No backup yet — data lives on this device only.",bkOld:"Last backup {n} days ago.",bkToday:"Last backup today ✔",bkBtn:"💾 Back up now",bkLab:"Last backup",
-hourT:"services over an hour",hourMore:"and {n} more",hourToast:"over an hour",imp_hour:"Hour alert",af:"Auto-collapse when all services are done",imp_af:"Auto-collapse flights",
+hourT:"services over an hour",hourMore:"and {n} more",hourToast:"over an hour",imp_hour:"Hour alert",af:"Auto-collapse when all services are done",afHint:"A flight with any service over an hour is never auto-collapsed — it stays open so you see the alert.",
 impTitle:"✨ Improvements",impHint:"Each improvement has its own switch.",impOn:"Enable all",impOff:"Disable all",
 imp_search:"Search & sort",imp_views:"Quick views",imp_stats:"Today stats",imp_tl:"Timeline",imp_tgt:"Service target time",imp_rep:"Shift report",imp_cf:"Stand conflict alert",imp_bulk:"Bulk selection",imp_bk:"Backup reminder",imp_qk:"Quick add",imp_dg:"Drag to reorder services",
+rights:"All rights reserved",licensedTo:"Licensed to",validUntil:"valid until",ownerT:"© Ownership",ownerLab:"Owner name",ownerHint:"This name appears at the bottom of the app and in every WhatsApp report, CSV and JSON export.",ownerSaved:"Owner name saved ✓",
 licT:"Coworker licenses",licSub:"Issue an activation code for any coworker straight from your phone and send it via WhatsApp. The code binds to the first device that activates it.",
 licLock:"License console locked",licLockSub:"Import the encrypted key file once on this phone, then unlock with your password.",
 pickKey:"Choose key file",pickKeySub:"The file named ramp-owner-backup-….json",keyPass:"File password",unlock:"🔓 Unlock console",
@@ -347,18 +448,18 @@ issName:"Coworker name",issDays:"Validity",issNote:"Note (optional)",issue:"🎫
 d30:"30 days",d90:"90 days",d180:"180 days",d365:"1 year",d3650:"10 years",
 licList:"Issued licenses",noLic:"No licenses yet — issue the first one above.",
 waSend:"📤 WhatsApp",cpLink:"🔗 Link",cpCode:"📋 Code",renew:"↻ Renew",revoke:"⛔ Revoke",unrevoke:"✓ Re-enable",delLic:"🗑",
-revoked:"License revoked — update the guard file",unrevoked:"Re-enabled — update the guard file",renewed:"Renewed ✓ send the new link",licDeleted:"License deleted",
-daysLeft:"{n} days",expired:"Expired",revokedP:"Revoked",active:"Active",
-guardT:"Update protection on GitHub",guardSub:"After revoking or renewing, download the updated index.html and upload it over the old one so the change takes effect.",
-guardBtn:"⬇ Download updated index.html",guardOk:"Downloaded ✓ upload it to GitHub over the old file",guardFail:"Could not read the published file",
+revoked:"Revoked — download & upload the updated file",unrevoked:"Re-enabled — download & upload the updated file",renewed:"Renewed ✓ send the new link",licDeleted:"License deleted",
+daysLeft:"{n} days",expired:"Expired",revokedP:"Revoked",active:"Active",licCount:"Licenses",
+protT:"🛡 Lock & protect this copy",protNow:"This copy is open — anyone with the link can use it without a code.",protLocked:"This copy is locked with activation codes ✓",
+protHint:"Tap the button → it downloads index.html containing your name, the activation lock and your key → upload it to GitHub over the old one. After that nobody opens the app without a code from you.",
+protBtn:"⬇ Download protected index.html",protOk:"Downloaded ✓ upload it to GitHub over the old index.html",protFail:"Could not read the published file",
 expLic:"⬇ Export licenses",impLic:"⬆ Import licenses",licImported:"Imported {n} licenses",
-ownerLab:"Owner",keyFp:"Key fingerprint",licCount:"Licenses",
 waMsg:"Hi {name} 👋\n\nHere is your activation link for *Ramp Notes*:\n\n{link}\n\nOpen it on your phone and it activates automatically.\nValid until: {exp}\n\n⚠ Licensed to you personally and bound to your device — do not forward it.\n© {owner}",
-vhelp:"Command examples",vnote:"Works in Chrome on Android and needs internet. If Arabic fails, try “Generic Arabic (ar)”.",
+vhelp:"Command examples",vnote:"Works in Chrome on Android and needs internet. If Arabic fails, try “Generic Arabic (ar)”. Any service added by voice starts its timer immediately.",
 vListen:"Speak now…",vNo:"Didn't understand",vNoSup:"This browser doesn't support voice commands (use Chrome)",vDenied:"Allow the browser to use the microphone",
 vNet:"Speech recognition needs internet",vNoSpeech:"Didn't hear anything",vNoMic:"Microphone not working",vLangErr:"This language isn't supported on your device",
 vNoFlight:"No open flight — say “new flight” or pick one",vUndone:"Undone",vNothing:"Nothing to undo",vAlready:"already done",vNone:"not found",vTry:"Try for example",
-vex:[["Start stairs","Starts the stairs timer"],["Stairs done","Ends the stairs timer"],["Stairs","Service name alone: start or end"],["Add 2 buses","Adds a service with quantity"],["Chocks on / Chocks off","Arrival / departure time"],["Pax arrival 150","Passenger count"],["Issue tractor late","Issue with reason"],["Stand 12","Stand number"],["Note …","Everything after becomes a note"],["Flight 777","Open or add the flight"],["New flight","Blank flight"],["Transferred","Mark as transferred"],["Undo","Undo last command"]]}};
+vex:[["Start stairs","Starts the stairs timer immediately"],["Add stairs","Adds stairs and starts its timer"],["Stairs done","Ends the stairs timer"],["Stairs","Service name alone: start or end"],["Add 2 buses","Adds two buses with start time"],["Chocks on / Chocks off","Arrival / departure time"],["Pax arrival 150","Passenger count"],["Issue tractor late","Issue with reason"],["Stand 12","Stand number"],["Note …","Everything after becomes a note"],["Flight 777","Open or add the flight"],["New flight","Blank flight"],["Transferred","Mark as transferred"],["Undo","Undo last command"]]}};
 
 const KEY="rn",FS=[.9,1,1.15,1.3,1.5],LS={al:"d_al",rg:"d_rg",ac:"d_ac",sp:"d_sp"};
 const $=id=>document.getElementById(id);
@@ -374,8 +475,9 @@ function load(){
  d.cs=Array.isArray(d.cs)?d.cs.filter(x=>x&&x.k&&x.a).map(x=>({k:String(x.k),a:String(x.a),e:String(x.e||x.a),i:x.i||"🛠️",cu:1})):[];
  d.hid=d.hid&&typeof d.hid==="object"?d.hid:{};
  d.tg=d.tg&&typeof d.tg==="object"?d.tg:{};
- d.set=Object.assign({lang:"ar",theme:"auto",fs:1,keep:14,vl:"auto",vk:0,wd:null,ds:[],da:1,sort:"time",lb:0,af:1},d.set);
+ d.set=Object.assign({lang:"ar",theme:"auto",fs:1,keep:14,vl:"auto",vk:0,wd:null,ds:[],da:1,sort:"time",lb:0,af:1,owner:DEF_OWNER},d.set);
  d.set.ds=Array.isArray(d.set.ds)?d.set.ds:[];d.set.da=d.set.da?1:0;d.set.af=d.set.af?1:0;
+ if(!String(d.set.owner||"").trim())d.set.owner=DEF_OWNER;
  d.set.imp=Object.assign(IMPOBJ(),d.set.imp||{});
  if(!["time","new","svc","issue"].includes(d.set.sort))d.set.sort="time";
  if(d.set.wd&&!(d.set.wd>=dd(1)))d.set.wd=null;
@@ -401,7 +503,7 @@ const L=()=>D.set.lang==="en"?"en":"ar";
 const t=(k,v)=>{let s=T[L()][k]??T.ar[k]??k;if(v)for(const x in v)s=s.replace("{"+x+"}",v[x]);return s};
 const nmOf=x=>L()==="en"?x.e:x.a;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){toast(t("saveFail"))}};
-function undoer(){const snap=JSON.stringify(D);return()=>{const cur=D.set,o=JSON.parse(snap);o.set=Object.assign({},cur,{ds:o.set.ds,da:o.set.da,imp:o.set.imp,sort:o.set.sort,af:o.set.af});D=o;buildVMap();save();R1();hdr();if(TAB===2)RS()}}
+function undoer(){const snap=JSON.stringify(D);return()=>{const cur=D.set,o=JSON.parse(snap);o.set=Object.assign({},cur,{ds:o.set.ds,da:o.set.da,imp:o.set.imp,sort:o.set.sort,af:o.set.af,owner:o.set.owner});D=o;buildVMap();save();R1();hdr();sigUpd();if(TAB===2)RS()}}
 const nw=()=>{const d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
 const mins=h=>{const m=/^(\d\d):(\d\d)$/.exec(h||"");return m?+m[1]*60+ +m[2]:null};
 const nowM=()=>{const d=new Date();return d.getHours()*60+d.getMinutes()};
@@ -421,6 +523,15 @@ const sst=s=>s.t?"done":s.f?"run":s.dn?"dnx":"idle";
 const cnt=f=>f.s.filter(s=>s.t||s.dn).length+"/"+f.s.length;
 const tgOf=k=>{const v=+D.tg[k];return v>0?Math.min(240,Math.round(v)):0};
 function wtxt(s){const r=(s.wr||[]).map(k=>t("wr_"+k));if(s.nt)r.push(s.nt);return r.join("، ")||t("issue")}
+function svcDur(s){if(!s.f)return null;return s.t?dur(s.f,s.t):elapsed(s.f)}
+function hasOverHour(f){return f.s.some(s=>{const d=svcDur(s);return d!=null&&d>HOUR})}
+function readLic(){try{return JSON.parse(localStorage.getItem("rn.license.v1"))}catch(e){return null}}
+function sigLine(){return "\n─────────────\n© "+(D.set.owner||DEF_OWNER)+" — مفكرة المهبط · Ramp Notes\n"+t("rights")+" · إعادة التوزيع أو النسب ممنوعة."}
+function sigUpd(){
+ const el=$("sig");if(!el)return;
+ const lic=readLic(),o=D.set.owner||DEF_OWNER;
+ el.innerHTML="© "+esc(o)+" — "+t("rights")+(lic&&lic.name?"<br>"+t("licensedTo")+": <b>"+esc(lic.name)+"</b> · "+t("validUntil")+" "+esc(lic.exp):"");
+}
 function stats(ds){
  const fs=D.fl.filter(f=>f.d===ds);let tot=0,dn=0,run=0,iss=0,sum=0,n=0;
  fs.forEach(f=>{tot+=f.s.length;f.s.forEach(s=>{if(s.t||s.dn)dn++;if(sst(s)==="run")run++;if(s.w)iss++});
@@ -484,13 +595,13 @@ function bkLine(){const lb=+D.set.lb||0;if(!lb)return t("bkNever");const n=Math.
 function hourItems(){
  if(!D.set.imp.hour)return [];
  const out=[];
- D.fl.forEach(f=>f.s.forEach((s,i)=>{if(!s.f)return;const d=s.t?dur(s.f,s.t):elapsed(s.f);if(d!=null&&d>HOUR)out.push({f,i,s,d,run:!s.t})}));
+ D.fl.forEach(f=>f.s.forEach((s,i)=>{const d=svcDur(s);if(d!=null&&d>HOUR)out.push({f,i,s,d,run:!s.t})}));
  return out.sort((a,b)=>b.d-a.d)}
 function hrHtml(){
  const a=hourItems();if(!a.length)return "";
  const top=a.slice(0,3).map(x=>`<button data-b="hour" data-fid="${x.f.id}" data-i="${x.i}">⏰ ${esc(x.f.n||t("flight"))} · ${esc(sname(x.s))} · ${esc(fmtShort(x.d))}${x.run?" ▶":""}</button>`).join("");
  return `<div class="hrt">⏰ ${t("hourT")} (${a.length})</div>${top}${a.length>3?`<div class="more">${t("hourMore",{n:a.length-3})}</div>`:""}`}
-function hrUpd(){const el=$("hrbar");if(el)el.innerHTML=hrHtml()}
+function hrUpd(){const el=$("hrbar");if(el){const h=hrHtml();el.innerHTML=h;el.hidden=!h}}
 function checkHour(){
  if(!D.set.imp.hour)return;const news=[];
  D.fl.forEach(f=>f.s.forEach((s,i)=>{if(s.t)return;const e=elapsed(s.f);
@@ -499,18 +610,19 @@ function checkHour(){
 function maybeFold(f){
  if(!D.set.af||!f.s.length)return;
  if(!f.s.every(s=>s.t||s.dn))return;
+ if(hasOverHour(f)){toast("⏰ "+(f.n||t("flight"))+" — "+t("keepOpen"),null,false,4200);return}
  f.o=0;save();rc(f);toast("✓ "+(f.n||t("flight"))+" — "+t("folded"))}
 
 const fld=(lab,inner,c="")=>`<div class="fld ${c}"><label>${lab}</label>${inner}</div>`;
 const inp=(a,v,o={})=>`<input data-a="${a}" value="${esc(v)}"${o.type?` type="${o.type}"`:""}${LS[a]?` list="${LS[a]}"`:""}${o.m?` inputmode="${o.m}"`:""}${o.cap?` autocapitalize="characters"`:""}${o.ac?` autocomplete="off"`:""}>`;
 const chipsRow=(f,k)=>{const a=tp(k).slice(0,6);return a.length?`<div class="chips qk">${a.map(([v])=>`<button class="o chip ${f[k]===v?"on":""}" data-b="pick" data-k="${k}" data-v="${esc(v)}">${esc(v)}</button>`).join("")}</div>`:""};
-function ccls(f){return(f.ok?"mv ":"")+(f.s.length&&f.s.every(s=>s.t||s.dn)?"ad ":"")+(f.s.some(s=>sst(s)==="run")?"rn ":"")+(f.s.some(s=>s.w)||f.nt?"hw":"")}
+function ccls(f){return(f.ok?"mv ":"")+(f.s.length&&f.s.every(s=>s.t||s.dn)?"ad ":"")+(f.s.some(s=>sst(s)==="run")?"rn ":"")+(f.s.some(s=>s.w)||f.nt||hasOverHour(f)?"hw":"")}
 function fhIn(f){
  const tot=f.s.length,dn=f.s.filter(s=>s.t||s.dn).length,run=f.s.some(s=>sst(s)==="run"),wn=f.s.some(s=>s.w)||f.nt;
- const cf=CF.get(f.id);
- return `<div class="fhr">${BULK?`<button class="o selbox" data-b="o">${SEL.has(f.id)?"✓":""}</button>`:""}<div class="fhx"><div class="l1"><span class="fn">${esc(f.n)||t("flight")}</span><span class="m">${esc(f.al)}</span><span class="m">${esc(f.ac)}</span><span class="m">${esc(f.rg)}</span>${f.ok?`<span class="tag">✓</span>`:""}${wn?`<span class="tag w">⚠</span>`:""}${cf?`<span class="tag w" title="${esc(t("cfWith",{n:cf.join("، ")}))}">⚠ ${t("cf")}</span>`:""}</div>
+ const cf=CF.get(f.id),oh=hasOverHour(f);
+ return `<div class="fhr">${BULK?`<button class="o selbox" data-b="o">${SEL.has(f.id)?"✓":""}</button>`:""}<div class="fhx"><div class="l1"><span class="fn">${esc(f.n)||t("flight")}</span><span class="m">${esc(f.al)}</span><span class="m">${esc(f.ac)}</span><span class="m">${esc(f.rg)}</span>${f.ok?`<span class="tag">✓</span>`:""}${wn?`<span class="tag w">⚠</span>`:""}${oh?`<span class="tag w">⏰</span>`:""}${cf?`<span class="tag w" title="${esc(t("cfWith",{n:cf.join("، ")}))}">⚠ ${t("cf")}</span>`:""}</div>
 <div class="l2"><span><span class="dch ${f.d===dd(0)?"":"x"}">${esc(dshort(f.d))}</span>${f.st?" · "+esc(f.st):""}${f.sp?" · "+t("stand").split(" ")[0]+" "+esc(f.sp):""}</span>${tot?`<span class="pr ${run?"r":""}">${dn}/${tot}</span>`:""}</div>${tot?`<div class="pb"><i style="width:${Math.round(dn/tot*100)}%"></i></div>`:""}</div>
-<button class="o fold" data-b="fold" title="${esc(f.o?t("fold"):t("unfold"))}" aria-label="${esc(f.o?t("fold"):t("unfold"))}">${f.o?"▲":"▼"}</button>
+<button class="o fold" data-b="fold" title="${esc(t("fold"))}" aria-label="${esc(t("fold"))}" aria-expanded="${f.o?1:0}">${f.o?"▲":"▼"}</button>
 <button class="o dng fdel" data-b="del" title="${esc(t("del"))}" aria-label="${esc(t("del"))}">🗑</button></div>`}
 function row(s,i){
  const st=sst(s),cls=(st==="done"||st==="dnx"?"done":st==="run"?"run":"")+(s.w?" wn":"");
@@ -531,7 +643,9 @@ function row(s,i){
 function body(f){
  const tile=(k,lab)=>`<div class="tile"><div class="lbl">${lab}</div>${f[k]?`<div class="tr"><input type="time" data-a="${k}" value="${esc(f[k])}"><button class="o sq" data-b="clr" data-k="${k}">✕</button></div>`:`<button class="big go" data-b="now" data-k="${k}">⏱ ${t("now")}</button>`}</div>`;
  const det=`<div class="g mt">${fld(t("flightNo"),inp("n",f.n))}${fld(t("sched"),inp("st",f.st,{type:"time"}))}${fld(t("airline"),inp("al",f.al,{ac:1})+chipsRow(f,"al"),"full")}${fld(t("type"),inp("ac",f.ac,{ac:1})+chipsRow(f,"ac"),"full")}${fld(t("reg"),inp("rg",f.rg,{cap:1,ac:1}))}${fld(t("stand"),inp("sp",f.sp,{ac:1})+chipsRow(f,"sp"),"full")}</div>`;
+ const oh=hasOverHour(f);
  return `<div class="bd">${dbarF(f)}<div class="row tiles">${tile("ta",t("chOn"))}${tile("td",t("chOff"))}</div>
+${oh?`<div class="banner err" style="margin:.6rem 0 0"><b>⏰ ${t("hourT")}</b>${t("keepOpen")}</div>`:""}
 <div class="sec"><span>${t("services")}</span><span>${cnt(f)}</span></div>${D.set.imp.tl?tlHtml(f):""}${f.s.map(row).join("")}
 ${qkHtml(f)}<button class="big add o" data-b="add">＋ ${t("addService")}</button>
 <div class="g mt">${fld(t("paxA"),inp("pa",f.pa,{type:"number",m:"numeric"}))}${fld(t("paxD"),inp("pd",f.pd,{type:"number",m:"numeric"}))}</div>
@@ -583,7 +697,7 @@ function R1(){
  const bulkB=im.bulk?`<button class="o chip ${BULK?"on":""}" data-b="bsel">☑ ${t("bulk")}</button>`:"";
  const views=im.views?`<div class="chips" style="margin-top:.45rem">${[["shift","vShift"],["w","vIss"],["run","vRun"]].map(([k,l])=>`<button class="o chip ${VW===k?"on":""}" data-b="view" data-k="${k}">${t(l)}</button>`).join("")}</div>`:"";
  const tools=(sorts||bulkB)?`<div class="chips">${sorts}${bulkB}</div>`:"";
- $("p1").innerHTML=`${wdBar()}${bkHtml()}${im.hour?`<div class="hrbar" id="hrbar">${hrHtml()}</div>`:""}<div class="lbl">${t("routineHint")}</div><div class="chips">${rch}</div>
+ $("p1").innerHTML=`${wdBar()}${bkHtml()}${im.hour?`<div class="hrbar" id="hrbar" hidden></div>`:""}<div class="lbl">${t("routineHint")}</div><div class="chips">${rch}</div>
 <button class="big nw" data-b="newf">＋ ${t("newFlight")}</button>
 ${search}${tools}${views}${im.stats?statsHtml():""}
 <div class="seg">${[["open",op],["moved",mv],["all",D.fl.length]].map(([k,n])=>`<button class="o ${FLT===k?"on":""}" data-b="flt" data-k="${k}">${t("f_"+k)} (${n})</button>`).join("")}</div>
@@ -591,7 +705,7 @@ ${search}${tools}${views}${im.stats?statsHtml():""}
 ${im.rep?`<div class="row mt"><button data-b="rep">📤 ${t("repBtn")}<small>${esc(dshort(wdate()))}</small></button><button class="o" data-b="repc">📋 ${t("copy")}</button></div>`:""}
 ${mv?`<button class="o wide" data-b="clrm">🧹 ${t("clearMoved")}</button>`:""}${bkbHtml()}`;
  document.body.classList.toggle("bk",BULK&&im.bulk);
- dlists();qUpd();bkUpd();stUpd()}
+ dlists();qUpd();bkUpd();stUpd();hrUpd();sigUpd()}
 function addF(c){
  D.fl.forEach(f=>f.o=0);
  let id=Date.now();while(D.fl.some(x=>x.id===id))id++;
@@ -639,7 +753,10 @@ function manSheet(){
 
 function R3(){
  const seg=(act,cur,items)=>`<div class="seg">${items.map(([v,l])=>`<button class="o ${String(cur)===String(v)?"on":""}" data-b="${act}" data-v="${v}">${l}</button>`).join("")}</div>`;
- $("p3").innerHTML=`<div class="card"><h3>📁 ${t("af")}</h3>${seg("saf",D.set.af,[[1,t("on")],[0,t("off")]])}</div>
+ $("p3").innerHTML=`<div class="card"><h3>${t("ownerT")}</h3>
+<div class="fld"><label>${t("ownerLab")}</label><input id="ownerIn" value="${esc(D.set.owner||DEF_OWNER)}" autocomplete="off"></div>
+<p class="hint">${t("ownerHint")}</p></div>
+<div class="card"><h3>📁 ${t("af")}</h3>${seg("saf",D.set.af,[[1,t("on")],[0,t("off")]])}<p class="hint">${t("afHint")}</p></div>
 <div class="card"><h3>${t("impTitle")}</h3><div class="chips">${IMPK.map(([k,l])=>`<button class="o chip ${D.set.imp[k]?"on":""}" data-b="imp" data-k="${k}">${D.set.imp[k]?"✓ ":""}${t(l)}</button>`).join("")}</div>
 <div class="row mt"><button class="o" data-b="impAll" data-v="1">${t("impOn")}</button><button class="o" data-b="impAll" data-v="0">${t("impOff")}</button></div><p class="hint">${t("impHint")}</p></div>
 <div class="card"><h3>🌐 ${t("s_lang")}</h3>${seg("slang",L(),[["ar","العربية"],["en","English"]])}</div>
@@ -654,10 +771,9 @@ function R3(){
 <div class="card"><h3>📲 ${t("s_install")}</h3>${DEF?`<button class="big" data-b="inst">${t("installBtn")}</button>`:`<p class="hint" style="margin:0">${t("installHint")}</p>`}</div>
 <p class="hint" style="text-align:center">${t("ver")}</p>`}
 
-/* ============ التراخيص (تبويب 4) ============ */
 const subtle=(window.crypto&&crypto.subtle)?crypto.subtle:null;
 const OKLS="rn.ownerkey.v1";
-let OWN={blob:null,priv:"",pub:"",owner:"",lic:[],open:false},KEYBUF=null;
+let OWN={blob:null,priv:"",pub:"",owner:"",lic:[],open:false},OWN_PASS="";
 const b64=buf=>{const a=new Uint8Array(buf);let s="";for(let i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)};
 const unb64=s=>{const r=atob(s),a=new Uint8Array(r.length);for(let i=0;i<r.length;i++)a[i]=r.charCodeAt(i);return a};
 const b64u=buf=>b64(buf).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
@@ -675,7 +791,6 @@ function persistOwn(pass){
  return derive(pass,salt,"encrypt")
   .then(k=>subtle.encrypt({name:"AES-GCM",iv},k,new TextEncoder().encode(JSON.stringify({priv:OWN.priv,pub:OWN.pub,owner:OWN.owner,lic:OWN.lic}))))
   .then(ct=>{OWN.blob={app:"rn-owner",v:1,salt:b64(salt),iv:b64(iv),ct:b64(ct)};ownSaveBlob()})}
-let OWN_PASS="";
 function unlockOwn(pass){
  if(!subtle)return Promise.reject(t("noCrypto"));
  if(!OWN.blob)return Promise.reject(t("keyNoFile"));
@@ -683,11 +798,12 @@ function unlockOwn(pass){
   .then(k=>subtle.decrypt({name:"AES-GCM",iv:unb64(OWN.blob.iv)},k,unb64(OWN.blob.ct)))
   .then(pt=>{const o=JSON.parse(new TextDecoder().decode(pt));
    OWN.priv=o.priv||"";OWN.pub=o.pub||"";OWN.owner=o.owner||"";OWN.lic=Array.isArray(o.lic)?o.lic:[];
-   if(!OWN.priv||!OWN.pub)throw 0;OWN.open=true;OWN_PASS=pass})}
+   if(!OWN.priv||!OWN.pub)throw 0;OWN.open=true;OWN_PASS=pass;
+   if(o.owner&&!D.set.owner){D.set.owner=o.owner;save();sigUpd()}})}
 function appBase(){return location.origin+location.pathname.replace(/[^\/]*$/,"")}
 function licLink(code){return appBase()+"#lic="+encodeURIComponent(code)}
-function waFor(l){
- return t("waMsg",{name:l.name,link:licLink(l.code),exp:l.exp,owner:OWN.owner||t("ownerLab")})}
+function waFor(l){return t("waMsg",{name:l.name,link:licLink(l.code),exp:l.exp,owner:OWN.owner||D.set.owner||DEF_OWNER})}
+function guardPub(){const el=document.querySelector("script[data-rnpub]");return el?el.getAttribute("data-rnpub"):""}
 function R4(){
  if(!subtle){$("p4").innerHTML=`<div class="card"><h3>🔑 ${t("licT")}</h3><div class="banner err"><b>⚠</b>${t("noCrypto")}</div></div>`;return}
  if(!OWN.open){
@@ -702,17 +818,19 @@ function R4(){
   const kp=$("kPass");if(kp)kp.onkeydown=e=>{if(e.key==="Enter")G.kUnlock()};
   return}
  const cnt={all:OWN.lic.length,ok:0,exp:0,rev:0};OWN.lic.forEach(l=>cnt[licState(l)]++);
+ const locked=!!guardPub();
  $("p4").innerHTML=`<div class="card"><h3>🎫 ${t("licT")} <span class="m" style="font-size:.8rem">${OWN.lic.length}</span></h3>
  <p class="hint" style="margin:0 0 .7rem">${t("licSub")}</p>
  <div class="stats"><div class="st"><b>${cnt.all}</b><small>${t("licCount")}</small></div><div class="st d"><b>${cnt.ok}</b><small>${t("active")}</small></div><div class="st r"><b>${cnt.exp}</b><small>${t("expired")}</small></div><div class="st w"><b>${cnt.rev}</b><small>${t("revokedP")}</small></div></div>
- <div class="row tight mt"><button class="o" data-b="kLock" style="font-size:.85rem;min-height:2.5rem;padding:.2rem .7rem">${t("lockNow")}</button><span class="m" style="font-size:.75rem;align-self:center">${t("ownerLab")}: ${esc(OWN.owner||"—")}</span></div></div>
+ <div class="row tight mt"><button class="o" data-b="kLock" style="font-size:.85rem;min-height:2.5rem;padding:.2rem .7rem">${t("lockNow")}</button><span class="m" style="font-size:.75rem;align-self:center">${t("ownerLab")}: ${esc(OWN.owner||D.set.owner)}</span></div></div>
  <div class="card"><h3>＋ ${t("issue")}</h3>
  <div class="g">${fld(t("issName"),`<input id="iName" autocomplete="off">`)}${fld(t("issDays"),`<select id="iDays"><option value="30">${t("d30")}</option><option value="90" selected>${t("d90")}</option><option value="180">${t("d180")}</option><option value="365">${t("d365")}</option><option value="3650">${t("d3650")}</option></select>`)}</div>
  <div class="fld mt"><label>${t("issNote")}</label><input id="iNote" autocomplete="off"></div>
  <button class="wide go" data-b="iGo">${t("issue")}</button></div>
  <div class="lbl">${t("licList")}</div><div id="licList">${licListHtml()}</div>
- <div class="card"><h3>🛡 ${t("guardT")}</h3><p class="hint" style="margin:0 0 .6rem">${t("guardSub")}</p>
- <button class="wide" data-b="gDl">${t("guardBtn")}</button>
+ <div class="card"><h3>${t("protT")}</h3>
+ <div class="banner ${locked?"ok":""}"><b>${locked?t("protLocked"):t("protNow")}</b>${t("protHint")}</div>
+ <button class="wide go" data-b="gProt">${t("protBtn")}</button>
  <div class="row mt"><button class="o" data-b="lExp">${t("expLic")}</button><button class="o" data-b="lImp">${t("impLic")}</button></div></div>`}
 function licListHtml(){
  if(!OWN.lic.length)return `<p class="empty">${t("noLic")}</p>`;
@@ -731,19 +849,30 @@ function licListHtml(){
    <button class="${l.revoked?"go":"o dng"}" data-b="lRev" data-id="${l.id}" style="min-height:2.5rem;font-size:.82rem;padding:.2rem .6rem">${l.revoked?t("unrevoke"):t("revoke")}</button>
    <button class="o dng" data-b="lDel" data-id="${l.id}" style="min-height:2.5rem;font-size:.82rem;padding:.2rem .6rem">${t("delLic")}</button>
   </div></div>`}).join("")}
-function refreshLic(){const el=$("licList");if(el)el.innerHTML=licListHtml()}
 function signLic(id,name,exp){
  const pb=b64u(new TextEncoder().encode(JSON.stringify({v:1,i:id,n:name,e:exp})));
  return subtle.importKey("pkcs8",unb64(OWN.priv),{name:"ECDSA",namedCurve:"P-256"},false,["sign"])
   .then(k=>subtle.sign({name:"ECDSA",hash:"SHA-256"},k,new TextEncoder().encode(pb)))
   .then(sig=>"RN1."+pb+"."+b64u(sig))}
+function buildProtected(html){
+ let out=html.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi,m=>(/rn\.license\.v1|rnGuard|data-rnpub/.test(m)?"":m));
+ out=out.replace(/<script\b[^>]*data-rnpub[^>]*>\s*<\/script\s*>/gi,"");
+ const rev=OWN.lic.filter(l=>l.revoked).map(l=>l.id);
+ const guard=$("guardTpl").textContent.replace(/^\r?\n/,"")
+  .split("__OWNER__").join(JSON.stringify(D.set.owner||OWN.owner||DEF_OWNER))
+  .split("__PUBKEY__").join(OWN.pub)
+  .split("__REVOKED__").join(JSON.stringify(rev))
+  .split("__APPURL__").join(JSON.stringify(appBase()));
+ const block='<script data-rnpub="'+OWN.pub+'"><\/script>\n<script>\n'+guard.replace(/\s+$/,"")+'\n<\/script>';
+ const i=out.lastIndexOf("</body>");
+ return i>=0?out.slice(0,i)+block+"\n"+out.slice(i):out.replace(/\s*$/,"")+"\n"+block+"\n"}
 
 function shell(){
  $("hd").innerHTML=`<div class="ht"><b>📝 ${t("title")}</b><small id="dt"></small></div>
  ${SRC?`<button class="hb" id="mic" data-b="mic" aria-label="${esc(t("s_voice"))}">🎙</button>`:""}
  <button class="hb" data-b="lang" aria-label="Language">${L()==="ar"?"EN":"ع"}</button>
  <button class="hb" data-b="theme" aria-label="Theme">${THI[D.set.theme]||"🌓"}</button>`;
- $("nv").innerHTML=[1,2,3,4].map(n=>`<button data-b="tab" data-n="${n}" class="${TAB===n?"on":""}"><span>${["✈️","⭐","⚙️","🔑"][n-1]}</span>${t("nav"+n)}</button>`).join("");hdr();micUi()}
+ $("nv").innerHTML=[1,2,3,4].map(n=>`<button data-b="tab" data-n="${n}" class="${TAB===n?"on":""}"><span>${["✈️","⭐","⚙️","🔑"][n-1]}</span>${t("nav"+n)}</button>`).join("");hdr();micUi();sigUpd()}
 const THI={auto:"🌓",day:"☀️",night:"🌙"};
 function hdr(){const el=$("dt");if(el)el.textContent=`${dd(0)} · ${t("todayN",{n:D.fl.filter(f=>f.d===dd(0)).length})}`}
 const mq=matchMedia("(prefers-color-scheme: dark)");
@@ -766,7 +895,8 @@ function summary(f){
  const L1=["✈ "+(f.n||"—"),f.al,f.ac,f.rg,f.d,f.sp?"Stand "+f.sp:""].filter(Boolean).join(" | ");
  const a=[L1,`${t("sArr")} ${f.ta||"—"} — ${t("sDep")} ${f.td||"—"} | ${t("sPax")} ${f.pa||"—"}/${f.pd||"—"}`];
  f.s.forEach(s=>{const d=dur(s.f,s.t);a.push(`• ${sname(s)} ×${s.q||1}: ${s.f||s.t?`${s.f||t("unk")}–${s.t||t("unk")}${d!=null?" ("+fmtMin(d)+")":""}`:s.dn?"✔":t("unk")}${s.w?" ⚠ "+wtxt(s):""}`)});
- if(f.nt)a.push(t("sNote")+": "+f.nt);return a.join("\n")}
+ if(f.nt)a.push(t("sNote")+": "+f.nt);
+ return a.join("\n")+sigLine()}
 function csv(){
  const cell=x=>{x=String(x??"");if(/^[=+\-@]/.test(x))x="'"+x;return`"${x.replace(/"/g,'""')}"`};
  const rows=[["Date","Flight","Airline","Type","Reg","Stand","Sched","Chocks on","Chocks off","Pax arr","Pax dep","Service","Qty","Start","End","Minutes","Target min","Over target","Done no time","Issue","Issue note","Flight notes","Transferred"]];
@@ -774,6 +904,7 @@ function csv(){
   const base=[f.d,f.n,f.al,f.ac,f.rg,f.sp,f.st,f.ta,f.td,f.pa,f.pd];
   if(!f.s.length)rows.push([...base,"","","","","","","","","","",f.nt,f.ok?1:0]);
   f.s.forEach(s=>{const d=dur(s.f,s.t),tg=tgOf(s.k);rows.push([...base,sname(s),s.q||1,s.f,s.t,d??"",tg||"",tg&&d!=null&&d>tg?d-tg:"",s.dn?1:0,s.w?1:0,s.w?wtxt(s):"",f.nt,f.ok?1:0])})});
+ rows.push([]);rows.push(["# © "+(D.set.owner||DEF_OWNER)+" — Ramp Notes — "+t("rights")]);
  return"\ufeff"+rows.map(r=>r.map(cell).join(",")).join("\r\n")}
 function mergeData(o){
  let a=0,b=0;if(!o||typeof o!=="object")throw 0;
@@ -788,8 +919,9 @@ function mergeData(o){
 function purge(){const k=+D.set.keep;if(k>0){const lim=dd(k);D.fl=D.fl.filter(f=>!(f.ok&&f.d<lim))}save()}
 function backup(kind){
  D.set.lb=Date.now();save();
+ const lic=readLic()||{};
  if(kind==="csv")fileDl(`ramp-notes-${dd(0)}.csv`,csv(),"text/csv;charset=utf-8");
- else fileDl(`ramp-notes-${dd(0)}.json`,JSON.stringify({app:"ramp-notes",v:2,fl:D.fl,sc:D.sc,h:D.h,rm:D.rm,cs:D.cs,hid:D.hid,tg:D.tg,ds:D.set.ds,da:D.set.da}),"application/json");
+ else fileDl(`ramp-notes-${dd(0)}.json`,JSON.stringify({app:"ramp-notes",v:2,owner:D.set.owner,license:{to:lic.name||"—",id:lic.id||"—",exp:lic.exp||"—"},fl:D.fl,sc:D.sc,h:D.h,rm:D.rm,cs:D.cs,hid:D.hid,tg:D.tg,ds:D.set.ds,da:D.set.da}),"application/json");
  if(TAB===3)R3();else R1()}
 
 const G={
@@ -869,14 +1001,13 @@ const G={
   try{const file=new File([txt],"ramp-routine.json",{type:"text/plain"});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:t("title")});return}}catch(e){if(e&&e.name==="AbortError")return}
   fileDl("ramp-routine.json",txt,"application/json")},
  async inst(){if(!DEF)return;DEF.prompt();try{await DEF.userChoice}catch(e){}DEF=null;R3()},
- /* --- التراخيص --- */
  kPick(){$("keyFile").click()},
  kUnlock(){
   const p=$("kPass"),out=$("kOut");
   if(!OWN.blob){toast(t("keyNoFile"));$("keyFile").click();return}
   const pass=p?p.value:"";
   if(!pass){toast(t("keyPass"));if(p)p.focus();return}
-  unlockOwn(pass).then(()=>{R4();toast(t("keyOk"))}).catch(()=>{if(out)out.innerHTML=`<div class="banner err"><b>✕</b>${t("keyBad")}</div>`;toast(t("keyBad"))})},
+  unlockOwn(pass).then(()=>{R4();sigUpd();toast(t("keyOk"))}).catch(()=>{if(out)out.innerHTML=`<div class="banner err"><b>✕</b>${t("keyBad")}</div>`;toast(t("keyBad"))})},
  kLock(){OWN.open=false;OWN.priv="";OWN_PASS="";R4();toast(t("licLock"))},
  iGo(){
   const nEl=$("iName"),name=(nEl?nEl.value:"").trim();
@@ -888,8 +1019,7 @@ const G={
    return persistOwn(OWN_PASS).then(()=>{
     $("iName").value="";$("iNote").value="";R4();toast(t("issued"));
     const el=document.querySelector(`[data-b="lWa"][data-id="${id}"]`);
-    if(el)el.scrollIntoView({block:"center",behavior:"smooth"});
-   })}).catch(()=>toast(t("keyBad")))},
+    if(el)el.scrollIntoView({block:"center",behavior:"smooth"})})}).catch(()=>toast(t("keyBad")))},
  lWa(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(!l)return;
   window.open("https://wa.me/?text="+encodeURIComponent(waFor(l)),"_blank","noopener")},
  lLink(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(l)copy(licLink(l.code))},
@@ -899,21 +1029,18 @@ const G={
   <div class="row mt"><button data-b="rnGo" data-id="${l.id}">${t("save")}</button><button class="o" data-b="closeSheet">${t("cancel")}</button></div>`)},
  rnGo(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(!l)return;
   const n=+$("rnDays").value||90,exp=afterDays(n);
-  signLic(l.id,l.name,exp).then(code=>{l.code=code;l.exp=exp;l.days=n;l.revoked=false;
-   return persistOwn(OWN_PASS)}).then(()=>{closeSheet();R4();toast(t("renewed"))}).catch(()=>toast(t("keyBad")))},
+  signLic(l.id,l.name,exp).then(code=>{l.code=code;l.exp=exp;l.days=n;l.revoked=false;return persistOwn(OWN_PASS)})
+   .then(()=>{closeSheet();R4();toast(t("renewed"))}).catch(()=>toast(t("keyBad")))},
  lRev(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(!l)return;
   l.revoked=!l.revoked;persistOwn(OWN_PASS).then(()=>{R4();toast(l.revoked?t("revoked"):t("unrevoked"))})},
  lDel(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(!l)return;
   sheet(`<h3>${t("delLic")} ${esc(l.name)}؟</h3><div class="row"><button class="dng" data-b="lDelGo" data-id="${l.id}">${t("delLic")}</button><button class="o" data-b="closeSheet">${t("cancel")}</button></div>`)},
  lDelGo(b){OWN.lic=OWN.lic.filter(x=>x.id!==b.dataset.id);persistOwn(OWN_PASS).then(()=>{closeSheet();R4();toast(t("licDeleted"))})},
- gDl(){
-  const rev=OWN.lic.filter(l=>l.revoked).map(l=>l.id);
-  fetch("index.html?rnup="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():Promise.reject())
-   .then(html=>{
-    if(!/REVOKED\s*=\s*\[[^\]]*\]/.test(html))throw 0;
-    const out=html.replace(/REVOKED\s*=\s*\[[^\]]*\]/,"REVOKED = "+JSON.stringify(rev));
-    fileDl("index.html",out,"text/html;charset=utf-8");toast(t("guardOk"))})
-   .catch(()=>toast(t("guardFail")))},
+ gProt(){
+  if(!OWN.pub){toast(t("keyBad"));return}
+  fetch("index.html?rnprot="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():Promise.reject())
+   .then(html=>{const out=buildProtected(html);fileDl("index.html",out,"text/html;charset=utf-8");toast(t("protOk"),null,false,5000)})
+   .catch(()=>toast(t("protFail")))},
  lExp(){fileDl("ramp-licenses-"+dd(0)+".json",JSON.stringify({app:"rn-licenses",v:1,lic:OWN.lic},null,2),"application/json")},
  lImp(){$("licFile").click()}
 };
@@ -928,8 +1055,8 @@ document.addEventListener("click",e=>{
  switch(a){
   case"o":
    if(BULK){SEL.has(f.id)?SEL.delete(f.id):SEL.add(f.id);c.classList.toggle("sel",SEL.has(f.id));const bx=c.querySelector(".selbox");if(bx)bx.textContent=SEL.has(f.id)?"✓":"";bkUpd();return}
-   f.o=f.o?0:1;save();rc(f);return;
-  case"fold":f.o=0;save();rc(f);focusCard(f.id);return;
+   f.o=f.o?0:1;save();rc(f);if(f.o)focusCard(f.id);return;
+  case"fold":f.o=f.o?0:1;save();rc(f);focusCard(f.id);return;
   case"dm":case"dp":f.d=addD(f.d,a==="dp"?1:-1);save();R1();hdr();focusCard(f.id);return;
   case"nf":s.f=nw();up();return;
   case"nt":s.t=nw();up();
@@ -942,7 +1069,7 @@ document.addEventListener("click",e=>{
   case"qm":case"qp":{const q=Math.min(99,Math.max(1,(parseInt(s.q)||1)+(a==="qp"?1:-1)));s.q=String(q);up();return}
   case"x":{const u=undoer();f.s.splice(+r.dataset.i,1);save();rc(f);toast(t("removed"),u);return}
   case"add":openAdd(f.id);return;
-  case"qadd":{const k=b.dataset.k;if(!k||k==="oth")return;f.s.push({k,q:"1",f:"",t:"",w:0,wr:[],nt:""});save();rc(f);buzz(1);return}
+  case"qadd":{const k=b.dataset.k;if(!k||k==="oth")return;f.s.push({k,q:"1",f:nw(),t:"",w:0,wr:[],nt:""});save();rc(f);buzz(1);return}
   case"tls":{const i=r?+r.dataset.i:-1;const el=c.querySelector(`.sv[data-i="${i}"]`);if(el)el.scrollIntoView({block:"center",behavior:"smooth"});return}
   case"now":f[b.dataset.k]=nw();save();rc(f);return;
   case"clr":f[b.dataset.k]="";save();rc(f);return;
@@ -958,6 +1085,7 @@ document.addEventListener("change",e=>{
  const el=e.target;
  if(el.dataset.b==="wdin"){setWd(el.value);return}
  if(el.dataset.b==="sort"){D.set.sort=el.value;save();renderList();return}
+ if(el.id==="ownerIn"){D.set.owner=el.value.trim()||DEF_OWNER;el.value=D.set.owner;save();sigUpd();toast(t("ownerSaved"));return}
  if(el.dataset.tg){const k=el.dataset.tg,v=parseInt(el.value,10);
   if(v>0)D.tg[k]=Math.min(240,v);else delete D.tg[k];
   el.value=tgOf(k)||"";save();R1();return}
@@ -987,7 +1115,7 @@ document.addEventListener("change",e=>{
   if(a==="rg"&&D.rm[v])["al","ac"].forEach((k,i)=>{if(!f[k]&&D.rm[v][i]){f[k]=D.rm[v][i];const x=c.querySelector(`[data-a="${k}"]`);if(x)x.value=f[k];lrn(k,f[k])}});
   if(f.rg)D.rm[f.rg]=[f.al,f.ac]}
  save();if(!r)dlists();
- if(r&&el.type==="time"){upCard(c,f,r);maybeFold(f)}
+ if(r&&el.type==="time")upCard(c,f,r);
  else{const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)+(SEL.has(f.id)?" sel":"");stUpd();hrUpd()}});
 document.addEventListener("keydown",e=>{
  if(e.key==="Escape"&&BULK){BULK=false;SEL.clear();R1();return}
@@ -1030,6 +1158,7 @@ document.addEventListener("pointerup",endDrag);
 document.addEventListener("pointercancel",endDrag);
 addEventListener("beforeinstallprompt",e=>{e.preventDefault();DEF=e;if(TAB===3)R3()});
 addEventListener("appinstalled",()=>{DEF=null;if(TAB===3)R3()});
+addEventListener("rn:licensed",()=>{sigUpd()});
 function tick(){
  document.querySelectorAll("[data-run]").forEach(el=>{
   const e=elapsed(el.dataset.f),tg=+el.dataset.tg||0;
@@ -1137,14 +1266,20 @@ function execCmd(p,f){
  case"chocks":f[p.w]=T_;return{ok:1,msg:`${nf} · ${t(p.w==="ta"?"chOn":"chOff")} ${T_}`,f};
  case"note":f.nt=f.nt?f.nt+"\n"+p.txt:p.txt;return{ok:1,msg:`${nf} · ${t("sNote")} ✔`,f};
  case"issue":{
-  if(p.k){let i=pickSv(f,p.k,"tog");if(i<0)i=newSv(f,p.k);const s=f.s[i];s.w=1;s.wr=s.wr||[];p.rs.forEach(r=>{if(!s.wr.includes(r))s.wr.push(r)});return{ok:1,msg:`⚠ ${nf} · ${sname(s)}${p.rs.length?": "+p.rs.map(r=>t("wr_"+r)).join("، "):""}`,f,idx:i}}
+  if(p.k){let i=pickSv(f,p.k,"tog");if(i<0)i=newSv(f,p.k);const s=f.s[i];s.w=1;s.wr=s.wr||[];if(!s.f)s.f=T_;p.rs.forEach(r=>{if(!s.wr.includes(r))s.wr.push(r)});return{ok:1,msg:`⚠ ${nf} · ${sname(s)}${p.rs.length?": "+p.rs.map(r=>t("wr_"+r)).join("، "):""}`,f,idx:i}}
   const txt=p.txt||p.rs.map(r=>t("wr_"+r)).join("، ");f.nt=f.nt?f.nt+"\n⚠ "+txt:"⚠ "+txt;return{ok:1,msg:`⚠ ${nf}: ${txt}`,f}}
- case"add":{let last=-1;const names=[];for(const it of p.items){let i=pickSv(f,it.k,"start");if(i>=0&&sst(f.s[i])==="idle"){if(it.q>1)f.s[i].q=String(it.q)}else i=newSv(f,it.k,it.q);last=i;names.push(sname(f.s[i])+(it.q>1?" ×"+it.q:""))}return{ok:1,msg:`＋ ${nf} · ${names.join("، ")}`,f,idx:last}}
- case"addc":f.s.push({k:"oth",nm:p.nm,q:"1",f:"",t:"",w:0,wr:[],nt:""});return{ok:1,msg:`＋ ${nf} · ${p.nm}`,f,idx:f.s.length-1};
+ case"add":{let last=-1;const names=[];
+  for(const it of p.items){
+   let i=pickSv(f,it.k,"start");
+   if(i>=0&&sst(f.s[i])==="idle"){if(it.q>1)f.s[i].q=String(it.q);if(!f.s[i].f)f.s[i].f=T_}
+   else{i=newSv(f,it.k,it.q);f.s[i].f=T_}
+   last=i;names.push(sname(f.s[i])+(+f.s[i].q>1?" ×"+f.s[i].q:"")+" "+f.s[i].f)}
+  return{ok:1,msg:`▶ ${nf} · ${names.join("، ")}`,f,idx:last}}
+ case"addc":{f.s.push({k:"oth",nm:p.nm,q:"1",f:T_,t:"",w:0,wr:[],nt:""});return{ok:1,msg:`▶ ${nf} · ${p.nm} ${T_}`,f,idx:f.s.length-1}}
  case"rem":{const i=pickSv(f,p.k,"tog");if(i<0)return{ok:0,msg:`${svLabel(p.k)} — ${t("vNone")}`};const nm=sname(f.s[i]);f.s.splice(i,1);return{ok:1,msg:`✕ ${nf} · ${nm}`,f}}
  case"dn":{let i=pickSv(f,p.k,"start");if(i<0)i=newSv(f,p.k);const s=f.s[i];s.dn=1;s.f="";s.t="";return{ok:1,msg:`✔ ${nf} · ${sname(s)}: ${t("doneNoTime")}`,f,idx:i}}
  case"start":{let i=pickSv(f,p.k,"start");if(i<0)i=newSv(f,p.k);const s=f.s[i];s.f=T_;s.t="";s.dn=0;return{ok:1,msg:`▶ ${nf} · ${sname(s)} ${T_}`,f,idx:i}}
- case"end":{let i=pickSv(f,p.k,"end");if(i<0)i=newSv(f,p.k);const s=f.s[i];s.t=T_;s.dn=0;const d=dur(s.f,s.t);return{ok:1,msg:`■ ${nf} · ${sname(s)} ${T_}${d!=null?" ("+fmtMin(d)+")":""}`,f,idx:i}}
+ case"end":{let i=pickSv(f,p.k,"end");if(i<0)i=newSv(f,p.k);const s=f.s[i];if(!s.f)s.f=T_;s.t=T_;s.dn=0;const d=dur(s.f,s.t);return{ok:1,msg:`■ ${nf} · ${sname(s)} ${T_}${d!=null?" ("+fmtMin(d)+")":""}`,f,idx:i}}
  case"tog":{const i=pickSv(f,p.k,"tog");if(i<0)return execCmd({t:"start",k:p.k,time:p.time},f);const s=f.s[i],st=sst(s);
   if(st==="run")return execCmd({t:"end",k:p.k,time:p.time},f);
   if(st==="done")return{ok:0,msg:`${sname(s)} — ${t("vAlready")}`};
@@ -1170,10 +1305,7 @@ function onSpeech(alts){
  buzz(0);toast(`🎙 «${alts[0]||""}»\n${t("vNo")} — ${t("vTry")}: «${T[L()].vex[0][0]}»`,null,false,4500)}
 let REC=null,LIS=false,WANT=false,FATAL=false,LT=[];
 const micLang=()=>D.set.vl==="auto"?(L()==="ar"?"ar-EG":"en-US"):D.set.vl;
-function micUi(){const m=$("mic");if(!m)return;
- m.hidden=!(SRC&&TAB===1);
- m.classList.toggle("rec",LIS);
- m.textContent=LIS?"⏹":"🎙"}
+function micUi(){const m=$("mic");if(!m)return;m.hidden=!(SRC&&TAB===1);m.classList.toggle("rec",LIS);m.textContent=LIS?"⏹":"🎙"}
 function micToggle(){if(!SRC){toast(t("vNoSup"),null,false,3500);return}if(WANT||LIS){micStop();return}FATAL=false;LT=[];WANT=true;micStart(false)}
 function micStop(){WANT=false;try{REC&&REC.abort&&REC.abort()}catch(e){}LIS=false;micUi();const el=$("toast");if(el.dataset.l==="1")el.hidden=true}
 function micStart(again,langOv){
@@ -1198,7 +1330,7 @@ function micStart(again,langOv){
 ownLoad();purge();applyTheme();
 document.documentElement.lang=L();document.documentElement.dir=L()==="ar"?"rtl":"ltr";document.title=L()==="ar"?"مفكرة المهبط":"Ramp Notes";
 D.sc.concat(D.fl).forEach(c=>["al","ac","rg","sp"].forEach(k=>{if(c[k]&&!D.h[k][c[k]])lrn(k,c[k])}));
-shell();buildP2();RS();R1();dlists();
+shell();buildP2();RS();R1();dlists();sigUpd();
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
 </script>
