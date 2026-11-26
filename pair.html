@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1220" id="tc">
+<title>ربط الموبايل · مفكرة المهبط</title>
+<link rel="icon" href="icon-192.png">
+<style>
+:root,[data-theme=day]{--bg:#e9ecf1;--c:#fff;--c2:#f4f6f9;--t:#000;--m:#2b3646;--b:#1e293b;--b2:#c3ccd8;--p:#0b3bd6;--pt:#fff;--ok:#0a6b25;--okt:#fff;--okbg:#d2f4da;--wn:#b3001b;--wnt:#fff;--wnbg:#ffdadd;--run:#8a4b00;--runt:#fff;--runbg:#ffe8a3;--hd:#0b1220;--hdt:#fff;--paper:#fffdf7;--ink:#14213a}
+[data-theme=night]{--bg:#000;--c:#10151c;--c2:#161d26;--t:#f5f7fa;--m:#b6c1d1;--b:#46556c;--b2:#2c3949;--p:#ffb21f;--pt:#1a1100;--ok:#5ce58a;--okt:#00170a;--okbg:#0b2a17;--wn:#ff8f9a;--wnt:#2a0006;--wnbg:#3d0c14;--run:#ffc857;--runt:#1f1500;--runbg:#3a2a04;--hd:#05070a;--hdt:#f5f7fa;--paper:#fffdf7;--ink:#14213a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;font-family:"Noto Sans Arabic","Segoe UI",Tahoma,system-ui,sans-serif;background:var(--bg);color:var(--t);font-weight:600;line-height:1.55;padding-bottom:calc(2rem + env(safe-area-inset-bottom))}
+button,input,textarea{font:inherit;color:inherit}
+textarea{width:100%;min-height:6rem;padding:.6rem;border:2px solid var(--b);border-radius:12px;background:var(--c2);color:var(--t);font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.72rem;direction:ltr;text-align:left;resize:vertical;line-height:1.55;font-weight:600}
+textarea:focus{outline:3px solid var(--p);outline-offset:1px}
+button{min-height:3rem;border:2px solid var(--p);background:var(--p);color:var(--pt);border-radius:12px;padding:.5rem .9rem;font-weight:800;font-size:1rem;cursor:pointer;transition:.14s}
+button:hover:not(:disabled){filter:brightness(1.12)}
+button:active:not(:disabled){transform:scale(.97)}
+button:disabled{opacity:.42;cursor:not-allowed}
+button.o{background:transparent;color:var(--t);border-color:var(--b)}
+button.go{background:var(--ok);border-color:var(--ok);color:var(--okt)}
+button.sm{min-height:2.4rem;padding:.2rem .7rem;font-size:.84rem;border-radius:9px}
+:focus-visible{outline:3px solid var(--p);outline-offset:2px}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+a{color:var(--p)}
+#hd{position:sticky;top:0;z-index:40;background:var(--hd);color:var(--hdt);padding:.55rem .9rem;padding-top:calc(.55rem + env(safe-area-inset-top));display:flex;align-items:center;gap:.6rem;box-shadow:0 2px 14px #0003}
+#hd .ttl{flex:1;min-width:0}
+#hd b{font-size:1.12rem;display:block;line-height:1.25}
+#hd small{font-size:.7rem;font-weight:800;letter-spacing:1.7px;color:var(--run)}
+.hb{min-height:2.5rem;min-width:2.5rem;padding:0 .55rem;background:transparent;color:var(--hdt);border:2px solid var(--hdt);font-size:1rem}
+main{max-width:720px;margin:0 auto;padding:.8rem}
+.card{background:var(--c);border:2px solid var(--b);border-radius:16px;padding:1rem;margin:.75rem 0;animation:rise .45s both;animation-delay:calc(var(--i,0)*.06s)}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+.card>h2{margin:0 0 .3rem;font-size:1.1rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.card>h2 .n{flex:none;width:27px;height:27px;border-radius:9px;display:grid;place-items:center;font-size:.84rem;font-weight:900;background:var(--p);color:var(--pt)}
+.card>h2 .tag{margin-inline-start:auto;font-size:.68rem;font-weight:900;padding:.12rem .6rem;border-radius:99px;border:2px solid var(--b)}
+.card>h2 .tag.ok{background:var(--ok);color:var(--okt);border-color:var(--ok)}
+.card>h2 .tag.wn{background:var(--wn);color:var(--wnt);border-color:var(--wn)}
+.sub{color:var(--m);font-size:.86rem;margin:0 0 .75rem}
+.lic{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:.5rem}
+.lic div{border:2px solid var(--b);border-radius:12px;padding:.5rem .6rem;background:var(--c2)}
+.lic span{display:block;font-size:.68rem;color:var(--m);font-weight:800;letter-spacing:.5px}
+.lic b{font-size:.96rem;word-break:break-all}
+.qrwrap{background:var(--paper);border-radius:18px;padding:1rem;box-shadow:0 14px 40px #0005;margin:.5rem 0;position:relative}
+.qrwrap::before,.qrwrap::after{content:"";position:absolute;width:22px;height:22px;border:3px solid var(--p);opacity:.5}
+.qrwrap::before{top:8px;inset-inline-start:8px;border-inline-end:0;border-bottom:0;border-radius:8px 0 0 0}
+.qrwrap::after{bottom:8px;inset-inline-end:8px;border-inline-start:0;border-top:0;border-radius:0 0 8px 0}
+#qrBox{display:flex;align-items:center;justify-content:center;min-height:260px}
+#qrCanvas{display:block;image-rendering:pixelated;max-width:100%;height:auto;border-radius:6px}
+.qrstate{text-align:center;color:var(--ink);font-size:.88rem;font-weight:800;padding:2rem 1rem;line-height:1.9}
+.qrcap{text-align:center;color:var(--ink);font-size:.78rem;font-weight:800;margin-top:.6rem;opacity:.75}
+.row{display:flex;gap:.5rem;flex-wrap:wrap}.row>*{flex:1;min-width:135px}
+.row.tight>*{flex:0 0 auto;min-width:0}
+.mt{margin-top:.7rem}
+.banner{border:2px solid var(--run);background:var(--runbg);border-radius:13px;padding:.7rem .85rem;font-size:.86rem;font-weight:700;margin:.7rem 0}
+.banner.err{border-color:var(--wn);background:var(--wnbg)}
+.banner.ok{border-color:var(--ok);background:var(--okbg)}
+.banner.info{border-color:var(--b);background:var(--c2)}
+.banner b{display:block;margin-bottom:.2rem;font-size:.94rem}
+.linkbox{background:var(--c2);border:2px dashed var(--b);border-radius:11px;padding:.55rem;font-size:.68rem;word-break:break-all;direction:ltr;text-align:left;line-height:1.5;max-height:5.5rem;overflow:auto}
+.steps{counter-reset:s;list-style:none;padding:0;margin:.4rem 0}
+.steps li{counter-increment:s;display:flex;gap:.65rem;padding:.5rem 0;font-size:.88rem;border-bottom:1px dashed var(--b2)}
+.steps li:last-child{border-bottom:0}
+.steps li::before{content:counter(s);flex:none;width:25px;height:25px;border-radius:8px;display:grid;place-items:center;font-weight:900;font-size:.8rem;background:var(--p);color:var(--pt)}
+.steps .mono{font-size:.76rem;background:var(--c2);border:1px solid var(--b2);border-radius:6px;padding:0 .32rem;direction:ltr;display:inline-block;word-break:break-all}
+.big{width:100%;min-height:3.5rem;font-size:1.06rem}
+.fld label{display:block;font-size:.8rem;font-weight:800;color:var(--m);margin:0 0 .25rem}
+#zoom{position:fixed;inset:0;z-index:90;background:#fffdf7;display:flex;align-items:center;justify-content:center;padding:1rem;flex-direction:column;gap:1rem}
+#zoom canvas{image-rendering:pixelated;max-width:min(94vw,94vh);height:auto;border-radius:8px}
+#zoom button{position:absolute;top:calc(.8rem + env(safe-area-inset-top));inset-inline-end:.8rem;background:#14213a;color:#fffdf7;border-color:#14213a}
+#toast{position:fixed;inset-inline:.8rem;bottom:calc(1rem + env(safe-area-inset-bottom));max-width:640px;margin:0 auto;z-index:80;background:var(--hd);color:var(--hdt);border:2px solid var(--p);border-radius:13px;padding:.65rem .9rem;font-weight:800;box-shadow:0 8px 28px #0006}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:var(--c2)}
+::-webkit-scrollbar-thumb{background:var(--b);border-radius:8px;border:2px solid var(--c2)}
+::-webkit-scrollbar-thumb:hover{background:var(--p)}
+*{scrollbar-width:thin;scrollbar-color:var(--b) var(--c2)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<header id="hd">
+  <div class="ttl"><b>📱 ربط الموبايل</b><small>RAMP NOTES · DEVICE PAIRING</small></div>
+  <button class="hb" id="thBtn" title="المظهر">☀️</button>
+</header>
+
+<main>
+  <div class="card" id="stateCard" style="--i:0">
+    <h2><span class="n">✓</span> ترخيص الجهاز ده <span class="tag" id="stTag">جارٍ القراءة…</span></h2>
+    <p class="sub" id="stSub">بنقرا الترخيص المحفوظ على الجهاز اللي فاتح الصفحة دلوقتي.</p>
+    <div class="lic" id="licGrid" hidden>
+      <div><span>مرخّص لـ</span><b id="lName">—</b></div>
+      <div><span>صالح حتى</span><b class="mono" id="lExp">—</b></div>
+      <div><span>معرّف الترخيص</span><b class="mono" id="lId">—</b></div>
+      <div><span>الحالة</span><b id="lState">—</b></div>
+    </div>
+    <div id="stNote"></div>
+  </div>
+
+  <div class="card" id="qrCard" hidden style="--i:1">
+    <h2><span class="n">1</span> امسح بالموبايل</h2>
+    <p class="sub">افتح كاميرا الموبايل ووجّهها على المربع ده — هيفتح التطبيق ويتفعّل لوحده على الموبايل من غير ما تكتب أي حاجة.</p>
+    <div class="qrwrap">
+      <div id="qrBox"><div class="qrstate" id="qrState">جارٍ توليد الرمز…</div><canvas id="qrCanvas" hidden></canvas></div>
+      <div class="qrcap" id="qrCap">وجّه كاميرا الموبايل هنا</div>
+    </div>
+    <div class="row">
+      <button id="zoomBtn" class="o">🔍 تكبير الرمز</button>
+      <button id="waBtn" class="go">📤 ابعته واتساب</button>
+    </div>
+    <div class="row mt">
+      <button id="cpLink" class="o">🔗 نسخ رابط التفعيل</button>
+      <button id="cpCode" class="o">📋 نسخ الكود</button>
+    </div>
+    <div class="fld mt"><label>رابط التفعيل (لو الرمز مش شغال)</label><div class="linkbox mono" id="linkBox"></div></div>
+  </div>
+
+  <div class="card" id="manualCard" hidden style="--i:2">
+    <h2><span class="n">✍️</span> عندك الكود؟ فعّل الجهاز ده</h2>
+    <p class="sub">لو فاتح الصفحة دي من الموبايل ومعاك الكود، الصقه هنا ودوس تفعيل — أو ولّد منه رمز تمسحه من جهاز تاني.</p>
+    <div class="fld"><label>كود التفعيل</label><textarea id="mCode" placeholder="RN1.…" spellcheck="false"></textarea></div>
+    <div class="row mt">
+      <button id="mGo" class="go">🔓 فعّل الجهاز ده</button>
+      <button id="mQr" class="o">📱 ولّد رمز من الكود</button>
+    </div>
+    <div id="mOut" hidden></div>
+  </div>
+
+  <div class="card" style="--i:3">
+    <h2><span class="n">📖</span> الخطوات بالترتيب</h2>
+    <ol class="steps">
+      <li>افتح الصفحة دي <b>على اللاب</b> اللي التطبيق مفعّل عليه — نفس رابط التطبيق بس بزود <span class="mono">pair.html</span> في الآخر.</li>
+      <li>هتلاقي رمز مربع كبير ظهر فوق — افتح <b>كاميرا الموبايل</b> ووجّهها عليه (أو تطبيق مسح QR).</li>
+      <li>هتظهر رسالة على الموبايل فيها الرابط — دوس عليها.</li>
+      <li>التطبيق هيفتح على الموبايل، شاشة التفعيل تختفي لوحدها، وتحت خالص تلاقي «مرخّص لـ: اسمك».</li>
+      <li>لو التطبيق <b>مثبّت</b> على الموبايل من قبل كده: افتحه من الأيقونة بعد ما تفتح الرابط مرة واحدة من المتصفح — الترخيص بيتشارك بينهم.</li>
+    </ol>
+    <div class="banner info"><b>بديل من غير رمز</b>دوس «📤 ابعته واتساب» وابعت الرسالة لنفسك، وافتح الرابط من واتساب على الموبايل. أو دوس «📋 نسخ الكود» والصقه في خانة «كود التفعيل» اللي ظاهرة عندك على الموبايل.</div>
+    <div class="banner"><b>لو الرمز مش بيظهر</b>توليد الرمز محتاج إنترنت مرة واحدة. لو مفيش نت، استخدم زرار النسخ أو الواتساب — نفس النتيجة بالظبط.</div>
+  </div>
+
+  <div class="card" style="--i:4">
+    <h2>🔒 ملحوظة أمان</h2>
+    <p class="sub" style="margin:0">الصفحة دي بتقرا الترخيص المحفوظ على الجهاز اللي فاتحها بس — مش بتبعت أي حاجة لأي سيرفر. لو حد فتحها على جهاز مش مفعّل، مش هيشوف أي كود. ومتبعتش الكود أو رابط التفعيل لأي حد غير مصرّح له، لأن أي حد يوصله يقدر يفعّل بيه جهازه.</p>
+  </div>
+</main>
+
+<div id="zoom" hidden><button id="zoomClose">✕ إغلاق</button><canvas id="zoomCanvas"></canvas><div style="color:#14213a;font-weight:800;font-size:.9rem">وجّه كاميرا الموبايل — واضغط إغلاق للرجوع</div></div>
+<div id="toast" hidden></div>
+
+<script>
+"use strict";
+var $=function(i){return document.getElementById(i)};
+var LSK="rn.license.v1";
+var CODE="",LINK="",THEME="auto",QRLIB=null;
+
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
+var TT;function toast(m){var t=$("toast");t.textContent=m;t.hidden=false;clearTimeout(TT);TT=setTimeout(function(){t.hidden=true},2800)}
+function appBase(){
+  var p=location.pathname.replace(/[^\/]*$/,"");
+  return location.origin+p;
+}
+function linkFor(code){return appBase()+"#lic="+encodeURIComponent(code)}
+function readLic(){try{return JSON.parse(localStorage.getItem(LSK))}catch(e){return null}}
+function copyTxt(t){
+  function ok(){toast("تم النسخ ✓")}
+  function fb(){var a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;opacity:0";document.body.appendChild(a);a.select();try{document.execCommand("copy");ok()}catch(e){prompt("انسخ:",t)}a.remove()}
+  if(!t){toast("مفيش حاجة تتنسخ");return}
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(ok,fb);else fb();
+}
+function applyTheme(){
+  var eff=THEME;
+  if(eff==="auto"){try{var d=JSON.parse(localStorage.getItem("rn")||"{}");var s=(d.set&&d.set.theme)||"auto";eff=s==="auto"?(matchMedia("(prefers-color-scheme: dark)").matches?"night":"day"):s}catch(e){eff=matchMedia("(prefers-color-scheme: dark)").matches?"night":"day"}}
+  document.documentElement.dataset.theme=eff;
+  $("thBtn").textContent=eff==="night"?"🌙":"☀️";
+  $("tc").content=getComputedStyle(document.documentElement).getPropertyValue("--hd").trim()||"#0b1220";
+}
+$("thBtn").onclick=function(){THEME=document.documentElement.dataset.theme==="night"?"day":"night";try{localStorage.setItem("rnPair.theme",THEME)}catch(e){}applyTheme()};
+try{THEME=localStorage.getItem("rnPair.theme")||"auto"}catch(e){}
+
+/* ---------- توليد الرمز ---------- */
+var SRCS=[
+ "https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js",
+ "https://unpkg.com/qrcode-generator@1.4.4/qrcode.js",
+ "https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"
+];
+function loadLib(){
+  if(window.qrcode)return Promise.resolve(window.qrcode);
+  return new Promise(function(res,rej){
+    var i=0;
+    function next(){
+      if(i>=SRCS.length){rej(new Error("no lib"));return}
+      var s=document.createElement("script");
+      s.src=SRCS[i++];s.async=true;
+      var done=false;
+      var to=setTimeout(function(){if(done)return;done=true;s.remove();next()},7000);
+      s.onload=function(){if(done)return;done=true;clearTimeout(to);window.qrcode?res(window.qrcode):next()};
+      s.onerror=function(){if(done)return;done=true;clearTimeout(to);next()};
+      document.head.appendChild(s);
+    }
+    next();
+  });
+}
+function drawQR(canvas,text,maxPx){
+  var lib=QRLIB||window.qrcode;
+  var qr=lib(0,"M");
+  qr.addData(text);qr.make();
+  var n=qr.getModuleCount(),quiet=4,total=n+quiet*2;
+  var scale=Math.max(2,Math.floor(maxPx/total));
+  var size=total*scale;
+  canvas.width=size;canvas.height=size;
+  canvas.style.width=Math.min(maxPx,size)+"px";
+  var x=canvas.getContext("2d");
+  x.fillStyle="#fffdf7";x.fillRect(0,0,size,size);
+  x.fillStyle="#14213a";
+  for(var r=0;r<n;r++)for(var c=0;c<n;c++)if(qr.isDark(r,c))x.fillRect((c+quiet)*scale,(r+quiet)*scale,scale,scale);
+  return size;
+}
+function renderQR(text){
+  var box=$("qrBox"),cv=$("qrCanvas"),st=$("qrState");
+  st.hidden=false;cv.hidden=true;st.textContent="جارٍ توليد الرمز…";
+  var maxPx=Math.min(420,Math.max(240,(box.clientWidth||320)-8));
+  loadLib().then(function(lib){
+    QRLIB=lib;
+    drawQR(cv,text,maxPx);
+    st.hidden=true;cv.hidden=false;
+    $("qrCap").textContent="وجّه كاميرا الموبايل هنا · "+text.length+" حرف في الرابط";
+    $("zoomBtn").disabled=false;
+  }).catch(function(){
+    st.hidden=false;cv.hidden=true;
+    st.innerHTML="تعذّر توليد الرمز — مفيش إنترنت أو الخدمة محجوبة.<br>استخدم زرار «ابعته واتساب» أو «نسخ الكود» تحت 👇<br>نفس النتيجة بالظبط.";
+    $("qrCap").textContent="الرمز مش متاح دلوقتي";
+    $("zoomBtn").disabled=true;
+  });
+}
+function showPair(code){
+  CODE=code;LINK=linkFor(code);
+  $("qrCard").hidden=false;
+  $("linkBox").textContent=LINK;
+  renderQR(LINK);
+}
+$("zoomBtn").onclick=function(){
+  if(!LINK||!QRLIB)return;
+  var cv=$("zoomCanvas");
+  var px=Math.min(window.innerWidth,window.innerHeight)-70;
+  drawQR(cv,LINK,Math.max(260,px));
+  cv.style.width=Math.min(px,cv.width)+"px";
+  $("zoom").hidden=false;
+};
+$("zoomClose").onclick=function(){$("zoom").hidden=true};
+$("zoom").onclick=function(e){if(e.target.id==="zoom")$("zoom").hidden=true};
+document.addEventListener("keydown",function(e){if(e.key==="Escape")$("zoom").hidden=true});
+$("cpLink").onclick=function(){copyTxt(LINK)};
+$("cpCode").onclick=function(){copyTxt(CODE)};
+$("waBtn").onclick=function(){
+  if(!LINK)return;
+  var name=$("lName").textContent||"";
+  var txt="تفعيل مفكرة المهبط على الموبايل\n\n"+LINK+"\n\nافتح الرابط ده من الموبايل وهي يتفعّل لوحده.\n"+(name?("مرخّص لـ: "+name+"\n"):"")+"⚠ متبعتوش لحد تاني.";
+  window.open("https://wa.me/?text="+encodeURIComponent(txt),"_blank","noopener");
+};
+
+/* ---------- الوضع اليدوي ---------- */
+function validShape(c){var p=String(c||"").trim().split(".");return p.length===3&&p[0]==="RN1"&&p[1].length>20&&p[2].length>20}
+$("mGo").onclick=function(){
+  var c=$("mCode").value.trim(),out=$("mOut");out.hidden=false;
+  if(!validShape(c)){out.innerHTML='<div class="banner err"><b>صيغة الكود مش صحيحة</b>لازم يبدأ بـ RN1 وفيه 3 أجزاء مفصولة بنقطة. انسخه كامل زي ما وصلك.</div>';return}
+  out.innerHTML='<div class="banner ok"><b>جارٍ فتح التطبيق…</b>لو الشاشة رجعت طلبت كود تاني، يبقى الكود منتهي أو مُبطل — كلّم المالك.</div>';
+  setTimeout(function(){location.href=linkFor(c)},500);
+};
+$("mQr").onclick=function(){
+  var c=$("mCode").value.trim(),out=$("mOut");out.hidden=false;
+  if(!validShape(c)){out.innerHTML='<div class="banner err"><b>صيغة الكود مش صحيحة</b>انسخ الكود كامل الأول.</div>';return}
+  out.innerHTML='<div class="banner ok"><b>✓ اتولّد الرمز فوق</b>امسحه من أي جهاز تاني عشان يتفعّل بيه.</div>';
+  showPair(c);
+  $("qrCard").scrollIntoView({block:"start",behavior:"smooth"});
+};
+
+/* ---------- الإقلاع ---------- */
+applyTheme();
+var lic=readLic();
+if(lic&&lic.code&&validShape(lic.code)){
+  var expired=String(lic.exp)<today();
+  $("stTag").textContent=expired?"منتهي":"مفعّل ✓";
+  $("stTag").className="tag "+(expired?"wn":"ok");
+  $("stSub").textContent="لقينا ترخيص محفوظ على الجهاز ده — تقدر تنقله للموبايل بالرمز تحت.";
+  $("licGrid").hidden=false;
+  $("lName").textContent=lic.name||"—";
+  $("lExp").textContent=lic.exp||"—";
+  $("lId").textContent=lic.id||"—";
+  $("lState").textContent=expired?"منتهي الصلاحية":"ساري";
+  $("lState").style.color=expired?"var(--wn)":"var(--ok)";
+  if(expired)$("stNote").innerHTML='<div class="banner err"><b>الترخيص منتهي</b>صلاحيته خلصت بتاريخ '+esc(lic.exp)+'. جدّده من لوحة المالك الأول وبعدين اربط الموبايل.</div>';
+  $("manualCard").hidden=false;
+  $("mCode").value=lic.code;
+  showPair(lic.code);
+}else{
+  $("stTag").textContent="مش مفعّل";
+  $("stTag").className="tag wn";
+  $("stSub").textContent="الجهاز اللي فاتح الصفحة دلوقتي مفيهوش ترخيص محفوظ.";
+  $("stNote").innerHTML='<div class="banner"><b>افتح الصفحة دي من اللاب المفعّل</b>عشان تقرا ترخيصك وتطلعلك رمز تمسحه بالموبايل. لو مفيش لاب مفعّل، الصق كود التفعيل تحت وفعّل الجهاز ده على طول.</div>';
+  $("manualCard").hidden=false;
+  setTimeout(function(){$("mCode").focus()},400);
+}
+window.addEventListener("resize",function(){if(LINK&&QRLIB&&!$("qrCanvas").hidden)renderQR(LINK)});
+</script>
+</body>
+</html>
