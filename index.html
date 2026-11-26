@@ -134,8 +134,9 @@ button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 .fc{scroll-margin-top:4.8rem}
 .fhr{display:flex;align-items:flex-start;gap:.4rem}
 .fhx{flex:1;min-width:0}
-.fdel,.fold{flex:0 0 2.7rem;min-width:2.7rem;min-height:2.7rem;padding:0;font-size:1.1rem;border-radius:11px}
-.fold{font-size:.95rem}
+.fdel,.fold{flex:0 0 2.8rem;min-width:2.8rem;min-height:2.8rem;padding:0;font-size:1.1rem;border-radius:11px}
+.fold{font-size:1rem}
+.fold.on{background:var(--p);color:var(--pt);border-color:var(--p)}
 .mrow{display:flex;align-items:center;gap:.5rem;border:2px solid var(--b);border-radius:14px;padding:.45rem .6rem;margin:.4rem 0;background:var(--c)}
 .mrow.off{opacity:.5}
 .mrow .ic{font-size:1.4rem;line-height:1}
@@ -352,7 +353,7 @@ doneNoTime:"تمت بدون وقت",noTime:"بدون وقت",issue:"تقصير",
 wr_late:"تأخير",wr_noeq:"المعدة غير متاحة",wr_nocrew:"نقص عمالة",wr_part:"تمت جزئياً",wr_notreq:"لم تُطلب",
 notePh:"ملاحظة (اختياري)",genNote:"ملاحظات عامة / تقصير",details:"بيانات الرحلة",share:"مشاركة",copy:"نسخ",copied:"تم النسخ ✔",
 moved:"تم النقل لأمر الشغل",unmove:"إلغاء النقل",movedT:"اتعلّمت كمنقولة",del:"حذف الرحلة",deleted:"تم حذف الرحلة",removed:"تم حذف الخدمة",undo:"تراجع",
-fold:"طيّ / فتح الرحلة",foldNow:"▲ قفل الرحلة وطيّها",folded:"الرحلة اتلمّت ✓",keepOpen:"فيها خدمة عدّت ساعة — سيبناها مفتوحة",
+fold:"طيّ الرحلة",unfold:"فتح الرحلة",foldNow:"▲ طيّ الرحلة",folded:"الرحلة اتلمّت ✓",opened:"الرحلة اتفتحت ✓",
 sArr:"وصول",sDep:"سفر",sPax:"ركاب",sNote:"ملاحظة",unk:"؟",
 addR:"إضافة رحلة معتادة",editR:"تعديل رحلة معتادة",usualServices:"الخدمات المعتادة (تُضاف تلقائياً)",save:"حفظ",new:"جديد",edit:"تعديل",
 needNo:"اكتب رقم الرحلة",savedR:"تم الحفظ ✔",delR:"تم حذف الرحلة المعتادة",routineList:"الرحلات المعتادة",
@@ -362,7 +363,7 @@ d_n:"{n} يوم",forever:"دائماً",s_data:"البيانات والنسخ ا
 impData:"استيراد ملف",shareR:"مشاركة الرحلات المعتادة مع الزملاء",imported:"تم الاستيراد: {a} رحلة، {b} معتادة",badFile:"ملف غير صالح",
 s_install:"تثبيت التطبيق",installBtn:"تثبيت على الشاشة الرئيسية",installHint:"من قائمة Chrome (⋮) اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",
 storeNote:"البيانات محفوظة على هذا الجهاز فقط — خذ نسخة احتياطية من وقت لآخر. الرحلات غير المنقولة لا تُحذف تلقائياً أبداً.",
-saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 3.1 — حقوق + تراخيص من الموبايل",exported:"تم التصدير ✔",
+saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 3.2 — طيّ أي رحلة في أي وقت",exported:"تم التصدير ✔",
 s_voice:"الأوامر الصوتية",today:"اليوم",tomorrow:"بكرة",yesterday:"أمس",wdate:"تاريخ الرحلات الجديدة",backToday:"رجوع لليوم",vWhich:"أنهي خدمة؟ قول اسمها",vlang:"لغة التعرف على الصوت",vl_auto:"زي لغة التطبيق",vl_eg:"مصري (ar-EG)",vl_ar:"عربي عام (ar)",vkeep:"استمرار الاستماع بعد كل أمر",on:"شغّال",off:"مقفول",
 defSvc:"الخدمات الافتراضية",autoAdd:"الإضافة التلقائية",defHint:"الخدمات المختارة هنا تُضاف لوحدها لأي رحلة جديدة — وكمان مع رحلات «المعتادة» (من غير تكرار).",
 newSvc:"خدمة جديدة",svcIcon:"الأيقونة",manageSvc:"إدارة الخدمات",hide:"إخفاء",show:"إظهار",builtin:"أساسية",custom:"مضافة",
@@ -376,7 +377,8 @@ bulk:"تحديد",selN:"{n} محدد",allVis:"الكل",moveSel:"✓ نقل",del
 repBtn:"تقرير الوردية",shiftRep:"تقرير وردية",repFlights:"رحلات",repSvc:"خدمات",repIss:"تقصير",repAvg:"متوسط الأرض",
 cf:"تعارض موقف",cfWith:"موقف مشترك في نفس الوقت مع: {n}",
 bkNever:"لسه معملتش نسخة احتياطية — بياناتك على الجهاز بس.",bkOld:"آخر نسخة احتياطية من {n} يوم.",bkToday:"آخر نسخة احتياطية النهارده ✔",bkBtn:"💾 نسخة دلوقتي",bkLab:"آخر نسخة احتياطية",
-hourT:"خدمات عدّت ساعة",hourMore:"و {n} كمان",hourToast:"عدّت ساعة",imp_hour:"تنبيه الساعة",af:"طيّ تلقائي عند اكتمال الخدمات",afHint:"الرحلة اللي فيها خدمة عدّت ساعة مش هتتلم تلقائيًا أبدًا — هتفضل مفتوحة عشان تشوف التنبيه.",
+hourT:"خدمات عدّت ساعة",hourMore:"و {n} كمان",hourToast:"عدّت ساعة",imp_hour:"تنبيه الساعة",
+af:"طيّ تلقائي عند اكتمال الخدمات",afHint:"زرار ▲ على الكارت بيطوي أو يفتح أي رحلة في أي وقت — سواء فيها خدمة عدّت ساعة أو لأ. والطي التلقائي بيلمّ الرحلة لما كل خدماتها تخلص.",
 impTitle:"✨ التحسينات",impHint:"كل تحسين له مفتاح مستقل — اقفل أي حاجة مش عايزها.",impOn:"تشغيل الكل",impOff:"إيقاف الكل",
 imp_search:"البحث والترتيب",imp_views:"عروض سريعة",imp_stats:"إحصائيات اليوم",imp_tl:"الخط الزمني",imp_tgt:"هدف وقت الخدمة",imp_rep:"تقرير الوردية",imp_cf:"تنبيه تعارض الموقف",imp_bulk:"تحديد متعدد",imp_bk:"تذكير النسخة الاحتياطية",imp_qk:"إضافة سريعة",imp_dg:"سحب لترتيب الخدمات",
 rights:"جميع الحقوق محفوظة",licensedTo:"مرخّص لـ",validUntil:"صالح حتى",ownerT:"© حقوق الملكية",ownerLab:"اسم المالك",ownerHint:"الاسم ده بيظهر تحت في التطبيق، وفي كل تقرير واتساب وملف CSV أو JSON بيطلع منه.",ownerSaved:"تم حفظ اسم المالك ✓",
@@ -411,7 +413,7 @@ doneNoTime:"Done (no time)",noTime:"No time",issue:"Issue",other:"Other",svcName
 wr_late:"Late",wr_noeq:"Equipment unavailable",wr_nocrew:"Short of staff",wr_part:"Partial",wr_notreq:"Not requested",
 notePh:"Note (optional)",genNote:"General notes / issues",details:"Flight details",share:"Share",copy:"Copy",copied:"Copied ✔",
 moved:"Transferred to work order",unmove:"Undo transfer",movedT:"Marked as transferred",del:"Delete flight",deleted:"Flight deleted",removed:"Service removed",undo:"Undo",
-fold:"Collapse / expand",foldNow:"▲ Close & collapse",folded:"Flight collapsed ✓",keepOpen:"has a service over an hour — kept open",
+fold:"Collapse flight",unfold:"Expand flight",foldNow:"▲ Collapse flight",folded:"Flight collapsed ✓",opened:"Flight expanded ✓",
 sArr:"Arr",sDep:"Dep",sPax:"Pax",sNote:"Note",unk:"?",
 addR:"Add routine flight",editR:"Edit routine flight",usualServices:"Usual services (added automatically)",save:"Save",new:"New",edit:"Edit",
 needNo:"Enter the flight number",savedR:"Saved ✔",delR:"Routine flight deleted",routineList:"Routine flights",
@@ -421,7 +423,7 @@ d_n:"{n} days",forever:"Forever",s_data:"Data & backup",expJson:"Backup (JSON)",
 impData:"Import file",shareR:"Share routine flights with coworkers",imported:"Imported: {a} flights, {b} routine",badFile:"Invalid file",
 s_install:"Install app",installBtn:"Install to home screen",installHint:"From the Chrome menu (⋮) choose “Install app” or “Add to Home screen”.",
 storeNote:"Data is stored on this device only — back it up now and then. Flights not yet transferred are never deleted automatically.",
-saveFail:"Could not save — storage is full or disabled",ver:"Version 3.1 — ownership + mobile licensing",exported:"Exported ✔",
+saveFail:"Could not save — storage is full or disabled",ver:"Version 3.2 — collapse any flight anytime",exported:"Exported ✔",
 s_voice:"Voice commands",today:"Today",tomorrow:"Tomorrow",yesterday:"Yesterday",wdate:"Date for new flights",backToday:"Back to today",vWhich:"Which service? Say its name",vlang:"Speech recognition language",vl_auto:"Same as app language",vl_eg:"Egyptian (ar-EG)",vl_ar:"Generic Arabic (ar)",vkeep:"Keep listening after each command",on:"On",off:"Off",
 defSvc:"Default services",autoAdd:"Auto-add",defHint:"Services picked here are added automatically to every new flight — and with routine flights (no duplicates).",
 newSvc:"New service",svcIcon:"Icon",manageSvc:"Manage services",hide:"Hide",show:"Show",builtin:"Built-in",custom:"Custom",
@@ -435,7 +437,8 @@ bulk:"Select",selN:"{n} selected",allVis:"All",moveSel:"✓ Transfer",delSel:"�
 repBtn:"Shift report",shiftRep:"Shift report",repFlights:"Flights",repSvc:"Services",repIss:"Issues",repAvg:"Avg ground",
 cf:"Stand conflict",cfWith:"Same stand at overlapping time with: {n}",
 bkNever:"No backup yet — data lives on this device only.",bkOld:"Last backup {n} days ago.",bkToday:"Last backup today ✔",bkBtn:"💾 Back up now",bkLab:"Last backup",
-hourT:"services over an hour",hourMore:"and {n} more",hourToast:"over an hour",imp_hour:"Hour alert",af:"Auto-collapse when all services are done",afHint:"A flight with any service over an hour is never auto-collapsed — it stays open so you see the alert.",
+hourT:"services over an hour",hourMore:"and {n} more",hourToast:"over an hour",imp_hour:"Hour alert",
+af:"Auto-collapse when all services are done",afHint:"The ▲ button on the card collapses or expands any flight at any time — whether a service ran over an hour or not. Auto-collapse folds a flight once all its services are done.",
 impTitle:"✨ Improvements",impHint:"Each improvement has its own switch.",impOn:"Enable all",impOff:"Disable all",
 imp_search:"Search & sort",imp_views:"Quick views",imp_stats:"Today stats",imp_tl:"Timeline",imp_tgt:"Service target time",imp_rep:"Shift report",imp_cf:"Stand conflict alert",imp_bulk:"Bulk selection",imp_bk:"Backup reminder",imp_qk:"Quick add",imp_dg:"Drag to reorder services",
 rights:"All rights reserved",licensedTo:"Licensed to",validUntil:"valid until",ownerT:"© Ownership",ownerLab:"Owner name",ownerHint:"This name appears at the bottom of the app and in every WhatsApp report, CSV and JSON export.",ownerSaved:"Owner name saved ✓",
@@ -530,8 +533,7 @@ function sigLine(){return "\n─────────────\n© "+(D.se
 function sigUpd(){
  const el=$("sig");if(!el)return;
  const lic=readLic(),o=D.set.owner||DEF_OWNER;
- el.innerHTML="© "+esc(o)+" — "+t("rights")+(lic&&lic.name?"<br>"+t("licensedTo")+": <b>"+esc(lic.name)+"</b> · "+t("validUntil")+" "+esc(lic.exp):"");
-}
+ el.innerHTML="© "+esc(o)+" — "+t("rights")+(lic&&lic.name?"<br>"+t("licensedTo")+": <b>"+esc(lic.name)+"</b> · "+t("validUntil")+" "+esc(lic.exp):"")}
 function stats(ds){
  const fs=D.fl.filter(f=>f.d===ds);let tot=0,dn=0,run=0,iss=0,sum=0,n=0;
  fs.forEach(f=>{tot+=f.s.length;f.s.forEach(s=>{if(s.t||s.dn)dn++;if(sst(s)==="run")run++;if(s.w)iss++});
@@ -610,8 +612,10 @@ function checkHour(){
 function maybeFold(f){
  if(!D.set.af||!f.s.length)return;
  if(!f.s.every(s=>s.t||s.dn))return;
- if(hasOverHour(f)){toast("⏰ "+(f.n||t("flight"))+" — "+t("keepOpen"),null,false,4200);return}
  f.o=0;save();rc(f);toast("✓ "+(f.n||t("flight"))+" — "+t("folded"))}
+function toggleFold(f){
+ f.o=f.o?0:1;save();rc(f);focusCard(f.id);
+ toast((f.o?"▼ ":"▲ ")+(f.n||t("flight"))+" — "+(f.o?t("opened"):t("folded")),null,false,1800)}
 
 const fld=(lab,inner,c="")=>`<div class="fld ${c}"><label>${lab}</label>${inner}</div>`;
 const inp=(a,v,o={})=>`<input data-a="${a}" value="${esc(v)}"${o.type?` type="${o.type}"`:""}${LS[a]?` list="${LS[a]}"`:""}${o.m?` inputmode="${o.m}"`:""}${o.cap?` autocapitalize="characters"`:""}${o.ac?` autocomplete="off"`:""}>`;
@@ -622,7 +626,7 @@ function fhIn(f){
  const cf=CF.get(f.id),oh=hasOverHour(f);
  return `<div class="fhr">${BULK?`<button class="o selbox" data-b="o">${SEL.has(f.id)?"✓":""}</button>`:""}<div class="fhx"><div class="l1"><span class="fn">${esc(f.n)||t("flight")}</span><span class="m">${esc(f.al)}</span><span class="m">${esc(f.ac)}</span><span class="m">${esc(f.rg)}</span>${f.ok?`<span class="tag">✓</span>`:""}${wn?`<span class="tag w">⚠</span>`:""}${oh?`<span class="tag w">⏰</span>`:""}${cf?`<span class="tag w" title="${esc(t("cfWith",{n:cf.join("، ")}))}">⚠ ${t("cf")}</span>`:""}</div>
 <div class="l2"><span><span class="dch ${f.d===dd(0)?"":"x"}">${esc(dshort(f.d))}</span>${f.st?" · "+esc(f.st):""}${f.sp?" · "+t("stand").split(" ")[0]+" "+esc(f.sp):""}</span>${tot?`<span class="pr ${run?"r":""}">${dn}/${tot}</span>`:""}</div>${tot?`<div class="pb"><i style="width:${Math.round(dn/tot*100)}%"></i></div>`:""}</div>
-<button class="o fold" data-b="fold" title="${esc(t("fold"))}" aria-label="${esc(t("fold"))}" aria-expanded="${f.o?1:0}">${f.o?"▲":"▼"}</button>
+<button class="o fold${f.o?" on":""}" data-b="fold" title="${esc(f.o?t("fold"):t("unfold"))}" aria-label="${esc(f.o?t("fold"):t("unfold"))}" aria-expanded="${f.o?1:0}">${f.o?"▲":"▼"}</button>
 <button class="o dng fdel" data-b="del" title="${esc(t("del"))}" aria-label="${esc(t("del"))}">🗑</button></div>`}
 function row(s,i){
  const st=sst(s),cls=(st==="done"||st==="dnx"?"done":st==="run"?"run":"")+(s.w?" wn":"");
@@ -643,9 +647,7 @@ function row(s,i){
 function body(f){
  const tile=(k,lab)=>`<div class="tile"><div class="lbl">${lab}</div>${f[k]?`<div class="tr"><input type="time" data-a="${k}" value="${esc(f[k])}"><button class="o sq" data-b="clr" data-k="${k}">✕</button></div>`:`<button class="big go" data-b="now" data-k="${k}">⏱ ${t("now")}</button>`}</div>`;
  const det=`<div class="g mt">${fld(t("flightNo"),inp("n",f.n))}${fld(t("sched"),inp("st",f.st,{type:"time"}))}${fld(t("airline"),inp("al",f.al,{ac:1})+chipsRow(f,"al"),"full")}${fld(t("type"),inp("ac",f.ac,{ac:1})+chipsRow(f,"ac"),"full")}${fld(t("reg"),inp("rg",f.rg,{cap:1,ac:1}))}${fld(t("stand"),inp("sp",f.sp,{ac:1})+chipsRow(f,"sp"),"full")}</div>`;
- const oh=hasOverHour(f);
  return `<div class="bd">${dbarF(f)}<div class="row tiles">${tile("ta",t("chOn"))}${tile("td",t("chOff"))}</div>
-${oh?`<div class="banner err" style="margin:.6rem 0 0"><b>⏰ ${t("hourT")}</b>${t("keepOpen")}</div>`:""}
 <div class="sec"><span>${t("services")}</span><span>${cnt(f)}</span></div>${D.set.imp.tl?tlHtml(f):""}${f.s.map(row).join("")}
 ${qkHtml(f)}<button class="big add o" data-b="add">＋ ${t("addService")}</button>
 <div class="g mt">${fld(t("paxA"),inp("pa",f.pa,{type:"number",m:"numeric"}))}${fld(t("paxD"),inp("pd",f.pd,{type:"number",m:"numeric"}))}</div>
@@ -663,7 +665,7 @@ function upCard(c,f,r){
  const sp=c.querySelector(".sec span:last-child");if(sp)sp.textContent=cnt(f);stUpd();hrUpd()}
 const dbarF=f=>`<div class="dbar${f.d===dd(0)?"":" x"}"><button class="o sq" data-b="dm">◀</button><div class="dtx"><b>${esc(dlab(f.d))}</b><small>${esc(drel(f.d)||t("date"))}</small><input type="date" data-a="d" value="${esc(f.d)}"></div><button class="o sq" data-b="dp">▶</button></div>`;
 const wdBar=()=>{const w=wdate(),x=w!==dd(0);return `<div class="lbl">${t("wdate")}</div><div class="dbar${x?" x":""}"><button class="o sq" data-b="wdm">◀</button><div class="dtx"><b>${esc(dlab(w))}</b><small>${esc(drel(w)||"")}</small><input type="date" data-b="wdin" value="${esc(w)}"></div><button class="o sq" data-b="wdp">▶</button></div>${x?`<button class="o wide" data-b="wdt">↺ ${t("backToday")}</button>`:""}`};
-const focusCard=id=>{const el=document.querySelector(`[data-fid="${id}"]`);if(el)el.scrollIntoView({block:"start"})};
+const focusCard=id=>{const el=document.querySelector(`[data-fid="${id}"]`);if(el)el.scrollIntoView({block:"nearest"})};
 function setWd(v){v=/^\d{4}-\d\d-\d\d$/.test(v||"")?v:dd(0);D.set.wd=v===dd(0)?null:v;save();R1()}
 function matchQ(f){if(!Q)return true;
  const hay=[f.n,f.al,f.ac,f.rg,f.sp,f.nt,f.d].concat(f.s.map(s=>sname(s)+" "+(s.nm||"")+" "+(s.nt||""))).join(" ");
@@ -1056,7 +1058,7 @@ document.addEventListener("click",e=>{
   case"o":
    if(BULK){SEL.has(f.id)?SEL.delete(f.id):SEL.add(f.id);c.classList.toggle("sel",SEL.has(f.id));const bx=c.querySelector(".selbox");if(bx)bx.textContent=SEL.has(f.id)?"✓":"";bkUpd();return}
    f.o=f.o?0:1;save();rc(f);if(f.o)focusCard(f.id);return;
-  case"fold":f.o=f.o?0:1;save();rc(f);focusCard(f.id);return;
+  case"fold":toggleFold(f);return;
   case"dm":case"dp":f.d=addD(f.d,a==="dp"?1:-1);save();R1();hdr();focusCard(f.id);return;
   case"nf":s.f=nw();up();return;
   case"nt":s.t=nw();up();
