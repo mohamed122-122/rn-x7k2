@@ -11,19 +11,20 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <title>مفكرة المهبط · Ramp Notes</title>
 <style>
-:root,[data-theme=day]{--bg:#e9ecf1;--c:#fff;--t:#000;--m:#2b3646;--b:#1e293b;--p:#0b3bd6;--pt:#fff;--ok:#0a6b25;--okt:#fff;--okbg:#d2f4da;--wn:#b3001b;--wnt:#fff;--wnbg:#ffdadd;--run:#8a4b00;--runt:#fff;--runbg:#ffe8a3;--hd:#0b1220;--hdt:#fff}
-[data-theme=night]{--bg:#000;--c:#10151c;--t:#f5f7fa;--m:#b6c1d1;--b:#46556c;--p:#ffb21f;--pt:#1a1100;--ok:#5ce58a;--okt:#00170a;--okbg:#0b2a17;--wn:#ff8f9a;--wnt:#2a0006;--wnbg:#3d0c14;--run:#ffc857;--runt:#1f1500;--runbg:#3a2a04;--hd:#05070a;--hdt:#f5f7fa}
+:root,[data-theme=day]{--bg:#e9ecf1;--c:#fff;--c2:#f4f6f9;--t:#000;--m:#2b3646;--b:#1e293b;--b2:#c3ccd8;--p:#0b3bd6;--pt:#fff;--ok:#0a6b25;--okt:#fff;--okbg:#d2f4da;--wn:#b3001b;--wnt:#fff;--wnbg:#ffdadd;--run:#8a4b00;--runt:#fff;--runbg:#ffe8a3;--hd:#0b1220;--hdt:#fff}
+[data-theme=night]{--bg:#000;--c:#10151c;--c2:#161d26;--t:#f5f7fa;--m:#b6c1d1;--b:#46556c;--b2:#2c3949;--p:#ffb21f;--pt:#1a1100;--ok:#5ce58a;--okt:#00170a;--okbg:#0b2a17;--wn:#ff8f9a;--wnt:#2a0006;--wnbg:#3d0c14;--run:#ffc857;--runt:#1f1500;--runbg:#3a2a04;--hd:#05070a;--hdt:#f5f7fa}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 [hidden]{display:none!important}
 html{font-size:calc(16px*var(--fs,1));-webkit-text-size-adjust:100%}
 body{margin:0;font-family:"Noto Sans Arabic","Segoe UI",Tahoma,system-ui,sans-serif;background:var(--bg);color:var(--t);font-weight:600;line-height:1.35;padding-bottom:calc(5.6rem + env(safe-area-inset-bottom))}
 button,input,select,textarea{font:inherit;color:inherit}
 main{max-width:720px;margin:0 auto;padding:.4rem .7rem}
-input,textarea{width:100%;min-height:3rem;padding:.5rem .7rem;border:2px solid var(--b);border-radius:12px;background:var(--c);color:var(--t);font-size:1rem;font-weight:700}
+input,textarea,select{width:100%;min-height:3rem;padding:.5rem .7rem;border:2px solid var(--b);border-radius:12px;background:var(--c);color:var(--t);font-size:1rem;font-weight:700}
 input{min-width:0}
 input[type=time],input[type=date]{direction:ltr;text-align:center;font-size:1.05rem;padding:.4rem .25rem}
 input[type=time]::-webkit-calendar-picker-indicator{display:none}
 input[type=number]{direction:ltr;text-align:center;font-size:1.2rem}
+input[type=password]{letter-spacing:.12em}
 textarea{resize:vertical;margin:.5rem 0}
 ::placeholder{color:var(--m);opacity:.9}
 button{min-height:3rem;border:2px solid var(--p);background:var(--p);color:var(--pt);border-radius:14px;padding:.5rem .9rem;font-weight:800;font-size:1rem;cursor:pointer;user-select:none}
@@ -31,23 +32,28 @@ button.o{background:transparent;color:var(--t);border-color:var(--b)}
 button.on{background:var(--p);color:var(--pt);border-color:var(--p)}
 button.onw{background:var(--wn);color:var(--wnt);border-color:var(--wn)}
 button.dng{color:var(--wn);border-color:var(--wn)}
+button.go{background:var(--ok);border-color:var(--ok);color:var(--okt)}
 button:active{transform:scale(.97);filter:brightness(1.2)}
+button:disabled{opacity:.45;cursor:not-allowed}
 :focus-visible{outline:3px solid var(--p);outline-offset:2px}
 button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 .big{width:100%;min-height:3.8rem;font-size:1.25rem}
-.go{background:var(--ok);border-color:var(--ok);color:var(--okt)}
 .stop{background:var(--run);border-color:var(--run);color:var(--runt)}
 .wide{width:100%;margin-top:.55rem}
 .row{display:flex;gap:.5rem;align-items:flex-start}.row>*{flex:1;min-width:0}
+.row.tight{flex-wrap:wrap}.row.tight>*{flex:0 0 auto;min-width:0}
 .mt{margin-top:.7rem}
 .lbl{font-size:.85rem;color:var(--m);font-weight:800;margin:.35rem 0 .25rem}
 .m{color:var(--m)}
-#hd{position:sticky;top:0;z-index:20;background:var(--hd);color:var(--hdt);padding:.5rem .8rem;padding-top:calc(.5rem + env(safe-area-inset-top));display:flex;align-items:center;gap:.5rem}
-.ht{flex:1;min-width:0}.ht b{font-size:1.2rem;display:block}.ht small{font-size:.8rem;opacity:.9;font-weight:700}
-.hb{min-height:2.8rem;min-width:2.8rem;padding:0 .5rem;background:transparent;color:var(--hdt);border:2px solid var(--hdt);font-size:1.1rem}
-#nv{position:fixed;inset-inline:0;bottom:0;z-index:30;background:var(--c);border-top:3px solid var(--b);display:grid;grid-template-columns:repeat(3,1fr);padding-bottom:env(safe-area-inset-bottom)}
-#nv button{border:0;border-radius:0;background:transparent;color:var(--t);min-height:4.2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;font-size:.95rem;border-top:5px solid transparent;margin-top:-3px}
-#nv button span{font-size:1.5rem;line-height:1}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-variant-numeric:tabular-nums}
+#hd{position:sticky;top:0;z-index:20;background:var(--hd);color:var(--hdt);padding:.5rem .7rem;padding-top:calc(.5rem + env(safe-area-inset-top));display:flex;align-items:center;gap:.4rem}
+.ht{flex:1;min-width:0}.ht b{font-size:1.1rem;display:block;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.ht small{font-size:.75rem;opacity:.9;font-weight:700}
+.hb{min-height:2.6rem;min-width:2.6rem;flex:none;padding:0 .45rem;background:transparent;color:var(--hdt);border:2px solid var(--hdt);font-size:1rem;border-radius:11px}
+#mic.rec{background:var(--wn);border-color:var(--wn);color:var(--wnt);animation:pl 1s infinite}
+@keyframes pl{50%{box-shadow:0 0 0 8px #ff4d4d55}}
+#nv{position:fixed;inset-inline:0;bottom:0;z-index:30;background:var(--c);border-top:3px solid var(--b);display:grid;grid-template-columns:repeat(4,1fr);padding-bottom:env(safe-area-inset-bottom)}
+#nv button{border:0;border-radius:0;background:transparent;color:var(--t);min-height:4.2rem;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.1rem;font-size:.82rem;border-top:5px solid transparent;margin-top:-3px;padding:.2rem .1rem}
+#nv button span{font-size:1.35rem;line-height:1}
 #nv button.on{color:var(--p);border-top-color:var(--p)}
 .chips{display:flex;flex-wrap:wrap;gap:.45rem}
 .chip{min-height:2.7rem;padding:.3rem .85rem;border-radius:999px}
@@ -79,17 +85,19 @@ button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 .sv.done{background:var(--okbg);border-color:var(--ok)}
 .sv.run{background:var(--runbg);border-color:var(--run)}
 .sv.wn{background:var(--wnbg);border-color:var(--wn)}
-.svh{display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem}
-.svh .ic{font-size:1.5rem}.svh b{flex:1;font-size:1.1rem;min-width:0}
-.qs{display:flex;align-items:center;gap:.25rem;direction:ltr}
-.qs button{min-height:2.6rem;min-width:2.6rem;padding:0;font-size:1.3rem}
-.qs b{min-width:1.8rem;text-align:center;font-size:1.15rem;flex:none}
-.tl{display:flex;gap:.5rem;align-items:flex-end;margin-bottom:.5rem}
+.svh{display:flex;align-items:center;gap:.45rem;margin-bottom:.45rem}
+.svh .ic{font-size:1.4rem}.svh b{flex:1;font-size:1.05rem;min-width:0}
+.qs{display:flex;align-items:center;gap:.2rem;direction:ltr}
+.qs button{min-height:2.5rem;min-width:2.5rem;padding:0;font-size:1.25rem}
+.qs b{min-width:1.6rem;text-align:center;font-size:1.1rem;flex:none}
+.tl{display:flex;gap:.4rem;align-items:flex-end;margin-bottom:.5rem}
 .tcol{flex:1;min-width:0}
-.live{flex:1;text-align:center;font-size:1.5rem;font-weight:900;color:var(--run);padding-bottom:.35rem;font-variant-numeric:tabular-nums}
-.dur{flex:0 0 3.6rem;text-align:center;font-size:1rem;font-weight:900;color:var(--ok);padding-bottom:.55rem}
-.okb{font-size:1.2rem;font-weight:900;color:var(--ok);text-align:center;padding:.4rem 0}
-.acts{display:flex;gap:.4rem;margin-top:.5rem}.acts button{flex:1;min-height:2.8rem;padding:.2rem .3rem;font-size:.95rem}
+.live{flex:0 0 auto;min-width:3.2rem;text-align:center;font-size:1.15rem;font-weight:900;color:var(--run);padding-bottom:.5rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+.dur{flex:0 0 auto;min-width:3.2rem;text-align:center;font-size:.95rem;font-weight:900;color:var(--ok);padding-bottom:.6rem;white-space:nowrap}
+.live.over,.dur.over{color:var(--wn)}
+.okb{font-size:1.15rem;font-weight:900;color:var(--ok);text-align:center;padding:.4rem 0}
+.acts{display:flex;gap:.35rem;margin-top:.5rem;flex-wrap:wrap}
+.acts button{flex:1 1 4.2rem;min-height:2.9rem;padding:.2rem .3rem;font-size:.92rem}
 .wb{margin-top:.5rem}.wb input{margin-top:.45rem}
 .g{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}.fld.full{grid-column:1/-1}
 .fld label{display:block;font-size:.85rem;font-weight:800;color:var(--m);margin:0 0 .2rem}
@@ -100,19 +108,13 @@ button small{display:block;font-size:.7rem;font-weight:700;opacity:.9}
 .ri .m{margin:.25rem 0 .5rem;font-size:.9rem}
 .hint{color:var(--m);font-size:.9rem;font-weight:600;margin:.5rem 0 0}
 #toast{position:fixed;inset-inline:.8rem;bottom:calc(5.8rem + env(safe-area-inset-bottom));max-width:700px;margin:0 auto;z-index:50;background:var(--hd);color:var(--hdt);border:2px solid var(--p);border-radius:14px;padding:.6rem .9rem;display:flex;align-items:center;gap:.8rem;font-weight:800}
-#toast span{flex:1}#toast button{min-height:2.6rem;color:var(--hdt);border-color:var(--hdt)}
+#toast span{flex:1;white-space:pre-line}#toast button{min-height:2.6rem;color:var(--hdt);border-color:var(--hdt)}
 #ov{position:fixed;inset:0;background:#000a;z-index:60;display:flex;align-items:flex-end;justify-content:center}
 #sh{background:var(--c);width:100%;max-width:720px;max-height:86vh;overflow:auto;border-radius:20px 20px 0 0;padding:1rem;padding-bottom:calc(1rem + env(safe-area-inset-bottom));border:2px solid var(--b)}
 #sh h3{margin:0 0 .7rem}
 .sg{display:grid;grid-template-columns:1fr 1fr;gap:.55rem}
 .sb{min-height:3.8rem;display:flex;gap:.5rem;align-items:center;justify-content:flex-start;font-size:1.05rem;text-align:start}
 .sb span{font-size:1.5rem}
-#mic{position:fixed;inset-inline-end:1rem;bottom:calc(5.9rem + env(safe-area-inset-bottom));width:4.6rem;height:4.6rem;min-height:0;border-radius:50%;font-size:2rem;padding:0;z-index:40;box-shadow:0 4px 16px #0008;border:3px solid var(--c);display:flex;align-items:center;justify-content:center}
-#mic.lis{background:var(--wn);border-color:var(--wn);color:var(--wnt);animation:pl 1s infinite}
-@keyframes pl{50%{box-shadow:0 0 0 16px #ff4d4d55}}
-body.vm #toast{bottom:calc(11.2rem + env(safe-area-inset-bottom))}
-body.vm main{padding-bottom:2.5rem}
-#toast span{white-space:pre-line}
 .ex{margin:0;padding:0;list-style:none}.ex li{padding:.5rem 0;border-bottom:1px dashed var(--b)}.ex b{display:block;font-size:1.05rem}.ex small{color:var(--m);font-weight:700}
 .dbar{display:flex;gap:.45rem;align-items:stretch;direction:ltr;margin:.25rem 0}
 .bd>.dbar{margin-top:.7rem}
@@ -128,9 +130,10 @@ body.vm main{padding-bottom:2.5rem}
 .dch{display:inline-block;border:2px solid var(--b);border-radius:8px;padding:0 .4rem;color:var(--t);font-weight:900}
 .dch.x{background:var(--runbg);border-color:var(--run)}
 .fc{scroll-margin-top:4.8rem}
-.fhr{display:flex;align-items:flex-start;gap:.5rem}
+.fhr{display:flex;align-items:flex-start;gap:.4rem}
 .fhx{flex:1;min-width:0}
-.fdel{flex:0 0 2.9rem;min-width:2.9rem;min-height:2.9rem;padding:0;font-size:1.25rem;border-radius:12px}
+.fdel,.fold{flex:0 0 2.7rem;min-width:2.7rem;min-height:2.7rem;padding:0;font-size:1.1rem;border-radius:11px}
+.fold{font-size:.95rem}
 .mrow{display:flex;align-items:center;gap:.5rem;border:2px solid var(--b);border-radius:14px;padding:.45rem .6rem;margin:.4rem 0;background:var(--c)}
 .mrow.off{opacity:.5}
 .mrow .ic{font-size:1.4rem;line-height:1}
@@ -159,10 +162,8 @@ input[type=search]::-webkit-search-cancel-button{display:none}
 .tlb.run{background:var(--run);color:var(--runt)}
 .tlb.wn{background:var(--wn);color:var(--wnt)}
 .tln{position:absolute;top:0;bottom:0;width:2px;background:var(--p);opacity:.9}
-.tld{flex:0 0 3.1rem;font-size:.72rem;font-weight:800;color:var(--m);text-align:center;font-variant-numeric:tabular-nums}
+.tld{flex:0 0 2.9rem;font-size:.7rem;font-weight:800;color:var(--m);text-align:center;font-variant-numeric:tabular-nums}
 .tgt{flex:0 0 auto;font-size:.7rem;font-weight:800;color:var(--m);border:1px solid var(--b);border-radius:8px;padding:0 .35rem}
-.live.over{color:var(--wn)}
-.dur.over{color:var(--wn)}
 .tgin{width:4.6rem;min-height:2.5rem;flex:0 0 auto;padding:.2rem .3rem;font-size:.95rem}
 .selbox{flex:0 0 2.3rem;min-width:2.3rem;min-height:2.3rem;padding:0;border-radius:8px;font-size:1.05rem;display:grid;place-items:center}
 .fc.sel{border-color:var(--p)}
@@ -170,12 +171,10 @@ input[type=search]::-webkit-search-cancel-button{display:none}
 .bkb{position:fixed;inset-inline:.8rem;bottom:calc(4.7rem + env(safe-area-inset-bottom));max-width:700px;margin:0 auto;z-index:45;background:var(--c);border:2px solid var(--p);border-radius:14px;padding:.5rem;display:flex;gap:.4rem;align-items:center;box-shadow:0 -4px 16px #0004}
 .bkb b{flex:1;font-size:.88rem;text-align:center}
 .bkb button{flex:0 0 auto;min-height:2.6rem;padding:.2rem .55rem;font-size:.82rem}
-body.bk #mic{display:none}
-body.bk .fdel{display:none}
+body.bk .fdel,body.bk .fold{display:none}
 body.bk #toast{bottom:calc(10.6rem + env(safe-area-inset-bottom))}
 body.bk main{padding-bottom:4.5rem}
-.grip{flex:0 0 1.5rem;font-size:.95rem;color:var(--m);cursor:grab;touch-action:none;text-align:center;line-height:1;user-select:none}
-.grip:active{cursor:grabbing}
+.grip{flex:0 0 1.4rem;font-size:.9rem;color:var(--m);cursor:grab;touch-action:none;text-align:center;line-height:1;user-select:none}
 .sv.dragsrc{opacity:.35;border-style:dashed}
 .sv.ghost{position:fixed;z-index:80;margin:0;pointer-events:none;box-shadow:0 10px 30px #0007}
 .qkr{display:flex;flex-wrap:wrap;gap:.4rem}
@@ -186,7 +185,29 @@ body.bk main{padding-bottom:4.5rem}
 .hrbar .hrt{font-size:.85rem;font-weight:900;color:var(--wn);margin-bottom:.35rem}
 .hrbar button{width:100%;min-height:2.6rem;margin:.2rem 0;padding:.25rem .55rem;font-size:.83rem;text-align:start;background:transparent;color:var(--t);border-color:var(--wn)}
 .hrbar .more{font-size:.75rem;font-weight:800;color:var(--m);text-align:center;margin-top:.2rem}
-@media(max-width:400px){.tld{flex:0 0 2.7rem;font-size:.68rem}.st b{font-size:1rem}}
+.lcard{border:2px solid var(--b);border-radius:14px;padding:.7rem .8rem;margin:.6rem 0;background:var(--c)}
+.lcard.rev{border-color:var(--wn);background:var(--wnbg)}
+.lcard.exp{border-color:var(--run);background:var(--runbg)}
+.lh{display:flex;align-items:center;gap:.45rem;flex-wrap:wrap}
+.lh b{font-size:1.05rem;flex:1;min-width:90px}
+.pill{font-size:.68rem;font-weight:900;padding:.1rem .5rem;border-radius:99px;border:2px solid var(--b);white-space:nowrap}
+.pill.ok{background:var(--ok);color:var(--okt);border-color:var(--ok)}
+.pill.wn{background:var(--wn);color:var(--wnt);border-color:var(--wn)}
+.pill.ru{background:var(--run);color:var(--runt);border-color:var(--run)}
+.lm{font-size:.78rem;color:var(--m);margin:.3rem 0 .5rem;font-weight:700}
+.codebox{background:var(--c2);border:2px dashed var(--b);border-radius:10px;padding:.5rem;font-size:.65rem;word-break:break-all;direction:ltr;text-align:left;max-height:4.4rem;overflow:auto;line-height:1.5}
+.banner{border:2px solid var(--run);background:var(--runbg);border-radius:13px;padding:.65rem .8rem;font-size:.85rem;font-weight:700;margin:.6rem 0}
+.banner.err{border-color:var(--wn);background:var(--wnbg)}
+.banner.ok{border-color:var(--ok);background:var(--okbg)}
+.banner.info{border-color:var(--b);background:var(--c2)}
+.banner b{display:block;margin-bottom:.2rem;font-size:.93rem}
+.drop{border:3px dashed var(--b);border-radius:14px;padding:.9rem .7rem;text-align:center;background:var(--c2);cursor:pointer}
+.drop.ok{border-style:solid;border-color:var(--ok);background:var(--okbg)}
+.drop .ic{font-size:1.7rem}
+.drop b{display:block;margin:.25rem 0 .1rem;font-size:.93rem}
+.drop small{color:var(--m);font-size:.76rem;font-weight:700}
+.drop .fn{margin-top:.3rem;font-size:.78rem;font-weight:900;color:var(--ok);word-break:break-all}
+@media(max-width:400px){.tld{flex:0 0 2.6rem;font-size:.66rem}.st b{font-size:1rem}.ht b{font-size:1rem}#nv button{font-size:.75rem}.fn{font-size:1.25rem}}
 </style>
 </head>
 <body>
@@ -195,13 +216,15 @@ body.bk main{padding-bottom:4.5rem}
 <section id="p1"></section>
 <section id="p2" hidden></section>
 <section id="p3" hidden></section>
+<section id="p4" hidden></section>
 </main>
-<button id="mic" data-b="mic" aria-label="Voice" hidden>🎙</button>
 <nav id="nv"></nav>
 <div id="toast" hidden></div>
 <div id="ov" hidden><div id="sh"></div></div>
 <datalist id="d_al"></datalist><datalist id="d_rg"></datalist><datalist id="d_ac"></datalist><datalist id="d_sp"></datalist>
 <input type="file" id="imp" hidden accept=".json,.txt,application/json,text/plain">
+<input type="file" id="keyFile" hidden accept=".json,application/json">
+<input type="file" id="licFile" hidden accept=".json,application/json">
 <script>
 "use strict";
 const SV=[
@@ -220,7 +243,7 @@ const IMPK=[["search","imp_search"],["views","imp_views"],["stats","imp_stats"],
 const IMPOBJ=()=>{const o={};IMPK.forEach(([k])=>o[k]=1);return o};
 const HOUR=60,ALERTED=new Set();
 const T={
-ar:{title:"مفكرة المهبط",nav1:"الرحلات",nav2:"المعتادة",nav3:"الإعدادات",todayN:"{n} رحلة اليوم",
+ar:{title:"مفكرة المهبط",nav1:"الرحلات",nav2:"المعتادة",nav3:"الإعدادات",nav4:"التراخيص",todayN:"{n} رحلة اليوم",
 routineHint:"اضغط رحلة معتادة لإضافتها",noRoutine:"لا توجد رحلات معتادة — أضفها من تبويب «المعتادة»",newFlight:"رحلة جديدة",
 f_open:"مفتوحة",f_moved:"منقولة",f_all:"الكل",noFlights:"لا توجد رحلات هنا",clearMoved:"حذف المنقولة",clearedN:"تم حذف {n} رحلة",
 flight:"رحلة",flightNo:"رقم الرحلة",airline:"الشركة",type:"الطراز",reg:"التسجيل",stand:"الموقف (Stand)",sched:"وقت الرحلة",date:"التاريخ",
@@ -230,6 +253,7 @@ doneNoTime:"تمت بدون وقت",noTime:"بدون وقت",issue:"تقصير",
 wr_late:"تأخير",wr_noeq:"المعدة غير متاحة",wr_nocrew:"نقص عمالة",wr_part:"تمت جزئياً",wr_notreq:"لم تُطلب",
 notePh:"ملاحظة (اختياري)",genNote:"ملاحظات عامة / تقصير",details:"بيانات الرحلة",share:"مشاركة",copy:"نسخ",copied:"تم النسخ ✔",
 moved:"تم النقل لأمر الشغل",unmove:"إلغاء النقل",movedT:"اتعلّمت كمنقولة",del:"حذف الرحلة",deleted:"تم حذف الرحلة",removed:"تم حذف الخدمة",undo:"تراجع",
+fold:"طيّ الرحلة",unfold:"فتح الرحلة",foldNow:"▲ قفل الرحلة وطيّها",folded:"الرحلة اتلمّت ✓",allDone:"كل الخدمات خلصت",
 sArr:"وصول",sDep:"سفر",sPax:"ركاب",sNote:"ملاحظة",unk:"؟",
 addR:"إضافة رحلة معتادة",editR:"تعديل رحلة معتادة",usualServices:"الخدمات المعتادة (تُضاف تلقائياً)",save:"حفظ",new:"جديد",edit:"تعديل",
 needNo:"اكتب رقم الرحلة",savedR:"تم الحفظ ✔",delR:"تم حذف الرحلة المعتادة",routineList:"الرحلات المعتادة",
@@ -239,38 +263,55 @@ d_n:"{n} يوم",forever:"دائماً",s_data:"البيانات والنسخ ا
 impData:"استيراد ملف",shareR:"مشاركة الرحلات المعتادة مع الزملاء",imported:"تم الاستيراد: {a} رحلة، {b} معتادة",badFile:"ملف غير صالح",
 s_install:"تثبيت التطبيق",installBtn:"تثبيت على الشاشة الرئيسية",installHint:"من قائمة Chrome (⋮) اختر «تثبيت التطبيق» أو «إضافة إلى الشاشة الرئيسية».",
 storeNote:"البيانات محفوظة على هذا الجهاز فقط — خذ نسخة احتياطية من وقت لآخر. الرحلات غير المنقولة لا تُحذف تلقائياً أبداً.",
-saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 2.4 — صوت عربي أقوى وتنبيه الساعة",exported:"تم التصدير ✔",
+saveFail:"تعذّر الحفظ — التخزين ممتلئ أو معطّل",ver:"الإصدار 3.0 — تراخيص من الموبايل",exported:"تم التصدير ✔",
 s_voice:"الأوامر الصوتية",today:"اليوم",tomorrow:"بكرة",yesterday:"أمس",wdate:"تاريخ الرحلات الجديدة",backToday:"رجوع لليوم",vWhich:"أنهي خدمة؟ قول اسمها",vlang:"لغة التعرف على الصوت",vl_auto:"زي لغة التطبيق",vl_eg:"مصري (ar-EG)",vl_ar:"عربي عام (ar)",vkeep:"استمرار الاستماع بعد كل أمر",on:"شغّال",off:"مقفول",
 defSvc:"الخدمات الافتراضية",autoAdd:"الإضافة التلقائية",defHint:"الخدمات المختارة هنا تُضاف لوحدها لأي رحلة جديدة — وكمان مع رحلات «المعتادة» (من غير تكرار).",
 newSvc:"خدمة جديدة",svcIcon:"الأيقونة",manageSvc:"إدارة الخدمات",hide:"إخفاء",show:"إظهار",builtin:"أساسية",custom:"مضافة",
 svcAdded:"تمت إضافة الخدمة ✔",svcExists:"الخدمة موجودة بالفعل",needName:"اكتب اسم الخدمة",svcHidden:"تم الإخفاء من القوائم",svcShown:"تم الإظهار",svcDeleted:"تم حذف الخدمة",
-noSvc:"مفيش خدمات ظاهرة — أضف أو أظهر من «إدارة الخدمات»",manHint:"«إخفاء» يشيل الخدمة من القوائم بس، وميمسّش الرحلات المسجّلة. حذف خدمة مضافة يحوّلها لـ«أخرى» في الرحلات القديمة. «الهدف» بالدقايق يخلي المؤقت ينبّهك لو الخدمة طولت.",
+noSvc:"مفيش خدمات ظاهرة — أضف أو أظهر من «إدارة الخدمات»",manHint:"«إخفاء» يشيل الخدمة من القوائم بس. حذف خدمة مضافة يحوّلها لـ«أخرى» في الرحلات القديمة. «الهدف» بالدقايق ينبّهك لو الخدمة طولت.",
 searchPh:"بحث: رقم رحلة / تسجيل / موقف / ملاحظة…",sortLab:"الترتيب",sort_time:"بالوقت",sort_new:"الأحدث إضافة",sort_svc:"الأكثر خدمات",sort_issue:"الأكثر تقصيراً",
 vShift:"وردية النهاردة",vIss:"فيها تقصير",vRun:"شغّالة دلوقتي",noRes:"مفيش نتائج مطابقة",resN:"{n} رحلة ظاهرة",
 stN:"رحلات اليوم",stD:"خدمات منجزة",stR:"شغّالة الآن",stW:"تقصير",stA:"متوسط الأرض",
-tlTitle:"الخط الزمني للخدمات",tgt:"الهدف",tgtLab:"الهدف (د)",over:"تجاوز",quick:"إضافة سريعة",dragA:"اسحب لترتيب الخدمة",
+tlTitle:"الخط الزمني للخدمات",tgt:"الهدف",tgtLab:"الهدف (د)",quick:"إضافة سريعة",dragA:"اسحب لترتيب الخدمة",
 bulk:"تحديد",selN:"{n} محدد",allVis:"الكل",moveSel:"✓ نقل",delSel:"🗑 حذف",movedN:"تم نقل {n} رحلة",deletedN:"تم حذف {n} رحلة",
 repBtn:"تقرير الوردية",shiftRep:"تقرير وردية",repFlights:"رحلات",repSvc:"خدمات",repIss:"تقصير",repAvg:"متوسط الأرض",
 cf:"تعارض موقف",cfWith:"موقف مشترك في نفس الوقت مع: {n}",
 bkNever:"لسه معملتش نسخة احتياطية — بياناتك على الجهاز بس.",bkOld:"آخر نسخة احتياطية من {n} يوم.",bkToday:"آخر نسخة احتياطية النهارده ✔",bkBtn:"💾 نسخة دلوقتي",bkLab:"آخر نسخة احتياطية",
-hourT:"خدمات عدّت ساعة",hourMore:"و {n} كمان",hourToast:"عدّت ساعة",imp_hour:"تنبيه الساعة",
-impTitle:"✨ تحسينات 2.4",impHint:"كل تحسين له مفتاح مستقل — اقفل أي حاجة مش عايزها وهيرجع الشكل زي 2.2 بالظبط.",impOn:"تشغيل الكل",impOff:"إيقاف الكل",
+hourT:"خدمات عدّت ساعة",hourMore:"و {n} كمان",hourToast:"عدّت ساعة",imp_hour:"تنبيه الساعة",af:"طيّ تلقائي عند اكتمال الخدمات",imp_af:"طيّ الرحلات تلقائياً",
+impTitle:"✨ التحسينات",impHint:"كل تحسين له مفتاح مستقل — اقفل أي حاجة مش عايزها.",impOn:"تشغيل الكل",impOff:"إيقاف الكل",
 imp_search:"البحث والترتيب",imp_views:"عروض سريعة",imp_stats:"إحصائيات اليوم",imp_tl:"الخط الزمني",imp_tgt:"هدف وقت الخدمة",imp_rep:"تقرير الوردية",imp_cf:"تنبيه تعارض الموقف",imp_bulk:"تحديد متعدد",imp_bk:"تذكير النسخة الاحتياطية",imp_qk:"إضافة سريعة",imp_dg:"سحب لترتيب الخدمات",
-vhelp:"أمثلة الأوامر",vnote:"بيشتغل على Chrome أندرويد ومحتاج إنترنت. الصوت بيتبعت لخدمة Google للتعرف عليه. لو العربي مش شغال جرّب «عربي عام (ar)» من الإعدادات.",
+licT:"تراخيص الزملاء",licSub:"أصدر كود تفعيل لأي زميل من الموبايل مباشرة، وابعتهوله واتساب. الكود بيتربط بأول جهاز يفعّله.",
+licLock:"لوحة التراخيص مقفولة",licLockSub:"استورد ملف المفاتيح المشفّر مرة واحدة على الموبايل ده، وبعدها تفتح بكلمة السر بس.",
+pickKey:"اختار ملف المفاتيح",pickKeySub:"الملف اللي اسمه ramp-owner-backup-….json",keyPass:"كلمة سر الملف",unlock:"🔓 افتح اللوحة",
+keyLoaded:"✓ الملف اتحمّل",keyOk:"✓ اللوحة مفتوحة",keyBad:"كلمة السر غلط أو الملف تالف",keyNoFile:"اختار الملف الأول",
+lockNow:"🔒 اقفل اللوحة",noCrypto:"المتصفح مش بيدعم التشفير — افتح التطبيق من Chrome حديث على رابط https.",
+issName:"اسم الزميل",issDays:"مدة الصلاحية",issNote:"ملاحظة (اختياري)",issue:"🎫 أصدر الترخيص",issued:"تم إصدار الترخيص ✓",
+d30:"30 يوم",d90:"90 يوم",d180:"180 يوم",d365:"سنة",d3650:"10 سنين",
+licList:"التراخيص الصادرة",noLic:"لسه مفيش تراخيص — أصدر أول واحد من فوق.",
+waSend:"📤 واتساب",cpLink:"🔗 الرابط",cpCode:"📋 الكود",renew:"↻ تجديد",revoke:"⛔ إبطال",unrevoke:"✓ إعادة تفعيل",delLic:"🗑",
+revoked:"الترخيص اتّبطل — حدّث ملف الحماية",unrevoked:"رجع يتفعّل — حدّث ملف الحماية",renewed:"تم التجديد ✓ ابعت الرابط الجديد",licDeleted:"اتمسح الترخيص",
+daysLeft:"{n} يوم",expired:"منتهي",revokedP:"مُبطل",active:"ساري",
+guardT:"تحديث الحماية على GitHub",guardSub:"بعد ما تبطل أو تجدّد ترخيص، نزّل index.html محدّث وارفعه مكان القديم عشان الإبطال يسري فعلًا.",
+guardBtn:"⬇ نزّل index.html محدّث",guardOk:"تم التنزيل ✓ ارفعه على GitHub مكان القديم",guardFail:"تعذّر قراءة الملف المنشور",
+expLic:"⬇ تصدير التراخيص",impLic:"⬆ استيراد تراخيص",licImported:"تم استيراد {n} ترخيص",
+ownerLab:"المالك",keyFp:"بصمة المفتاح",licCount:"عدد التراخيص",
+waMsg:"أهلًا {name} 👋\n\nده رابط تفعيل نسختك من *مفكرة المهبط · Ramp Notes*:\n\n{link}\n\nافتحه من الموبايل وهي يتفعّل لوحده على جهازك.\nالصلاحية لحد: {exp}\n\n⚠ النسخة مصرّح بها ليك انت شخصيًا ومربوطة بجهازك — متبعتهاش لحد تاني.\n© {owner}",
+vhelp:"أمثلة الأوامر",vnote:"بيشتغل على Chrome أندرويد ومحتاج إنترنت. لو العربي مش شغال جرّب «عربي عام (ar)».",
 vListen:"اتكلم دلوقتي…",vNo:"مافهمتش",vNoSup:"المتصفح ده مش بيدعم الأوامر الصوتية (استخدم Chrome)",vDenied:"اسمح للمتصفح باستخدام المايك",
 vNet:"التعرف على الصوت محتاج إنترنت",vNoSpeech:"ماسمعتش حاجة",vNoMic:"المايك مش شغال",vLangErr:"اللغة دي مش مدعومة على جهازك",
 vNoFlight:"مفيش رحلة مفتوحة — قول «رحلة جديدة» أو اختار رحلة",vUndone:"تم التراجع",vNothing:"مفيش حاجة أتراجع عنها",vAlready:"تمت قبل كده",vNone:"مش موجودة",vTry:"جرب مثلاً",
-vex:[["ابدأ السلم","يبدأ وقت السلم"],["شغل السلم","نفس الأمر باللهجة المصرية"],["خلص السلم","يقفل وقت السلم"],["السلم","اسم الخدمة لوحده: بداية أو نهاية"],["ضيف حافلتين","يضيف خدمة بالعدد"],["شوكس اون / شوكس اوف","وقت الوصول / السفر"],["ركاب وصول 150","عدد الركاب (وصول أو سفر)"],["تقصير الجرار تأخير","تقصير في خدمة مع السبب"],["موقف 12","رقم الموقف"],["ملاحظة …","كل الكلام بعدها يتسجل ملاحظة"],["سجل ملاحظة …","نفس الأمر بصيغة تانية"],["رحلة 777","فتح الرحلة (أو إضافتها)"],["رحلة جديدة","رحلة فاضية"],["تم النقل","تعليم الرحلة كمنقولة"],["تراجع","إلغاء آخر أمر"]]},
-en:{title:"Ramp Notes",nav1:"Flights",nav2:"Routine",nav3:"Settings",todayN:"{n} today",
+vex:[["ابدأ السلم","يبدأ وقت السلم"],["شغل السلم","نفس الأمر بالمصري"],["خلص السلم","يقفل وقت السلم"],["السلم","اسم الخدمة لوحده: بداية أو نهاية"],["ضيف حافلتين","يضيف خدمة بالعدد"],["شوكس اون / شوكس اوف","وقت الوصول / السفر"],["ركاب وصول 150","عدد الركاب"],["تقصير الجرار تأخير","تقصير مع السبب"],["موقف 12","رقم الموقف"],["ملاحظة …","كل الكلام بعدها ملاحظة"],["سجل ملاحظة …","نفس الأمر بصيغة تانية"],["رحلة 777","فتح الرحلة أو إضافتها"],["رحلة جديدة","رحلة فاضية"],["تم النقل","تعليم كمنقولة"],["تراجع","إلغاء آخر أمر"]]},
+en:{title:"Ramp Notes",nav1:"Flights",nav2:"Routine",nav3:"Settings",nav4:"Licenses",todayN:"{n} today",
 routineHint:"Tap a routine flight to add it",noRoutine:"No routine flights — add them in the Routine tab",newFlight:"New flight",
 f_open:"Open",f_moved:"Transferred",f_all:"All",noFlights:"No flights here",clearMoved:"Clear transferred",clearedN:"Removed {n} flights",
 flight:"Flight",flightNo:"Flight no.",airline:"Airline",type:"Type",reg:"Reg.",stand:"Stand",sched:"Sched. time",date:"Date",
 chOn:"Arrival (Chocks on)",chOff:"Departure (Chocks off)",now:"Now",paxA:"Pax arrival",paxD:"Pax departure",
-services:"Services",addService:"Add service",start:"Start",end:"End",from:"From",to:"To",min:"min",h:"h",
+services:"Services",addService:"Add service",start:"Start",end:"End",from:"From",to:"To",min:"m",h:"h",
 doneNoTime:"Done (no time)",noTime:"No time",issue:"Issue",other:"Other",svcName:"Service name",ok:"OK",cancel:"Cancel",
 wr_late:"Late",wr_noeq:"Equipment unavailable",wr_nocrew:"Short of staff",wr_part:"Partial",wr_notreq:"Not requested",
 notePh:"Note (optional)",genNote:"General notes / issues",details:"Flight details",share:"Share",copy:"Copy",copied:"Copied ✔",
 moved:"Transferred to work order",unmove:"Undo transfer",movedT:"Marked as transferred",del:"Delete flight",deleted:"Flight deleted",removed:"Service removed",undo:"Undo",
+fold:"Collapse flight",unfold:"Expand flight",foldNow:"▲ Close & collapse",folded:"Flight collapsed ✓",allDone:"All services done",
 sArr:"Arr",sDep:"Dep",sPax:"Pax",sNote:"Note",unk:"?",
 addR:"Add routine flight",editR:"Edit routine flight",usualServices:"Usual services (added automatically)",save:"Save",new:"New",edit:"Edit",
 needNo:"Enter the flight number",savedR:"Saved ✔",delR:"Routine flight deleted",routineList:"Routine flights",
@@ -280,28 +321,44 @@ d_n:"{n} days",forever:"Forever",s_data:"Data & backup",expJson:"Backup (JSON)",
 impData:"Import file",shareR:"Share routine flights with coworkers",imported:"Imported: {a} flights, {b} routine",badFile:"Invalid file",
 s_install:"Install app",installBtn:"Install to home screen",installHint:"From the Chrome menu (⋮) choose “Install app” or “Add to Home screen”.",
 storeNote:"Data is stored on this device only — back it up now and then. Flights not yet transferred are never deleted automatically.",
-saveFail:"Could not save — storage is full or disabled",ver:"Version 2.4 — stronger Arabic voice + hour alert",exported:"Exported ✔",
+saveFail:"Could not save — storage is full or disabled",ver:"Version 3.0 — licenses from mobile",exported:"Exported ✔",
 s_voice:"Voice commands",today:"Today",tomorrow:"Tomorrow",yesterday:"Yesterday",wdate:"Date for new flights",backToday:"Back to today",vWhich:"Which service? Say its name",vlang:"Speech recognition language",vl_auto:"Same as app language",vl_eg:"Egyptian (ar-EG)",vl_ar:"Generic Arabic (ar)",vkeep:"Keep listening after each command",on:"On",off:"Off",
-defSvc:"Default services",autoAdd:"Auto-add",defHint:"Services picked here are added automatically to every new flight — and together with routine flights (no duplicates).",
+defSvc:"Default services",autoAdd:"Auto-add",defHint:"Services picked here are added automatically to every new flight — and with routine flights (no duplicates).",
 newSvc:"New service",svcIcon:"Icon",manageSvc:"Manage services",hide:"Hide",show:"Show",builtin:"Built-in",custom:"Custom",
 svcAdded:"Service added ✔",svcExists:"Service already exists",needName:"Enter the service name",svcHidden:"Hidden from lists",svcShown:"Shown again",svcDeleted:"Service deleted",
-noSvc:"No visible services — add or unhide in “Manage services”",manHint:"“Hide” removes a service from the lists only; recorded flights stay untouched. Deleting a custom service turns it into “Other” in old flights. “Target” in minutes makes the live timer warn you when a service runs long.",
+noSvc:"No visible services — add or unhide in Manage services",manHint:"Hide removes a service from lists only. Deleting a custom service turns it into “Other” in old flights. Target minutes warns when a service runs long.",
 searchPh:"Search: flight no. / reg. / stand / note…",sortLab:"Sort",sort_time:"By time",sort_new:"Newest added",sort_svc:"Most services",sort_issue:"Most issues",
 vShift:"Today’s shift",vIss:"With issues",vRun:"Running now",noRes:"No matching results",resN:"{n} flights shown",
 stN:"Flights today",stD:"Services done",stR:"Running now",stW:"Issues",stA:"Avg ground",
-tlTitle:"Services timeline",tgt:"Target",tgtLab:"Target (min)",over:"Over",quick:"Quick add",dragA:"Drag to reorder service",
+tlTitle:"Services timeline",tgt:"Target",tgtLab:"Target (min)",quick:"Quick add",dragA:"Drag to reorder service",
 bulk:"Select",selN:"{n} selected",allVis:"All",moveSel:"✓ Transfer",delSel:"🗑 Delete",movedN:"Transferred {n} flights",deletedN:"Deleted {n} flights",
 repBtn:"Shift report",shiftRep:"Shift report",repFlights:"Flights",repSvc:"Services",repIss:"Issues",repAvg:"Avg ground",
 cf:"Stand conflict",cfWith:"Same stand at overlapping time with: {n}",
-bkNever:"No backup yet — your data lives on this device only.",bkOld:"Last backup {n} days ago.",bkToday:"Last backup today ✔",bkBtn:"💾 Back up now",bkLab:"Last backup",
-hourT:"services over an hour",hourMore:"and {n} more",hourToast:"over an hour",imp_hour:"Hour alert",
-impTitle:"✨ 2.4 improvements",impHint:"Each improvement has its own switch — turn off anything you don’t want and it looks exactly like 2.2.",impOn:"Enable all",impOff:"Disable all",
+bkNever:"No backup yet — data lives on this device only.",bkOld:"Last backup {n} days ago.",bkToday:"Last backup today ✔",bkBtn:"💾 Back up now",bkLab:"Last backup",
+hourT:"services over an hour",hourMore:"and {n} more",hourToast:"over an hour",imp_hour:"Hour alert",af:"Auto-collapse when all services are done",imp_af:"Auto-collapse flights",
+impTitle:"✨ Improvements",impHint:"Each improvement has its own switch.",impOn:"Enable all",impOff:"Disable all",
 imp_search:"Search & sort",imp_views:"Quick views",imp_stats:"Today stats",imp_tl:"Timeline",imp_tgt:"Service target time",imp_rep:"Shift report",imp_cf:"Stand conflict alert",imp_bulk:"Bulk selection",imp_bk:"Backup reminder",imp_qk:"Quick add",imp_dg:"Drag to reorder services",
-vhelp:"Command examples",vnote:"Works in Chrome on Android and needs internet. Audio is sent to Google for recognition. If Arabic fails, try “Generic Arabic (ar)” in Settings.",
+licT:"Coworker licenses",licSub:"Issue an activation code for any coworker straight from your phone and send it via WhatsApp. The code binds to the first device that activates it.",
+licLock:"License console locked",licLockSub:"Import the encrypted key file once on this phone, then unlock with your password.",
+pickKey:"Choose key file",pickKeySub:"The file named ramp-owner-backup-….json",keyPass:"File password",unlock:"🔓 Unlock console",
+keyLoaded:"✓ File loaded",keyOk:"✓ Console unlocked",keyBad:"Wrong password or corrupt file",keyNoFile:"Choose the file first",
+lockNow:"🔒 Lock console",noCrypto:"This browser lacks crypto support — open the app in modern Chrome over https.",
+issName:"Coworker name",issDays:"Validity",issNote:"Note (optional)",issue:"🎫 Issue license",issued:"License issued ✓",
+d30:"30 days",d90:"90 days",d180:"180 days",d365:"1 year",d3650:"10 years",
+licList:"Issued licenses",noLic:"No licenses yet — issue the first one above.",
+waSend:"📤 WhatsApp",cpLink:"🔗 Link",cpCode:"📋 Code",renew:"↻ Renew",revoke:"⛔ Revoke",unrevoke:"✓ Re-enable",delLic:"🗑",
+revoked:"License revoked — update the guard file",unrevoked:"Re-enabled — update the guard file",renewed:"Renewed ✓ send the new link",licDeleted:"License deleted",
+daysLeft:"{n} days",expired:"Expired",revokedP:"Revoked",active:"Active",
+guardT:"Update protection on GitHub",guardSub:"After revoking or renewing, download the updated index.html and upload it over the old one so the change takes effect.",
+guardBtn:"⬇ Download updated index.html",guardOk:"Downloaded ✓ upload it to GitHub over the old file",guardFail:"Could not read the published file",
+expLic:"⬇ Export licenses",impLic:"⬆ Import licenses",licImported:"Imported {n} licenses",
+ownerLab:"Owner",keyFp:"Key fingerprint",licCount:"Licenses",
+waMsg:"Hi {name} 👋\n\nHere is your activation link for *Ramp Notes*:\n\n{link}\n\nOpen it on your phone and it activates automatically.\nValid until: {exp}\n\n⚠ Licensed to you personally and bound to your device — do not forward it.\n© {owner}",
+vhelp:"Command examples",vnote:"Works in Chrome on Android and needs internet. If Arabic fails, try “Generic Arabic (ar)”.",
 vListen:"Speak now…",vNo:"Didn't understand",vNoSup:"This browser doesn't support voice commands (use Chrome)",vDenied:"Allow the browser to use the microphone",
 vNet:"Speech recognition needs internet",vNoSpeech:"Didn't hear anything",vNoMic:"Microphone not working",vLangErr:"This language isn't supported on your device",
 vNoFlight:"No open flight — say “new flight” or pick one",vUndone:"Undone",vNothing:"Nothing to undo",vAlready:"already done",vNone:"not found",vTry:"Try for example",
-vex:[["Start stairs","Starts the stairs timer"],["Stairs done","Ends the stairs timer"],["Stairs","Service name alone: start or end"],["Add 2 buses","Adds a service with quantity"],["Chocks on / Chocks off","Arrival / departure time"],["Pax arrival 150","Passenger count (arrival or departure)"],["Issue tractor late","Issue on a service with reason"],["Stand 12","Stand number"],["Note …","Everything after it becomes a note"],["Flight 777","Open (or add) the flight"],["New flight","Blank flight"],["Transferred","Mark flight as transferred"],["Undo","Undo the last command"]]}};
+vex:[["Start stairs","Starts the stairs timer"],["Stairs done","Ends the stairs timer"],["Stairs","Service name alone: start or end"],["Add 2 buses","Adds a service with quantity"],["Chocks on / Chocks off","Arrival / departure time"],["Pax arrival 150","Passenger count"],["Issue tractor late","Issue with reason"],["Stand 12","Stand number"],["Note …","Everything after becomes a note"],["Flight 777","Open or add the flight"],["New flight","Blank flight"],["Transferred","Mark as transferred"],["Undo","Undo last command"]]}};
 
 const KEY="rn",FS=[.9,1,1.15,1.3,1.5],LS={al:"d_al",rg:"d_rg",ac:"d_ac",sp:"d_sp"};
 const $=id=>document.getElementById(id);
@@ -317,8 +374,8 @@ function load(){
  d.cs=Array.isArray(d.cs)?d.cs.filter(x=>x&&x.k&&x.a).map(x=>({k:String(x.k),a:String(x.a),e:String(x.e||x.a),i:x.i||"🛠️",cu:1})):[];
  d.hid=d.hid&&typeof d.hid==="object"?d.hid:{};
  d.tg=d.tg&&typeof d.tg==="object"?d.tg:{};
- d.set=Object.assign({lang:"ar",theme:"auto",fs:1,keep:14,vl:"auto",vk:0,wd:null,ds:[],da:1,sort:"time",lb:0},d.set);
- d.set.ds=Array.isArray(d.set.ds)?d.set.ds:[];d.set.da=d.set.da?1:0;
+ d.set=Object.assign({lang:"ar",theme:"auto",fs:1,keep:14,vl:"auto",vk:0,wd:null,ds:[],da:1,sort:"time",lb:0,af:1},d.set);
+ d.set.ds=Array.isArray(d.set.ds)?d.set.ds:[];d.set.da=d.set.da?1:0;d.set.af=d.set.af?1:0;
  d.set.imp=Object.assign(IMPOBJ(),d.set.imp||{});
  if(!["time","new","svc","issue"].includes(d.set.sort))d.set.sort="time";
  if(d.set.wd&&!(d.set.wd>=dd(1)))d.set.wd=null;
@@ -332,8 +389,7 @@ function normF(f){
  f.o=f.o?1:0;f.ok=f.ok?1:0;f.dt=f.dt?1:0;f.id=f.id||Date.now();return f}
 const dd=n=>{const d=new Date(Date.now()-n*864e5);return new Date(d-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)};
 const pd=s=>{const m=/^(\d{4})-(\d\d)-(\d\d)$/.exec(s||"");return m?new Date(+m[1],+m[2]-1,+m[3]):null};
-const iso=d=>d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
-const addD=(s,n)=>{const d=pd(s)||pd(dd(0));d.setDate(d.getDate()+n);return iso(d)};
+const addD=(s,n)=>{const d=pd(s)||pd(dd(0));d.setDate(d.getDate()+n);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
 const dloc=()=>D.set.lang==="en"?"en-GB":"ar-EG-u-nu-latn";
 const dlab=s=>{const d=pd(s);if(!d)return s||"";try{return d.toLocaleDateString(dloc(),{weekday:"long",day:"numeric",month:"long"})}catch(e){return s}};
 const dshort=s=>{const d=pd(s);if(!d)return s||"";try{return d.toLocaleDateString(dloc(),{weekday:"short",day:"numeric",month:"short"})}catch(e){return s}};
@@ -345,20 +401,18 @@ const L=()=>D.set.lang==="en"?"en":"ar";
 const t=(k,v)=>{let s=T[L()][k]??T.ar[k]??k;if(v)for(const x in v)s=s.replace("{"+x+"}",v[x]);return s};
 const nmOf=x=>L()==="en"?x.e:x.a;
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){toast(t("saveFail"))}};
-function undoer(){const snap=JSON.stringify(D);return()=>{const cur=D.set,o=JSON.parse(snap);o.set=Object.assign({},cur,{ds:o.set.ds,da:o.set.da,imp:o.set.imp,sort:o.set.sort});D=o;buildVMap();save();R1();hdr();if(TAB===2)RS()}}
-
+function undoer(){const snap=JSON.stringify(D);return()=>{const cur=D.set,o=JSON.parse(snap);o.set=Object.assign({},cur,{ds:o.set.ds,da:o.set.da,imp:o.set.imp,sort:o.set.sort,af:o.set.af});D=o;buildVMap();save();R1();hdr();if(TAB===2)RS()}}
 const nw=()=>{const d=new Date();return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")};
 const mins=h=>{const m=/^(\d\d):(\d\d)$/.exec(h||"");return m?+m[1]*60+ +m[2]:null};
 const nowM=()=>{const d=new Date();return d.getHours()*60+d.getMinutes()};
 const dur=(a,b)=>{a=mins(tm(a));b=mins(tm(b));if(a==null||b==null)return null;let d=b-a;if(d<0)d+=1440;return d};
 const elapsed=f=>{const a=mins(tm(f));if(a==null)return null;let d=nowM()-a;if(d<0)d+=1440;return d};
 const fmtMin=m=>m==null?"":m<60?`${m} ${t("min")}`:`${Math.floor(m/60)}${t("h")} ${m%60}${t("min")}`;
-
+const fmtShort=m=>m==null?"":m<60?m+t("min"):Math.floor(m/60)+":"+String(m%60).padStart(2,"0")+t("h");
 const lrn=(k,v)=>{v=String(v||"").trim();if(v)D.h[k][v]=(D.h[k][v]||0)+1};
 const unl=(k,v)=>{if(v&&D.h[k][v]&&--D.h[k][v]<=0)delete D.h[k][v]};
 const tp=k=>Object.entries(D.h[k]||{}).sort((a,b)=>b[1]-a[1]).slice(0,40);
 function dlists(){for(const k in LS)$(LS[k]).innerHTML=tp(k).map(([v])=>`<option value="${esc(v)}">`).join("")}
-
 const allCat=()=>SV.concat(D.cs);
 const cat=()=>allCat().filter(x=>x.k!=="oth"&&!D.hid[x.k]);
 const svOf=s=>allCat().find(x=>x.k===s.k)||{a:s.k,e:s.k,i:"•"};
@@ -367,23 +421,19 @@ const sst=s=>s.t?"done":s.f?"run":s.dn?"dnx":"idle";
 const cnt=f=>f.s.filter(s=>s.t||s.dn).length+"/"+f.s.length;
 const tgOf=k=>{const v=+D.tg[k];return v>0?Math.min(240,Math.round(v)):0};
 function wtxt(s){const r=(s.wr||[]).map(k=>t("wr_"+k));if(s.nt)r.push(s.nt);return r.join("، ")||t("issue")}
-
 function stats(ds){
  const fs=D.fl.filter(f=>f.d===ds);let tot=0,dn=0,run=0,iss=0,sum=0,n=0;
  fs.forEach(f=>{tot+=f.s.length;f.s.forEach(s=>{if(s.t||s.dn)dn++;if(sst(s)==="run")run++;if(s.w)iss++});
   const d=dur(f.ta,f.td);if(d!=null){sum+=d;n++}});
  return{n:fs.length,tot,dn,run,iss,avg:n?Math.round(sum/n):null}}
-function stUpd(){
- if(!D.set.imp.stats)return;const s=stats(dd(0));
- const set=(id,v)=>{const el=$(id);if(el)el.textContent=v};
- set("stN",s.n);set("stD",s.dn+"/"+s.tot);set("stR",s.run);set("stW",s.iss);set("stA",s.avg!=null?fmtMin(s.avg):"—")}
-function statsHtml(){
- const s=stats(dd(0));
+function stUpd(){if(!D.set.imp.stats)return;const s=stats(dd(0));const set=(id,v)=>{const el=$(id);if(el)el.textContent=v};
+ set("stN",s.n);set("stD",s.dn+"/"+s.tot);set("stR",s.run);set("stW",s.iss);set("stA",s.avg!=null?fmtShort(s.avg):"—")}
+function statsHtml(){const s=stats(dd(0));
  return `<div class="stats"><div class="st"><b id="stN">${s.n}</b><small>${t("stN")}</small></div>
 <div class="st d"><b id="stD">${s.dn}/${s.tot}</b><small>${t("stD")}</small></div>
 <div class="st r"><b id="stR">${s.run}</b><small>${t("stR")}</small></div>
 <div class="st w"><b id="stW">${s.iss}</b><small>${t("stW")}</small></div>
-<div class="st"><b id="stA">${s.avg!=null?esc(fmtMin(s.avg)):"—"}</b><small>${t("stA")}</small></div></div>`}
+<div class="st"><b id="stA">${s.avg!=null?esc(fmtShort(s.avg)):"—"}</b><small>${t("stA")}</small></div></div>`}
 function cfSet(){
  const out=new Map();if(!D.set.imp.cf)return out;
  const by={};D.fl.filter(f=>!f.ok&&String(f.sp||"").trim()).forEach(f=>{const k=f.d+"|"+f.sp.trim().toUpperCase();(by[k]=by[k]||[]).push(f)});
@@ -410,7 +460,7 @@ function tlHtml(f){
  const rows=d.items.map(it=>{
   const l=Math.max(0,Math.min(100,(it.a-d.lo)/span*100)),w=Math.max(1.5,Math.min(100-l,(it.b-it.a)/span*100));
   const cls=it.s.w?"wn":it.run?"run":"";
-  return `<div class="tlr"><span class="tli">${svOf(it.s).i}</span><div class="tlt"><button class="tlb ${cls}" data-b="tls" data-i="${it.i}" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%" title="${esc(sname(it.s))}" aria-label="${esc(sname(it.s))}">${w>17?esc(fmtMin(it.b-it.a)):""}</button>${d.now!=null?`<i class="tln" style="left:${((d.now-d.lo)/span*100).toFixed(2)}%"></i>`:""}</div><span class="tld" dir="ltr">${hm(it.a)}</span></div>`}).join("");
+  return `<div class="tlr"><span class="tli">${svOf(it.s).i}</span><div class="tlt"><button class="tlb ${cls}" data-b="tls" data-i="${it.i}" style="left:${l.toFixed(2)}%;width:${w.toFixed(2)}%" title="${esc(sname(it.s))}">${w>17?esc(fmtShort(it.b-it.a)):""}</button>${d.now!=null?`<i class="tln" style="left:${((d.now-d.lo)/span*100).toFixed(2)}%"></i>`:""}</div><span class="tld" dir="ltr">${hm(it.a)}</span></div>`}).join("");
  return `<div class="tlw"><div class="tlh"><span>${t("tlTitle")}</span><span dir="ltr">${hm(d.lo)} → ${hm(d.hi)}</span></div>${rows}</div>`}
 function qkHtml(f){
  if(!D.set.imp.qk)return "";
@@ -434,27 +484,22 @@ function bkLine(){const lb=+D.set.lb||0;if(!lb)return t("bkNever");const n=Math.
 function hourItems(){
  if(!D.set.imp.hour)return [];
  const out=[];
- D.fl.forEach(f=>f.s.forEach((s,i)=>{
-  if(!s.f)return;
-  const d=s.t?dur(s.f,s.t):elapsed(s.f);
-  if(d!=null&&d>HOUR)out.push({f,i,s,d,run:!s.t});
- }));
+ D.fl.forEach(f=>f.s.forEach((s,i)=>{if(!s.f)return;const d=s.t?dur(s.f,s.t):elapsed(s.f);if(d!=null&&d>HOUR)out.push({f,i,s,d,run:!s.t})}));
  return out.sort((a,b)=>b.d-a.d)}
 function hrHtml(){
  const a=hourItems();if(!a.length)return "";
- const top=a.slice(0,3).map(x=>`<button data-b="hour" data-fid="${x.f.id}" data-i="${x.i}">⏰ ${esc(x.f.n||t("flight"))} · ${esc(sname(x.s))} · ${esc(fmtMin(x.d))}${x.run?" ▶":""}</button>`).join("");
+ const top=a.slice(0,3).map(x=>`<button data-b="hour" data-fid="${x.f.id}" data-i="${x.i}">⏰ ${esc(x.f.n||t("flight"))} · ${esc(sname(x.s))} · ${esc(fmtShort(x.d))}${x.run?" ▶":""}</button>`).join("");
  return `<div class="hrt">⏰ ${t("hourT")} (${a.length})</div>${top}${a.length>3?`<div class="more">${t("hourMore",{n:a.length-3})}</div>`:""}`}
 function hrUpd(){const el=$("hrbar");if(el)el.innerHTML=hrHtml()}
 function checkHour(){
- if(!D.set.imp.hour)return;
- const news=[];
- D.fl.forEach(f=>f.s.forEach((s,i)=>{
-  if(s.t)return;
-  const e=elapsed(s.f);
-  if(e!=null&&e>HOUR){const k=f.id+":"+i+":"+s.f;if(!ALERTED.has(k)){ALERTED.add(k);news.push({f,s,e})}}
- }));
- if(news.length){buzz(0);
-  toast(news.length===1?`⏰ ${news[0].f.n||t("flight")} · ${sname(news[0].s)} ${t("hourToast")} (${fmtMin(news[0].e)})`:`⏰ ${news.length} ${t("hourT")}`,null,false,6500)}}
+ if(!D.set.imp.hour)return;const news=[];
+ D.fl.forEach(f=>f.s.forEach((s,i)=>{if(s.t)return;const e=elapsed(s.f);
+  if(e!=null&&e>HOUR){const k=f.id+":"+i+":"+s.f;if(!ALERTED.has(k)){ALERTED.add(k);news.push({f,s,e})}}}));
+ if(news.length){buzz(0);toast(news.length===1?`⏰ ${news[0].f.n||t("flight")} · ${sname(news[0].s)} ${t("hourToast")} (${fmtMin(news[0].e)})`:`⏰ ${news.length} ${t("hourT")}`,null,false,6500)}}
+function maybeFold(f){
+ if(!D.set.af||!f.s.length)return;
+ if(!f.s.every(s=>s.t||s.dn))return;
+ f.o=0;save();rc(f);toast("✓ "+(f.n||t("flight"))+" — "+t("folded"))}
 
 const fld=(lab,inner,c="")=>`<div class="fld ${c}"><label>${lab}</label>${inner}</div>`;
 const inp=(a,v,o={})=>`<input data-a="${a}" value="${esc(v)}"${o.type?` type="${o.type}"`:""}${LS[a]?` list="${LS[a]}"`:""}${o.m?` inputmode="${o.m}"`:""}${o.cap?` autocapitalize="characters"`:""}${o.ac?` autocomplete="off"`:""}>`;
@@ -463,23 +508,24 @@ function ccls(f){return(f.ok?"mv ":"")+(f.s.length&&f.s.every(s=>s.t||s.dn)?"ad 
 function fhIn(f){
  const tot=f.s.length,dn=f.s.filter(s=>s.t||s.dn).length,run=f.s.some(s=>sst(s)==="run"),wn=f.s.some(s=>s.w)||f.nt;
  const cf=CF.get(f.id);
- return `<div class="fhr">${BULK?`<button class="o selbox" data-b="o" aria-label="${esc(t("bulk"))}">${SEL.has(f.id)?"✓":""}</button>`:""}<div class="fhx"><div class="l1"><span class="fn">${esc(f.n)||t("flight")}</span><span class="m">${esc(f.al)}</span><span class="m">${esc(f.ac)}</span><span class="m">${esc(f.rg)}</span>${f.ok?`<span class="tag">✓</span>`:""}${wn?`<span class="tag w">⚠</span>`:""}${cf?`<span class="tag w" title="${esc(t("cfWith",{n:cf.join("، ")}))}">⚠ ${t("cf")}</span>`:""}</div>
-<div class="l2"><span><span class="dch ${f.d===dd(0)?"":"x"}">${esc(dshort(f.d))}</span>${f.st?" · "+esc(f.st):""}${f.sp?" · "+t("stand").split(" ")[0]+" "+esc(f.sp):""}</span>${tot?`<span class="pr ${run?"r":""}">${dn}/${tot}</span>`:""}</div>${tot?`<div class="pb"><i style="width:${Math.round(dn/tot*100)}%"></i></div>`:""}</div><button class="o dng fdel" data-b="del" title="${esc(t("del"))}" aria-label="${esc(t("del"))}">🗑</button></div>`}
+ return `<div class="fhr">${BULK?`<button class="o selbox" data-b="o">${SEL.has(f.id)?"✓":""}</button>`:""}<div class="fhx"><div class="l1"><span class="fn">${esc(f.n)||t("flight")}</span><span class="m">${esc(f.al)}</span><span class="m">${esc(f.ac)}</span><span class="m">${esc(f.rg)}</span>${f.ok?`<span class="tag">✓</span>`:""}${wn?`<span class="tag w">⚠</span>`:""}${cf?`<span class="tag w" title="${esc(t("cfWith",{n:cf.join("، ")}))}">⚠ ${t("cf")}</span>`:""}</div>
+<div class="l2"><span><span class="dch ${f.d===dd(0)?"":"x"}">${esc(dshort(f.d))}</span>${f.st?" · "+esc(f.st):""}${f.sp?" · "+t("stand").split(" ")[0]+" "+esc(f.sp):""}</span>${tot?`<span class="pr ${run?"r":""}">${dn}/${tot}</span>`:""}</div>${tot?`<div class="pb"><i style="width:${Math.round(dn/tot*100)}%"></i></div>`:""}</div>
+<button class="o fold" data-b="fold" title="${esc(f.o?t("fold"):t("unfold"))}" aria-label="${esc(f.o?t("fold"):t("unfold"))}">${f.o?"▲":"▼"}</button>
+<button class="o dng fdel" data-b="del" title="${esc(t("del"))}" aria-label="${esc(t("del"))}">🗑</button></div>`}
 function row(s,i){
  const st=sst(s),cls=(st==="done"||st==="dnx"?"done":st==="run"?"run":"")+(s.w?" wn":"");
  const tin=(a,lab,v)=>`<div class="tcol"><span class="lbl">${lab}</span><input type="time" data-a="${a}" value="${esc(v)}"></div>`;
  const tg=tgOf(s.k),el=st==="run"?elapsed(s.f):null;
- const hourOver=D.set.imp.hour&&el!=null&&el>HOUR;
- const over=(tg&&el!=null&&el>tg)||hourOver;
+ const over=(tg&&el!=null&&el>tg)||(D.set.imp.hour&&el!=null&&el>HOUR);
  let main;
  if(st==="idle")main=`<button class="big go" data-b="nf">▶ ${t("start")}</button>`;
- else if(st==="run")main=`<div class="tl">${tin("f",t("from"),s.f)}<div class="live${over?" over":""}" data-run data-f="${esc(s.f)}" data-tg="${tg}">${esc(fmtMin(el))}${over?" ⚠":""}</div></div><button class="big stop" data-b="nt">■ ${t("end")}</button>`;
+ else if(st==="run")main=`<div class="tl">${tin("f",t("from"),s.f)}<div class="live${over?" over":""}" data-run data-f="${esc(s.f)}" data-tg="${tg}">${esc(fmtShort(el))}${over?" ⚠":""}</div></div><button class="big stop" data-b="nt">■ ${t("end")}</button>`;
  else if(st==="done"){const d=dur(s.f,s.t),ho=D.set.imp.hour&&d!=null&&d>HOUR;
-  main=`<div class="tl">${tin("f",t("from"),s.f)}${tin("t",t("to"),s.t)}<div class="dur${ho?" over":""}">${esc(fmtMin(d))}${ho?" ⚠":""}</div></div>`}
+  main=`<div class="tl">${tin("f",t("from"),s.f)}${tin("t",t("to"),s.t)}<div class="dur${ho?" over":""}">${esc(fmtShort(d))}${ho?" ⚠":""}</div></div>`}
  else main=`<div class="okb">✔ ${t("doneNoTime")}</div><button class="o wide" data-b="nf" style="margin-top:0">▶ ${t("start")}</button>`;
  const wb=s.w?`<div class="wb"><div class="chips">${WR.map(k=>`<button class="o chip ${(s.wr||[]).includes(k)?"onw":""}" data-b="wrk" data-k="${k}">${t("wr_"+k)}</button>`).join("")}</div><input data-a="nt" value="${esc(s.nt)}" placeholder="${esc(t("notePh"))}"></div>`:"";
  const grip=D.set.imp.dg?`<span class="grip" data-grip tabindex="0" role="button" aria-label="${esc(t("dragA"))}">⋮⋮</span>`:"";
- const tgb=D.set.imp.tgt&&tg?`<span class="tgt">🎯 ${tg}${t("min")}</span>`:"";
+ const tgb=D.set.imp.tgt&&tg?`<span class="tgt">🎯${tg}</span>`:"";
  return `<div class="sv ${cls}" data-i="${i}"><div class="svh">${grip}<span class="ic">${svOf(s).i}</span><b>${esc(sname(s))}</b>${tgb}<div class="qs"><button class="o" data-b="qm">−</button><b>${esc(s.q||1)}</b><button class="o" data-b="qp">+</button></div></div>${main}
 <div class="acts">${!(s.f||s.t)?`<button class="o ${s.dn?"on":""}" data-b="dn">✓<small>${t("noTime")}</small></button>`:""}<button class="o ${s.w?"onw":""}" data-b="w">⚠<small>${t("issue")}</small></button>${s.f||s.t?`<button class="o" data-b="rs">↺</button>`:""}<button class="o dng" data-b="x">✕</button></div>${wb}</div>`}
 function body(f){
@@ -492,7 +538,8 @@ ${qkHtml(f)}<button class="big add o" data-b="add">＋ ${t("addService")}</butto
 <textarea data-a="nt" rows="2" placeholder="${esc(t("genNote"))}">${esc(f.nt)}</textarea>
 <button class="o wide" data-b="dt">${f.dt?"▲":"▼"} ${t("details")}</button>${f.dt?det:""}
 <div class="row mt"><button data-b="sh">📤 ${t("share")}</button><button class="o" data-b="cp">📋 ${t("copy")}</button></div>
-<button class="wide ${f.ok?"o":""}" data-b="ok">${f.ok?"↩ "+t("unmove"):"✓ "+t("moved")}</button>
+<button class="wide ${f.ok?"o":"go"}" data-b="ok">${f.ok?"↩ "+t("unmove"):"✓ "+t("moved")}</button>
+<button class="o wide" data-b="fold">▲ ${t("foldNow")}</button>
 <button class="o wide dng" data-b="del">🗑 ${t("del")}</button></div>`}
 const card=f=>`<article class="fc ${ccls(f)}${SEL.has(f.id)?" sel":""}" data-fid="${f.id}"><div class="fh" data-b="o">${fhIn(f)}</div>${f.o&&!BULK?body(f):""}</article>`;
 function rc(f){CF=cfSet();const el=document.querySelector(`[data-fid="${f.id}"]`);if(el)el.outerHTML=card(f);dlists();hdr();stUpd();hrUpd()}
@@ -500,22 +547,16 @@ function upCard(c,f,r){
  if(r){const i=+r.dataset.i;r.outerHTML=row(f.s[i],i)}
  const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)+(SEL.has(f.id)?" sel":"");
  const sp=c.querySelector(".sec span:last-child");if(sp)sp.textContent=cnt(f);stUpd();hrUpd()}
-const dbarF=f=>`<div class="dbar${f.d===dd(0)?"":" x"}"><button class="o sq" data-b="dm" aria-label="-1">◀</button><div class="dtx"><b>${esc(dlab(f.d))}</b><small>${esc(drel(f.d)||t("date"))}</small><input type="date" data-a="d" value="${esc(f.d)}"></div><button class="o sq" data-b="dp" aria-label="+1">▶</button></div>`;
-const wdBar=()=>{const w=wdate(),x=w!==dd(0);return `<div class="lbl">${t("wdate")}</div><div class="dbar${x?" x":""}"><button class="o sq" data-b="wdm" aria-label="-1">◀</button><div class="dtx"><b>${esc(dlab(w))}</b><small>${esc(drel(w)||"")}</small><input type="date" data-b="wdin" value="${esc(w)}"></div><button class="o sq" data-b="wdp" aria-label="+1">▶</button></div>${x?`<button class="o wide" data-b="wdt">↺ ${t("backToday")}</button>`:""}`};
+const dbarF=f=>`<div class="dbar${f.d===dd(0)?"":" x"}"><button class="o sq" data-b="dm">◀</button><div class="dtx"><b>${esc(dlab(f.d))}</b><small>${esc(drel(f.d)||t("date"))}</small><input type="date" data-a="d" value="${esc(f.d)}"></div><button class="o sq" data-b="dp">▶</button></div>`;
+const wdBar=()=>{const w=wdate(),x=w!==dd(0);return `<div class="lbl">${t("wdate")}</div><div class="dbar${x?" x":""}"><button class="o sq" data-b="wdm">◀</button><div class="dtx"><b>${esc(dlab(w))}</b><small>${esc(drel(w)||"")}</small><input type="date" data-b="wdin" value="${esc(w)}"></div><button class="o sq" data-b="wdp">▶</button></div>${x?`<button class="o wide" data-b="wdt">↺ ${t("backToday")}</button>`:""}`};
 const focusCard=id=>{const el=document.querySelector(`[data-fid="${id}"]`);if(el)el.scrollIntoView({block:"start"})};
 function setWd(v){v=/^\d{4}-\d\d-\d\d$/.test(v||"")?v:dd(0);D.set.wd=v===dd(0)?null:v;save();R1()}
-function matchQ(f){
- if(!Q)return true;
+function matchQ(f){if(!Q)return true;
  const hay=[f.n,f.al,f.ac,f.rg,f.sp,f.nt,f.d].concat(f.s.map(s=>sname(s)+" "+(s.nm||"")+" "+(s.nt||""))).join(" ");
  return nq(hay).indexOf(nq(Q))>=0}
-function matchV(f){
- if(VW==="shift")return f.d===dd(0);
- if(VW==="w")return f.s.some(s=>s.w)||!!f.nt;
- if(VW==="run")return f.s.some(s=>sst(s)==="run");
- return true}
+function matchV(f){if(VW==="shift")return f.d===dd(0);if(VW==="w")return f.s.some(s=>s.w)||!!f.nt;if(VW==="run")return f.s.some(s=>sst(s)==="run");return true}
 function visList(){return D.fl.filter(f=>FLT==="all"||(FLT==="open"?!f.ok:f.ok)).filter(matchQ).filter(matchV)}
-function sortFs(a){
- const s=D.set.sort,byT=(x,y)=>(x.st||"99:99").localeCompare(y.st||"99:99")||x.id-y.id;
+function sortFs(a){const s=D.set.sort,byT=(x,y)=>(x.st||"99:99").localeCompare(y.st||"99:99")||x.id-y.id;
  if(s==="new")return a.sort((x,y)=>y.id-x.id);
  if(s==="svc")return a.sort((x,y)=>y.s.length-x.s.length||byT(x,y));
  if(s==="issue")return a.sort((x,y)=>y.s.filter(z=>z.w).length-x.s.filter(z=>z.w).length||byT(x,y));
@@ -525,23 +566,20 @@ function listHtml(){
  if(!a.length)return `<p class="empty">${Q||VW?t("noRes"):t("noFlights")}</p>`;
  const T0=dd(0),rk=d=>d===T0?0:d>T0?1:2;
  const ds=[...new Set(a.map(f=>f.d))].sort((x,y)=>rk(x)-rk(y)||(rk(x)===2?(x<y?1:-1):(x<y?-1:1)));
- return ds.map(d=>{
-  const fs=sortFs(a.filter(f=>f.d===d));
+ return ds.map(d=>{const fs=sortFs(a.filter(f=>f.d===d));
   return `<div class="dh ${d===T0?"td":""}"><b>${esc(dlab(d))}</b><span>${esc(drel(d))}${drel(d)?" · ":""}${fs.length}</span></div>`+fs.map(card).join("")}).join("")}
 function renderList(){const el=$("fl");if(el)el.innerHTML=listHtml();qUpd()}
-function qUpd(){
- const c=$("qclr");if(c)c.hidden=!Q;
+function qUpd(){const c=$("qclr");if(c)c.hidden=!Q;
  const n=$("qn");if(n){const v=visList().length;n.textContent=Q||VW?t("resN",{n:v}):"";n.hidden=!(Q||VW)}}
-function bkbHtml(){
- if(!BULK)return "";
+function bkbHtml(){if(!BULK)return "";
  return `<div class="bkb"><b id="bkn">${t("selN",{n:SEL.size})}</b><button class="o" data-b="ball">${t("allVis")}</button><button data-b="bmove" id="bmv">${t("moveSel")}</button><button class="o dng" data-b="bdel" id="bdl">${t("delSel")}</button><button class="o" data-b="bsel">✕</button></div>`}
 function bkUpd(){const n=$("bkn");if(n)n.textContent=t("selN",{n:SEL.size});const a=$("bmv"),b=$("bdl");if(a)a.disabled=!SEL.size;if(b)b.disabled=!SEL.size}
 function R1(){
  CF=cfSet();
  const op=D.fl.filter(f=>!f.ok).length,mv=D.fl.length-op,im=D.set.imp;
  const rch=D.sc.slice().sort((a,b)=>(a.t||"").localeCompare(b.t||"")).map(c=>`<button class="o rc" data-b="addr" data-id="${c.id}"><b>${esc(c.n)}</b><small>${esc(c.t)} ${esc(c.al)}</small></button>`).join("")||`<span class="m">${t("noRoutine")}</span>`;
- const search=im.search?`<div class="tb"><input id="q" type="search" value="${esc(Q)}" placeholder="${esc(t("searchPh"))}" autocomplete="off" aria-label="${esc(t("searchPh"))}"><button class="o sq" id="qclr" data-b="qclr" ${Q?"":"hidden"} aria-label="✕">✕</button></div>`:"";
- const sorts=im.search?`<select class="sel sm" id="sort" data-b="sort" aria-label="${esc(t("sortLab"))}">${["time","new","svc","issue"].map(k=>`<option value="${k}"${D.set.sort===k?" selected":""}>${t("sort_"+k)}</option>`).join("")}</select>`:"";
+ const search=im.search?`<div class="tb"><input id="q" type="search" value="${esc(Q)}" placeholder="${esc(t("searchPh"))}" autocomplete="off"><button class="o sq" id="qclr" data-b="qclr" ${Q?"":"hidden"}>✕</button></div>`:"";
+ const sorts=im.search?`<select class="sel sm" id="sort" data-b="sort">${["time","new","svc","issue"].map(k=>`<option value="${k}"${D.set.sort===k?" selected":""}>${t("sort_"+k)}</option>`).join("")}</select>`:"";
  const bulkB=im.bulk?`<button class="o chip ${BULK?"on":""}" data-b="bsel">☑ ${t("bulk")}</button>`:"";
  const views=im.views?`<div class="chips" style="margin-top:.45rem">${[["shift","vShift"],["w","vIss"],["run","vRun"]].map(([k,l])=>`<button class="o chip ${VW===k?"on":""}" data-b="view" data-k="${k}">${t(l)}</button>`).join("")}</div>`:"";
  const tools=(sorts||bulkB)?`<div class="chips">${sorts}${bulkB}</div>`:"";
@@ -596,12 +634,13 @@ function csSheet(){
  setTimeout(()=>{const el=$("csn");if(el)el.focus()},50)}
 function manSheet(){
  const rows=allCat().filter(x=>x.k!=="oth").map(x=>{const off=!!D.hid[x.k];
-  return `<div class="mrow${off?" off":""}"><span class="ic">${x.i}</span><b>${esc(nmOf(x))}</b><span class="mtag">${x.cu?t("custom"):t("builtin")}</span>${D.set.imp.tgt?`<input class="tgin" type="number" min="0" max="240" inputmode="numeric" data-tg="${x.k}" value="${tgOf(x.k)||""}" placeholder="${esc(t("tgtLab"))}" aria-label="${esc(t("tgtLab"))} ${esc(nmOf(x))}">`:""}<button class="o" data-b="hidSv" data-k="${x.k}">${off?t("show"):t("hide")}</button>${x.cu?`<button class="o dng" data-b="delCs" data-k="${x.k}">🗑</button>`:""}</div>`}).join("");
+  return `<div class="mrow${off?" off":""}"><span class="ic">${x.i}</span><b>${esc(nmOf(x))}</b>${D.set.imp.tgt?`<input class="tgin" type="number" min="0" max="240" inputmode="numeric" data-tg="${x.k}" value="${tgOf(x.k)||""}" placeholder="${esc(t("tgtLab"))}">`:""}<button class="o" data-b="hidSv" data-k="${x.k}">${off?t("show"):t("hide")}</button>${x.cu?`<button class="o dng" data-b="delCs" data-k="${x.k}">🗑</button>`:""}</div>`}).join("");
  sheet(`<h3>⚙ ${t("manageSvc")}</h3>${rows}<button class="o wide" data-b="addCs">＋ ${t("newSvc")}</button><p class="hint">${t("manHint")}</p><button class="wide mt" data-b="closeSheet">${t("ok")}</button>`)}
 
 function R3(){
  const seg=(act,cur,items)=>`<div class="seg">${items.map(([v,l])=>`<button class="o ${String(cur)===String(v)?"on":""}" data-b="${act}" data-v="${v}">${l}</button>`).join("")}</div>`;
- $("p3").innerHTML=`<div class="card"><h3>${t("impTitle")}</h3><div class="chips">${IMPK.map(([k,l])=>`<button class="o chip ${D.set.imp[k]?"on":""}" data-b="imp" data-k="${k}">${D.set.imp[k]?"✓ ":""}${t(l)}</button>`).join("")}</div>
+ $("p3").innerHTML=`<div class="card"><h3>📁 ${t("af")}</h3>${seg("saf",D.set.af,[[1,t("on")],[0,t("off")]])}</div>
+<div class="card"><h3>${t("impTitle")}</h3><div class="chips">${IMPK.map(([k,l])=>`<button class="o chip ${D.set.imp[k]?"on":""}" data-b="imp" data-k="${k}">${D.set.imp[k]?"✓ ":""}${t(l)}</button>`).join("")}</div>
 <div class="row mt"><button class="o" data-b="impAll" data-v="1">${t("impOn")}</button><button class="o" data-b="impAll" data-v="0">${t("impOff")}</button></div><p class="hint">${t("impHint")}</p></div>
 <div class="card"><h3>🌐 ${t("s_lang")}</h3>${seg("slang",L(),[["ar","العربية"],["en","English"]])}</div>
 <div class="card"><h3>🎨 ${t("s_theme")}</h3>${seg("sth",D.set.theme,[["auto",t("th_auto")],["day",t("th_day")],["night",t("th_night")]])}
@@ -615,10 +654,97 @@ function R3(){
 <div class="card"><h3>📲 ${t("s_install")}</h3>${DEF?`<button class="big" data-b="inst">${t("installBtn")}</button>`:`<p class="hint" style="margin:0">${t("installHint")}</p>`}</div>
 <p class="hint" style="text-align:center">${t("ver")}</p>`}
 
-const THI={auto:"🌓",day:"☀️",night:"🌙"};
+/* ============ التراخيص (تبويب 4) ============ */
+const subtle=(window.crypto&&crypto.subtle)?crypto.subtle:null;
+const OKLS="rn.ownerkey.v1";
+let OWN={blob:null,priv:"",pub:"",owner:"",lic:[],open:false},KEYBUF=null;
+const b64=buf=>{const a=new Uint8Array(buf);let s="";for(let i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s)};
+const unb64=s=>{const r=atob(s),a=new Uint8Array(r.length);for(let i=0;i<r.length;i++)a[i]=r.charCodeAt(i);return a};
+const b64u=buf=>b64(buf).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"");
+const rid=()=>{const a=crypto.getRandomValues(new Uint8Array(6));let s="";for(let i=0;i<a.length;i++)s+=a[i].toString(36).padStart(2,"0");return s.slice(0,9).toUpperCase()};
+const afterDays=n=>{const d=new Date(Date.now()+n*864e5);return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+const daysLeft=e=>Math.ceil((new Date(e+"T23:59:59")-new Date())/864e5);
+const licState=l=>l.revoked?"rev":String(l.exp)<dd(0)?"exp":"ok";
+function ownLoad(){try{const d=JSON.parse(localStorage.getItem(OKLS));if(d&&d.ct)OWN.blob=d}catch(e){}}
+function ownSaveBlob(){try{localStorage.setItem(OKLS,JSON.stringify(OWN.blob))}catch(e){toast(t("saveFail"))}}
+function derive(pass,salt,usage){
+ return subtle.importKey("raw",new TextEncoder().encode(pass),"PBKDF2",false,["deriveKey"])
+  .then(km=>subtle.deriveKey({name:"PBKDF2",salt,iterations:150000,hash:"SHA-256"},km,{name:"AES-GCM",length:256},false,[usage]))}
+function persistOwn(pass){
+ const salt=crypto.getRandomValues(new Uint8Array(16)),iv=crypto.getRandomValues(new Uint8Array(12));
+ return derive(pass,salt,"encrypt")
+  .then(k=>subtle.encrypt({name:"AES-GCM",iv},k,new TextEncoder().encode(JSON.stringify({priv:OWN.priv,pub:OWN.pub,owner:OWN.owner,lic:OWN.lic}))))
+  .then(ct=>{OWN.blob={app:"rn-owner",v:1,salt:b64(salt),iv:b64(iv),ct:b64(ct)};ownSaveBlob()})}
+let OWN_PASS="";
+function unlockOwn(pass){
+ if(!subtle)return Promise.reject(t("noCrypto"));
+ if(!OWN.blob)return Promise.reject(t("keyNoFile"));
+ return derive(pass,unb64(OWN.blob.salt),"decrypt")
+  .then(k=>subtle.decrypt({name:"AES-GCM",iv:unb64(OWN.blob.iv)},k,unb64(OWN.blob.ct)))
+  .then(pt=>{const o=JSON.parse(new TextDecoder().decode(pt));
+   OWN.priv=o.priv||"";OWN.pub=o.pub||"";OWN.owner=o.owner||"";OWN.lic=Array.isArray(o.lic)?o.lic:[];
+   if(!OWN.priv||!OWN.pub)throw 0;OWN.open=true;OWN_PASS=pass})}
+function appBase(){return location.origin+location.pathname.replace(/[^\/]*$/,"")}
+function licLink(code){return appBase()+"#lic="+encodeURIComponent(code)}
+function waFor(l){
+ return t("waMsg",{name:l.name,link:licLink(l.code),exp:l.exp,owner:OWN.owner||t("ownerLab")})}
+function R4(){
+ if(!subtle){$("p4").innerHTML=`<div class="card"><h3>🔑 ${t("licT")}</h3><div class="banner err"><b>⚠</b>${t("noCrypto")}</div></div>`;return}
+ if(!OWN.open){
+  $("p4").innerHTML=`<div class="card"><h3>🔒 ${t("licLock")}</h3><p class="hint" style="margin:0 0 .7rem">${t("licLockSub")}</p>
+  ${OWN.blob?`<div class="banner ok"><b>${t("keyLoaded")}</b>${t("keyPass")} 👇</div>`:`<div class="drop" id="kDrop"><div class="ic">🔐</div><b>${t("pickKey")}</b><small>${t("pickKeySub")}</small><div class="fn" id="kFn"></div></div>`}
+  <div class="fld mt"><label>${t("keyPass")}</label><input id="kPass" type="password" autocomplete="off"></div>
+  <button class="wide go" data-b="kUnlock">${t("unlock")}</button>
+  ${OWN.blob?`<button class="o wide" data-b="kPick">📂 ${t("pickKey")}</button>`:""}
+  <div id="kOut"></div></div>
+  <div class="card"><h3>🎫 ${t("licT")}</h3><p class="hint" style="margin:0">${t("licSub")}</p></div>`;
+  const dz=$("kDrop");if(dz)dz.onclick=()=>$("keyFile").click();
+  const kp=$("kPass");if(kp)kp.onkeydown=e=>{if(e.key==="Enter")G.kUnlock()};
+  return}
+ const cnt={all:OWN.lic.length,ok:0,exp:0,rev:0};OWN.lic.forEach(l=>cnt[licState(l)]++);
+ $("p4").innerHTML=`<div class="card"><h3>🎫 ${t("licT")} <span class="m" style="font-size:.8rem">${OWN.lic.length}</span></h3>
+ <p class="hint" style="margin:0 0 .7rem">${t("licSub")}</p>
+ <div class="stats"><div class="st"><b>${cnt.all}</b><small>${t("licCount")}</small></div><div class="st d"><b>${cnt.ok}</b><small>${t("active")}</small></div><div class="st r"><b>${cnt.exp}</b><small>${t("expired")}</small></div><div class="st w"><b>${cnt.rev}</b><small>${t("revokedP")}</small></div></div>
+ <div class="row tight mt"><button class="o" data-b="kLock" style="font-size:.85rem;min-height:2.5rem;padding:.2rem .7rem">${t("lockNow")}</button><span class="m" style="font-size:.75rem;align-self:center">${t("ownerLab")}: ${esc(OWN.owner||"—")}</span></div></div>
+ <div class="card"><h3>＋ ${t("issue")}</h3>
+ <div class="g">${fld(t("issName"),`<input id="iName" autocomplete="off">`)}${fld(t("issDays"),`<select id="iDays"><option value="30">${t("d30")}</option><option value="90" selected>${t("d90")}</option><option value="180">${t("d180")}</option><option value="365">${t("d365")}</option><option value="3650">${t("d3650")}</option></select>`)}</div>
+ <div class="fld mt"><label>${t("issNote")}</label><input id="iNote" autocomplete="off"></div>
+ <button class="wide go" data-b="iGo">${t("issue")}</button></div>
+ <div class="lbl">${t("licList")}</div><div id="licList">${licListHtml()}</div>
+ <div class="card"><h3>🛡 ${t("guardT")}</h3><p class="hint" style="margin:0 0 .6rem">${t("guardSub")}</p>
+ <button class="wide" data-b="gDl">${t("guardBtn")}</button>
+ <div class="row mt"><button class="o" data-b="lExp">${t("expLic")}</button><button class="o" data-b="lImp">${t("impLic")}</button></div></div>`}
+function licListHtml(){
+ if(!OWN.lic.length)return `<p class="empty">${t("noLic")}</p>`;
+ return OWN.lic.map(l=>{
+  const st=licState(l),dl=daysLeft(l.exp);
+  const pill=st==="rev"?`<span class="pill wn">${t("revokedP")}</span>`:st==="exp"?`<span class="pill ru">${t("expired")}</span>`:`<span class="pill ok">${t("active")} · ${t("daysLeft",{n:dl})}</span>`;
+  return `<div class="lcard ${st==="rev"?"rev":st==="exp"?"exp":""}">
+  <div class="lh"><b>${esc(l.name)}</b>${pill}<span class="pill mono">${esc(l.id)}</span></div>
+  <div class="lm">${esc(l.exp)}${l.note?" · "+esc(l.note):""}</div>
+  <div class="codebox mono">${esc(l.code)}</div>
+  <div class="row tight mt">
+   <button class="go" data-b="lWa" data-id="${l.id}" style="min-height:2.5rem;font-size:.82rem;padding:.2rem .6rem">${t("waSend")}</button>
+   <button class="o" data-b="lLink" data-id="${l.id}" style="min-height:2.5rem;font-size:.82rem;padding:.2rem .6rem">${t("cpLink")}</button>
+   <button class="o" data-b="lCode" data-id="${l.id}" style="min-height:2.5rem;font-size:.82rem;padding:.2rem .6rem">${t("cpCode")}</button>
+   <button class="o" data-b="lRen" data-id="${l.id}" style="min-height:2.5rem;font-size:.82rem;padding:.2rem .6rem">${t("renew")}</button>
+   <button class="${l.revoked?"go":"o dng"}" data-b="lRev" data-id="${l.id}" style="min-height:2.5rem;font-size:.82rem;padding:.2rem .6rem">${l.revoked?t("unrevoke"):t("revoke")}</button>
+   <button class="o dng" data-b="lDel" data-id="${l.id}" style="min-height:2.5rem;font-size:.82rem;padding:.2rem .6rem">${t("delLic")}</button>
+  </div></div>`}).join("")}
+function refreshLic(){const el=$("licList");if(el)el.innerHTML=licListHtml()}
+function signLic(id,name,exp){
+ const pb=b64u(new TextEncoder().encode(JSON.stringify({v:1,i:id,n:name,e:exp})));
+ return subtle.importKey("pkcs8",unb64(OWN.priv),{name:"ECDSA",namedCurve:"P-256"},false,["sign"])
+  .then(k=>subtle.sign({name:"ECDSA",hash:"SHA-256"},k,new TextEncoder().encode(pb)))
+  .then(sig=>"RN1."+pb+"."+b64u(sig))}
+
 function shell(){
- $("hd").innerHTML=`<div class="ht"><b>📝 ${t("title")}</b><small id="dt"></small></div><button class="hb" data-b="lang" aria-label="Language">${L()==="ar"?"EN":"ع"}</button><button class="hb" data-b="theme" aria-label="Theme">${THI[D.set.theme]||"🌓"}</button>`;
- $("nv").innerHTML=[1,2,3].map(n=>`<button data-b="tab" data-n="${n}" class="${TAB===n?"on":""}"><span>${["✈️","⭐","⚙️"][n-1]}</span>${t("nav"+n)}</button>`).join("");hdr()}
+ $("hd").innerHTML=`<div class="ht"><b>📝 ${t("title")}</b><small id="dt"></small></div>
+ ${SRC?`<button class="hb" id="mic" data-b="mic" aria-label="${esc(t("s_voice"))}">🎙</button>`:""}
+ <button class="hb" data-b="lang" aria-label="Language">${L()==="ar"?"EN":"ع"}</button>
+ <button class="hb" data-b="theme" aria-label="Theme">${THI[D.set.theme]||"🌓"}</button>`;
+ $("nv").innerHTML=[1,2,3,4].map(n=>`<button data-b="tab" data-n="${n}" class="${TAB===n?"on":""}"><span>${["✈️","⭐","⚙️","🔑"][n-1]}</span>${t("nav"+n)}</button>`).join("");hdr();micUi()}
+const THI={auto:"🌓",day:"☀️",night:"🌙"};
 function hdr(){const el=$("dt");if(el)el.textContent=`${dd(0)} · ${t("todayN",{n:D.fl.filter(f=>f.d===dd(0)).length})}`}
 const mq=matchMedia("(prefers-color-scheme: dark)");
 function applyTheme(){
@@ -627,9 +753,8 @@ function applyTheme(){
  document.documentElement.style.setProperty("--fs",D.set.fs);
  $("tc").content=getComputedStyle(document.documentElement).getPropertyValue("--hd").trim()||"#0b1220"}
 mq.addEventListener&&mq.addEventListener("change",()=>{if(D.set.theme==="auto")applyTheme()});
-function setLang(l){D.set.lang=l;save();document.documentElement.lang=l;document.documentElement.dir=l==="ar"?"rtl":"ltr";document.title=l==="ar"?"مفكرة المهبط":"Ramp Notes";shell();buildP2();RS();R1();if(TAB===3)R3()}
-
-function toast(msg,undo,sticky,ms){const el=$("toast");el.innerHTML=`<span>${esc(msg)}</span>${undo?`<button class="o" data-b="undo">${t("undo")}</button>`:""}`;el.hidden=false;el.dataset.l=sticky?"1":"0";clearTimeout(TT);UNDO=undo||null;if(undo)LASTU=undo;if(!sticky)TT=setTimeout(()=>{el.hidden=true;UNDO=null},ms||(undo?7000:2200))}
+function setLang(l){D.set.lang=l;save();document.documentElement.lang=l;document.documentElement.dir=l==="ar"?"rtl":"ltr";document.title=l==="ar"?"مفكرة المهبط":"Ramp Notes";shell();buildP2();RS();R1();if(TAB===3)R3();if(TAB===4)R4()}
+function toast(msg,undo,sticky,ms){const el=$("toast");el.innerHTML=`<span>${esc(msg)}</span>${undo?`<button class="o" data-b="undo">${t("undo")}</button>`:""}`;el.hidden=false;el.dataset.l=sticky?"1":"0";clearTimeout(TT);UNDO=undo||null;if(undo)LASTU=undo;if(!sticky)TT=setTimeout(()=>{el.hidden=true;UNDO=null},ms||(undo?7000:2400))}
 function sheet(h){$("sh").innerHTML=h;$("ov").hidden=false}
 function closeSheet(){$("ov").hidden=true;$("sh").innerHTML=""}
 function openAdd(fid){SHEET_FID=fid;sheet(`<h3>${t("addService")}</h3><div class="sg">${cat().concat(SV.filter(x=>x.k==="oth")).map(x=>`<button class="o sb" data-b="pickSv" data-k="${x.k}"><span>${x.i}</span>${esc(nmOf(x))}</button>`).join("")}</div>`)}
@@ -670,11 +795,12 @@ function backup(kind){
 const G={
  mic(){micToggle()},vhelp(){sheet(`<h3>🎙 ${t("vhelp")}</h3><ul class="ex">${T[L()].vex.map(x=>`<li><b>«${esc(x[0])}»</b><small>${esc(x[1])}</small></li>`).join("")}</ul><button class="o wide" data-b="closeSheet">${t("ok")}</button>`)},
  svl(b){D.set.vl=b.dataset.v;save();R3()},svk(b){D.set.vk=+b.dataset.v;save();R3()},
- tab(b){TAB=+b.dataset.n;["p1","p2","p3"].forEach((id,i)=>$(id).hidden=TAB!==i+1);micUi();shell();if(TAB===2)RS();if(TAB===3)R3();scrollTo(0,0)},
+ tab(b){TAB=+b.dataset.n;["p1","p2","p3","p4"].forEach((id,i)=>$(id).hidden=TAB!==i+1);micUi();shell();if(TAB===2)RS();if(TAB===3)R3();if(TAB===4)R4();scrollTo(0,0)},
  lang(){setLang(L()==="ar"?"en":"ar")},
  theme(){const o=["auto","day","night"];D.set.theme=o[(o.indexOf(D.set.theme)+1)%3];save();applyTheme();shell();if(TAB===3)R3()},
  slang(b){setLang(b.dataset.v)},
  sth(b){D.set.theme=b.dataset.v;save();applyTheme();shell();R3()},
+ saf(b){D.set.af=+b.dataset.v;save();R3()},
  fsm(){const i=FS.indexOf(D.set.fs);D.set.fs=FS[Math.max(0,(i<0?1:i)-1)];save();applyTheme()},
  fsp(){const i=FS.indexOf(D.set.fs);D.set.fs=FS[Math.min(FS.length-1,(i<0?1:i)+1)];save();applyTheme()},
  skeep(b){D.set.keep=+b.dataset.v;purge();R1();R3()},
@@ -695,7 +821,7 @@ const G={
  bsel(){BULK=!BULK;SEL.clear();R1()},
  ball(){const a=visList();const all=a.length&&a.every(f=>SEL.has(f.id));a.forEach(f=>all?SEL.delete(f.id):SEL.add(f.id));
   a.forEach(f=>{const el=document.querySelector(`[data-fid="${f.id}"]`);if(el){el.classList.toggle("sel",SEL.has(f.id));const bx=el.querySelector(".selbox");if(bx)bx.textContent=SEL.has(f.id)?"✓":""}});bkUpd()},
- bmove(){if(!SEL.size)return;const u=undoer();let n=0;D.fl.forEach(f=>{if(SEL.has(f.id)&&!f.ok){f.ok=1;n++}});SEL.clear();BULK=false;save();R1();hdr();toast(t("movedN",{n}),u)},
+ bmove(){if(!SEL.size)return;const u=undoer();let n=0;D.fl.forEach(f=>{if(SEL.has(f.id)&&!f.ok){f.ok=1;f.o=0;n++}});SEL.clear();BULK=false;save();R1();hdr();toast(t("movedN",{n}),u)},
  bdel(){if(!SEL.size)return;const u=undoer();const n=SEL.size;D.fl=D.fl.filter(f=>!SEL.has(f.id));SEL.clear();BULK=false;save();R1();hdr();toast(t("deletedN",{n}),u)},
  hour(b){const f=D.fl.find(x=>x.id==b.dataset.fid);if(!f)return;const i=+b.dataset.i;
   D.fl.forEach(x=>x.o=0);f.o=1;LASTF=f.id;FLT="all";save();R1();hdr();
@@ -737,14 +863,59 @@ const G={
  editR(b){const c=D.sc.find(x=>x.id==b.dataset.id);if(!c)return;eid=c.id;$("sn").value=c.n;$("sa").value=c.al;$("sc").value=c.ac;$("sr").value=c.rg;$("sk").value=c.sp||"";$("st").value=c.t||"";selS=new Set(c.sv);RS();scrollTo(0,0)},
  delR(b){const u=undoer();D.sc=D.sc.filter(x=>x.id!=b.dataset.id);save();RS();R1();toast(t("delR"),u)},
  delH(b){unl(b.dataset.k,b.dataset.v);delete D.h[b.dataset.k][b.dataset.v];save();RS();dlists()},
- expJ(){backup("json")},
- expC(){backup("csv")},
- impB(){$("imp").click()},
+ expJ(){backup("json")},expC(){backup("csv")},impB(){$("imp").click()},
  async shR(){
   const txt=JSON.stringify({app:"ramp-notes",v:2,sc:D.sc,h:D.h,cs:D.cs,tg:D.tg});
   try{const file=new File([txt],"ramp-routine.json",{type:"text/plain"});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:t("title")});return}}catch(e){if(e&&e.name==="AbortError")return}
   fileDl("ramp-routine.json",txt,"application/json")},
- async inst(){if(!DEF)return;DEF.prompt();try{await DEF.userChoice}catch(e){}DEF=null;R3()}
+ async inst(){if(!DEF)return;DEF.prompt();try{await DEF.userChoice}catch(e){}DEF=null;R3()},
+ /* --- التراخيص --- */
+ kPick(){$("keyFile").click()},
+ kUnlock(){
+  const p=$("kPass"),out=$("kOut");
+  if(!OWN.blob){toast(t("keyNoFile"));$("keyFile").click();return}
+  const pass=p?p.value:"";
+  if(!pass){toast(t("keyPass"));if(p)p.focus();return}
+  unlockOwn(pass).then(()=>{R4();toast(t("keyOk"))}).catch(()=>{if(out)out.innerHTML=`<div class="banner err"><b>✕</b>${t("keyBad")}</div>`;toast(t("keyBad"))})},
+ kLock(){OWN.open=false;OWN.priv="";OWN_PASS="";R4();toast(t("licLock"))},
+ iGo(){
+  const nEl=$("iName"),name=(nEl?nEl.value:"").trim();
+  if(!name){toast(t("needName"));if(nEl)nEl.focus();return}
+  const days=+$("iDays").value||90,note=($("iNote").value||"").trim();
+  const id=rid(),exp=afterDays(days);
+  signLic(id,name,exp).then(code=>{
+   OWN.lic.unshift({id,name,note,days,exp,code,revoked:false,created:Date.now()});
+   return persistOwn(OWN_PASS).then(()=>{
+    $("iName").value="";$("iNote").value="";R4();toast(t("issued"));
+    const el=document.querySelector(`[data-b="lWa"][data-id="${id}"]`);
+    if(el)el.scrollIntoView({block:"center",behavior:"smooth"});
+   })}).catch(()=>toast(t("keyBad")))},
+ lWa(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(!l)return;
+  window.open("https://wa.me/?text="+encodeURIComponent(waFor(l)),"_blank","noopener")},
+ lLink(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(l)copy(licLink(l.code))},
+ lCode(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(l)copy(l.code)},
+ lRen(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(!l)return;
+  sheet(`<h3>${t("renew")} — ${esc(l.name)}</h3><div class="fld"><label>${t("issDays")}</label><select id="rnDays"><option value="30">${t("d30")}</option><option value="90" selected>${t("d90")}</option><option value="180">${t("d180")}</option><option value="365">${t("d365")}</option><option value="3650">${t("d3650")}</option></select></div>
+  <div class="row mt"><button data-b="rnGo" data-id="${l.id}">${t("save")}</button><button class="o" data-b="closeSheet">${t("cancel")}</button></div>`)},
+ rnGo(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(!l)return;
+  const n=+$("rnDays").value||90,exp=afterDays(n);
+  signLic(l.id,l.name,exp).then(code=>{l.code=code;l.exp=exp;l.days=n;l.revoked=false;
+   return persistOwn(OWN_PASS)}).then(()=>{closeSheet();R4();toast(t("renewed"))}).catch(()=>toast(t("keyBad")))},
+ lRev(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(!l)return;
+  l.revoked=!l.revoked;persistOwn(OWN_PASS).then(()=>{R4();toast(l.revoked?t("revoked"):t("unrevoked"))})},
+ lDel(b){const l=OWN.lic.find(x=>x.id===b.dataset.id);if(!l)return;
+  sheet(`<h3>${t("delLic")} ${esc(l.name)}؟</h3><div class="row"><button class="dng" data-b="lDelGo" data-id="${l.id}">${t("delLic")}</button><button class="o" data-b="closeSheet">${t("cancel")}</button></div>`)},
+ lDelGo(b){OWN.lic=OWN.lic.filter(x=>x.id!==b.dataset.id);persistOwn(OWN_PASS).then(()=>{closeSheet();R4();toast(t("licDeleted"))})},
+ gDl(){
+  const rev=OWN.lic.filter(l=>l.revoked).map(l=>l.id);
+  fetch("index.html?rnup="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.text():Promise.reject())
+   .then(html=>{
+    if(!/REVOKED\s*=\s*\[[^\]]*\]/.test(html))throw 0;
+    const out=html.replace(/REVOKED\s*=\s*\[[^\]]*\]/,"REVOKED = "+JSON.stringify(rev));
+    fileDl("index.html",out,"text/html;charset=utf-8");toast(t("guardOk"))})
+   .catch(()=>toast(t("guardFail")))},
+ lExp(){fileDl("ramp-licenses-"+dd(0)+".json",JSON.stringify({app:"rn-licenses",v:1,lic:OWN.lic},null,2),"application/json")},
+ lImp(){$("licFile").click()}
 };
 document.addEventListener("click",e=>{
  if(e.target.id==="ov"){closeSheet();return}
@@ -757,13 +928,14 @@ document.addEventListener("click",e=>{
  switch(a){
   case"o":
    if(BULK){SEL.has(f.id)?SEL.delete(f.id):SEL.add(f.id);c.classList.toggle("sel",SEL.has(f.id));const bx=c.querySelector(".selbox");if(bx)bx.textContent=SEL.has(f.id)?"✓":"";bkUpd();return}
-   f.o=f.o?0:1;rc(f);return;
+   f.o=f.o?0:1;save();rc(f);return;
+  case"fold":f.o=0;save();rc(f);focusCard(f.id);return;
   case"dm":case"dp":f.d=addD(f.d,a==="dp"?1:-1);save();R1();hdr();focusCard(f.id);return;
   case"nf":s.f=nw();up();return;
   case"nt":s.t=nw();up();
-   if(D.set.imp.hour){const d=dur(s.f,s.t);if(d!=null&&d>HOUR){buzz(0);toast(`⏰ ${f.n||t("flight")} · ${sname(s)} ${t("hourToast")} (${fmtMin(d)})`,null,false,6500)}}
-   return;
-  case"dn":s.dn=s.dn?0:1;up();return;
+   if(D.set.imp.hour){const d=dur(s.f,s.t);if(d!=null&&d>HOUR){buzz(0);toast(`⏰ ${f.n||t("flight")} · ${sname(s)} ${t("hourToast")} (${fmtMin(d)})`,null,false,6000)}}
+   maybeFold(f);return;
+  case"dn":s.dn=s.dn?0:1;up();maybeFold(f);return;
   case"w":s.w=s.w?0:1;up();return;
   case"wrk":{const k=b.dataset.k;s.wr=s.wr||[];const i=s.wr.indexOf(k);i<0?s.wr.push(k):s.wr.splice(i,1);up();return}
   case"rs":s.f="";s.t="";s.dn=0;up();return;
@@ -778,11 +950,10 @@ document.addEventListener("click",e=>{
   case"pick":{const k=b.dataset.k,v=b.dataset.v;unl(k,f[k]);f[k]=v;lrn(k,v);if(k==="al"||k==="ac"){if(f.rg)D.rm[f.rg]=[f.al,f.ac]}save();rc(f);return}
   case"cp":copy(summary(f));return;
   case"sh":share(summary(f));return;
-  case"ok":{const u=undoer();f.ok=f.ok?0:1;save();if(FLT==="all")rc(f);else{R1()}hdr();toast(f.ok?t("movedT"):t("unmove"),u);return}
+  case"ok":{const u=undoer();f.ok=f.ok?0:1;if(f.ok)f.o=0;save();R1();hdr();toast(f.ok?t("movedT"):t("unmove"),u);return}
   case"del":{const u=undoer();D.fl=D.fl.filter(x=>x!==f);save();R1();hdr();toast(t("deleted"),u);return}
  }});
-document.addEventListener("input",e=>{
- if(e.target.id==="q"){const v=e.target.value;clearTimeout(QT);QT=setTimeout(()=>{Q=v;renderList()},130)}});
+document.addEventListener("input",e=>{if(e.target.id==="q"){const v=e.target.value;clearTimeout(QT);QT=setTimeout(()=>{Q=v;renderList()},130)}});
 document.addEventListener("change",e=>{
  const el=e.target;
  if(el.dataset.b==="wdin"){setWd(el.value);return}
@@ -791,6 +962,16 @@ document.addEventListener("change",e=>{
   if(v>0)D.tg[k]=Math.min(240,v);else delete D.tg[k];
   el.value=tgOf(k)||"";save();R1();return}
  if(el.id==="imp"){const file=el.files[0];el.value="";if(!file)return;file.text().then(x=>{try{const r=mergeData(JSON.parse(x));toast(t("imported",r))}catch(err){toast(t("badFile"))}});return}
+ if(el.id==="keyFile"){const file=el.files[0];el.value="";if(!file)return;
+  file.text().then(x=>{let d;try{d=JSON.parse(x)}catch(err){toast(t("badFile"));return}
+   if(!d||!d.ct||!d.salt||!d.iv){toast(t("badFile"));return}
+   OWN.blob=d;ownSaveBlob();R4();toast(t("keyLoaded"));
+   setTimeout(()=>{const p=$("kPass");if(p)p.focus()},100)});return}
+ if(el.id==="licFile"){const file=el.files[0];el.value="";if(!file)return;
+  file.text().then(x=>{let d;try{d=JSON.parse(x)}catch(err){toast(t("badFile"));return}
+   if(!d||!Array.isArray(d.lic)){toast(t("badFile"));return}
+   let n=0;d.lic.forEach(l=>{if(l&&l.id&&!OWN.lic.some(y=>y.id===l.id)){OWN.lic.push(l);n++}});
+   persistOwn(OWN_PASS).then(()=>{R4();toast(t("licImported",{n}))})});return}
  const a=el.dataset.a,c=el.closest("[data-fid]");if(!a||!c)return;
  const f=D.fl.find(x=>x.id==c.dataset.fid);if(!f)return;
  LASTF=f.id;CF=cfSet();
@@ -806,7 +987,8 @@ document.addEventListener("change",e=>{
   if(a==="rg"&&D.rm[v])["al","ac"].forEach((k,i)=>{if(!f[k]&&D.rm[v][i]){f[k]=D.rm[v][i];const x=c.querySelector(`[data-a="${k}"]`);if(x)x.value=f[k];lrn(k,f[k])}});
   if(f.rg)D.rm[f.rg]=[f.al,f.ac]}
  save();if(!r)dlists();
- if(r&&el.type==="time")upCard(c,f,r);else{const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)+(SEL.has(f.id)?" sel":"");stUpd();hrUpd()}});
+ if(r&&el.type==="time"){upCard(c,f,r);maybeFold(f)}
+ else{const h=c.querySelector(".fh");if(h)h.innerHTML=fhIn(f);c.className="fc "+ccls(f)+(SEL.has(f.id)?" sel":"");stUpd();hrUpd()}});
 document.addEventListener("keydown",e=>{
  if(e.key==="Escape"&&BULK){BULK=false;SEL.clear();R1();return}
  const g=e.target.closest&&e.target.closest("[data-grip]");
@@ -852,7 +1034,7 @@ function tick(){
  document.querySelectorAll("[data-run]").forEach(el=>{
   const e=elapsed(el.dataset.f),tg=+el.dataset.tg||0;
   const over=(tg&&e!=null&&e>tg)||(D.set.imp.hour&&e!=null&&e>HOUR);
-  el.textContent=(fmtMin(e)||"")+(over?" ⚠":"");el.classList.toggle("over",over)});
+  el.textContent=(fmtShort(e)||"")+(over?" ⚠":"");el.classList.toggle("over",over)});
  stUpd();hdr();hrUpd();checkHour()}
 setInterval(tick,15000);document.addEventListener("visibilitychange",()=>{if(!document.hidden)tick()});
 
@@ -910,13 +1092,11 @@ function parseCmd(raw){
  if(/^(تراجع|ارجع|الغي|الغاء|اتراجع|undo|revert|cancel)( |$)/.test(n))return{t:"undo"};
  if(/(^| )(رحله (جديده|فاضيه|فارغه)|new flight|blank flight)( |$)/.test(n))return{t:"newf"};
  if(/(^| )(تم نقل|نقلت|منقوله|منقول|transferred|mark transferred|marked as transferred)( |$)/.test(n))return{t:"moved"};
- const rw=rc.split(/\s+/).filter(Boolean),nw=n.split(/\s+/).filter(Boolean);
- let ni=-1;for(let i=0;i<nw.length&&i<4;i++){if(/^(ملاحظ[هت]|ملحوظ[هت]|ملاحظات|نوت|notes?)$/.test(nw[i])){ni=i;break}}
- if(ni>=0){
-  const pre=nw.slice(0,ni).join(" ");
+ const rw=rc.split(/\s+/).filter(Boolean),nw2=n.split(/\s+/).filter(Boolean);
+ let ni=-1;for(let i=0;i<nw2.length&&i<4;i++){if(/^(ملاحظ[هت]|ملحوظ[هت]|ملاحظات|نوت|notes?)$/.test(nw2[i])){ni=i;break}}
+ if(ni>=0){const pre=nw2.slice(0,ni).join(" ");
   const okPre=ni===0||ni<=1||/^(?:يا |يعني |طب |طيب |بس |و )?(?:سجل|اكتب|ضيف|زود|حط|حطلي|سجلي|اكتبي|قول|قوللي)?$/.test(pre);
-  if(okPre){const txt=rw.slice(ni+1).join(" ").replace(/(\d)#(\d)/g,"$1:$2").trim();if(txt)return{t:"note",txt}}
- }
+  if(okPre){const txt=rw.slice(ni+1).join(" ").replace(/(\d)#(\d)/g,"$1:$2").trim();if(txt)return{t:"note",txt}}}
  if(m=/^(?:افتح |ضيف |اضف |زود |open |add |select |goto |go to )?(?:رحله|flight)\s+(.+)$/.exec(n)){const q=m[1],digits=(q.match(/\d+/g)||[]).join(""),letters=(q.match(/[a-z]+/g)||[]).join("");if(digits||letters)return{t:"flight",digits,letters}}
  [n,tv]=takeTime(n);
  if(m=/^(?:موقف|stand|ستاند|استاند)\s+(.+)$/.exec(n)){let v;if(/\d/.test(m[1]))v=m[1].replace(/\s+/g,"").toUpperCase();else{const x=numIn(m[1]);v=x!=null?String(x):m[1].replace(/\s+/g,"").toUpperCase()}v=v.slice(0,8);if(v)return{t:"stand",v}}
@@ -951,7 +1131,7 @@ function execCmd(p,f){
   if(g){D.fl.forEach(x=>x.o=0);g.o=1;LASTF=g.id;return{ok:1,msg:"✈ "+g.n,f:g}}
   const c=D.sc.find(mt);if(c){addF(c);return{ok:1,msg:"＋ ✈ "+c.n,f:D.fl[0]}}
   addF();g=D.fl[0];g.n=p.letters.toUpperCase()+p.digits;return{ok:1,msg:"＋ ✈ "+g.n,f:g}}
- case"moved":f.ok=1;return{ok:1,msg:`✓ ${nf}: ${t("movedT")}`,f,gone:1};
+ case"moved":f.ok=1;f.o=0;return{ok:1,msg:`✓ ${nf}: ${t("movedT")}`,f,gone:1};
  case"stand":f.sp=p.v;lrn("sp",p.v);return{ok:1,msg:`${nf} · ${t("stand")}: ${p.v}`,f};
  case"pax":{const k=p.dir==="d"?"pd":p.dir==="a"?"pa":(f.pa===""?"pa":"pd");f[k]=p.n;return{ok:1,msg:`${nf} · ${t(k==="pa"?"paxA":"paxD")}: ${p.n}`,f}}
  case"chocks":f[p.w]=T_;return{ok:1,msg:`${nf} · ${t(p.w==="ta"?"chOn":"chOff")} ${T_}`,f};
@@ -990,7 +1170,10 @@ function onSpeech(alts){
  buzz(0);toast(`🎙 «${alts[0]||""}»\n${t("vNo")} — ${t("vTry")}: «${T[L()].vex[0][0]}»`,null,false,4500)}
 let REC=null,LIS=false,WANT=false,FATAL=false,LT=[];
 const micLang=()=>D.set.vl==="auto"?(L()==="ar"?"ar-EG":"en-US"):D.set.vl;
-function micUi(){const m=$("mic");if(!m)return;const on=!!SRC&&TAB===1;m.hidden=!on;document.body.classList.toggle("vm",on);m.classList.toggle("lis",LIS);m.textContent=LIS?"⏹":"🎙";m.setAttribute("aria-label",t("s_voice"))}
+function micUi(){const m=$("mic");if(!m)return;
+ m.hidden=!(SRC&&TAB===1);
+ m.classList.toggle("rec",LIS);
+ m.textContent=LIS?"⏹":"🎙"}
 function micToggle(){if(!SRC){toast(t("vNoSup"),null,false,3500);return}if(WANT||LIS){micStop();return}FATAL=false;LT=[];WANT=true;micStart(false)}
 function micStop(){WANT=false;try{REC&&REC.abort&&REC.abort()}catch(e){}LIS=false;micUi();const el=$("toast");if(el.dataset.l==="1")el.hidden=true}
 function micStart(again,langOv){
@@ -1006,235 +1189,18 @@ function micStart(again,langOv){
   else if(c==="language-not-supported"){
    if(!LT.includes(lang))LT.push(lang);
    const fb=["ar","ar-EG","ar-SA"].find(x=>!LT.includes(x)&&x!==lang);
-   if(fb){toast("🎙 "+t("vLangErr")+" — بجرب "+fb,null,false,2500);setTimeout(()=>{if(WANT&&!LIS)micStart(true,fb)},300);return}
+   if(fb){setTimeout(()=>{if(WANT&&!LIS)micStart(true,fb)},300);return}
    FATAL=true;toast(t("vLangErr"),null,false,4000)}
   else if(c==="no-speech")toast(t("vNoSpeech"),null,false,2000)};
  r.onend=()=>{LIS=false;if(WANT&&D.set.vk&&!FATAL){setTimeout(()=>{if(WANT&&!LIS)micStart(true)},300)}else{WANT=false;const el=$("toast");if(el.dataset.l==="1")el.hidden=true}micUi()};
  try{r.start()}catch(e){WANT=false;micUi()}}
 
-purge();applyTheme();
+ownLoad();purge();applyTheme();
 document.documentElement.lang=L();document.documentElement.dir=L()==="ar"?"rtl":"ltr";document.title=L()==="ar"?"مفكرة المهبط":"Ramp Notes";
 D.sc.concat(D.fl).forEach(c=>["al","ac","rg","sp"].forEach(k=>{if(c[k]&&!D.h[k][c[k]])lrn(k,c[k])}));
-shell();buildP2();RS();R1();dlists();micUi();
+shell();buildP2();RS();R1();dlists();
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 if("serviceWorker" in navigator&&/^https?:/.test(location.protocol))addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
-</script>
-<script>
-/* ============================================================
-   مفكرة المهبط · Ramp Notes — طبقة الترخيص وحماية الملكية
-   © __OWNER__. جميع الحقوق محفوظة. استخدام شخصي مصرّح به فقط.
-   إعادة التوزيع أو النشر أو النسب للمؤلف الأصلي ممنوعة.
-   ============================================================ */
-(function(){
-"use strict";
-var OWNER   = "Mohamed Sayed";
-var PUBKEY  = "MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAENnDmt13XK4sqYPC7ofXcG5udbMipBVFV3p80jBbvrdrNcYL063VPTV4IXIlQSbqwx6c0kjyWAdj0fvJs1djesA==";
-var REVOKED = [];
-var APPURL  = "https://mohamed122-122.github.io/rn-x7k2/";
-var LSK = "rn.license.v1";
-var enc = new TextEncoder(), dec = new TextDecoder();
-var subtle = (window.crypto && crypto.subtle) ? crypto.subtle : null;
-
-function b64u(bytes){var s="",a=new Uint8Array(bytes);for(var i=0;i<a.length;i++)s+=String.fromCharCode(a[i]);return btoa(s).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,"")}
-function unb64u(s){s=String(s).replace(/-/g,"+").replace(/_/g,"/");while(s.length%4)s+="=";var raw=atob(s),a=new Uint8Array(raw.length);for(var i=0;i<raw.length;i++)a[i]=raw.charCodeAt(i);return a}
-function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
-function today(){var d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
-function fpArr(){
-  var tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}
-  return [String(navigator.platform||""),String(screen.width)+"x"+String(screen.height)+"x"+String(screen.colorDepth||0),tz,String(navigator.language||""),String(navigator.hardwareConcurrency||0),String(navigator.maxTouchPoints||0)];
-}
-function fpDiff(a,b){if(!Array.isArray(a)||!Array.isArray(b))return 9;var n=0;for(var i=0;i<Math.max(a.length,b.length);i++)if(a[i]!==b[i])n++;return n}
-function store(o){try{localStorage.setItem(LSK,JSON.stringify(o))}catch(e){}}
-function readLic(){try{return JSON.parse(localStorage.getItem(LSK))}catch(e){return null}}
-
-/* ---------- الثيم ---------- */
-function theme(){
-  var t="day";
-  try{var d=JSON.parse(localStorage.getItem("rn")||"{}");var s=(d.set&&d.set.theme)||"auto";
-    t = s==="auto" ? (matchMedia("(prefers-color-scheme: dark)").matches?"night":"day") : s;
-  }catch(e){}
-  return t;
-}
-
-/* ---------- الواجهة ---------- */
-var host=null,cloak=null;
-function injectCloak(){
-  cloak=document.createElement("style");
-  cloak.textContent="body>*:not(#rnGuard){visibility:hidden!important}html,body{overflow:hidden!important}";
-  document.head.appendChild(cloak);
-}
-function release(){
-  if(cloak&&cloak.parentNode)cloak.parentNode.removeChild(cloak);cloak=null;
-  if(host&&host.parentNode)host.parentNode.removeChild(host);host=null;
-  document.documentElement.style.overflow="";document.body.style.overflow="";
-}
-function css(){
-  var n=theme()==="night";
-  return "#rnGuard{position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;justify-content:center;padding:1rem;overflow:auto;font-family:'Noto Sans Arabic','Segoe UI',Tahoma,system-ui,sans-serif;font-weight:600;line-height:1.55;"+
-    "background:"+(n?"#05070a":"#e9ecf1")+";color:"+(n?"#f5f7fa":"#000")+"}"+
-  "#rnGuard *{box-sizing:border-box}"+
-  "#rnGuard .bx{width:100%;max-width:460px;background:"+(n?"#10151c":"#fff")+";border:2px solid "+(n?"#46556c":"#1e293b")+";border-radius:18px;padding:1.3rem;box-shadow:0 18px 50px #0007}"+
-  "#rnGuard .lg{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}"+
-  "#rnGuard .lg .ic{width:44px;height:44px;flex:none;border-radius:13px;display:grid;place-items:center;font-size:1.5rem;background:"+(n?"#161d26":"#f4f6f9")+";border:2px solid "+(n?"#46556c":"#1e293b")+"}"+
-  "#rnGuard .lg b{font-size:1.15rem;display:block}"+
-  "#rnGuard .lg small{font-size:.72rem;font-weight:800;letter-spacing:1.5px;color:"+(n?"#ffb21f":"#0b3bd6")+"}"+
-  "#rnGuard h2{margin:.2rem 0 .4rem;font-size:1.25rem}"+
-  "#rnGuard p{margin:0 0 .8rem;font-size:.88rem;color:"+(n?"#b6c1d1":"#2b3646")+"}"+
-  "#rnGuard label{display:block;font-size:.8rem;font-weight:800;color:"+(n?"#b6c1d1":"#2b3646")+";margin-bottom:.3rem}"+
-  "#rnGuard textarea{width:100%;min-height:5.5rem;padding:.6rem;border:2px solid "+(n?"#46556c":"#1e293b")+";border-radius:11px;background:"+(n?"#05070a":"#f4f6f9")+";color:inherit;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.72rem;direction:ltr;text-align:left;resize:vertical;line-height:1.5}"+
-  "#rnGuard textarea:focus{outline:3px solid "+(n?"#ffb21f":"#0b3bd6")+";outline-offset:1px}"+
-  "#rnGuard button{width:100%;min-height:3.1rem;margin-top:.7rem;border:2px solid "+(n?"#ffb21f":"#0b3bd6")+";background:"+(n?"#ffb21f":"#0b3bd6")+";color:"+(n?"#1a1100":"#fff")+";border-radius:12px;font:inherit;font-weight:900;font-size:1rem;cursor:pointer}"+
-  "#rnGuard button:active{transform:scale(.98)}"+
-  "#rnGuard button:disabled{opacity:.5;cursor:wait}"+
-  "#rnGuard button.o{background:transparent;color:inherit;border-color:"+(n?"#46556c":"#1e293b")+";font-size:.88rem;min-height:2.6rem}"+
-  "#rnGuard .msg{border-radius:11px;padding:.6rem .75rem;font-size:.85rem;font-weight:800;margin:.7rem 0;border:2px solid}"+
-  "#rnGuard .msg.e{border-color:"+(n?"#ff8f9a":"#b3001b")+";background:"+(n?"#3d0c14":"#ffdadd")+";color:"+(n?"#ff8f9a":"#b3001b")+"}"+
-  "#rnGuard .msg.s{border-color:"+(n?"#5ce58a":"#0a6b25")+";background:"+(n?"#0b2a17":"#d2f4da")+";color:"+(n?"#5ce58a":"#0a6b25")+"}"+
-  "#rnGuard .msg.w{border-color:"+(n?"#ffc857":"#8a4b00")+";background:"+(n?"#3a2a04":"#ffe8a3")+";color:"+(n?"#ffc857":"#8a4b00")+"}"+
-  "#rnGuard .ft{margin-top:1rem;padding-top:.8rem;border-top:2px dashed "+(n?"#2c3949":"#c3ccd8")+";font-size:.72rem;font-weight:700;color:"+(n?"#b6c1d1":"#2b3646")+";text-align:center;line-height:1.8}"+
-  "#rnGuard .ft b{color:"+(n?"#ffb21f":"#0b3bd6")+"}"+
-  "#rnGuard .who{display:flex;align-items:center;gap:.5rem;background:"+(n?"#0b2a17":"#d2f4da")+";border:2px solid "+(n?"#5ce58a":"#0a6b25")+";border-radius:11px;padding:.55rem .7rem;margin-bottom:.7rem;font-size:.88rem;font-weight:800}"+
-  "#rnGuard::-webkit-scrollbar{width:11px}#rnGuard::-webkit-scrollbar-track{background:"+(n?"#10151c":"#f4f6f9")+"}"+
-  "#rnGuard::-webkit-scrollbar-thumb{background:"+(n?"#46556c":"#1e293b")+";border-radius:8px}";
-}
-function paint(inner){
-  if(!host){
-    var st=document.createElement("style");st.id="rnGuardCss";st.textContent=css();document.head.appendChild(st);
-    host=document.createElement("div");host.id="rnGuard";document.body.appendChild(host);
-  }else{var s=document.getElementById("rnGuardCss");if(s)s.textContent=css()}
-  host.innerHTML='<div class="bx"><div class="lg"><div class="ic">🛡</div><div><b>مفكرة المهبط</b><small>RAMP NOTES · LICENSED</small></div></div>'+inner+
-    '<div class="ft">© '+esc(OWNER)+' — جميع الحقوق محفوظة<br>نسخة مصرّح بها للاستخدام الشخصي فقط · <b>إعادة التوزيع أو النسب ممنوعة</b></div></div>';
-}
-function ask(reason,keepCode){
-  var msg = reason ? '<div class="msg '+reason.k+'">'+esc(reason.m)+'</div>' : '';
-  paint('<h2>تفعيل النسخة</h2><p>البرنامج ده مصرّح به لمستخدمين محدّدين. الصق كود التفعيل اللي وصلك من المالك — هيتربط بالجهاز ده تلقائيًا.</p>'+msg+
-    '<label>كود التفعيل</label><textarea id="rnCode" placeholder="RN1.…" spellcheck="false">'+esc(keepCode||"")+'</textarea>'+
-    '<button id="rnGo">🔓 تفعيل</button>'+
-    '<button class="o" id="rnHelp">مش عارف الكود؟</button>');
-  var ta=document.getElementById("rnCode"),btn=document.getElementById("rnGo");
-  btn.onclick=function(){btn.disabled=true;btn.textContent="جارٍ التحقق…";activate(ta.value.trim(),function(err){btn.disabled=false;btn.textContent="🔓 تفعيل";if(err)ask({k:"e",m:err},ta.value.trim())})};
-  ta.onkeydown=function(e){if(e.key==="Enter"&&(e.ctrlKey||e.metaKey))btn.click()};
-  document.getElementById("rnHelp").onclick=function(){
-    paint('<h2>إزاي تجيب الكود؟</h2><p>كود التفعيل بيصدره مالك البرنامج لكل مستخدم باسمه. اطلبه منه وابعتله اسمك، وهو هيبعتلك رابط تفعيل على واتساب تدوس عليه وخلاص.</p>'+
-      '<div class="msg w">الكود مربوط بجهاز واحد. لو غيّرت الموبايل أو المتصفح، اطلب تفعيل تاني من المالك.</div>'+
-      '<button class="o" id="rnBack">← رجوع</button>');
-    document.getElementById("rnBack").onclick=function(){ask(null,ta.value)};
-  };
-  setTimeout(function(){try{ta.focus()}catch(e){}},60);
-}
-
-/* ---------- التحقق ---------- */
-function importPub(){
-  return subtle.importKey("spki",unb64u(PUBKEY),{name:"ECDSA",namedCurve:"P-256"},false,["verify"]);
-}
-function verify(code){
-  if(!subtle)return Promise.reject("المتصفح ده مش بيدعم التحقق المشفّر — افتح الرابط من Chrome أو Safari حديث.");
-  var parts=String(code||"").trim().split(".");
-  if(parts.length!==3||parts[0]!=="RN1")return Promise.reject("صيغة الكود مش صحيحة. انسخه كامل زي ما وصلك.");
-  var pb=parts[1],sb=parts[2],data;
-  try{data=JSON.parse(dec.decode(unb64u(pb)))}catch(e){return Promise.reject("الكود تالف أو ناقص.")}
-  if(!data||!data.i||!data.n||!data.e)return Promise.reject("بيانات الترخيص ناقصة.");
-  return importPub().then(function(key){
-    return subtle.verify({name:"ECDSA",hash:"SHA-256"},key,unb64u(sb),enc.encode(pb));
-  }).then(function(ok){
-    if(!ok)throw "الكود ده مش صادر من مالك البرنامج.";
-    if(REVOKED.indexOf(data.i)>=0)throw "الترخيص ده اتبطل من المالك. كلّمه لو ده غلط.";
-    if(String(data.e)<today())throw "انتهت صلاحية الترخيص بتاريخ "+data.e+". اطلب تجديد من المالك.";
-    return data;
-  }).catch(function(e){throw (typeof e==="string")?e:"تعذّر التحقق من الكود."});
-}
-function activate(code,cb){
-  verify(code).then(function(d){
-    store({code:code,id:d.i,name:d.n,exp:d.e,fp:fpArr(),at:Date.now()});
-    paint('<div class="who">✓ اتفعّل باسم: '+esc(d.n)+'</div><h2>أهلًا بيك 👋</h2><p>الترخيص صالح لحد <b>'+esc(d.e)+'</b> ومربوط بالجهاز ده. التطبيق هيفتح دلوقتي.</p>');
-    setTimeout(function(){release();stamp();},900);
-    cb(null);
-  }).catch(function(err){cb(err)});
-}
-function boot(){
-  injectCloak();
-  var fromHash="";
-  try{
-    var h=location.hash||"";
-    var m=/[#&]lic=([^&]+)/.exec(h);
-    if(m)fromHash=decodeURIComponent(m[1]);
-  }catch(e){}
-  if(fromHash){
-    try{history.replaceState(null,"",location.pathname+location.search)}catch(e){}
-    paint('<h2>جارٍ التفعيل…</h2><p>لحظة واحدة، بنتأكد من الكود.</p>');
-    activate(fromHash,function(err){if(err)ask({k:"e",m:err},fromHash)});
-    return;
-  }
-  var s=readLic();
-  if(!s||!s.code){ask(null);return}
-  if(fpDiff(s.fp,fpArr())>=2){
-    paint('<h2>جهاز مختلف</h2><p>الترخيص مربوط بجهاز تاني. لو ده جهازك الجديد، دوس تفعيل عشان يتربط بيه.</p>');
-    activate(s.code,function(err){
-      if(err)ask({k:"w",m:"الجهاز اتغيّر — "+err},s.code);
-    });
-    return;
-  }
-  verify(s.code).then(function(d){
-    s.name=d.n;s.exp=d.e;store(s);release();stamp();
-  }).catch(function(err){
-    ask({k:"e",m:err},s.code);
-  });
-}
-
-/* ---------- توقيع الملكية في المخرجات ---------- */
-function sig(){return "\n─────────────\n© "+OWNER+" — مفكرة المهبط · Ramp Notes\nنسخة مصرّح بها. إعادة التوزيع أو النسب ممنوعة."}
-function stamp(){
-  try{
-    if(typeof window.summary==="function"&&!window.summary.__rn){
-      var os=window.summary;
-      window.summary=function(f){return os(f)+sig()};
-      window.summary.__rn=1;
-    }
-    if(typeof window.csv==="function"&&!window.csv.__rn){
-      var oc=window.csv;
-      window.csv=function(){
-        var out=oc();
-        return out+"\r\n\"# © "+String(OWNER).replace(/"/g,'""')+" — مفكرة المهبط · Ramp Notes — نسخة مصرّح بها، إعادة التوزيع ممنوعة\"\r\n";
-      };
-      window.csv.__rn=1;
-    }
-    if(typeof window.backup==="function"&&!window.backup.__rn){
-      var ob=window.backup;
-      window.backup=function(k){
-        try{
-          var lic=readLic()||{};
-          if(k!=="csv"){
-            var of=window.fileDl;
-            if(typeof of==="function"){
-              window.fileDl=function(n,txt,ty){
-                try{var o=JSON.parse(txt);o.license={owner:OWNER,to:lic.name||"—",id:lic.id||"—",exp:lic.exp||"—"};txt=JSON.stringify(o)}catch(e){}
-                return of(n,txt,ty);
-              };
-            }
-            ob(k);
-            window.fileDl=of;
-          }else ob(k);
-        }catch(e){ob(k)}
-      };
-      window.backup.__rn=1;
-    }
-    if(!document.getElementById("rnOwnerBadge")){
-      var lic=readLic()||{};
-      var b=document.createElement("div");
-      b.id="rnOwnerBadge";
-      b.style.cssText="max-width:720px;margin:.5rem auto;padding:.5rem .8rem;font-size:.75rem;font-weight:700;text-align:center;opacity:.85;line-height:1.7";
-      b.innerHTML="© "+esc(OWNER)+" — جميع الحقوق محفوظة<br>مرخّص لـ: <b>"+esc(lic.name||"—")+"</b> · صالح حتى "+esc(lic.exp||"—");
-      var mn=document.querySelector("main");
-      if(mn&&mn.parentNode)mn.parentNode.insertBefore(b,mn.nextSibling);
-    }
-    try{console.log("%c© "+OWNER+" — مفكرة المهبط · Ramp Notes","font-size:14px;font-weight:bold");console.log("%cنسخة مصرّح بها. إعادة التوزيع أو النشر أو النسب للمؤلف الأصلي ممنوعة.","font-size:12px")}catch(e){}
-  }catch(e){}
-}
-
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",boot);
-else boot();
-window.addEventListener("load",function(){if(!host)stamp()});
-})();
 </script>
 </body>
 </html>
